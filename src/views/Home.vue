@@ -4,7 +4,7 @@
       <div class="columns">
         <div class="column">
           <h1 class="title">Hey, I'm Tim😊</h1>
-          <p class="subtitle">I'm a swim coach and CS student in Switzerland</p>
+          <p class="subtitle">I'm a swimmer, swim coach and CS student in Switzerland</p>
           <p class="subtitle">🏊💻</p>
           <i>This website is still WIP</i>
         </div>
