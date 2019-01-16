@@ -15,23 +15,37 @@
 export default {
   name: 'SocialMedia',
   data: () => ({
-    cols: [
-      [
-        {
-          t: 'Twitter',
-          l: 'https://twitter.com/TiimB',
-          ico: ['fab', 'twitter'],
-        },
-        {
-          t: 'Instagram',
-          l: 'https://instagram.com/tiim.ba',
-          ico: ['fab', 'instagram'],
-        },
-        { t: 'E-Mail', l: 'mailto:tim.bachmann96@gmail.com', ico: 'at' },
-        { t: 'Github', l: 'https://github.com/Tiim', ico: ['fab', 'github'] },
-        { t: 'Website', l: 'https://tiimb.work', ico: 'external-link-alt' },
-      ],
+    socialMedia: [
+      {
+        t: 'Twitter',
+        l: 'https://twitter.com/TiimB',
+        ico: ['fab', 'twitter'],
+      },
+      {
+        t: 'Instagram',
+        l: 'https://instagram.com/tiim.ba',
+        ico: ['fab', 'instagram'],
+      },
+      { t: 'E-Mail', l: 'mailto:tim.bachmann96@gmail.com', ico: 'at' },
+      { t: 'Github', l: 'https://github.com/Tiim', ico: ['fab', 'github'] },
+      { t: 'Website', l: 'https://tiimb.work', ico: 'external-link-alt' },
+      {
+        t: 'Flickr',
+        l: 'https://www.flickr.com/people/152309161@N02/',
+        ico: ['fab', 'flickr'],
+      },
     ],
   }),
+  computed: {
+    cols() {
+      const size = 5;
+      return this.socialMedia.reduce((t, n, i) => {
+        const chunk = Math.floor(i / size);
+        t[chunk] = t[chunk] || [];
+        t[chunk].push(n);
+        return t;
+      }, []);
+    },
+  },
 };
 </script>
