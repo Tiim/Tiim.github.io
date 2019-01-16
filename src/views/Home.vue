@@ -9,7 +9,9 @@
           <i>This website is still WIP</i>
         </div>
         <div class="column is-3">
-          <img src="https://avatars.io/twitter/tiimb/medium">
+          <figure class="image is-128x128">
+            <img class="is-rounded" src="https://avatars.io/twitter/tiimb/medium">
+          </figure>
         </div>
       </div>
       <div>
