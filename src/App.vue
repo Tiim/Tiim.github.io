@@ -1,11 +1,26 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link tag="button" class="button is-primary" to="/">Home</router-link>
+  <div>
+    <Header/>
+    <div class="section">
+      <div class="container">
+        <router-view/>
+      </div>
     </div>
-    <router-view/>
+    <div class="section">
+      <Footer/>
+    </div>
   </div>
 </template>
-
+<script>
+import Header from './components/Header';
+import Footer from './components/Footer';
+export default {
+  name: 'App',
+  components: {
+    Header,
+    Footer,
+  },
+};
+</script>
 <style>
 </style>
