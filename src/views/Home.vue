@@ -8,14 +8,13 @@
           <p class="subtitle">🏊💻</p>
           <i>This website is still WIP</i>
         </div>
-        <div class="column is-3">
-          <figure class="image is-128x128">
+        <div class="column is-4">
+          <figure class="image is-128x128 is-inline-block">
             <img class="is-rounded" src="https://avatars.io/twitter/tiimb/medium">
           </figure>
         </div>
       </div>
-      <div>
-        <h2>Social Media</h2>
+      <div class="section content">
         <SocialMedia/>
       </div>
     </div>

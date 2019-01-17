@@ -2,11 +2,11 @@
   <div>
     <Header/>
     <div class="section">
-      <div class="container">
+      <div class="container has-text-centered">
         <router-view/>
       </div>
     </div>
-    <div class="section">
+    <div class="section has-text-centered">
       <Footer/>
     </div>
   </div>

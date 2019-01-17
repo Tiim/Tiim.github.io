@@ -1,6 +1,7 @@
 <template>
   <div>
-    <div class="columns has-text-centered" v-for="row in cols" :key="row.id">
+    <h2>Social Media</h2>
+    <div class="columns" v-for="row in cols" :key="row.id">
       <div class="column" v-for="c in row" :key="c.id">
         <a target="_blank" :href="c.l">
           <font-awesome-icon v-if="c.ico" :icon="c.ico"/>
