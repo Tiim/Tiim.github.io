@@ -1,0 +1,16 @@
+[
+  {
+    "name": "Attendance Tracker",
+    "links": [
+      { "url": "https://github.com/Tiim/attendance-tracker", "name": "GitHub" }
+    ],
+    "text": "A webapp to track students or athlete attendance for practices.",
+    "tags": ["node", "Vue", "PostgreSQL"]
+  },
+  {
+    "name": "ScBirs Website",
+    "links": [{ "url": "https://scbirs.ch", "name": "Website" }],
+    "text": "The website of the 'ScBirs' swimclub. This website serves as the center of all information distribution for the swimclub.",
+    "tags": ["Wordpress"]
+  }
+]
