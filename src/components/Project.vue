@@ -16,6 +16,7 @@
         :key="link.url"
         :href="link.url"
         class="card-footer-item"
+        target="_blank"
       >{{link.name}}</a>
     </div>
   </div>

@@ -9,8 +9,14 @@
   },
   {
     "name": "ScBirs Website",
-    "links": [{ "url": "https://scbirs.ch", "name": "Website" }],
+    "links": [
+      { "url": "https://scbirs.ch", "name": "Website" },
+      {
+        "url": "https://github.com/Tiim?utf8=%E2%9C%93&tab=repositories&q=&type=&language=php",
+        "name": "Github Projects"
+      }
+    ],
     "text": "The website of the 'ScBirs' swimclub. This website serves as the center of all information distribution for the swimclub.",
-    "tags": ["Wordpress"]
+    "tags": ["Wordpress", "PHP"]
   }
 ]
