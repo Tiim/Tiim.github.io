@@ -10,7 +10,7 @@
         </div>
         <div class="column is-4">
           <figure class="image is-128x128 is-inline-block">
-            <img class="is-rounded" src="https://avatars.io/twitter/tiimb/medium">
+            <img class="is-rounded" alt="profile picture" src="https://avatars.io/twitter/tiimb/medium">
           </figure>
         </div>
       </div>
