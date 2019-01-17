@@ -24,7 +24,7 @@
 <script>
 import SocialMedia from '../components/SocialMedia';
 export default {
-  name: 'Home',
+  name: 'HomePage',
   components: {
     SocialMedia,
   },

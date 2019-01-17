@@ -13,6 +13,8 @@
 </template>
 
 <script>
+import chunk from '../utils/chunk.js';
+
 export default {
   name: 'SocialMedia',
   data: () => ({
@@ -39,13 +41,7 @@ export default {
   }),
   computed: {
     cols() {
-      const size = 5;
-      return this.socialMedia.reduce((t, n, i) => {
-        const chunk = Math.floor(i / size);
-        t[chunk] = t[chunk] || [];
-        t[chunk].push(n);
-        return t;
-      }, []);
+      return chunk(this.socialMedia, 5);
     },
   },
 };
