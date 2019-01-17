@@ -6,10 +6,24 @@ $blue: #005fab;
 // Update Bulma's global variables
 $primary: $blue;
 
-// Import only what you need from Bulma
+// Keep all utilities
 @import '../node_modules/bulma/sass/utilities/_all.sass';
 @import '../node_modules/bulma/sass/base/_all.sass';
-@import '../node_modules/bulma/sass/components/_all.sass';
-@import '../node_modules/bulma/sass/elements/_all.sass';
-@import '../node_modules/bulma/sass/grid/_all.sass';
-@import '../node_modules/bulma/sass/layout/_all.sass';
+
+// Components
+@import '../node_modules/bulma/sass/components/card.sass';
+@import '../node_modules/bulma/sass/components/navbar.sass';
+
+// Elements
+@import '../node_modules/bulma/sass/elements/button.sass';
+@import '../node_modules/bulma/sass/elements/container.sass';
+@import '../node_modules/bulma/sass/elements/content.sass';
+@import '../node_modules/bulma/sass/elements/image.sass';
+@import '../node_modules/bulma/sass/elements/tag.sass';
+@import '../node_modules/bulma/sass/elements/title.sass';
+
+// Layout & Columns
+@import '../node_modules/bulma/sass/grid/columns.sass';
+
+@import '../node_modules/bulma/sass/layout/footer.sass';
+@import '../node_modules/bulma/sass/layout/section.sass';
