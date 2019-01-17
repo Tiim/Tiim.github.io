@@ -10,6 +10,7 @@ import {
   faInstagram,
   faGithub,
   faFlickr,
+  faDev,
 } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
@@ -19,7 +20,8 @@ library.add(
   faInstagram,
   faGithub,
   faExternalLinkAlt,
-  faFlickr
+  faFlickr,
+  faDev
 );
 
 Vue.component('font-awesome-icon', FontAwesomeIcon);

@@ -1,8 +1,8 @@
 <template>
   <div>
     <h2>Social Media</h2>
-    <div class="columns" v-for="row in cols" :key="row.id">
-      <div class="column" v-for="c in row" :key="c.id">
+    <div class="columns is-centered" v-for="row in cols" :key="row.id">
+      <div class="column is-one-fifth" v-for="c in row" :key="c.id">
         <a target="_blank" :href="c.l">
           <font-awesome-icon v-if="c.ico" :icon="c.ico"/>
           {{c.t}}

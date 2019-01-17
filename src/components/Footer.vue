@@ -9,6 +9,11 @@
           >Contact me on Twitter</a>
         </p>
         <p>&copy;Tim Bachmann {{year}}</p>
+        <i>
+          Built with Vue.js and hosted on GitHub Pages.
+          <br>Fork me on
+          <a href="https://github.com/Tiim/Tiim.github.io">GitHub</a>
+        </i>
       </div>
     </footer>
   </div>

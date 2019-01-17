@@ -28,5 +28,10 @@
     "t": "Flickr",
     "l": "https://www.flickr.com/people/152309161@N02/",
     "ico": ["fab", "flickr"]
+  },
+  {
+    "t": "Dev.to",
+    "l": "https://dev.to/tiim",
+    "ico": ["fab", "dev"]
   }
 ]
