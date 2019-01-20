@@ -5,6 +5,7 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
+    "build:serve": "serve dist",
     "lint": "vue-cli-service lint",
     "deploy": "./deploy.sh"
   },
@@ -33,6 +34,7 @@
     "node-sass": "^4.11.0",
     "prerender-spa-plugin": "^3.4.0",
     "sass-loader": "^7.1.0",
+    "serve": "^10.1.1",
     "style-loader": "^0.23.1",
     "vue-template-compiler": "^2.5.21"
   }
