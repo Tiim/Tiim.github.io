@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="app">
     <Header/>
     <div class="section">
       <div class="container has-text-centered">
