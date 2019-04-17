@@ -12,21 +12,20 @@
 import Project from './Project';
 import chunk from '../utils/chunk';
 
-import projectsData from '../data/projects.json';
-
 export default {
   name: 'Projects',
   components: {
     Project,
   },
+  props: {
+    data: Array,
+  },
   data() {
-    return {
-      projects: projectsData,
-    };
+    return {};
   },
   computed: {
     cols() {
-      return chunk(this.projects, 3);
+      return chunk(this.data, 3);
     },
   },
 };

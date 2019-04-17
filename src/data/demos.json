@@ -1,0 +1,15 @@
+[
+  {
+    "name": "Aqualetics Prototype",
+    "links": [
+      { "url": "https://tiimb.work/aqualetics-prototype/", "name": "Demo" },
+      {
+        "url": "https://github.com/Tiim/aqualetics-prototype",
+        "name": "Github"
+      },
+      { "url": "https://aqualetics.ch/", "name": "Aqualetics" }
+    ],
+    "text": "Design demo for an internal webapp of the Aqualetics swim school.",
+    "tags": ["html", "bulma"]
+  }
+]

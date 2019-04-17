@@ -5,7 +5,7 @@
       { "url": "https://github.com/Tiim/attendance-tracker", "name": "GitHub" }
     ],
     "text": "A webapp to track students or athlete attendance for practices.",
-    "tags": ["node", "Vue", "PostgreSQL"]
+    "tags": ["node", "vue", "postgresql"]
   },
   {
     "name": "ScBirs Website",
@@ -17,6 +17,6 @@
       }
     ],
     "text": "The website of the 'ScBirs' swimclub. This website serves as the center of all information distribution for the swimclub.",
-    "tags": ["Wordpress", "PHP"]
+    "tags": ["wordpress", "php"]
   }
 ]
