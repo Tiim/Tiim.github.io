@@ -13,6 +13,10 @@
         <div class="navbar-start">
           <router-link @click.native="closeBurger" to="/" class="navbar-item">Home</router-link>
           <router-link @click.native="closeBurger" to="/projects" class="navbar-item">Projects</router-link>
+          <a
+            class="navbar-item"
+            href="http://twitter.com/home?status=@TiimB your message here"
+          >Contact</a>
         </div>
       </div>
     </div>
