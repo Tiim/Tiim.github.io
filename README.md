@@ -1,5 +1,7 @@
 # tiim.github.io
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/Tiim/Tiim.github.io.svg)](https://greenkeeper.io/)
+
 ## Project setup
 
 ```sh
