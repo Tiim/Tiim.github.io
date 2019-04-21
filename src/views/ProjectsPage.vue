@@ -2,7 +2,7 @@
   <div>
     <div class="section content">
       <h1>Projects &amp; Demos⚙️</h1>
-      <p>This is a list of all my current or past projects. Go check them out!</p>
+      <p>This is a list of some of my current or past projects. Go check them out!</p>
     </div>
     <div class="section content">
       <h2>Projects</h2>
