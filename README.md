@@ -1,5 +1,6 @@
 # tiim.github.io
 
+[![Build Status](https://travis-ci.org/Tiim/Tiim.github.io.svg?branch=source)](https://travis-ci.org/Tiim/Tiim.github.io)
 [![Greenkeeper badge](https://badges.greenkeeper.io/Tiim/Tiim.github.io.svg)](https://greenkeeper.io/)
 
 ## Project setup
