@@ -15,5 +15,6 @@ deploy:
   keep_history: false
   local_dir: dist
   target_branch: master
+  fqdn: tiimb.work
   on:
     branch: source
