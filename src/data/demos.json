@@ -11,5 +11,24 @@
     ],
     "text": "Design demo for an internal webapp of the Aqualetics swim school.",
     "tags": ["html", "bulma"]
+  },
+  {
+    "name": "Aqualetics Interactive Prototype",
+    "links": [
+      {
+        "url": "https://tiimb.work/aqualetics-demo-interactive/",
+        "name": "Demo"
+      },
+      {
+        "url": "https://github.com/Tiim/aqualetics-demo-interactive",
+        "name": "Github"
+      },
+      {
+        "url": "https://aqualetics.ch/",
+        "name": "Aqualetics"
+      }
+    ],
+    "text": "Interactive design demo for an internal webapp of the Aqualetics swim school.",
+    "tags": ["html", "bulma"]
   }
 ]
