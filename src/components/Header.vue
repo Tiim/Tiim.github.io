@@ -3,7 +3,7 @@
     <div class="container">
       <div class="navbar-brand">
         <a class="navbar-item has-text-weight-bold" href="/">Tim Bachmann</a>
-        <a role="button" @click="tapBurger" class="navbar-burger burger">
+        <a role="button" aria-label="Menu" @click="tapBurger" class="navbar-burger burger">
           <span aria-hidden="true"></span>
           <span aria-hidden="true"></span>
           <span aria-hidden="true"></span>
