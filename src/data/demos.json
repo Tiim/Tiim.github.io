@@ -16,7 +16,7 @@
       }
     ],
     "text": "Interactive design demo for an internal webapp of the Aqualetics swim school.",
-    "tags": ["html", "bulma"]
+    "tags": ["js", "bulma", "vuejs"]
   },
   {
     "name": "Aqualetics Prototype",
