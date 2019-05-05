@@ -14,6 +14,7 @@
           <router-link @click.native="closeBurger" to="/" class="navbar-item">Home</router-link>
           <router-link @click.native="closeBurger" to="/projects" class="navbar-item">Projects</router-link>
           <a class="navbar-item" target="_blank" href="https://dev.to/tiim">Blog</a>
+          <a class="navbar-item" target="_blank" href="https://twitter.com/TiimB">Contact</a>
         </div>
       </div>
     </div>
