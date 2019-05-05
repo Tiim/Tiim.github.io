@@ -1,6 +1,6 @@
 <template>
   <div class="card">
-    <header class="card-header">
+    <header class="card-header is-centered">
       <p class="card-header-title">{{project.name}}</p>
     </header>
     <div class="card-content has-text-left">
