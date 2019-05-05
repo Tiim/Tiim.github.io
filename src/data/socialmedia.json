@@ -5,6 +5,11 @@
     "ico": ["fab", "github"]
   },
   {
+    "t": "Dev.to",
+    "l": "https://dev.to/tiim",
+    "ico": ["fab", "dev"]
+  },
+  {
     "t": "Twitter",
     "l": "https://twitter.com/TiimB",
     "ico": ["fab", "twitter"]
@@ -18,15 +23,5 @@
     "t": "Flickr",
     "l": "https://www.flickr.com/people/152309161@N02/",
     "ico": ["fab", "flickr"]
-  },
-  {
-    "t": "Website",
-    "l": "https://tiimb.work",
-    "ico": "external-link-alt"
-  },
-  {
-    "t": "Dev.to",
-    "l": "https://dev.to/tiim",
-    "ico": ["fab", "dev"]
   }
 ]
