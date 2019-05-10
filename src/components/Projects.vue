@@ -2,7 +2,7 @@
   <div>
     <div v-for="row in cols" :key="row.id" class="columns">
       <div v-for="project in row" :key="project.id" class="column is-one-third">
-        <Project :project="project"/>
+        <Project :project="project" />
       </div>
     </div>
   </div>
