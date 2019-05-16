@@ -9,7 +9,7 @@ module.exports = {
         // Required - The path to the webpack-outputted app to prerender.
         staticDir: path.join(__dirname, 'dist'),
         // Required - Routes to render.
-        routes: ['/', '/projects', 'blog'],
+        routes: ['/', '/projects', '/blog'],
         renderer: new Renderer({ headless: true }),
       }),
     ],
