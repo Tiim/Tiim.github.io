@@ -1,7 +1,7 @@
 <template>
   <div class="card">
-    <header class="card-header is-centered">
-      <p class="card-header-title">{{project.name}}</p>
+    <header class="card-header">
+      <p class="card-header-title is-centered">{{project.name}}</p>
     </header>
     <div class="card-content has-text-left">
       <p>{{project.text}}</p>

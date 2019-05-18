@@ -22,5 +22,14 @@ export default new Router({
       component: () =>
         import(/* webpackChunkName: "projects" */ './views/ProjectsPage.vue'),
     },
+    {
+      path: '/blog',
+      name: 'blog',
+      // route level code-splitting
+      // this generates a separate chunk (projects.[hash].js) for this route
+      // which is lazy-loaded when the route is visited.
+      component: () =>
+        import(/* webpackChunkName: "blog" */ './views/BlogPage.vue'),
+    },
   ],
 });
