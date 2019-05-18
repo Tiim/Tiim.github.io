@@ -1,6 +1,7 @@
 <template>
   <div>
-    <canvas class="canvas" ref="canvas" width="1064" height="588"></canvas>
+    <canvas v-if="!article.cover_image" class="canvas" ref="canvas" width="1064" height="588"></canvas>
+    <img :src="article.cover_image" v-else :alt="article.title"/>
   </div>
 </template>
 <script>
@@ -20,6 +21,7 @@ export default {
   },
   mounted() {
     const canvas = this.$refs.canvas;
+    if (!canvas) return;
     const date = new Date(this.article.published_at);
     const month = date.toLocaleString('en-us', { month: 'short' });
     const year = date.getFullYear();
