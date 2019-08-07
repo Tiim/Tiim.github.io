@@ -35,7 +35,7 @@
     "prerender-spa-plugin": "^3.4.0",
     "sass-loader": "^7.1.0",
     "serve": "^11.1.0",
-    "style-loader": "^0.23.1",
+    "style-loader": "^1.0.0",
     "vue-template-compiler": "^2.6.10"
   }
 }
