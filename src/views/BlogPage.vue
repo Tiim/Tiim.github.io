@@ -69,55 +69,47 @@ export default {
 }
 
 .spinner > div {
-  background-color: thistle;
+  background-color: #d4d4d4;
+  border-radius: 5px;
   height: 100%;
   width: 6px;
   margin: 1px;
   display: inline-block;
-  animation: sk-stretchdelay 1.2s infinite ease-in-out;
+  animation: sk-stretchdelay 2s infinite ease-in-out;
 }
 
 .spinner .rect2 {
-  -webkit-animation-delay: -1.1s;
-  animation-delay: -1.1s;
+  -webkit-animation-delay: -1.8s;
+  animation-delay: -1.8s;
 }
 
 .spinner .rect3 {
-  -webkit-animation-delay: -1s;
-  animation-delay: -1s;
+  -webkit-animation-delay: -1.6s;
+  animation-delay: -1.6s;
 }
 
 .spinner .rect4 {
-  -webkit-animation-delay: -0.9s;
-  animation-delay: -0.9s;
+  -webkit-animation-delay: -1.4s;
+  animation-delay: -1.4s;
 }
 
 .spinner .rect5 {
-  -webkit-animation-delay: -0.8s;
-  animation-delay: -0.8s;
-}
-
-@-webkit-keyframes sk-stretchdelay {
-  0%,
-  40%,
-  100% {
-    -webkit-transform: scaleY(0.4);
-  }
-  20% {
-    -webkit-transform: scaleY(1);
-  }
+  -webkit-animation-delay: -1.2s;
+  animation-delay: -1.2s;
 }
 
 @keyframes sk-stretchdelay {
   0%,
   40%,
   100% {
-    transform: scaleY(0.4);
-    -webkit-transform: scaleY(0.4);
+    margin-top: 10px;
+    margin-bottom: 10px;
+    height: calc(100% - 20px);
   }
   20% {
-    transform: scaleY(1);
-    -webkit-transform: scaleY(1);
+    margin-top: 0px;
+    margin-bottom: 0px;
+    height: 100%;
   }
 }
 </style>
