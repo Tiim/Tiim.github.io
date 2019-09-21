@@ -1,11 +1,15 @@
 [
   {
-    "name": "Attendance Tracker",
+    "name": "Aqualetics Coach",
     "links": [
-      { "url": "https://github.com/Tiim/attendance-tracker", "name": "GitHub" }
+      {
+        "url": "https://aqualetics.ch/2019/09/15/schwimmcoach-applikation-innovation/",
+        "name": "Blog Entry (german)"
+      },
+      { "name": "Aqualetics Swim School", "url": "https://aqualetics.ch" }
     ],
-    "text": "A webapp to track students or athlete attendance for practices.",
-    "tags": ["node", "vue", "postgresql"]
+    "text": "A internal web app for swim schools. Developed specifically for the 'Kids' program of Swiss Swimming. Live in production since August 19.",
+    "tags": ["node", "vue", "rest", "postgresql", "docker", "exoframe"]
   },
   {
     "name": "ScBirs Website",
@@ -16,7 +20,15 @@
         "name": "Github Projects"
       }
     ],
-    "text": "The website of the 'ScBirs' swimclub. This website serves as the center of all information distribution for the swimclub.",
+    "text": "The website of the 'ScBirs' swim club. This website serves as the center of all information distribution for the swimclub.",
     "tags": ["wordpress", "php"]
+  },
+  {
+    "name": "Attendance Tracker",
+    "links": [
+      { "url": "https://github.com/Tiim/attendance-tracker", "name": "GitHub" }
+    ],
+    "text": "A webapp to track students or athlete attendance for practices.",
+    "tags": ["node", "vue", "postgresql"]
   }
 ]

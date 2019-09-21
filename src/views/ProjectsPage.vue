@@ -7,11 +7,11 @@
         out!
       </p>
     </div>
-    <div class="section content">
+    <div class="section content" v-if="projectsData.length">
       <h2>Projects</h2>
       <Projects :data="projectsData" />
     </div>
-    <div class="section content">
+    <div class="section content" v-if="demosData.length">
       <h2>Demos</h2>
       <Projects :data="demosData" />
     </div>
