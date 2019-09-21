@@ -4,8 +4,8 @@
     <div class="columns is-centered" v-for="row in cols" :key="row.id">
       <div class="column is-one-fifth" v-for="c in row" :key="c.id">
         <a target="_blank" :href="c.l">
-          <font-awesome-icon v-if="c.ico" :icon="c.ico"/>
-          {{c.t}}
+          <font-awesome-icon v-if="c.ico" :icon="c.ico" />
+          {{ c.t }}
         </a>
       </div>
     </div>

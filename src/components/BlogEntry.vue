@@ -34,11 +34,19 @@
 <template>
   <div class="card">
     <header class="card-header">
-      <a target="_blank" :href="article.url" class="card-header-title is-centered">{{ article.title }}</a>
+      <a
+        target="_blank"
+        :href="article.url"
+        class="card-header-title is-centered"
+      >
+        {{ article.title }}
+      </a>
     </header>
     <div class="card-content has-text-left">
       <p class="is-size-7	has-text-grey-light	">{{ timestamp }}</p>
-      <a target="_blank" :href="article.url"><BlogImage :article="article" /></a>
+      <a target="_blank" :href="article.url">
+        <BlogImage :article="article" />
+      </a>
       <p>{{ article.description }}</p>
 
       <p>

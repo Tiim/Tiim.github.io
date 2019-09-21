@@ -1,7 +1,13 @@
 <template>
   <div>
-    <canvas v-if="!article.cover_image" class="canvas" ref="canvas" width="1064" height="588"></canvas>
-    <img :src="article.cover_image" v-else :alt="article.title"/>
+    <canvas
+      v-if="!article.cover_image"
+      class="canvas"
+      ref="canvas"
+      width="1064"
+      height="588"
+    ></canvas>
+    <img :src="article.cover_image" v-else :alt="article.title" />
   </div>
 </template>
 <script>

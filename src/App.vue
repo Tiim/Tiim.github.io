@@ -1,13 +1,13 @@
 <template>
   <div id="app">
-    <Header/>
+    <Header />
     <div class="section">
       <div class="container has-text-centered">
-        <router-view/>
+        <router-view />
       </div>
     </div>
     <div class="section has-text-centered">
-      <Footer/>
+      <Footer />
     </div>
   </div>
 </template>
@@ -22,5 +22,4 @@ export default {
   },
 };
 </script>
-<style>
-</style>
+<style></style>
