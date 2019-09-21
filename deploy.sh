@@ -3,6 +3,8 @@
 # abort on errors
 set -e
 
+export DOMAIN="tiim.ch"
+
 # build
 echo Linting..
 npm run lint
@@ -13,7 +15,9 @@ npm run build
 cd dist
 
 # if you are deploying to a custom domain
-echo 'tiim.ch' > CNAME
+rm -f CNAME
+echo "Setting CNAME file with content $DOMAIN"
+echo $DOMAIN > CNAME
 
 git init
 git add -A
