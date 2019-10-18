@@ -47,7 +47,6 @@ export default {
         return response.json();
       })
       .then((myJson) => {
-        console.log(JSON.stringify(myJson, null, 2));
         this.articles = myJson;
         this.loading = false;
       });
