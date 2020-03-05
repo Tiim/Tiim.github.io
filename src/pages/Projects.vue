@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <Layout>
     <div class="section content">
       <h1>Projects &amp; Demos⚙️</h1>
       <p>
@@ -7,29 +7,49 @@
         out!
       </p>
     </div>
-    <div class="section content" v-if="projectsData.length">
+    <div class="section content" v-if="projects.length">
       <h2>Projects</h2>
-      <Projects :data="projectsData" />
+      <ProjectEntries :data="projects" />
     </div>
-    <div class="section content" v-if="demosData.length">
+    <div class="section content" v-if="demos.length">
       <h2>Demos</h2>
-      <Projects :data="demosData" />
+      <ProjectEntries :data="demos" />
     </div>
-  </div>
+  </Layout>
 </template>
 
 <script>
-import Projects from "../components/ProjectEntries";
+import ProjectEntries from "../components/ProjectEntries";
 export default {
   name: "ProjectsPage",
   components: {
-    Projects
+    ProjectEntries
   },
-  data() {
-    return {
-      projectsData,
-      demosData
-    };
+  computed: {
+    projects() {
+      return this.$page.projects?.edges || [];
+    },
+    demos() {
+      return this.$page.demos?.edges || [];
+    }
   }
 };
 </script>
+<page-query>
+{
+  projects: allProject {
+    edges {
+      node {
+        id
+        name
+        links {
+          url
+          name
+        }
+        text
+        tags
+      }
+    }
+  }
+}
+</page-query>

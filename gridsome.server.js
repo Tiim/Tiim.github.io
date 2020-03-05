@@ -7,12 +7,14 @@
 const projects = require("./content/projects.json");
 const demos = require("./content/demos.json");
 const socialMedia = require("./content/socialmedia.json");
+const remoteImages = require("./content/remote-imgs.json");
 
 module.exports = function(api) {
   api.loadSource(store => {
-    addEach("Projects", projects, p => p.name, store);
-    addEach("Demos", demos, d => d.name, store);
+    addEach("Project", projects, p => p.name, store);
+    addEach("Demo", demos, d => d.name, store);
     addEach("SocialMedia", socialMedia, s => s.link, store);
+    addEach("RemoteImage", remoteImages, i => i.id, store);
   });
 
   api.createPages(({ createPage }) => {
@@ -24,6 +26,7 @@ function addEach(typeName, array, getId, store) {
   const projectType = store.addCollection({
     typeName
   });
+  console.log("Loading " + typeName);
   array.forEach(e =>
     projectType.addNode({
       id: getId(e),

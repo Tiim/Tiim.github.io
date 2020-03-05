@@ -11,6 +11,7 @@
     "@gridsome/source-filesystem": "^0.6.2",
     "@gridsome/transformer-json": "^0.2.1",
     "@gridsome/transformer-remark": "^0.5.0",
+    "@noxify/gridsome-plugin-remote-image": "git+https://github.com/noxify/gridsome-plugin-image-download.git",
     "bulma": "^0.8.0",
     "gridsome": "^0.7.0"
   },

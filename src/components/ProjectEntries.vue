@@ -1,8 +1,12 @@
 <template>
   <div>
-    <div v-for="row in cols" :key="row.id" class="columns">
-      <div class="column">
-        <Project :project="project" />
+    <div class="columns">
+      <div
+        v-for="project in data"
+        :key="project.id"
+        class="column is-one-third is-multiline"
+      >
+        <Project :project="project.node" />
       </div>
     </div>
   </div>
@@ -18,9 +22,6 @@ export default {
   },
   props: {
     data: Array
-  },
-  data() {
-    return {};
   }
 };
 </script>

@@ -5,6 +5,7 @@
 // To restart press CTRL + C in terminal and run `gridsome develop`
 
 const purgecss = require("@fullhuman/postcss-purgecss");
+const metadata = require("./content/site-info.json");
 
 const postcssPlugins = [];
 
@@ -12,12 +13,14 @@ const postcssPlugins = [];
 postcssPlugins.push(purgecss(require("./purgecss.config.js")));
 
 module.exports = {
-  siteName: "Gridsome",
+  siteName: "Tim Bachmann",
+  siteUrl: "tiim.ch",
+  metadata,
   plugins: [
     {
       use: "@gridsome/source-filesystem",
       options: {
-        typeName: "BlogPosts",
+        typeName: "BlogPost",
         path: "./content/blog/**/*.md"
       }
     }
