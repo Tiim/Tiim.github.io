@@ -1,27 +1,21 @@
 <template>
   <Layout>
-    <div class="section content">
-      <h1>Blog 📖</h1>
-      <p>View all my blog posts on <a href="https://dev.to/tiim">Dev.to</a></p>
-      <div v-if="loading">
-        <div class="spinner">
-          <div class="rect1"></div>
-          <div class="rect2"></div>
-          <div class="rect3"></div>
-          <div class="rect4"></div>
-          <div class="rect5"></div>
-        </div>
+    <div class="container has-text-centered">
+      <div class="section content">
+        <h1>Blog 📖</h1>
+        <p>
+          View all my blog posts on <a href="https://dev.to/tiim">Dev.to</a>
+        </p>
       </div>
-    </div>
-    <div></div>
-    <div class="section content" v-if="!loading">
-      <div v-for="row in cols" :key="row.id" class="columns">
-        <div
-          v-for="article in row"
-          :key="article.id"
-          class="column is-one-third"
-        >
-          <BlogEntry :article="article" />
+      <div class="section content">
+        <div class="columns">
+          <div
+            v-for="article in $page.blogPosts.edges"
+            :key="article.node.id"
+            class="column is-one-third"
+          >
+            <BlogEntry :article="article.node" />
+          </div>
         </div>
       </div>
     </div>
@@ -35,3 +29,21 @@ export default {
   components: { BlogEntry }
 };
 </script>
+<page-query>
+{
+  blogPosts: allBlogPost(filter: {published: {eq: true}}) {
+    edges {
+      node {
+        id
+        title
+        published
+        description
+        tags
+        cover_image
+        date
+        path
+      }
+    }
+  }
+}
+</page-query>

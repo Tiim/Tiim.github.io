@@ -3,6 +3,9 @@ title: How to write optional filters in SQL
 published: true
 description: A simple way to filter by optional values in SQL
 tags: postgres, sql, mysql
+cover_image: ./TestPicture.png
+slug: how-to-write-optional-filters-in-sql
+date: 2019-10-10
 ---
 
 ## The problem

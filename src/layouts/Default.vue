@@ -2,9 +2,7 @@
   <div id="app">
     <Header />
     <div class="section">
-      <div class="container has-text-centered">
-        <slot />
-      </div>
+      <slot />
     </div>
     <div class="section has-text-centered">
       <Footer />

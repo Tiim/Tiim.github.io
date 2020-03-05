@@ -9,8 +9,8 @@ const metadata = require("./content/site-info.json");
 
 const postcssPlugins = [];
 
-//if (process.env.NODE_ENV === "production")
-postcssPlugins.push(purgecss(require("./purgecss.config.js")));
+if (process.env.NODE_ENV === "production")
+  postcssPlugins.push(purgecss(require("./purgecss.config.js")));
 
 module.exports = {
   siteName: "Tim Bachmann",
@@ -30,6 +30,23 @@ module.exports = {
       postcss: {
         plugins: postcssPlugins
       }
+    }
+  },
+  templates: {
+    BlogPost: [
+      {
+        path: "/blog/:title",
+        component: "./src/templates/BlogPage.vue"
+      }
+    ]
+  },
+  transformers: {
+    //Add markdown support to all file-system sources
+    remark: {
+      externalLinksTarget: "_blank",
+      externalLinksRel: ["nofollow", "noopener", "noreferrer"],
+      autolinkClassName: "heading-anchor",
+      plugins: ["@gridsome/remark-prismjs"]
     }
   }
 };
