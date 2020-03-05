@@ -26,7 +26,10 @@
 import BlogEntry from "~/components/BlogEntry";
 export default {
   name: "ProjectsPage",
-  components: { BlogEntry }
+  components: { BlogEntry },
+  metaInfo: {
+    title: "Blog"
+  }
 };
 </script>
 <page-query>

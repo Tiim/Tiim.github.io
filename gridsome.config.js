@@ -23,6 +23,26 @@ module.exports = {
         typeName: "BlogPost",
         path: "./content/blog/**/*.md"
       }
+    },
+    {
+      use: "gridsome-plugin-manifest",
+      options: {
+        background_color: "#000000",
+        icon_path: "./src/favicon.ong",
+        name: "Tim Bachmann",
+        short_name: "Tim",
+        theme_color: "#FFFFFF",
+        lang: "en"
+      }
+    },
+    {
+      use: "gridsome-plugin-service-worker",
+      options: {
+        networkFirst: {
+          cacheName: "nf-v1",
+          routes: ["/", /\.(js|css|png|jpg|jpeg|svg|md|json)/]
+        }
+      }
     }
   ],
   css: {

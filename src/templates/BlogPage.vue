@@ -19,7 +19,12 @@
 
 <script>
 export default {
-  name: "BlogPage"
+  name: "BlogPage",
+  metaInfo() {
+    return {
+      title: this.$page.post.title
+    };
+  }
 };
 </script>
 <style scoped>

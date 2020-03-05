@@ -27,6 +27,9 @@ export default {
   components: {
     ProjectEntries
   },
+  metaInfo: {
+    title: "Projects & Demos"
+  },
   computed: {
     projects() {
       return this.$page.projects?.edges ?? [];

@@ -31,7 +31,10 @@ import SocialMedia from "../components/SocialMedia";
 
 export default {
   name: "Index",
-  components: { SocialMedia }
+  components: { SocialMedia },
+  metaInfo: {
+    title: "Home"
+  }
 };
 </script>
 
