@@ -29,29 +29,29 @@ export default {
   },
   computed: {
     projects() {
-      return this.$page.projects?.edges || [];
+      return this.$page.projects?.edges ?? [];
     },
     demos() {
-      return this.$page.demos?.edges || [];
+      return this.$page.demos?.edges ?? [];
     }
   }
 };
 </script>
 <page-query>
-{
-  projects: allProject {
-    edges {
-      node {
-        id
-        name
-        links {
-          url
+  {
+    projects: allProject {
+      edges {
+        node {
+          id
           name
+          links {
+            url
+            name
+          }
+          text
+          tags
         }
-        text
-        tags
       }
     }
   }
-}
 </page-query>

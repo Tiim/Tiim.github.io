@@ -36,14 +36,14 @@ export default {
 </script>
 
 <page-query>
-query {
-  text: metadata {
-    title
-    subtitles
+  query {
+    text: metadata {
+      title
+      subtitles
+    }
+    profilePic: remoteImage(id: "profile-picture") {
+      id
+      link
+    }
   }
-  profilePic: remoteImage(id: "profile-picture") {
-		id
-    link
-  }
-}
 </page-query>

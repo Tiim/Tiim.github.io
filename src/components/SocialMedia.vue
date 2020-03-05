@@ -23,16 +23,16 @@ export default {
 </script>
 
 <static-query>
-{
-	allSocialMedia {
-    edges {
-      node {
-        id
-        icon
-        site
-        link
+  {
+    allSocialMedia {
+      edges {
+        node {
+          id
+          icon
+          site
+          link
+        }
       }
     }
   }
-}
 </static-query>

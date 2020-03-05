@@ -16,10 +16,6 @@ module.exports = function(api) {
     addEach("SocialMedia", socialMedia, s => s.link, store);
     addEach("RemoteImage", remoteImages, i => i.id, store);
   });
-
-  api.createPages(({ createPage }) => {
-    // Use the Pages API here: https://gridsome.org/docs/pages-api/
-  });
 };
 
 function addEach(typeName, array, getId, store) {

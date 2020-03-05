@@ -30,20 +30,20 @@ export default {
 };
 </script>
 <page-query>
-{
-  blogPosts: allBlogPost(filter: {published: {eq: true}}) {
-    edges {
-      node {
-        id
-        title
-        published
-        description
-        tags
-        cover_image
-        date
-        path
+  {
+    blogPosts: allBlogPost(filter: { published: { eq: true } }) {
+      edges {
+        node {
+          id
+          title
+          published
+          description
+          tags
+          cover_image
+          date
+          path
+        }
       }
     }
   }
-}
 </page-query>

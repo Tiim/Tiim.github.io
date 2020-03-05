@@ -5,24 +5,30 @@
     "build": "gridsome build",
     "dev": "npm run develop",
     "develop": "gridsome develop",
-    "explore": "gridsome explore"
+    "explore": "gridsome explore",
+    "lint": "eslint \"./**/*.{js,vue}\"",
+    "lint:fix": "eslint --fix \"./**/*.{js,vue}\""
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.27",
     "@fortawesome/free-brands-svg-icons": "^5.12.1",
     "@fortawesome/free-solid-svg-icons": "^5.12.1",
     "@fortawesome/vue-fontawesome": "^0.1.9",
-    "@gridsome/remark-prismjs": "^0.3.0",
-    "@gridsome/source-filesystem": "^0.6.2",
-    "@gridsome/transformer-json": "^0.2.1",
-    "@gridsome/transformer-remark": "^0.5.0",
-    "@noxify/gridsome-plugin-remote-image": "git+https://github.com/noxify/gridsome-plugin-image-download.git",
     "bulma": "^0.8.0",
     "gridsome": "^0.7.0"
   },
   "devDependencies": {
     "@fullhuman/postcss-purgecss": "^2.1.0",
+    "@gridsome/remark-prismjs": "^0.3.0",
+    "@gridsome/source-filesystem": "^0.6.2",
+    "@gridsome/transformer-json": "^0.2.1",
+    "@gridsome/transformer-remark": "^0.5.0",
+    "@noxify/gridsome-plugin-remote-image": "git+https://github.com/noxify/gridsome-plugin-image-download.git",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^6.8.0",
+    "eslint-plugin-gridsome": "^1.4.0",
     "node-sass": "^4.13.1",
-    "sass-loader": "^8.0.2"
+    "sass-loader": "^8.0.2",
+    "vue-eslint-parser": "^7.0.0"
   }
 }
