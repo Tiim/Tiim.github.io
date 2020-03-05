@@ -5,11 +5,10 @@ name: Deploy
 
 on:
   push:
-    branches: [ master ]
+    branches: [source]
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     strategy:
@@ -17,24 +16,24 @@ jobs:
         node-version: [12.x]
 
     steps:
-    - uses: actions/checkout@v2
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node-version }}
-    - run: npm ci
-    - run: npm lint
-    - run: npm build
-    - name: GitHub Pages action
-      uses: peaceiris/actions-gh-pages@v3.4.0
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./dist
-        cname: tiim.ch
-        force_orphan: true
-        user_name: GitHub Action
-        user_email: action@github.com
-        publish_branch: master
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - run: npm ci
+      - run: npm lint
+      - run: npm build
+      - name: GitHub Pages action
+        uses: peaceiris/actions-gh-pages@v3.4.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
+          cname: tiim.ch
+          force_orphan: true
+          user_name: GitHub Action
+          user_email: action@github.com
+          publish_branch: master
 
-      env:
-        CI: true
+        env:
+          CI: true
