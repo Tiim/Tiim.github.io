@@ -1,0 +1,38 @@
+<template>
+  <div>
+    <h2>Social Media</h2>
+    <div class="columns is-centered is-multiline">
+      <div
+        class="column is-one-fifth"
+        v-for="edge in $static.allSocialMedia.edges"
+        :key="edge.node.id"
+      >
+        <a target="_blank" :href="edge.node.link">
+          <FA v-if="edge.node.icon" :icon="edge.node.icon" />
+          {{ edge.node.site }}
+        </a>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  name: "SocialMedia"
+};
+</script>
+
+<static-query>
+{
+	allSocialMedia {
+    edges {
+      node {
+        id
+        icon
+        site
+        link
+      }
+    }
+  }
+}
+</static-query>

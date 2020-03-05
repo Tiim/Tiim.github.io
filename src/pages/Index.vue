@@ -26,6 +26,14 @@
     </div>
   </Layout>
 </template>
+<script>
+import SocialMedia from "../components/SocialMedia";
+
+export default {
+  name: "Index",
+  components: { SocialMedia }
+};
+</script>
 
 <page-query>
 query {
