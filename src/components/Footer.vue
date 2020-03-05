@@ -4,7 +4,7 @@
       <div class="content">
         <p>&copy;Tim Bachmann {{ year }}</p>
         <p>
-          <i>Built with Vue.js and hosted on GitHub Pages.</i>
+          <i>Built with Gridsome and hosted on GitHub Pages.</i>
           <br />
           <i>
             View this website on
