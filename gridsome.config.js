@@ -28,7 +28,7 @@ module.exports = {
       use: "gridsome-plugin-manifest",
       options: {
         background_color: "#000000",
-        icon_path: "./src/favicon.ong",
+        icon_path: "./src/favicon.png",
         name: "Tim Bachmann",
         short_name: "Tim",
         theme_color: "#FFFFFF",

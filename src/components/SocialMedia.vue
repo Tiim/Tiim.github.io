@@ -8,7 +8,11 @@
         :key="edge.node.id"
       >
         <a target="_blank" :href="edge.node.link">
-          <FA v-if="edge.node.icon" :icon="edge.node.icon" />
+          <FA
+            v-if="edge.node.icon"
+            :icon="edge.node.icon"
+            class="icon is-small"
+          />
           {{ edge.node.site }}
         </a>
       </div>

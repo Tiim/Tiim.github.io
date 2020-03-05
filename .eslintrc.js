@@ -1,7 +1,7 @@
 module.exports = {
   parser: "vue-eslint-parser",
   extends: ["eslint:recommended", "plugin:gridsome/recommended"],
-  ignorePatterns: ["node_modules/", "dist/"],
+  ignorePatterns: ["node_modules/", "dist/", "static/"],
   parserOptions: {
     parser: "babel-eslint",
     sourceType: "module",
