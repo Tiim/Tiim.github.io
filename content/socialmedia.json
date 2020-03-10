@@ -8,11 +8,6 @@
     ]
   },
   {
-    "site": "Matrix", 
-    "link": "https://matrix.to/#/@TiimB:matrix.org",
-    "icon": null
-  }, 
-  {
     "site": "Dev.to",
     "link": "https://dev.to/tiim",
     "icon": [
