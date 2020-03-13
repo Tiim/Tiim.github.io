@@ -23,9 +23,10 @@ function addEach(typeName, array, getId, store) {
     typeName
   });
   console.log("Loading " + typeName);
-  array.forEach(e =>
+  array.forEach((e, i) =>
     projectType.addNode({
       id: getId(e),
+      index: i,
       ...e
     })
   );

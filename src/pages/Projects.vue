@@ -42,7 +42,7 @@ export default {
 </script>
 <page-query>
   {
-    projects: allProject {
+    projects: allProject(sortBy: "index", order: ASC) {
       edges {
         node {
           id

@@ -28,7 +28,7 @@ export default {
 
 <static-query>
   {
-    allSocialMedia {
+    allSocialMedia(sortBy: "index", order: ASC) {
       edges {
         node {
           id
