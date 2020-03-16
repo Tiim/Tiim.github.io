@@ -8,13 +8,13 @@
           out!
         </p>
       </div>
-      <div class="section content" v-if="projects.length">
-        <h2>Projects</h2>
-        <ProjectEntries :data="projects" />
-      </div>
       <div class="section content" v-if="demos.length">
         <h2>Demos</h2>
         <ProjectEntries :data="demos" />
+      </div>
+      <div class="section content" v-if="projects.length">
+        <h2>Projects</h2>
+        <ProjectEntries :data="projects" />
       </div>
     </div>
   </Layout>
@@ -42,6 +42,20 @@ export default {
 </script>
 <page-query>
   {
+    demos: allDemo(sortBy: "index", order: ASC) {
+      edges {
+        node {
+          id
+          name
+          links {
+            url
+            name
+          }
+          text
+          tags
+        }
+      }
+    }
     projects: allProject(sortBy: "index", order: ASC) {
       edges {
         node {

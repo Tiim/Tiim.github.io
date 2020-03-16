@@ -1,5 +1,5 @@
 <template>
-  <div class="card">
+  <article class="card">
     <header class="card-header">
       <p class="card-header-title is-centered">
         {{ project.name }}
@@ -26,7 +26,7 @@
         {{ link.name }}
       </a>
     </div>
-  </div>
+  </article>
 </template>
 
 <script>
