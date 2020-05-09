@@ -29,7 +29,7 @@
     "eslint-plugin-gridsome": "^1.4.1",
     "gridsome-plugin-manifest": "^0.3.4",
     "gridsome-plugin-service-worker": "^0.1.4",
-    "node-sass": "^4.13.1",
+    "node-sass": "^4.14.1",
     "sass-loader": "^8.0.2",
     "vue-eslint-parser": "^7.0.0"
   }
