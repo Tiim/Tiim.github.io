@@ -26,7 +26,7 @@
     "@noxify/gridsome-plugin-remote-image": "git+https://github.com/noxify/gridsome-plugin-image-download.git",
     "babel-eslint": "^10.1.0",
     "eslint": "^6.8.0",
-    "eslint-plugin-gridsome": "^1.4.1",
+    "eslint-plugin-gridsome": "^1.4.10",
     "gridsome-plugin-manifest": "^0.3.4",
     "gridsome-plugin-service-worker": "^0.1.4",
     "node-sass": "^4.14.1",
