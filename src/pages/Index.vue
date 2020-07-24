@@ -34,3 +34,11 @@ export default {
 };
 </script>
 
+<page-query>
+  query {
+    text: metadata {
+      title
+      subtitles
+    }
+  }
+</page-query>
