@@ -1,42 +1,36 @@
 [
   {
     "site": "Github",
-    "link": "https://github.com/Tiim",
+    "link": "https://github.com/theguymeyer",
     "icon": [
       "fab",
       "github"
     ]
   },
   {
-    "site": "Dev.to",
-    "link": "https://dev.to/tiim",
+    "site": "LinkedIn",
+    "link": "https://www.linkedin.com/in/meyerguy/",
     "icon": [
       "fab",
-      "dev"
-    ]
-  },
-  {
-    "site": "Twitter",
-    "link": "https://twitter.com/TiimB",
-    "icon": [
-      "fab",
-      "twitter"
+      "linkedin"
     ]
   },
   {
     "site": "Instagram",
-    "link": "https://instagram.com/tiim.ba",
+    "link": "https://www.instagram.com/guy_meyer/",
     "icon": [
       "fab",
       "instagram"
     ]
   },
   {
-    "site": "Flickr",
-    "link": "https://www.flickr.com/people/152309161@N02/",
-    "icon": [
+    "site": "LiCS McMaster",
+    "link": "https://lics.cas.mcmaster.ca/node/59",
+    "icons": [
       "fab",
-      "flickr"
+      "dev"
     ]
   }
+
+  
 ]
