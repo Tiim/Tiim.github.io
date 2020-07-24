@@ -1,13 +1,14 @@
 import "~/assets/style/index.scss";
 
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faAt, faExternalLinkAlt } from "@fortawesome/free-solid-svg-icons";
+import { faAt, faExternalLinkAlt, faPuzzlePiece } from "@fortawesome/free-solid-svg-icons";
 import {
   faTwitter,
   faInstagram,
   faGithub,
   faFlickr,
-  faDev
+  faDev,
+  faLinkedin
 } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
@@ -18,7 +19,8 @@ library.add(
   faGithub,
   faExternalLinkAlt,
   faFlickr,
-  faDev
+  faDev,
+  faLinkedin
 );
 
 import DefaultLayout from "~/layouts/Default.vue";
