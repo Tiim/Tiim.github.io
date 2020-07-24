@@ -38,7 +38,7 @@
           <a
             class="navbar-item"
             target="_blank"
-            href="https://twitter.com/TiimB"
+            href="https://www.linkedin.com/in/meyerguy/"
             >Contact</a
           >
         </div>
