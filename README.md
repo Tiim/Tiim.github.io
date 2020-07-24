@@ -1,6 +1,6 @@
 # Big credits to Tim Bachmann for providing the source code for this project!
 
-I love simplicity of Vue and wanted to match the look and feel of your personal site
+I love the simplicity of Vue and wanted to match the look and feel of your personal site
 
 Here's the original README.md ...
 
