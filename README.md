@@ -1,3 +1,9 @@
+# Big credits to Tim Bachmann for providing the source code for this project!
+
+I love the simplicity of Vue and wanted to match the look and feel of your personal site
+
+Here's the original README.md ...
+
 # Default starter for Gridsome
 
 This is the project you get when you run `gridsome create new-project`.
