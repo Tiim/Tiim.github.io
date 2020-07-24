@@ -1,17 +1,17 @@
 [
   {
-    "name": "Test",
+    "name": "Live Swiss Coronavirus Tracker",
     "links": [
       {
         "url": "https://tiim.ch/sars-cov-2-demo/",
-        "name": "Test"
+        "name": "Live Tracker"
       },
       {
         "url": "https://github.com/Tiim/sars-cov-2-demo",
-        "name": "Test"
+        "name": "GitHub"
       }
     ],
-    "text": "This is a test",
+    "text": "A little live dashboard that scrapes Wikipedia client side and displays regional corona virus statistics for switzerland.",
     "tags": [
       "vue",
       "scrape",
