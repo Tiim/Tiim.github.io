@@ -11,11 +11,7 @@
           </div>
           <div class="column is-4">
             <figure class="image is-128x128 is-inline-block">
-              <img
-                class="is-rounded"
-                alt="profile picture"
-                :src="$page.profilePic.link"
-              />
+              <img class="is-rounded" alt="profile picture" src="@/assets/images/profile_pic.jpeg"/>
             </figure>
           </div>
         </div>
