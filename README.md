@@ -1,4 +1,4 @@
-# Big credits to Tim Bachmann for providing the source code for this project!
+### Big credits to Tim Bachmann for providing the source code for this project!
 
 I love the simplicity of Vue and wanted to match the look and feel of your personal site
 
