@@ -24,6 +24,6 @@ git add -A
 git commit -m 'deploy'
 
 # if you are deploying to https://tiim.github.io
-git push -f git@github.com:theguymeyer/Tiim.github.io.git master
+git push -f git@github.com:theguymeyer/cv.git master
 
 cd -
