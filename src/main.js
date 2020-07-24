@@ -1,7 +1,7 @@
 import "~/assets/style/index.scss";
 
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faAt, faExternalLinkAlt, faPuzzlePiece } from "@fortawesome/free-solid-svg-icons";
+import { faAt, faExternalLinkAlt } from "@fortawesome/free-solid-svg-icons";
 import {
   faTwitter,
   faInstagram,
