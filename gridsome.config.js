@@ -20,8 +20,8 @@ module.exports = {
     {
       use: "@gridsome/source-filesystem",
       options: {
-        typeName: "BlogPost",
-        path: "./content/blog/**/*.md"
+        typeName: "ProjectPost",
+        path: "./content/project/**/*.md"
       }
     },
     {
@@ -53,10 +53,10 @@ module.exports = {
     }
   },
   templates: {
-    BlogPost: [
+    ProjectPost: [
       {
-        path: "/blog/:title",
-        component: "./src/templates/BlogPage.vue"
+        path: "/project/:route",
+        component: "./src/templates/ProjectPage.vue"
       }
     ]
   },
