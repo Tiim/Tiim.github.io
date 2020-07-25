@@ -1,8 +1,8 @@
 {
     "background_color": "#000000",
     "icon_path": "./src/favicon.png",
-    "name": "Tim Bachmann",
-    "short_name": "Tim",
+    "name": "Guy Meyer",
+    "short_name": "Guy",
     "theme_color": "#FFFFFF",
     "lang": "en",
     "display": "minimal-ui",
