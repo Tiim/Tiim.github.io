@@ -1,13 +1,14 @@
 <template>
   <div>
-    <div class="columns">
-      <div
-        v-for="project in data"
+    <div class="row" :key="i" v-for="i in rowCount">
+      <span
+        v-for="project in itemCountInRow(i)"
         :key="project.id"
         class="column is-one-third is-multiline"
+        style="margin: 0;"
       >
         <Project :project="project.node" />
-      </div>
+      </span>
     </div>
   </div>
 </template>
@@ -22,6 +23,28 @@ export default {
   },
   props: {
     data: Array
+  },
+  data: () => ({
+    itemsPerRow: 3
+  }),
+  computed: {
+    rowCount: function() {    
+      return Math.ceil(this.data.length / this.itemsPerRow);
+    },
+  },
+  methods: {
+    itemCountInRow: function(index) {
+      console.log(index);
+     return this.data.slice((index - 1) * this.itemsPerRow, index * this.itemsPerRow);
+    }
   }
 };
 </script>
+
+<style scoped>
+
+.row {
+  display: flex;
+}
+
+</style>

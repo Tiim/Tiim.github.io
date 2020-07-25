@@ -2,20 +2,16 @@
   <Layout>
     <div class="container has-text-centered">
       <div class="section content">
-        <h1>Projects &amp; Demos⚙️</h1>
-        <p>
-          This is a list of some of my current or past projects. Go check them
-          out!
-        </p>
+        <h1>Projects ⚙️</h1>
       </div>
-      <div class="section content" v-if="demos.length">
+      <!-- <div class="section content" v-if="demos.length">
         <h2>Demos</h2>
         <ProjectEntries :data="demos" />
-      </div>
-      <div class="section content" v-if="projects.length">
-        <h2>Projects</h2>
+      </div> -->
+      <!-- <div class="section content" v-if="projects.length"> -->
+        <!-- <h2>Projects</h2> -->
         <ProjectEntries :data="projects" />
-      </div>
+      <!-- </div> -->
     </div>
   </Layout>
 </template>
@@ -28,34 +24,20 @@ export default {
     ProjectEntries
   },
   metaInfo: {
-    title: "Projects & Demos"
+    title: "Projects"
   },
   computed: {
     projects() {
       return this.$page.projects?.edges ?? [];
     },
-    demos() {
-      return this.$page.demos?.edges ?? [];
-    }
+    // demos() {
+    //   return this.$page.demos?.edges ?? [];
+    // }
   }
 };
 </script>
 <page-query>
   {
-    demos: allDemo(sortBy: "index", order: ASC) {
-      edges {
-        node {
-          id
-          name
-          links {
-            url
-            name
-          }
-          text
-          tags
-        }
-      }
-    }
     projects: allProject(sortBy: "index", order: ASC) {
       edges {
         node {
