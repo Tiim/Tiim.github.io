@@ -5,13 +5,15 @@
         <div class="columns">
           <div class="column">
             <h1 class="title">{{ $page.text.title }}</h1>
-            <p v-for="sub in $page.text.subtitles" :key="sub" class="subtitle">
-              {{ sub }}
-            </p>
+            <div class="subtitles">
+              <p v-for="sub in $page.text.subtitles" :key="sub" class="subtitle">
+                {{ sub }}
+              </p>
+            </div>
           </div>
           <div class="column is-4">
-            <figure class="image is-128x128 is-inline-block">
-              <img class="is-rounded" alt="profile picture" src="@/assets/images/profile_pic.jpeg"/>
+            <figure class="image is-inline-block" style="width: 50%;">
+              <img class="is-square" alt="profile picture" src="@/assets/images/profile_pic.jpeg"/>
             </figure>
           </div>
         </div>
@@ -33,6 +35,19 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+
+.title {
+  text-align: left;
+}
+
+.subtitles {
+  margin: 5%;
+  text-align: left;
+}
+
+</style>
 
 <page-query>
   query {
