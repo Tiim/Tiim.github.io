@@ -13,8 +13,8 @@ if (process.env.NODE_ENV === "production")
   postcssPlugins.push(purgecss(require("./purgecss.config.js")));
 
 module.exports = {
-  siteName: "Tim Bachmann",
-  siteUrl: "tiim.ch",
+  siteName: "Guy Meyer",
+  siteUrl: "guymeyer.me",
   metadata,
   plugins: [
     {
@@ -29,8 +29,8 @@ module.exports = {
       options: {
         background_color: "#000000",
         icon_path: "./src/favicon.png",
-        name: "Tim Bachmann",
-        short_name: "Tim",
+        name: "Guy Meyer",
+        short_name: "Guy",
         theme_color: "#FFFFFF",
         lang: "en"
       }

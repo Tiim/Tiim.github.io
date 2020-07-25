@@ -5,14 +5,14 @@
 // Changes here require a server restart.
 // To restart press CTRL + C in terminal and run `gridsome develop`
 const projects = require("./content/projects.json");
-const demos = require("./content/demos.json");
+const publications = require("./content/publications.json");
 const socialMedia = require("./content/socialmedia.json");
 const remoteImages = require("./content/remote-imgs.json");
 
 module.exports = function(api) {
   api.loadSource(store => {
     addEach("Project", projects, p => p.name, store);
-    addEach("Demo", demos, d => d.name, store);
+    addEach("Publication", publications, p => p.name, store);
     addEach("SocialMedia", socialMedia, s => s.link, store);
     addEach("RemoteImage", remoteImages, i => i.id, store);
   });
