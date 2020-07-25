@@ -6,7 +6,7 @@
   >
     <div class="container">
       <div class="navbar-brand">
-        <a class="navbar-item has-text-weight-bold" href="/">Guy Meyer</a>
+        <a class="navbar-item has-text-weight-bold" href="/">GM</a>
         <a
           role="button"
           aria-label="Menu"
