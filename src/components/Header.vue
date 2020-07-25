@@ -31,9 +31,9 @@
           >
           <router-link
             @click.native="closeBurger"
-            to="/blog"
+            to="/publications"
             class="navbar-item"
-            >Blog</router-link
+            >Publications</router-link
           >
           <a
             class="navbar-item"
