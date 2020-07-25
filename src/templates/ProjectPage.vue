@@ -7,6 +7,7 @@
       <div class="columns is-centered">
         <div class="column is-two-thirds">
           <div class="content">
+            <router-link to="/projects">Back to Projects</router-link>
             <h1 class="title">
               {{ $page.post.title }}
             </h1>
@@ -31,6 +32,16 @@ export default {
 };
 </script>
 <style scoped>
+
+@media screen and (max-width: 770px) {
+  .crop {
+    visibility: hidden;
+    display: none;
+    clear: both;
+    float: left;
+  }
+}
+
 .title {
   text-align: center;
   margin: 2em;
@@ -44,7 +55,8 @@ export default {
 
 .crop {
   width: 100%;
-  height: 20em;
+  height: 15em;
+  margin-bottom: 2%;
   overflow: hidden;
 }
 
