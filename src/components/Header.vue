@@ -33,7 +33,7 @@
             @click.native="closeBurger"
             to="/publications"
             class="navbar-item"
-            >Publications</router-link
+            >Academia</router-link
           >
           <a
             class="navbar-item"
