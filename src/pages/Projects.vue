@@ -4,14 +4,7 @@
       <div class="section content">
         <h1>Projects ⚙️</h1>
       </div>
-      <!-- <div class="section content" v-if="demos.length">
-        <h2>Demos</h2>
-        <ProjectEntries :data="demos" />
-      </div> -->
-      <!-- <div class="section content" v-if="projects.length"> -->
-        <!-- <h2>Projects</h2> -->
         <ProjectEntries :data="projects" />
-      <!-- </div> -->
     </div>
   </Layout>
 </template>
