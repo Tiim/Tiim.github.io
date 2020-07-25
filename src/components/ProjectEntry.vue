@@ -31,3 +31,11 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+
+.tags {
+  margin-top: 5%;
+}
+
+</style>
