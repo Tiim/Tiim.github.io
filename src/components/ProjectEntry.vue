@@ -16,15 +16,9 @@
       </div>
     </div>
     <div class="card-footer">
-      <a
-        v-for="link in project.links"
-        :key="link.url"
-        :href="link.url"
-        class="card-footer-item"
-        target="_blank"
-      >
-        {{ link.name }}
-      </a>
+      <router-link class="card-footer-item" :to="{ path: (project.family + project.route) }">
+        Read More ...
+      </router-link>
     </div>
   </article>
 </template>

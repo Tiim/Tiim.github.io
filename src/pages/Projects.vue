@@ -36,10 +36,8 @@ export default {
         node {
           id
           name
-          links {
-            url
-            name
-          }
+          route
+          family
           text
           tags
         }

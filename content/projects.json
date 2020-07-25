@@ -1,13 +1,9 @@
 [
   {
     "name": "HeartView",
-    "links": [
-      {
-        "url": "https://sundrbi.ch/index.php/coach-application/",
-        "name": "More Info ..."
-      }
-    ],
-    "text": "Developed a remote testing station to be used as a mechatronics lab for an online course at McMaster University",
+    "route": "heartview",
+    "family": "/project/",
+    "text": "Remote test station for pacemakers",
     "tags": [
       "MATLAB",
       "Python",
@@ -20,7 +16,9 @@
   },
   {
     "name": "Remote Doctor",
-    "text": "A remote control panel for doctors that were away from patients a result of the COVID-19 pandemic",
+    "route": "remotedoctor",
+    "family": "/project/",
+    "text": "Remote Patient Care",
     "tags": [
       "VueJS",
       "NodeJS",
@@ -31,30 +29,22 @@
   },
   {
     "name": "Barbot",
-    "links": [
-      {
-        "url": "https://github.com/theguymeyer/barbot",
-        "name": "Check out the github ..."
-      }
-    ],
-    "text": "Feelin’ Thirsty? Have a drink! Barbot is a robotic bartender with a usable interface that lets you build your own drinks.",
+    "route": "barbot",
+    "family": "/project/",
+    "text": "The Robotic Bartender",
     "tags": [
-      "VueJS",
-      "NodeJS",
-      "Medical App",
-      "Remote",
-      "COVID-19"
+      "C++",
+      "Arduino",
+      "3D Printing",
+      "Circuit Design",
+      "Sensors & Actuators"
     ]
   },
   {
     "name": "SerpUI",
-    "links": [
-      {
-        "url": "https://serpui-heroku.herokuapp.com/",
-        "name": "Try it out ..."
-      }
-    ],
-    "text": "For people who are blind or with low vision browsing the web is confusing and inaccessible, here's a tool that reimagines Google results page to provide a more accesible experience.",
+    "route": "serpui",
+    "family": "/project/",
+    "text": "Search Engine interface for the blind",
     "tags": [
       "UI/UX",
       "HTML",
