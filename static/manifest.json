@@ -1,6 +1,6 @@
 {
     "background_color": "#000000",
-    "icon_path": "./src/favicon.png",
+    "icon_path": "./static/assets/img/favicon-io/android-chrome-512x512.png",
     "name": "Guy Meyer",
     "short_name": "Guy",
     "theme_color": "#FFFFFF",
@@ -15,34 +15,29 @@
     "related_applications": [],
     "icons": [
         {
-            "src": "/assets/img/favicon-512.png",
+            "src": "/assets/img/favicon-io/android-chrome-512x512.png",
             "type": "image/png",
             "sizes": "512x512"
         },
         {
-            "src": "/assets/img/favicon-192.png",
+            "src": "/assets/img/favicon-io/android-chrome-192x192.png",
             "type": "image/png",
             "sizes": "192x192"
         },
         {
-            "src": "/assets/img/favicon-144.png",
+            "src": "/assets/img/favicon-io/apple-touch-icon.png",
             "type": "image/png",
-            "sizes": "144x144"
+            "sizes": "180x180"
         },
         {
-            "src": "/assets/img/favicon-96.png",
+            "src": "/assets/img/favicon-io/favicon-32x32.png",
             "type": "image/png",
-            "sizes": "96x96"
+            "sizes": "32x32"
         },
         {
-            "src": "/assets/img/favicon-72.png",
+            "src": "/assets/img/favicon-io/favicon-16x16.png",
             "type": "image/png",
-            "sizes": "72x72"
-        },
-        {
-            "src": "/assets/img/favicon-48.png",
-            "type": "image/png",
-            "sizes": "48x48"
+            "sizes": "16x16"
         }
     ]
 }
