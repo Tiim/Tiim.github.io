@@ -35,12 +35,6 @@
             class="navbar-item"
             >Academia</router-link
           >
-          <a
-            class="navbar-item"
-            target="_blank"
-            href="https://www.linkedin.com/in/meyerguy/"
-            >Contact</a
-          >
         </div>
       </div>
     </div>
