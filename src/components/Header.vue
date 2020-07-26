@@ -35,6 +35,12 @@
             class="navbar-item"
             >Academia</router-link
           >
+          <router-link
+            @click.native="closeBurger"
+            to="/outreach"
+            class="navbar-item"
+            >Outreach</router-link
+          >
         </div>
       </div>
     </div>

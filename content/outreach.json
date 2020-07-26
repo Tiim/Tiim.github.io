@@ -1,0 +1,26 @@
+[
+  {
+    "name": "Guide Day",
+    "route": "guideday",
+    "family": "/outreach/",
+    "text": "This is Guide Day",
+    "tags": [
+      "Blindness",
+      "Education",
+      "Outreach"
+    ]
+  },
+  {
+    "name": "Remote Doctor",
+    "route": "remotedoctor",
+    "family": "/project/",
+    "text": "Remote Patient Care",
+    "tags": [
+      "VueJS",
+      "NodeJS",
+      "Medical App",
+      "Remote",
+      "COVID-19"
+    ]
+  }
+]
