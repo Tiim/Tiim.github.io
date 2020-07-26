@@ -5,14 +5,21 @@
         <div class="columns">
           <div class="column">
             <h1 class="title">{{ $page.text.title }}</h1>
-            <div class="subtitles">
-              <p v-for="sub in $page.text.subtitles" :key="sub" class="subtitle">
-                {{ sub }}
+            <div class="highlights__title">
+              <h5>Highlights</h5>
+              <p v-for="item in $page.text.highlights" :key="item" class="highlights__text">
+                {{ item }}
+              </p>
+            </div>
+            <div class="funfacts__title">
+              <h5>Fun Facts</h5>
+              <p v-for="item in $page.text.funfacts" :key="item" class="funfacts__text">
+                {{ item }}
               </p>
             </div>
           </div>
           <div class="column is-4">
-            <figure class="image is-inline-block" style="width: 50%;">
+            <figure class="image is-inline-block" style="width: 60%;">
               <img class="is-square" alt="profile picture" src="@/assets/images/profile_pic.jpeg"/>
             </figure>
           </div>
@@ -39,15 +46,23 @@ export default {
 };
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 
 .title {
   text-align: left;
 }
 
-.subtitles {
-  margin: 5%;
-  text-align: left;
+.highlights, .funfacts {
+
+  &__title {
+    margin: 5%;
+    text-align: left;
+  }
+
+  &__text {
+    margin: 0;
+    text-align: left;
+  }
 }
 
 .credits {
@@ -60,7 +75,8 @@ export default {
   query {
     text: metadata {
       title
-      subtitles
+      highlights
+      funfacts
     }
   }
 </page-query>
