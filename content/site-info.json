@@ -1,9 +1,16 @@
 {
   "title": "Guy Meyer",
-  "subtitles": [
-    "Favourite Sports: Basketball, Frisbee, Surfing, and Chess",
+  "highlights": [
+    "Lead team of TAs for 3 years in software development course",
+    "Designer of HeartView project and other apps for remote work/education",
+    "Experience in designing UIs, electrical circuits, and hardware assemblies",
+    "Experience in procurement, managing projects, and finding the right people"
+  ],
+  "funfacts": [
+    "Loves 3D printing and joining new projects",
     "Favourite Languages: Python, Javascript, C++, MATLAB, VueJS",
-    "Member of the Golden Key International Honour Society"
+    "Member of the Golden Key International Honour Society",
+    "Favourite Sports: Basketball, Frisbee, Surfing, and Chess"
   ],
   "name": "Guy Meyer"
 }
