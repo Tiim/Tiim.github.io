@@ -23,9 +23,6 @@ export default {
     projects() {
       return this.$page.projects?.edges ?? [];
     },
-    // demos() {
-    //   return this.$page.demos?.edges ?? [];
-    // }
   }
 };
 </script>
