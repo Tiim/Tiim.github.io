@@ -12,12 +12,22 @@ date: 2017-04-20
 cover_image: "https://www.wallpaperflare.com/static/888/607/761/billiard-balls-pool-table-two-beige-wallpaper.jpg"
 ---
 
+### First Place in Final Year Engineering Competition
+
 ## Overview
 
-As a result of the COVID pandemic doctors cannot meet with their patients. This project is a way to bridge the gap.
+The Capstone course is an opportunity for students to spend the year tackling an engineering problem of their choice. Our group chose to build an autonomous billiards partner. The project was split into three major components; mechanical, electrical and software.
 
-The project is privately licensed and cannot be publically disclosed. Please reach out for futher inquiries.
+## Mechanical 
 
+We first started with constructing a 1:1 replica of the pool table in CAD and designed the system down to the nuts and bolts. This team spent days machining, 3D printing and laser cutting over 50 custom parts. The mechanical team also constructed the pneumatic system used to strike the balls (including pistons, compressors and pneumatic values). My contribution for this project was primarily with this team, due to my previous mechanical experience.
 
+## Electrical
 
-https://www.youtube.com/watch?v=JnZ3WzE_Scc&feature=youtu.be
+This team was centered around the controls of the robot. Big challenges for this component was to synchronize the motion of the stepper motor to ensure fluid motion that would not shake the table. The electrical team was also responsible for timing and ensuring the shot process was smooth.
+
+## Software
+
+This part was very tricky! In order to determine the best shot several steps were necessary. First the program would capture a picture of the table with a phone mounted on the ceiling. Then the picture would be processed to determine ball colour and location. After an algorithm would run a point-based brute force algorithm to determine the ideal shot angle and power. The information would be relayed to the controls team that would proces and perform the shot.
+
+[![video of capstone project, an autonomous billiards partner](../../assets/images/profile_pic.jpg)](https://www.youtube.com/watch?v=JnZ3WzE_Scc&feature=youtu.be)
