@@ -54,5 +54,18 @@
       "Google Cloud Services",
       "Text to Speech"
     ]
+  },
+  {
+    "name": "Robotic Billiards Partner",
+    "route": "takethecue",
+    "family": "/project/",
+    "text": "Autonomous billiards partner",
+    "tags": [
+      "OpenCV",
+      "Arduino",
+      "3D Printing",
+      "Pneumatics",
+      "Systems Design"
+    ]
   }
 ]
