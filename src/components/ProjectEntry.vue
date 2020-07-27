@@ -1,5 +1,6 @@
 <template>
   <article class="card">
+    <img :src="project.coverImage" class="card-img-top" :alt="project.name">
     <header class="card-header">
       <p class="card-header-title is-centered">
         {{ project.name }}

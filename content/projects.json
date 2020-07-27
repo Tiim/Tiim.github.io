@@ -12,7 +12,8 @@
       "Circuits",
       "3D Design",
       "Remote Learning"
-    ]
+    ],
+    "coverImage": "https://www.planetanalog.com/wp-content/uploads/2019/09/AnalogAngle138_FR-4_PCB_Fig1_770x507.jpg"
   },
   {
     "name": "Remote Doctor",
@@ -25,7 +26,8 @@
       "Medical App",
       "Remote",
       "COVID-19"
-    ]
+    ],
+    "coverImage": "https://news.mit.edu/sites/mit.edu.newsoffice/files/styles/news_article_image_top_slideshow/public/images/2015/big-data-medicine-model_0.jpg?itok=9gUD6D48"
   },
   {
     "name": "Barbot",
@@ -38,7 +40,8 @@
       "3D Printing",
       "Circuit Design",
       "Sensors & Actuators"
-    ]
+    ],
+    "coverImage": "https://static.vinepair.com/wp-content/uploads/2016/08/best-well-bar-bottles-inside.jpg"
   },
   {
     "name": "SerpUI",
@@ -53,7 +56,8 @@
       "Nintendo JoyCon",
       "Google Cloud Services",
       "Text to Speech"
-    ]
+    ],
+    "coverImage": "https://images.ctfassets.net/u4vv676b8z52/3yei6en28fDXB5LitfI3ZZ/328097a0a79669ee1b9224e8d8309f0d/Hero_Article_EyeExam-LittleBoy-compressor.jpg?fm=jpg&q=80"
   },
   {
     "name": "Robotic Billiards Partner",
@@ -66,6 +70,7 @@
       "3D Printing",
       "Pneumatics",
       "Systems Design"
-    ]
+    ],
+    "coverImage": "https://www.wallpaperflare.com/static/888/607/761/billiard-balls-pool-table-two-beige-wallpaper.jpg"
   }
 ]
