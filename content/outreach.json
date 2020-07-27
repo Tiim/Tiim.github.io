@@ -3,24 +3,22 @@
     "name": "Guide Day",
     "route": "guideday",
     "family": "/outreach/",
-    "text": "This is Guide Day",
+    "text": "Directed a day for students to learn about blindness",
     "tags": [
       "Blindness",
       "Education",
-      "Outreach"
+      "Outreach",
+      "Leadership"
     ]
   },
   {
-    "name": "Remote Doctor",
-    "route": "remotedoctor",
-    "family": "/project/",
-    "text": "Remote Patient Care",
+    "name": "Volunteering through Research",
+    "route": "volunteering",
+    "family": "/outreach/",
+    "text": "Volunteering at special needs schools",
     "tags": [
-      "VueJS",
-      "NodeJS",
-      "Medical App",
-      "Remote",
-      "COVID-19"
+      "Education",
+      "Blindness"
     ]
   }
 ]
