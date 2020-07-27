@@ -30,4 +30,4 @@ This team was centered around the controls of the robot. Big challenges for this
 
 This part was very tricky! In order to determine the best shot several steps were necessary. First the program would capture a picture of the table with a phone mounted on the ceiling. Then the picture would be processed to determine ball colour and location. After an algorithm would run a point-based brute force algorithm to determine the ideal shot angle and power. The information would be relayed to the controls team that would proces and perform the shot.
 
-[![video of capstone project, an autonomous billiards partner](../../assets/images/profile_pic.jpg)](https://www.youtube.com/watch?v=JnZ3WzE_Scc&feature=youtu.be)
+(https://www.youtube.com/watch?v=JnZ3WzE_Scc&feature=youtu.be)
