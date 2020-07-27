@@ -1,5 +1,6 @@
 <template>
   <article class="card">
+    <img :src="outreach.coverImage" class="card-img-top" :alt="outreach.name">
     <header class="card-header">
       <p class="card-header-title is-centered">
         {{ outreach.name }}

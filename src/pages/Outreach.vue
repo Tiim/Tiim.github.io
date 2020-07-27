@@ -37,6 +37,7 @@ export default {
           family
           text
           tags
+          coverImage
         }
       }
     }
