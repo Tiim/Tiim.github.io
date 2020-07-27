@@ -25,6 +25,13 @@ module.exports = {
       }
     },
     {
+      use: "@gridsome/source-filesystem",
+      options: {
+        typeName: "OutreachPost",
+        path: "./content/outreach/**/*.md"
+      }
+    },
+    {
       use: "gridsome-plugin-manifest",
       options: {
         background_color: "#000000",
@@ -57,6 +64,12 @@ module.exports = {
       {
         path: "/project/:route",
         component: "./src/templates/ProjectPage.vue"
+      }
+    ],
+    OutreachPost: [
+      {
+        path: "/outreach/:route",
+        component: "./src/templates/OutreachPage.vue"
       }
     ]
   },
