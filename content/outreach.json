@@ -1,13 +1,13 @@
 [
   {
-    "name": "Guide Day",
-    "route": "guideday",
+    "name": "Mentorships",
+    "route": "mentorship",
     "family": "/outreach/",
     "text": "Directed a day for students to learn about blindness",
     "tags": [
       "Blindness",
       "Education",
-      "Outreach",
+      "Mentor",
       "Leadership"
     ],
     "coverImage": "https://www.leapwithus.org.uk/wp-content/uploads/2015/05/crowd-group-people-walking-feet-stock-xchng.jpg"
@@ -19,7 +19,8 @@
     "text": "Volunteering at special needs schools",
     "tags": [
       "Education",
-      "Blindness"
+      "Blindness",
+      "Research"
     ],
     "coverImage": "https://i.infopls.com/images/braillealpha.gif"
   }
