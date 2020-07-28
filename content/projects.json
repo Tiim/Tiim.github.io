@@ -72,5 +72,19 @@
       "Systems Design"
     ],
     "coverImage": "https://www.wallpaperflare.com/static/888/607/761/billiard-balls-pool-table-two-beige-wallpaper.jpg"
+  },
+  {
+    "name": "Powered Wheelbarrow",
+    "route": "wheelbarrow",
+    "family": "/project/",
+    "text": "Adding battery power to wheelbarrows",
+    "tags": [
+      "Power electronics",
+      "Rechargeables",
+      "Tooling",
+      "CAD design",
+      "Laser Cutting"
+    ],
+    "coverImage": "https://www.constructionexec.com/assets/site_18/images/article/081219110833.jpg?width=1280"
   }
 ]

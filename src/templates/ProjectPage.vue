@@ -11,6 +11,9 @@
             <h1 class="title">
               {{ $page.post.title }}
             </h1>
+            <h6 class="subtitle">
+              {{ $page.post.subtitle }}
+            </h6>
             <div class="text">
               <div v-html="$page.post.content" />
             </div>
@@ -44,7 +47,12 @@ export default {
 
 .title {
   text-align: center;
-  margin: 2em;
+  margin-top: 2em;
+}
+
+.subtitle {
+  text-align: center;
+  margin-bottom: 2em;
 }
 
 .text {
@@ -71,6 +79,7 @@ export default {
     post: projectPost(id: $id) {
       route
       title
+      subtitle
       path
       date(format: "D. MMMM YYYY")
       timeToRead
