@@ -27,16 +27,16 @@
     "site": "LiCS McMaster",
     "link": "https://lics.cas.mcmaster.ca/node/59",
     "icon": [
-      "fab",
-      "dev"
+      "fa",
+      "dice"
     ]
   },
   {
     "site": "Email",
     "link": "mailto:guymeyer1995@gmail.com",
     "icon": [
-      "fab",
-      "dev"
+      "fa",
+      "envelope"
     ]
   }
 
