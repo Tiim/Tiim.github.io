@@ -26,7 +26,7 @@
   {
     "site": "LiCS McMaster",
     "link": "https://lics.cas.mcmaster.ca/node/59",
-    "icons": [
+    "icon": [
       "fab",
       "dev"
     ]
@@ -34,7 +34,7 @@
   {
     "site": "Email",
     "link": "mailto:guymeyer1995@gmail.com",
-    "icons": [
+    "icon": [
       "fab",
       "dev"
     ]
