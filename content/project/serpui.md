@@ -16,7 +16,7 @@ cover_image: "https://images.ctfassets.net/u4vv676b8z52/3yei6en28fDXB5LitfI3ZZ/3
 
 ## Overview
 
-Accessibility to information is important! But when vision degrades so does the ability to gather and synthesize information from virtual platforms. SerpUI is free search engine tool that simplifies the Google Search engine interface by minimizing the userspace. 
+Accessibility to information is important! But when vision degrades so does the ability to gather and synthesize information from online. SerpUI is free search engine tool that simplifies the Google search engine interface by minimizing the userspace and reducing the learning curve. 
 
 ### Try it out [here](https://serpui-heroku.herokuapp.com/)
 
