@@ -65,7 +65,7 @@ The pacemaker can then be developed on the same computer with MATLAB Simulink or
 
 ### myRIO System
 
-Every good development process needs an even better testing method. This was our issue for years! No way to provide the students with a confident and interactive way to test. At the beginning of this project in 2017 we built the first pacemaker testing station, check it out...
+Every good development process needs an even better testing method. This was our issue for years! No way to provide the students with a confident and interactive way to test. In 2017 we built the first pacemaker testing station that allows the user to do just that. Check it out...
 
 <figure class="figure">
     <img src="https://raw.githubusercontent.com/theguymeyer/guymeyer_CV/master/res/pacemaker/system4.jpg" alt="pacemaker testing station setup" width="48%" style="float: middle;"/>
