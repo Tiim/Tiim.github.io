@@ -19,18 +19,28 @@ cover_image: "https://www.wallpaperflare.com/static/888/607/761/billiard-balls-p
 
 The Capstone course is an opportunity for students to spend the year tackling an engineering problem of their choice. Our group chose to build an autonomous billiards partner. The project was split into three major components; mechanical, electrical and software.
 
-**Check out the demo [here >>](https://www.youtube.com/watch?v=lD4AIjvDnsE "Billiard Partner")**
+<figure>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/DvnvjfgXFjw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <figcaption>Single shot calculated by the robot</figcaption>
+</figure>
 
-<img src="https://raw.githubusercontent.com/theguymeyer/guymeyer_CV/master/res/capstone/table/overall.jpg" alt="Billiards table robot overview" width="100%"/>
+<figure>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/lD4AIjvDnsE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <figcaption>Promo video (src: Ernest Selman)</figcaption>
+</figure>
+
+**Did you notice the pieces changing colours in second video? That's because this project requried dozens of custom parts where we utilized laser cutters, 3D printers and spent many hours in the machine shop!**
 
 ## Mechanical 
 
 We first started with constructing a 1:1 replica of the pool table in CAD and designed the system down to the nuts and bolts. This team spent days machining, 3D printing and laser cutting over 50 custom parts. The mechanical team also constructed the pneumatic system used to strike the balls (including pistons, compressors and pneumatic values). My contribution for this project was primarily with this team, due to my previous mechanical experience.
 
-<img src="https://raw.githubusercontent.com/theguymeyer/guymeyer_CV/master/res/capstone/CAD/finalProduct.PNG" alt="cad render overview" width="40%"/>
-<img src="https://raw.githubusercontent.com/theguymeyer/guymeyer_CV/master/res/capstone/CAD/Arm-SquareBar-Rev3.png" alt="cad" width="40%"/>
-<img src="https://raw.githubusercontent.com/theguymeyer/guymeyer_CV/master/res/capstone/CAD/rotationalJoint.PNG" alt="cad render housing" width="40%"/>
-<img src="https://raw.githubusercontent.com/theguymeyer/guymeyer_CV/master/res/capstone/CAD/endEffector.png" alt="cad image on end effector" width="40%"/>
+<figure>
+    <img src="https://raw.githubusercontent.com/theguymeyer/guymeyer_CV/master/res/capstone/CAD/finalProduct.PNG" alt="cad render overview" width="40%"/>
+    <img src="https://raw.githubusercontent.com/theguymeyer/guymeyer_CV/master/res/capstone/CAD/Arm-SquareBar-Rev3.png" alt="cad" width="40%"/>
+    <img src="https://raw.githubusercontent.com/theguymeyer/guymeyer_CV/master/res/capstone/CAD/rotationalJoint.PNG" alt="cad render housing" width="40%"/>
+    <img src="https://raw.githubusercontent.com/theguymeyer/guymeyer_CV/master/res/capstone/CAD/endEffector.png" alt="cad image on end effector" width="40%"/>
+</figure>
 
 
 ## Electrical
