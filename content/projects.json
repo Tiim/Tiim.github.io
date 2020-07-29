@@ -30,20 +30,6 @@
     "coverImage": "https://news.mit.edu/sites/mit.edu.newsoffice/files/styles/news_article_image_top_slideshow/public/images/2015/big-data-medicine-model_0.jpg?itok=9gUD6D48"
   },
   {
-    "name": "Barbot",
-    "route": "barbot",
-    "family": "/project/",
-    "text": "The Robotic Bartender",
-    "tags": [
-      "C++",
-      "Arduino",
-      "3D Printing",
-      "Circuit Design",
-      "Sensors & Actuators"
-    ],
-    "coverImage": "https://static.vinepair.com/wp-content/uploads/2016/08/best-well-bar-bottles-inside.jpg"
-  },
-  {
     "name": "SerpUI",
     "route": "serpui",
     "family": "/project/",
@@ -58,6 +44,20 @@
       "Text to Speech"
     ],
     "coverImage": "https://images.ctfassets.net/u4vv676b8z52/3yei6en28fDXB5LitfI3ZZ/328097a0a79669ee1b9224e8d8309f0d/Hero_Article_EyeExam-LittleBoy-compressor.jpg?fm=jpg&q=80"
+  },
+  {
+    "name": "Barbot",
+    "route": "barbot",
+    "family": "/project/",
+    "text": "The Robotic Bartender",
+    "tags": [
+      "C++",
+      "Arduino",
+      "3D Printing",
+      "Circuit Design",
+      "Sensors & Actuators"
+    ],
+    "coverImage": "https://static.vinepair.com/wp-content/uploads/2016/08/best-well-bar-bottles-inside.jpg"
   },
   {
     "name": "Robotic Billiards Partner",
