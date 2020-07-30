@@ -36,7 +36,7 @@ export default {
 </script>
 <style scoped>
 
-@media screen and (max-width: 770px) {
+@media screen and (max-width: 850px) {
   .crop {
     visibility: hidden;
     display: none;
