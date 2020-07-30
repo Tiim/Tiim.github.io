@@ -18,6 +18,7 @@
         </div>
       </div>
     </div>
+    <g-image class="is-square bottom-icon" alt="logo" src="~/../static/assets/img/favicon-96.png"/>
   </Layout>
 </template>
 
@@ -57,13 +58,19 @@ export default {
   }
 }
 
+.bottom-icon {
+  width: 5%; 
+  float: right;
+  margin: 2%;
+}
+
 .title {
   text-align: center;
   margin: 2em;
 }
 
 .text {
-  background-color: #dfdfdf;
+  background-color: #fff;
   padding: 2em;
   border-radius: 10px;
 }
