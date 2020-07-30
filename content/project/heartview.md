@@ -32,7 +32,7 @@ Due to the global pandemic students are forced to study from home. Since the pac
 
 <figure class="figure">
     <img class="figure-float" src="https://raw.githubusercontent.com/theguymeyer/guymeyer_CV/master/res/pacemaker/heartview_iso.png" alt="pacemaker testing station overview" width="70%"/>
-    <figcaption>Screenshot of the HeartView testing station UI (src: Guy Meyer)</figcaption>
+    <figcaption class="caption">Screenshot of the HeartView testing station UI (src: Guy Meyer)</figcaption>
 </figure>
 
 HeartView in a turn-key solution to prototyping of pacemakers. The remote station is equipped with a pacemaker (FRDM K64F) and a heart (Nucleo F446RE). The user downloads the HeartView software, connects the heart to their computer and can dynamically adjust the pacing conditions of the heart. The purpose is to generate heart malfunctions that the pacemaker will fix (if designed correctly). 
@@ -41,17 +41,17 @@ The pacemaker can then be developed on the same computer with MATLAB Simulink or
 
 <figure class="figure">
     <img src="https://raw.githubusercontent.com/theguymeyer/guymeyer_CV/master/res/pacemaker/heartview_topview_built.png" alt="pacemaker testing station topview" width="60%" description="test"/>
-    <figcaption>Topview of standalone test station; pacemaker on left, heart on right (src: Guy Meyer)</figcaption>
+    <figcaption class="caption">Topview of standalone test station; pacemaker on left, heart on right (src: Guy Meyer)</figcaption>
 </figure>
 
 <figure class="figure">
     <img src="https://raw.githubusercontent.com/theguymeyer/guymeyer_CV/master/res/pacemaker/heartview_ui.png" alt="pacemaker testing station ui" width="90%" description="test"/>
-    <figcaption>Screenshot of the HeartView testing station UI (src: Guy Meyer)</figcaption>
+    <figcaption class="caption">Screenshot of the HeartView testing station UI (src: Guy Meyer)</figcaption>
 </figure>
 
 <figure class="figure">
     <img src="https://raw.githubusercontent.com/theguymeyer/guymeyer_CV/master/res/pacemaker/heartview_overview.png" alt="pacemaker testing station ui" width="90%" description="test"/>
-    <figcaption>Testing during development (src: Guy Meyer)</figcaption>
+    <figcaption class="caption">Testing during development (src: Guy Meyer)</figcaption>
 </figure>
 
 
@@ -70,7 +70,7 @@ Every good development process needs an even better testing method. This was our
 <figure class="figure">
     <img src="https://raw.githubusercontent.com/theguymeyer/guymeyer_CV/master/res/pacemaker/system4.jpg" alt="pacemaker testing station setup" width="48%" style="float: middle;"/>
     <img src="https://raw.githubusercontent.com/theguymeyer/guymeyer_CV/master/res/pacemaker/system5.jpg" alt="pacemaker testing station scope" width="48%" style="float: middle;"/>
-    <figcaption>Heart signals generated on LabVIEW, all signals routed to oscilloscope for display (src: Guy Meyer)</figcaption>
+    <figcaption class="caption">Heart signals generated on LabVIEW, all signals routed to oscilloscope for display (src: Guy Meyer)</figcaption>
 </figure>
 
 
@@ -78,6 +78,6 @@ A dedicated real-time data acquisition system that works with two functions. Dis
 
 <figure class="figure">
     <img src="https://raw.githubusercontent.com/theguymeyer/guymeyer_CV/master/res/pacemaker/system1.jpg" alt="pacemaker testing station overview" width="60%" description="test"/>
-      <figcaption>Overview of desktop test station; pacemaker plugs into acrylic testing box (src: Guy Meyer)</figcaption>
+      <figcaption class="caption">Overview of desktop test station; pacemaker plugs into acrylic testing box (src: Guy Meyer)</figcaption>
 </figure>
 

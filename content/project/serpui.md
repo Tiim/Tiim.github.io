@@ -28,12 +28,12 @@ The user has two controller options their keyboard or the Nintendo JoyCon contro
 <figure class="figure">
     <img src="https://raw.githubusercontent.com/theguymeyer/guymeyer_CV/master/res/serpui/serpui_homepage.png" alt="pacemaker testing station setup" width="48%" style="float: middle;"/>
     <img src="https://raw.githubusercontent.com/theguymeyer/guymeyer_CV/master/res/serpui/serpui_recording.png" alt="pacemaker testing station setup" width="48%" style="float: middle;"/>
-    <figcaption>Recording a query on the SerpUI Homepage (src: Guy Meyer)</figcaption>
+    <figcaption class="caption">Recording a query on the SerpUI Homepage (src: Guy Meyer)</figcaption>
 </figure>
 <figure>
     <img src="https://raw.githubusercontent.com/theguymeyer/guymeyer_CV/master/res/serpui/serpui_serp_hello.png" alt="pacemaker testing station setup" width="48%" style="float: middle;"/>
     <img src="https://raw.githubusercontent.com/theguymeyer/guymeyer_CV/master/res/serpui/serpui_youtube.png" alt="pacemaker testing station setup" width="48%" style="float: middle;"/>
-    <figcaption>Moving around in the SerpUI Results Page (src: Guy Meyer)</figcaption>
+    <figcaption class="caption">Moving around in the SerpUI Results Page (src: Guy Meyer)</figcaption>
 </figure>
 
 **SerpUI also supports YouTube and will play the videos auto-magically!**

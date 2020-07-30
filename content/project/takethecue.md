@@ -21,12 +21,12 @@ The Capstone course is an opportunity for students to spend the year tackling an
 
 <figure>
     <iframe width="560" height="315" src="https://www.youtube.com/embed/DvnvjfgXFjw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-    <figcaption>Single shot calculated by the robot</figcaption>
+    <figcaption class="caption">Single shot calculated by the robot</figcaption>
 </figure>
 
 <figure>
     <iframe width="560" height="315" src="https://www.youtube.com/embed/lD4AIjvDnsE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-    <figcaption>Promo video (src: Ernest Selman)</figcaption>
+    <figcaption class="caption">Promo video (src: Ernest Selman)</figcaption>
 </figure>
 
 **Did you notice the pieces changing colours in second video? That's because this project requried dozens of custom parts where we utilized laser cutters, 3D printers and spent many hours in the machine shop!**

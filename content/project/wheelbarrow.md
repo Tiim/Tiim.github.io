@@ -26,37 +26,37 @@ Powered with a strong DC motor in the wheel all the user needs to do is lightly 
 
 <figure class="figure">
     <img src="https://raw.githubusercontent.com/theguymeyer/guymeyer_CV/master/res/wheelbarrow/front_angle.jpg" alt="pacemaker testing station scope" width="70%" style="float: middle;"/>
-    <figcaption>From the front (src: Guy Meyer)</figcaption>
+    <figcaption class="caption">From the front (src: Guy Meyer)</figcaption>
 </figure>
 
 <figure class="figure">
     <img src="https://raw.githubusercontent.com/theguymeyer/guymeyer_CV/master/res/wheelbarrow/new_top.jpg" alt="pacemaker testing station scope" width="70%" style="float: middle;"/>
-    <figcaption>The housing (src: Guy Meyer)</figcaption>
+     <figcaption class="caption">The housing (src: Guy Meyer)</figcaption>
 </figure>
 
 <figure class="figure">
     <img src="https://raw.githubusercontent.com/theguymeyer/guymeyer_CV/master/res/wheelbarrow/brakes.jpg" alt="pacemaker testing station scope" width="70%" style="float: middle;"/>
-    <figcaption>Brakes (src: Guy Meyer)</figcaption>
+     <figcaption class="caption">Brakes (src: Guy Meyer)</figcaption>
 </figure>
 
 <figure class="figure">
     <img src="https://raw.githubusercontent.com/theguymeyer/guymeyer_CV/master/res/wheelbarrow/cover.jpg" alt="pacemaker testing station scope" width="70%" style="float: middle;"/>
-    <figcaption>Magnetic cover (src: Guy Meyer)</figcaption>
+     <figcaption class="caption">Magnetic cover (src: Guy Meyer)</figcaption>
 </figure>
 
 <figure class="figure">
     <img src="https://raw.githubusercontent.com/theguymeyer/guymeyer_CV/master/res/wheelbarrow/new_inside.jpg" alt="pacemaker testing station scope" width="70%" style="float: middle;"/>
-    <figcaption>Open cover and electrical design (src: Guy Meyer)</figcaption>
+     <figcaption class="caption">Open cover and electrical design (src: Guy Meyer)</figcaption>
 </figure>
 
 ## First Prototype
 
 <figure class="figure">
     <img src="https://raw.githubusercontent.com/theguymeyer/guymeyer_CV/master/res/wheelbarrow/assembly.jpg" alt="pacemaker testing station scope" width="70%" style="float: middle;"/>
-    <figcaption>Heart signals generated on LabVIEW, all signals routed to oscilloscope for display (src: Guy Meyer)</figcaption>
+     <figcaption class="caption">Heart signals generated on LabVIEW, all signals routed to oscilloscope for display (src: Guy Meyer)</figcaption>
 </figure>
 
 <figure class="figure">
     <img src="https://raw.githubusercontent.com/theguymeyer/guymeyer_CV/master/res/wheelbarrow/controls.jpg" alt="pacemaker testing station scope" width="70%" style="float: middle;"/>
-    <figcaption>Heart signals generated on LabVIEW, all signals routed to oscilloscope for display (src: Guy Meyer)</figcaption>
+     <figcaption class="caption">Heart signals generated on LabVIEW, all signals routed to oscilloscope for display (src: Guy Meyer)</figcaption>
 </figure>

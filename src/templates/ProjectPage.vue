@@ -43,6 +43,21 @@ export default {
     clear: both;
     float: left;
   }
+
+  /deep/ .caption {
+    visibility: hidden;
+    display: none;
+    clear: both;
+    float: left;
+  }
+
+  /deep/ figure {
+    margin: 0;
+  }
+
+  /deep/ img, /deep/ iframe {
+    width: 100%;
+  }
 }
 
 .title {
