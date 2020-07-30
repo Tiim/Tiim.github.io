@@ -21,6 +21,7 @@
         </div>
       </div>
     </div>
+    <g-image class="is-square" alt="logo" src="~/../static/assets/img/favicon-96.png" style="width: 5%;"/>
   </Layout>
 </template>
 
