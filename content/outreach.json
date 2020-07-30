@@ -23,5 +23,18 @@
       "Research"
     ],
     "coverImage": "https://i.infopls.com/images/braillealpha.gif"
+  },
+  {
+    "name": "Cryptocurrency & Blockchain",
+    "route": "crypto",
+    "family": "/outreach/",
+    "text": "An intro lecture to Blockchain and Cryptocurrency",
+    "tags": [
+      "Blockchain",
+      "Cryptocurrency",
+      "Mining",
+      "Bitcoin"
+    ],
+    "coverImage": "https://cdn.cfo.com/content/uploads/2019/12/GettyImages-930264196.jpg"
   }
 ]
