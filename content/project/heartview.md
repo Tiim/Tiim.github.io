@@ -39,6 +39,12 @@ HeartView in a turn-key solution to prototyping of pacemakers. The remote statio
 
 The pacemaker can then be developed on the same computer with MATLAB Simulink or other development platforms and loaded on for real-time testing.
 
+### Skills
+
+**Technical** : hardware design (Fusion 360), electrical design (LTspice, Altium), STM32 development (GPIO, ADC, TIMERs, UART), UI programming (PyQt), System Integration
+
+**Non-technical** : Procurement, Budgeting, Operations
+
 <figure class="figure">
     <img src="https://raw.githubusercontent.com/theguymeyer/guymeyer_CV/master/res/pacemaker/heartview_topview_built.png" alt="pacemaker testing station topview" width="60%" description="test"/>
     <figcaption class="caption">Topview of standalone test station; pacemaker on left, heart on right (src: Guy Meyer)</figcaption>
@@ -54,12 +60,6 @@ The pacemaker can then be developed on the same computer with MATLAB Simulink or
     <figcaption class="caption">Testing during development (src: Guy Meyer)</figcaption>
 </figure>
 
-
-### Skills
-
-**Technical** : hardware design (Fusion 360), electrical design (LTspice, Altium), STM32 development (GPIO, ADC, TIMERs, UART), UI programming (PyQt), System Integration
-
-**Non-technical** : Procurement, Budgeting, Operations
 
 ## Some History...
 
