@@ -31,7 +31,7 @@ Students are broken up into small team and given an microcontroller and the powe
 Due to the global pandemic students are forced to study from home. Since the pacemaker development course is an essential component for our third year students we have decided to move this project into open-source and offer a new remote testing station for the pacemaker project. It was my pleasure to grab this project by the horns and drive it into completion over the summer leading up to September 2020.
 
 <figure class="figure">
-    <img class="figure-float" src="/assets/static/src/assets/images/heartview_iso.png?width=800&key=9bec705" alt="pacemaker testing station overview" width="70%"/>
+    <img class="figure-float" src="https://raw.githubusercontent.com/theguymeyer/guymeyer_CV/master/res/pacemaker/heartview_iso.png" alt="pacemaker testing station overview" width="70%"/>
     <figcaption class="caption">Screenshot of the HeartView testing station UI (src: Guy Meyer)</figcaption>
 </figure>
 
