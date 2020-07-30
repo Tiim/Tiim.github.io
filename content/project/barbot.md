@@ -14,7 +14,11 @@ cover_image: "https://static.vinepair.com/wp-content/uploads/2016/08/best-well-b
 
 ## Overview
 
-Coming Soon!
+Need a drink? Get BarBot to do it!
+
+Checkout the source code on [Github](https://github.com/theguymeyer/barbot)
+
+
 
 
 

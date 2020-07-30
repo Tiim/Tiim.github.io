@@ -16,7 +16,9 @@ cover_image: "https://www.constructionexec.com/assets/site_18/images/article/081
 
 Let the wheelbarrow do the work! This electrical wheelbarrow packs enough power to move heavy loads on-site. Equipped with two recharagable 19V batteries the battery will easily last a long day of work. This project was commissioned by Toolway Industries. Here are some pictures of the design.
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/jtiBaqqs9PA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<figure class="figure">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/jtiBaqqs9PA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</figure>
 
 ## Prototyping
 
