@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2>Social Media</h2>
+    <h2>Contact Me</h2>
     <div class="columns is-centered is-multiline">
       <div
         class="column is-one-fifth"
