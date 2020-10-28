@@ -4,6 +4,10 @@
   <article class="card large-screen">
     <div class="card-content has-text-left">
       <table style="width:100%">
+        <colgroup>
+          <col class="pub-date" />
+          <col class="pub-name" />
+        </colgroup>
         <tr>
           <th>{{ publication.date }}</th>
           <th>{{ publication.name }}</th>
@@ -24,7 +28,9 @@
     <div class="card-content has-text-left">
       <table style="width:100%">
         <tr>
-          <!-- <th>{{ publication.date }}</th> -->
+          <th>{{ publication.date }}</th>
+        </tr>
+        <tr>
           <th>{{ publication.name }}</th>
           <!-- <th>
             <a :href="publication.source" target="_blank">Read ...</a>
@@ -43,7 +49,7 @@
         class="card-footer-item"
         target="_blank"
       >
-        More ...
+        Read ...
       </a>
     </div>
     </div>
@@ -63,8 +69,16 @@ export default {
 
 <style scoped>
 
-
 @media screen and (min-width: 1000px) {
+
+  .pub-date {
+    width: 10%;
+  }
+
+  .pub-name {
+    width: 80%;
+  }
+
   .large-screen {
     visibility: visible;
     /* display: flex; */
