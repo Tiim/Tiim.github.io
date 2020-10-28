@@ -29,7 +29,7 @@ export default {
 </script>
 <page-query>
   query {
-    publications: allPublication(sortBy: "date", order: ASC) {
+    publications: allPublication(sortBy: "date", order: DESC) {
       edges {
         node {
           id
