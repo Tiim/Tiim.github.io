@@ -27,9 +27,6 @@
         <div class="section content">
           <SocialMedia />
         </div>
-        <div class="credits">
-          <p>Thank you <a href="https://github.com/Tiim" target="_blank">Tiim</a> for coding the template</p>
-        </div>
       </div>
     </div>
   </Layout>
