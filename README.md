@@ -27,12 +27,13 @@ Note: the branch 'guy' is the main branch of this application. The branch 'gh-pa
 **Work on a seperate branch!!!**
 This saves many headaches in terms of history management.
 
-1. Make your changes
-2. `git add ...`
-3. `git commit -m ...`
-4. `git push -u origin guy` (you may need to start the ssh agent in which can follow setup 401)
-401. eval `ssh-agent -s`; ssh-add ~/.ssh/cv; git push -f git@github.com:theguymeyer/cv.git guy
+1. Branch off
+2. Make your changes
+3. `git add ...`
+4. `git commit -m ...`
+5. `git push -u origin guy` (you may need to start the ssh agent in which can follow setup 501)
+501. eval `ssh-agent -s`; ssh-add ~/.ssh/cv; git push -f git@github.com:theguymeyer/cv.git guy
 
 Now you code is saved to git, time to deploy
-5. `npm run deploy`
-6. wait a couple of minutes since Github pages takes time to update
+6. `npm run deploy`
+7. wait a couple of minutes since Github pages takes time to update
