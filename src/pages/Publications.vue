@@ -2,7 +2,7 @@
   <Layout>
     <div class="container has-text-centered">
       <div class="section content">
-        <h1>Thesis 📖</h1>
+        <h1>Academic Work 📖</h1>
       </div>
       <div class="section content">
         <div
