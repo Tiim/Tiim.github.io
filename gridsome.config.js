@@ -14,7 +14,7 @@ if (process.env.NODE_ENV === "production")
 
 module.exports = {
   siteName: "Guy Meyer",
-  siteUrl: "guymeyer.me",
+  siteUrl: "https://guymeyer.me",
   metadata,
   plugins: [
     {
