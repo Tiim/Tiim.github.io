@@ -31,6 +31,6 @@ This saves many headaches in terms of history management.
 2. Make your changes
 3. `git add ...`
 4. `git commit -m ...`
-5. `git push -u origin guy` (you may need to start the ssh agent in which case use: eval `ssh-agent -s`; ssh-add ~/.ssh/cv; git push -f git@github.com:<github-username>/cv.git <mainbranch>)
+5. `git push -u origin guy` (you may need to start the ssh agent in which case use: ``eval `ssh-agent -s`; ssh-add ~/.ssh/cv; git push -f git@github.com:<github-username>/cv.git <mainbranch>``)
 6. Now you code is saved to git, time to deploy : `npm run deploy`
 7. wait a couple of minutes since Github pages takes time to update
