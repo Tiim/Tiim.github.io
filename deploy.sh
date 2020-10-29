@@ -19,11 +19,11 @@ rm -f CNAME
 echo "Setting CNAME file with content $DOMAIN"
 echo $DOMAIN > CNAME
 
-# git init
-# git add -A
-# git commit -m 'deploy'
+git init
+git add -A
+git commit -m 'deploy'
 
 # if you are deploying to https://tiim.github.io
-git push -f git@github.com:theguymeyer/cv.git origin/guy
+git push -f git@github.com:theguymeyer/cv.git guy
 
 cd -
