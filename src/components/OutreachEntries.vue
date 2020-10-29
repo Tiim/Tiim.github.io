@@ -44,7 +44,6 @@ export default {
   },
   methods: {
     itemCountInRow: function(index) {
-      console.log(index);
      return this.data.slice((index - 1) * this.itemsPerRow, index * this.itemsPerRow);
     }
   }
