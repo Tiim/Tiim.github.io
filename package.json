@@ -31,6 +31,6 @@
     "gridsome-plugin-service-worker": "^0.1.5",
     "node-sass": "^4.14.1",
     "sass-loader": "^8.0.2",
-    "vue-eslint-parser": "^7.0.0"
+    "vue-eslint-parser": "^7.4.1"
   }
 }
