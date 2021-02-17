@@ -4,13 +4,7 @@
 // Changes here require a server restart.
 // To restart press CTRL + C in terminal and run `gridsome develop`
 
-const purgecss = require("@fullhuman/postcss-purgecss");
 const metadata = require("./content/site-info.json");
-
-const postcssPlugins = [];
-
-if (process.env.NODE_ENV === "production")
-  postcssPlugins.push(purgecss(require("./purgecss.config.js")));
 
 module.exports = {
   siteName: "Tim Bachmann",
@@ -43,15 +37,13 @@ module.exports = {
           routes: ["/", /\.(js|css|png|jpg|jpeg|svg|md|json)/]
         }
       }
-    }
+    },
+    // {
+    //  use: 'gridsome-plugin-purgecss',
+    //  // default options, the following will be included if you don't provide anything
+    //  options: require('./purgecss.config.js'),
+    // }
   ],
-  css: {
-    loaderOptions: {
-      postcss: {
-        plugins: postcssPlugins
-      }
-    }
-  },
   templates: {
     BlogPost: [
       {
