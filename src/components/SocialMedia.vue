@@ -27,16 +27,16 @@ export default {
 </script>
 
 <static-query>
-  {
-    allSocialMedia(sortBy: "index", order: ASC) {
-      edges {
-        node {
-          id
-          icon
-          site
-          link
-        }
+{
+  allSocialMedia(sortBy: "index", order: ASC) {
+    edges {
+      node {
+        id
+        icon
+        site
+        link
       }
     }
   }
+}
 </static-query>

@@ -41,15 +41,15 @@ export default {
 </style>
 
 <page-query>
-  query BlogPost($id: ID!) {
-    post: blogPost(id: $id) {
-      title
-      path
-      date(format: "D. MMMM YYYY")
-      timeToRead
-      description
-      content
-      cover_image(width: 860, blur: 10)
-    }
+query BlogPost($id: ID!) {
+  post: blogPost(id: $id) {
+    title
+    path
+    date(format: "D. MMMM YYYY")
+    timeToRead
+    description
+    content
+    cover_image(width: 860, blur: 10)
   }
+}
 </page-query>

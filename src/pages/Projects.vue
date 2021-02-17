@@ -41,34 +41,34 @@ export default {
 };
 </script>
 <page-query>
-  {
-    demos: allDemo(sortBy: "index", order: ASC) {
-      edges {
-        node {
-          id
+{
+  demos: allDemo(sortBy: "index", order: ASC) {
+    edges {
+      node {
+        id
+        name
+        links {
+          url
           name
-          links {
-            url
-            name
-          }
-          text
-          tags
         }
-      }
-    }
-    projects: allProject(sortBy: "index", order: ASC) {
-      edges {
-        node {
-          id
-          name
-          links {
-            url
-            name
-          }
-          text
-          tags
-        }
+        text
+        tags
       }
     }
   }
+  projects: allProject(sortBy: "index", order: ASC) {
+    edges {
+      node {
+        id
+        name
+        links {
+          url
+          name
+        }
+        text
+        tags
+      }
+    }
+  }
+}
 </page-query>

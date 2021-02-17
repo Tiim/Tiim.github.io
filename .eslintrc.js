@@ -9,7 +9,7 @@ module.exports = {
   },
   overrides: [
     {
-      files: ["gridsome.config.js", "gridsome.server.js", "purgecss.config.js"],
+      files: ["gridsome.config.js", "gridsome.server.js", "purgecss.config.js", ".eslintrc.js"],
       env: {
         node: true
       }
