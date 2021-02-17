@@ -46,13 +46,13 @@ Most Databases have the function `coalesce` which accepts a variable amount of a
 
 ```sql
 -- Examle
-SELECT coalesce(null, null, 'dev.to', null, '@TiimB') as example;
+SELECT coalesce(null, null, 'tiim.ch', null, '@TiimB') as example;
 
 -- Will return
 
 example
 ---------
-dev.to
+tiim.ch
 ```
 
 But how will this function help us?
