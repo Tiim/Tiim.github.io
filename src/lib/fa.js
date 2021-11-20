@@ -1,6 +1,5 @@
-
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { FontAwesomeIcon } from 'fontawesome-svelte';
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { FontAwesomeIcon } from "fontawesome-svelte";
 
 import { faAt, faExternalLinkAlt } from "@fortawesome/free-solid-svg-icons";
 import {
@@ -8,7 +7,7 @@ import {
   faInstagram,
   faGithub,
   faFlickr,
-  faDev
+  faDev,
 } from "@fortawesome/free-brands-svg-icons";
 
 library.add(

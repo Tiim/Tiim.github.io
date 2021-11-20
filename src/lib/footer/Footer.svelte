@@ -1,7 +1,7 @@
 <div class="container">
   <footer class="footer">
     <div class="content">
-      <p>&copy;Tim Bachmann { new Date().getFullYear() }</p>
+      <p>&copy;Tim Bachmann {new Date().getFullYear()}</p>
       <p>
         <i>Built with SvelteKit and hosted on GitHub Pages.</i>
         <br />
@@ -12,4 +12,4 @@
       </p>
     </div>
   </footer>
-</div> 
+</div>

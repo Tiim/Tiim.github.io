@@ -8,8 +8,7 @@
   <div class="section content">
     <h1>Projects &amp; Utility Apps⚙️</h1>
     <p>
-      This is a list of some of my current or past projects. Go check them
-      out!
+      This is a list of some of my current or past projects. Go check them out!
     </p>
   </div>
   <div class="section content">
@@ -18,6 +17,6 @@
   </div>
   <div class="section content">
     <h2>Projects</h2>
-    <ProjectEntries projects={projects} />
+    <ProjectEntries {projects} />
   </div>
 </div>

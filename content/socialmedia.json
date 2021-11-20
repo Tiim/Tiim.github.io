@@ -2,41 +2,26 @@
   {
     "site": "Github",
     "link": "https://github.com/Tiim",
-    "icon": [
-      "fab",
-      "github"
-    ]
+    "icon": ["fab", "github"]
   },
   {
     "site": "Dev.to",
     "link": "https://dev.to/tiim",
-    "icon": [
-      "fab",
-      "dev"
-    ]
+    "icon": ["fab", "dev"]
   },
   {
     "site": "Twitter",
     "link": "https://twitter.com/TiimB",
-    "icon": [
-      "fab",
-      "twitter"
-    ]
+    "icon": ["fab", "twitter"]
   },
   {
     "site": "Instagram",
     "link": "https://instagram.com/tiim.ba",
-    "icon": [
-      "fab",
-      "instagram"
-    ]
+    "icon": ["fab", "instagram"]
   },
   {
     "site": "Flickr",
     "link": "https://www.flickr.com/people/152309161@N02/",
-    "icon": [
-      "fab",
-      "flickr"
-    ]
+    "icon": ["fab", "flickr"]
   }
 ]

@@ -7,10 +7,8 @@ date: 2021-02-17
 cover_image: "./images/2021-02-hasura-array.png"
 ---
 
-
 ```js
-
-const myArray = ["Alice", "Bob"]
+const myArray = ["Alice", "Bob"];
 
 const query = gql`
 mutation ($array: _text!)) {
@@ -19,9 +17,9 @@ mutation ($array: _text!)) {
       array
     }
   }
-}`
+}`;
 
 const variables = {
-  array: JSON.stringify(myArray).replace(/^\[/, '{').replace(/\]$/, '}')
-}
+  array: JSON.stringify(myArray).replace(/^\[/, "{").replace(/\]$/, "}"),
+};
 ```

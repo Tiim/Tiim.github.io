@@ -3,6 +3,16 @@
   export let projects = [];
 </script>
 
+<div>
+  <div class="proj-wrap">
+    {#each projects as proj}
+      <div class="proj">
+        <Project project={proj} />
+      </div>
+    {/each}
+  </div>
+</div>
+
 <style>
   .proj-wrap {
     display: flex;
@@ -15,13 +25,3 @@
     min-width: 300px;
   }
 </style>
-
-<div>
-  <div class="proj-wrap">
-    {#each projects as proj}
-    <div class="proj">
-      <Project project={proj} />
-    </div>
-    {/each}
-  </div>
-</div>

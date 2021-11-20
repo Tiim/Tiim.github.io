@@ -12,29 +12,21 @@
       }
     ],
     "text": "A small client side only web app to browse all open orders on your woocommerce store. All data is stored in the browser.",
-    "tags": [
-      "svelte", "wordpress", "woocommerce", "offline"
-    ]
+    "tags": ["svelte", "wordpress", "woocommerce", "offline"]
   },
-    {
-      "name": "Lap Counter",
-      "links": [
-        {
-          "url": "http://tiim.ch/lap-counter-js/",
-          "name": "Link"
-        },
-        {
-          "url": "https://codesandbox.io/s/laps-counter-8f0sb",
-          "name": "Sourcecode"
-        }
-      ],
-      "text": "A small web app help coaches count laps for multiple athletes. Has an integrated stopwatch and calculates the split for eacht athlete automatically.",
-      "tags": [
-        "svelte",
-        "coach",
-        "laps",
-        "counter",
-        "swim"
-      ]
-    }
+  {
+    "name": "Lap Counter",
+    "links": [
+      {
+        "url": "http://tiim.ch/lap-counter-js/",
+        "name": "Link"
+      },
+      {
+        "url": "https://codesandbox.io/s/laps-counter-8f0sb",
+        "name": "Sourcecode"
+      }
+    ],
+    "text": "A small web app help coaches count laps for multiple athletes. Has an integrated stopwatch and calculates the split for eacht athlete automatically.",
+    "tags": ["svelte", "coach", "laps", "counter", "swim"]
+  }
 ]

@@ -16,14 +16,7 @@
       }
     ],
     "text": "A internal web app for swim schools. Developed specifically for the 'Kids' program of Swiss Swimming. Live in production since August 2019.",
-    "tags": [
-      "node",
-      "vue",
-      "graphql",
-      "hasura",
-      "postgresql",
-      "docker"
-    ]
+    "tags": ["node", "vue", "graphql", "hasura", "postgresql", "docker"]
   },
   {
     "name": "ScBirs Website",
@@ -38,10 +31,6 @@
       }
     ],
     "text": "The website of the 'ScBirs' swim club. This website serves as the center of all information distribution for the swimclub.",
-    "tags": [
-      "wordpress",
-      "php",
-      "woocommerce"
-    ]
+    "tags": ["wordpress", "php", "woocommerce"]
   }
 ]

@@ -12,11 +12,6 @@
       }
     ],
     "text": "A little live dashboard that scrapes Wikipedia client side and displays regional corona virus statistics for switzerland.",
-    "tags": [
-      "vue",
-      "scrape",
-      "wikipedia",
-      "coronavirus"
-    ]
+    "tags": ["vue", "scrape", "wikipedia", "coronavirus"]
   }
 ]
