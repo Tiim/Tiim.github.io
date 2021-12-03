@@ -8,11 +8,7 @@
       }
     ],
     "text": "Generate usefull splits sheets directly from your lenex (.lxf, .lef) file that you used to sign up the athletes for a meet.",
-    "tags": [
-      "swim",
-      "lenex",
-      "svelte"
-    ]
+    "tags": ["swim", "lenex", "svelte"]
   },
   {
     "name": "WooCommerce Order Explorer",
@@ -27,12 +23,7 @@
       }
     ],
     "text": "A small client side only web app to browse all open orders on your woocommerce store. All data is stored in the browser.",
-    "tags": [
-      "svelte",
-      "wordpress",
-      "woocommerce",
-      "offline"
-    ]
+    "tags": ["svelte", "wordpress", "woocommerce", "offline"]
   },
   {
     "name": "Lap Counter",
@@ -47,12 +38,6 @@
       }
     ],
     "text": "A small web app help coaches count laps for multiple athletes. Has an integrated stopwatch and calculates the split for eacht athlete automatically.",
-    "tags": [
-      "svelte",
-      "coach",
-      "laps",
-      "counter",
-      "swim"
-    ]
+    "tags": ["svelte", "coach", "laps", "counter", "swim"]
   }
 ]
