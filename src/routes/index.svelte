@@ -7,6 +7,7 @@
   import siteinfo from "$content/site-info.json";
   import remoteImages from "$content/remote-images.json";
 </script>
+
 <div class="container has-text-centered">
   <div class="section content">
     <div class="columns">
