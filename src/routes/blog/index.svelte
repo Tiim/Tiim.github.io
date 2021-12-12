@@ -13,10 +13,6 @@
   export let posts;
 </script>
 
-<svelte:head>
-  <title>Home</title>
-</svelte:head>
-
 <div class="container has-text-centered">
   <div class="section content">
     <h1>Blog 📖</h1>

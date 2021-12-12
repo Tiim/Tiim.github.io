@@ -4,7 +4,7 @@
 
 <article class="card">
   <header class="card-header">
-    <a class="card-header-title is-centered" href={`blog/${post.slug}`}>
+    <a class="card-header-title is-centered" href={`/blog/${post.slug}`}>
       {post.title}
     </a>
   </header>
@@ -23,6 +23,6 @@
     </p>
   </div>
   <div class="card-footer">
-    <a class="card-footer-item" href={`blog/${post.slug}`}> Read More... </a>
+    <a class="card-footer-item" href={`/blog/${post.slug}`}> Read More... </a>
   </div>
 </article>
