@@ -7,11 +7,6 @@
   import siteinfo from "$content/site-info.json";
   import remoteImages from "$content/remote-images.json";
 </script>
-
-<svelte:head>
-  <title>Home</title>
-</svelte:head>
-
 <div class="container has-text-centered">
   <div class="section content">
     <div class="columns">
