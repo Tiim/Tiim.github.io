@@ -4,7 +4,7 @@ published: false
 description: Until Hasura supports PostgreSQL arrays as a first class citicen, it is not straight forwart to use such an array in a GraphQL mutation.
 tags: PostgreSQL, Hasura
 date: 2021-02-17
-cover_image: "./images/2021-02-hasura-array.png"
+cover_image: "/images/2021-02-hasura-array.png"
 ---
 
 ```js
