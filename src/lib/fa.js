@@ -1,23 +1,28 @@
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "fontawesome-svelte";
 
-import { faAt, faExternalLinkAlt } from "@fortawesome/free-solid-svg-icons";
 import {
-  faTwitter,
-  faInstagram,
-  faGithub,
-  faFlickr,
+  faAt,
+  faBorderAll,
+  faExternalLinkAlt,
+} from "@fortawesome/free-solid-svg-icons";
+import {
   faDev,
+  faFlickr,
+  faGithub,
+  faInstagram,
+  faTwitter,
 } from "@fortawesome/free-brands-svg-icons";
 
 library.add(
   faAt,
-  faTwitter,
-  faInstagram,
-  faGithub,
+  faBorderAll,
+  faDev,
   faExternalLinkAlt,
   faFlickr,
-  faDev
+  faGithub,
+  faInstagram,
+  faTwitter
 );
 
 export const FA = FontAwesomeIcon;
