@@ -1,5 +1,10 @@
 [
   {
+    "site": "Email",
+    "link": "mailto:hey@tiim.ch",
+    "icon": ["fas", "at"]
+  },
+  {
     "site": "Github",
     "link": "https://github.com/Tiim",
     "icon": ["fab", "github"]
