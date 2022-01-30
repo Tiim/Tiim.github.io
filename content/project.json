@@ -1,5 +1,20 @@
 [
   {
+    "name": "The 3D Scanning Wiki",
+    "links": [
+      {
+        "url": "https://3dscanning.wiki/",
+        "name": "3D Scanning Wiki"
+      }, 
+      {
+        "url": "https://github.com/3dscanningwiki",
+        "name": "GitHub Organisation"
+      }
+    ],
+    "text": "A github hosed wiki for all things 3D scanning: photogrammetry, lidar, laser scanning and more. The page is a static website built from a github repository with markdown files.",
+    "tags": ["wiki", "sveltekit", "markdown", "static site"]
+  },
+  {
     "name": "Aqualetics Coach",
     "links": [
       {
