@@ -2,7 +2,7 @@
 title: How to write optional filters in SQL
 published: true
 description: A simple way to filter by optional values in SQL with the COALESCE function.
-tags: postgres, sql, mysql
+tags: [postgres, sql, mysql]
 date: 2019-07-11
 cover_image: "/images/2019-07-sql-optional-filters-coalesce.png"
 ---

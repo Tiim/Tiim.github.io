@@ -11,6 +11,8 @@ export async function get() {
     });
   let body = await (await Promise.all(posts)).filter((p) => p);
 
+  body.sort((a, b) => new Date(b.date).getDate() - new Date(a.date).getDate());
+
   return {
     body,
   };

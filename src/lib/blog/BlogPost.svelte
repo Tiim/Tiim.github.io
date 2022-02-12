@@ -9,9 +9,9 @@
     </a>
   </header>
   <div class="card-content has-text-left">
-    <img alt={post.title} src={post.cover_image} />
+    <img class="post-img" alt={post.title} src={post.cover_image} />
     <p class="tags">
-      {#each post.tags.split(",") as tag}
+      {#each post.tags as tag}
         <span class="tag">
           {tag}
         </span>
@@ -26,3 +26,9 @@
     <a class="card-footer-item" href={`/blog/${post.slug}`}> Read More... </a>
   </div>
 </article>
+
+<style>
+  .post-img {
+    margin: 0.5rem;
+  }
+</style>

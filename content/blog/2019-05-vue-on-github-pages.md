@@ -2,7 +2,7 @@
 title: How I use Vue.js on GitHub Pages
 published: true
 description: How to properly deploy a Vue.js app on GitHub Pages
-tags: GitHub, Pages, Vue.js, Javascript
+tags: [GitHub Pages, Vue.js, Javascript]
 date: 2019-05-04
 cover_image: "/images/2019-05-vue-on-github-pages.png"
 ---
