@@ -5,7 +5,7 @@ import yaml from "js-yaml";
 
 export async function process(fileName) {
   const str = await fs.readFile(`content/blog/` + fileName, "utf8");
-  const md = new MarkdownIt();
+  const md = new MarkdownIt({ html: true });
   let metadata = {};
   md.use(FrontMatter, (fm) => {
     metadata = yaml.load(fm);

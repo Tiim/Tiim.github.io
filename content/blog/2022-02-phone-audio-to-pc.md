@@ -3,7 +3,7 @@ title: How to Listen to Phone Audio on PC
 published: true
 date: 2022-02-12
 description: Learn how to connect your phone audio to your PC over wire or Bluetooth.
-cover_image: "/images/2022-02-phone-audio-to-pc.jpg"
+cover_image: "/assets/2022-02-phone-audio-to-pc.jpg"
 tags: [how-to, audio, windows, bluetooth]
 ---
 
