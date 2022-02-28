@@ -8,6 +8,10 @@
   import remoteImages from "$content/remote-images.json";
 </script>
 
+<svelte:head>
+  <title>Tim Bachmann</title>
+</svelte:head>
+
 <div class="container has-text-centered">
   <div class="section content">
     <div class="columns">

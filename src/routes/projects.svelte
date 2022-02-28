@@ -5,6 +5,10 @@
   import other from "$content/other-links.json";
 </script>
 
+<svelte:head>
+  <title>Projects and Apps</title>
+</svelte:head>
+
 <div class="container has-text-centered">
   <div class="section content">
     <h1>Projects, Utility Apps &amp; other Resources⚙️</h1>

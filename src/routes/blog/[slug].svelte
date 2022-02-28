@@ -13,6 +13,10 @@
   export let post;
 </script>
 
+<svelte:head>
+  <title>{post.title}</title>
+</svelte:head>
+
 <div class="container">
   <article class="content">
     {#if post.cover_image}
