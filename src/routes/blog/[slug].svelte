@@ -15,12 +15,21 @@
 
 <svelte:head>
   <title>{post.title}</title>
+  <meta property="og:title" content={post.title} />
+  <meta property="og:type" content="article" />
+  <meta property="article:published_time" content={post.date} />
+  <meta property="article:modified_time" content={post.modified || post.date} />
+  <meta property="article:author" content="Tim Bachmann" />
+  {#each post.tags as tag}
+    <meta property="article:tag" content={tag} />
+  {/each}
+  <meta property="og:image" content={base + post.cover_image} />
 </svelte:head>
 
 <div class="container">
   <article class="content">
     {#if post.cover_image}
-      <img alt={post.title} src={post.cover_image} />
+      <img alt={post.title} src={base + post.cover_image} />
     {/if}
     <h1>{post.title}</h1>
     <p class="is-size-8	has-text-grey-light	">

@@ -1,8 +1,9 @@
 ---
-title: My Title
+title: <% tp.file.title %>
 published: false
-description: Short summary
-tags: Template, Markdown
-date: 2020-01-01
-cover_image: "/assets/2019-05-vue-on-github-pages.png"
+date: <% tp.date.now() %>
+modified:
+description:
+cover_image: ""
+tags: []
 ---

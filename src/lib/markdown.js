@@ -2,6 +2,7 @@ import MarkdownIt from "markdown-it";
 import FrontMatter from "markdown-it-front-matter";
 import fs from "fs-extra";
 import yaml from "js-yaml";
+import { dev } from "$app/env";
 
 export async function process(fileName) {
   const str = await fs.readFile(`content/blog/` + fileName, "utf8");
@@ -17,7 +18,9 @@ export async function process(fileName) {
     throw new Error("MD file " + fileName + " has no date!");
   }
 
-  if (metadata.published) {
+  metadata.tags.sort();
+
+  if (metadata.published || dev) {
     return { html, slug: fileName.slice(0, -3), ...metadata };
   }
 }
