@@ -1,7 +1,7 @@
 <script>
   export let project = {
-    name: "",
-    text: "",
+    title: "",
+    html: "",
     links: [],
     tags: [],
   };
@@ -10,12 +10,12 @@
 <article class="card">
   <header class="card-header">
     <p class="card-header-title is-centered">
-      {project.name}
+      {project.title}
     </p>
   </header>
   <div class="card-content has-text-left">
     <p>
-      {project.text}
+      {@html project.html}
     </p>
     <div class="tags">
       {#each project.tags as tag}
@@ -27,9 +27,9 @@
   </div>
   <div class="card-footer">
     {#each project.links as link}
-      <a href={link.url} class="card-footer-item" target="_blank">
-        {link.name}
-      </a>
+      <span class="card-footer-item">
+        {@html link}
+      </span>
     {/each}
   </div>
 </article>

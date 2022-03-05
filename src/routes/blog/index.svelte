@@ -1,13 +1,3 @@
-<script context="module">
-  import { base } from "$app/paths";
-  export async function load({ fetch }) {
-    const posts = await fetch(`${base}/blog/posts.json`).then((r) => r.json());
-    return {
-      props: { posts },
-    };
-  }
-</script>
-
 <script>
   import BlogPost from "$lib/blog/BlogPost.svelte";
   export let posts;

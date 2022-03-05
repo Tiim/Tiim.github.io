@@ -6,14 +6,13 @@ export async function get() {
   let posts = dir
     .filter((fileName) => /.+\.md$/.test(fileName))
     .map(async (fileName) => {
-      const data = await process(fileName);
+      const data = await process("blog/" + fileName);
       return data;
     });
-  let body = await (await Promise.all(posts)).filter((p) => p);
-
-  body.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+  posts = (await Promise.all(posts)).filter((p) => p);
+  posts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
   return {
-    body,
+    body: { posts },
   };
 }

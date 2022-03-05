@@ -1,8 +1,6 @@
 <script>
   import ProjectEntries from "$lib/projects/ProjectEntries.svelte";
-  import projects from "$content/project.json";
-  import apps from "$content/apps.json";
-  import other from "$content/other-links.json";
+  export let sections;
 </script>
 
 <svelte:head>
@@ -17,16 +15,10 @@
       useful resources that I compiled. Go check them out!
     </p>
   </div>
-  <div class="section content">
-    <h2>Apps</h2>
-    <ProjectEntries projects={apps} />
-  </div>
-  <div class="section content">
-    <h2>Projects</h2>
-    <ProjectEntries {projects} />
-  </div>
-  <div class="section content">
-    <h2>Other</h2>
-    <ProjectEntries projects={other} />
-  </div>
+  {#each sections as section}
+    <div class="section content">
+      <h2>{section.section}</h2>
+      <ProjectEntries projects={section.values} />
+    </div>
+  {/each}
 </div>
