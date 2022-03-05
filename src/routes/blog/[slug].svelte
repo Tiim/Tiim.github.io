@@ -23,6 +23,12 @@
       <img alt={post.title} src={base + post.cover_image} />
     {/if}
     <h1>{post.title}</h1>
+    {#if !post.published}
+      <p class="notification is-warning">This post is not published!</p>
+    {/if}
+    <p class="taglist">
+      {#each post.tags as tag}<span class="tag">{tag}</span>{/each}
+    </p>
     <p class="is-size-8	has-text-grey-light	">
       {new Date(post.date).toLocaleDateString(undefined, {
         weekday: "long",
@@ -34,3 +40,10 @@
     {@html post.html}
   </article>
 </div>
+
+<style>
+  .taglist {
+    display: flex;
+    gap: 5px;
+  }
+</style>

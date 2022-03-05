@@ -3,13 +3,16 @@ import { process } from "$lib/markdown.js";
 
 export async function get() {
   const dir = await fs.readdir(`content/blog`);
-  let posts = dir
-    .filter((fileName) => /.+\.md$/.test(fileName))
-    .map(async (fileName) => {
-      const data = await process("blog/" + fileName);
-      return data;
-    });
-  posts = (await Promise.all(posts)).filter((p) => p);
+  let posts = (
+    await Promise.all(
+      dir
+        .filter((fileName) => /.+\.md$/.test(fileName))
+        .map(async (fileName) => {
+          const data = await process("blog/" + fileName);
+          return data;
+        })
+    )
+  ).filter((p) => p);
   posts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
   return {

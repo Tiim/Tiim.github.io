@@ -10,9 +10,10 @@ const config = {
     },
     adapter: adapter(),
     prerender: {
+      default: true,
       crawl: true,
       enabled: true,
-      entries: ["*"],
+      entries: ["*", "/projects", "/blog"],
       onError: "fail",
     },
     vite: {

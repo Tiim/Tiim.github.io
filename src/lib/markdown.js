@@ -4,11 +4,21 @@ import fs from "fs-extra";
 import yaml from "js-yaml";
 import { dev } from "$app/env";
 
+/**
+ *
+ * @param {String} fileName
+ * @param {{blog?: boolean}} options
+ * @returns {Promise<{html: string, slug: string} & Record<string,any>>}
+ */
 export async function process(fileName, options = {}) {
   const opt = { blog: true, ...options };
 
   const str = await fs.readFile(`content/` + fileName, "utf8");
   const md = new MarkdownIt({ html: true });
+
+  /**
+   * @type {Record<string, any>}
+   */
   let metadata = {};
   md.use(FrontMatter, (fm) => {
     metadata = yaml.load(fm);
@@ -22,7 +32,7 @@ export async function process(fileName, options = {}) {
 
   metadata.tags.sort();
 
-  if (metadata.published || dev) {
+  if (metadata.published !== false || dev) {
     return { html, slug: fileName.slice(0, -3), ...metadata };
   }
 }
