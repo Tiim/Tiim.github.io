@@ -13,15 +13,14 @@
   </div>
 </div>
 
+<!--TODO: create card-list component or something-->
 <style>
   .proj-wrap {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
     gap: 1rem;
-    flex-wrap: wrap;
-  }
-  .proj {
-    flex-basis: 0;
-    flex-grow: 1;
-    min-width: 300px;
+    justify-items: stretch;
+    align-items: stretch;
+    justify-content: center;
   }
 </style>
