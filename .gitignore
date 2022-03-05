@@ -8,3 +8,5 @@ dist
 .env.*
 build/
 .svelte-kit
+
+/static/assets
