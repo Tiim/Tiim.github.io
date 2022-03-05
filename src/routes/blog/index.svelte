@@ -34,13 +34,11 @@
 
 <style>
   .blog-posts {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
     gap: 1rem;
-    flex-wrap: wrap;
-  }
-  .post {
-    flex-basis: 0;
-    flex-grow: 1;
-    min-width: 350px;
+    justify-items: stretch;
+    align-items: stretch;
+    justify-content: center;
   }
 </style>

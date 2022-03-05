@@ -31,4 +31,12 @@
   .post-img {
     margin: 0.5rem;
   }
+  .card {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  .card-content {
+    flex-grow: 1;
+  }
 </style>
