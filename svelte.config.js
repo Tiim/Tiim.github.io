@@ -15,7 +15,6 @@ const config = {
       entries: ["*"],
       onError: "fail",
     },
-    target: "#svelte",
     vite: {
       resolve: {
         alias: {
