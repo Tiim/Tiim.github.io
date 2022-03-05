@@ -17,6 +17,7 @@
   <title>{post.title}</title>
   <meta property="og:title" content={post.title} />
   <meta property="og:type" content="article" />
+  <meta property="og:description" content={post.description} />
   <meta property="article:published_time" content={post.date} />
   <meta property="article:modified_time" content={post.modified || post.date} />
   <meta property="article:author" content="Tim Bachmann" />
