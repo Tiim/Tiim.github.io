@@ -1,6 +1,6 @@
 ---
 title: How to set up an SSH Server on Windows with WSL
-published: false
+published: true
 date: 2022-03-02
 description: It can be very helpful to be able to connect to your laptop or desktop PC from anywhere using SSH. I will show you how to easily set this up on Windows with WSL.
 cover_image: "/assets/2022-03-ssh-windows-wsl.png"
