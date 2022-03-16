@@ -6,7 +6,7 @@ export async function get() {
   let posts = dir
     .filter((fileName) => /.+\.md$/.test(fileName))
     .map(async (fileName) => {
-      const data = await process("projects/" + fileName, { blog: false });
+      const data = await process("projects/" + fileName);
       return data;
     });
   let body = (await Promise.all(posts)).filter((p) => p);

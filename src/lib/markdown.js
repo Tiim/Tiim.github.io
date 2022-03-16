@@ -1,36 +1,31 @@
-import MarkdownIt from "markdown-it";
-import FrontMatter from "markdown-it-front-matter";
+import { remark } from "remark";
+import remarkHtml from "remark-html";
+import remarkFrontmatter from "remark-frontmatter";
+import remarkExtractFrontmatter from "remark-extract-frontmatter";
+import { load } from "js-yaml";
 import fs from "fs-extra";
-import yaml from "js-yaml";
 import { dev } from "$app/env";
 
 /**
  *
  * @param {String} fileName
- * @param {{blog?: boolean}} options
  * @returns {Promise<{html: string, slug: string} & Record<string,any>>}
  */
-export async function process(fileName, options = {}) {
-  const opt = { blog: true, ...options };
-
+export async function process(fileName) {
   const str = await fs.readFile(`content/` + fileName, "utf8");
-  const md = new MarkdownIt({ html: true });
+  const md = remark()
+    .use(remarkHtml)
+    .use(remarkFrontmatter)
+    .use(remarkExtractFrontmatter, { yaml: load });
 
+  const processed = await md.process(str);
   /**
    * @type {Record<string, any>}
    */
-  let metadata = {};
-  md.use(FrontMatter, (fm) => {
-    metadata = yaml.load(fm);
-  });
+  const metadata = processed.data;
+  const html = processed.toString("utf-8");
 
-  const html = md.render(str);
-
-  if (!metadata.date && opt.blog) {
-    throw new Error("MD file " + fileName + " has no date!");
-  }
-
-  metadata.tags.sort();
+  metadata.tags?.sort();
 
   if (metadata.published !== false || dev) {
     return { html, slug: fileName.slice(0, -3), ...metadata };
@@ -38,6 +33,5 @@ export async function process(fileName, options = {}) {
 }
 
 export function renderString(string) {
-  const md = new MarkdownIt();
-  return md.render(string);
+  return remark().use(remarkHtml).processSync(string).toString("utf-8");
 }
