@@ -35,6 +35,7 @@
     "remark-extract-frontmatter": "^3.2.0",
     "remark-frontmatter": "^4.0.1",
     "remark-html": "^15.0.1",
+    "rss": "^1.2.2",
     "svelte": "^3.47.0"
   }
 }
