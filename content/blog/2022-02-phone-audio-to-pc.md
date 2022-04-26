@@ -4,7 +4,7 @@ published: true
 date: 2022-02-12
 description: Learn how to connect your phone audio to your PC over wire or Bluetooth.
 cover_image: "/assets/2022-02-phone-audio-to-pc.jpg"
-tags: [how-to, audio, windows, bluetooth]
+content_tags: [how-to, audio, windows, bluetooth]
 ---
 
 Did you ever want to listen to your phone audio on your PC? I do it all the time to listen to podcasts on my PC without paying for a podcast app that syncs the episodes over the cloud. In this short article I will show you two easy ways to do this with a windows PC.

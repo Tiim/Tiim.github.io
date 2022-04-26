@@ -25,7 +25,9 @@ export async function process(fileName) {
   const metadata = processed.data;
   const html = processed.toString("utf-8");
 
-  metadata.tags?.sort();
+  metadata.tags = metadata.content_tags?.map((tag) => tag.toLowerCase()) || [];
+
+  metadata.tags.sort();
 
   if (metadata.published !== false || dev) {
     return { html, slug: fileName.slice(0, -3), ...metadata };

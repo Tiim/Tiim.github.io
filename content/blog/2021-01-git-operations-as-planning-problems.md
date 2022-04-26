@@ -2,7 +2,7 @@
 title: Modelling Git Operations as Planning Problems
 published: true
 description: Bachelor Thesis. The goal of this thesis is to formally define a model of a subset of Git commands which mutate the revision graph, and to model those mutations as a planning task in the Planning Domain Definition Language. Multiple ways to model those graphs will be explored and those models will be compared by testing them using a set of planners.
-tags: [Git, PDDL, Bachelor's Thesis, Planning, Graphs]
+content_tags: [Git, PDDL, Planning-System]
 date: 2021-01-20
 cover_image: "/assets/2021-01-git-operations-as-planning-problems.png"
 ---

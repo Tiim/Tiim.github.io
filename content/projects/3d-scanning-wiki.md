@@ -1,7 +1,7 @@
 ---
 title: The 3D Scanning Wiki
 section: Projects
-tags: ["wiki", "sveltekit", "markdown", "static site"]
+content_tags: ["sveltekit", "markdown", "static site"]
 links:
   - "[3D Scanning Wiki](https://3dscanning.wiki/)"
   - "[Github Organisation](https://github.com/3dscanningwiki)"

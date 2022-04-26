@@ -1,7 +1,7 @@
 ---
 title: Aqualetics Coach
 section: Projects
-tags: ["node", "vue", "graphql", "hasura", "postgresql", "docker"]
+content_tags: ["node", "vue", "graphql", "hasura", "postgresql", "docker"]
 links:
   - "[Overview](https://sundrbi.ch/coach-application/)"
   - "[Blog Post 🇩🇪](https://aqualetics.ch/2019/09/15/schwimmcoach-applikation-innovation/)"
