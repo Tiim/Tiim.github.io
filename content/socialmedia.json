@@ -5,6 +5,11 @@
     "icon": ["fas", "at"]
   },
   {
+    "site": "RSS Feed",
+    "link": "https://tiim.ch/blog/rss.xml",
+    "icon": ["fas", "rss"]
+  },
+  {
     "site": "Github",
     "link": "https://github.com/Tiim",
     "icon": ["fab", "github"]

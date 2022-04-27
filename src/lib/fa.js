@@ -5,6 +5,7 @@ import {
   faAt,
   faBorderAll,
   faExternalLinkAlt,
+  faRss,
 } from "@fortawesome/free-solid-svg-icons";
 import {
   faDev,
@@ -22,6 +23,7 @@ library.add(
   faFlickr,
   faGithub,
   faInstagram,
+  faRss,
   faTwitter
 );
 

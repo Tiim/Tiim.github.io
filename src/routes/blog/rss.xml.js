@@ -36,7 +36,7 @@ export async function get() {
       name: "Tim Bachmann",
       email: "hey@tiim.ch",
       link: "https://tiim.ch/",
-    }
+    },
   });
 
   posts.forEach((post) => {
@@ -61,5 +61,8 @@ export async function get() {
 
   return {
     body: feed.rss2(),
+    headers: {
+      "Content-Type": "text/xml; charset=utf-8",
+    },
   };
 }
