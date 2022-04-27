@@ -21,12 +21,19 @@
     display: flex;
     align-items: stretch;
     gap: var(--header-gap);
-    border-bottom: 1px solid #ccc;
+    background-color: var(--background-color-light);
   }
 
   .navbar-brand {
     font-weight: bolder;
     display: none;
+  }
+
+  .navbar-brand .navbar-item {
+    color: var(--color-syntax-1);
+    font-size: 1.1rem;
+    letter-spacing: 2px;
+    margin-right: 2rem;
   }
 
   .navbar-brand,
@@ -47,7 +54,8 @@
     display: inline;
     text-decoration: none;
     text-align: center;
-    color: #2b2b2b;
+    color: var(--font-color-light);
+    border-radius: 0.5rem;
   }
 
   .navbar-brand .navbar-item {
@@ -56,6 +64,6 @@
   }
 
   .navbar-item:hover {
-    background-color: #f5f5f5;
+    background-color: var(--background-color-light-2);
   }
 </style>

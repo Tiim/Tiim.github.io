@@ -50,7 +50,7 @@
   }
   .date {
     font-size: 0.8rem;
-    color: #888;
+    color: var(--font-color-light);
     margin-top: 0.5rem;
   }
 </style>

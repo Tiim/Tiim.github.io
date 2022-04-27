@@ -1,11 +1,39 @@
 html {
+  --color-syntax-1: #b877db;
+  --color-syntax-2: #25b2bc;
+  --color-syntax-3: #e95678;
+  --color-syntax-4: #f09383;
+  --color-syntax-5: #fab795;
+  --color-syntax-6: #fac29a;
+
+  --color-ui-1: #16161c;
+  --color-ui-2: #1a1c23;
+  --color-ui-3: #1c1e26;
+  --color-ui-4: #232530;
+  --color-ui-5: #2e303e;
+  --color-ui-6: #6c6f93;
+  --color-ui-7: #e9436f;
+  --color-ui-8: #e95379;
+  --color-ui-9: #f43e5c;
+  --color-ui-10: #09f7a0;
+  --color-ui-11: #27d796;
+  --color-ui-12: #21bfc2;
+  --color-ui-13: #fab28e;
+
+  --background-color: var(--color-ui-1);
+  --background-color-light: var(--color-ui-3);
+  --background-color-light-2: var(--color-ui-5);
+  --font-color: white;
+  --font-color-light: var(--color-syntax-6);
+  --font-color-link: var(--color-syntax-2);
+  --font-color-link-hover: var(--color-syntax-3);
+  --line-color: var(--color-ui-6);
+  --shadow-color: var(--color-ui-11);
+
   --header-gap: 0.5rem;
   --padding-side: 2rem;
-  --font-color: #4a4a4a;
-  --font-color-light: #616161;
-  font-family: BlinkMacSystemFont, -apple-system, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, Helvetica, Arial,
-    sans-serif;
+
+  font-family: "Fira Code", Consolas, "Courier New", monospace;
   font-weight: 400;
   font-size: 1em;
   line-height: 1.5;
@@ -13,13 +41,40 @@ html {
   box-sizing: border-box;
 }
 
+body {
+  background-color: var(--background-color);
+}
+
+h1 {
+  color: var(--color-syntax-1);
+}
+h2 {
+  color: var(--color-syntax-1);
+}
+h3 {
+  color: var(--color-syntax-3);
+}
+h4 {
+  color: var(--color-syntax-4);
+}
+h5 {
+  color: var(--color-syntax-5);
+}
+
+pre {
+  background-color: var(--background-color-light);
+  overflow-x: auto;
+  padding: 1rem;
+  border-radius: 1rem;
+}
+
 a {
   text-decoration: none;
-  color: #485fc7;
+  color: var(--font-color-link);
 }
 
 a:hover {
-  color: var(--font-color-light);
+  color: var(--font-color-link-hover);
 }
 
 article {
@@ -59,8 +114,8 @@ article {
 }
 
 .card {
-  border-radius: 0.5rem;
-  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+  border-radius: 1rem;
+  background-color: var(--background-color-light);
   padding: 0.5rem 1.25rem;
 }
 
@@ -77,6 +132,6 @@ article {
 .tag {
   padding: 0.2rem 0.5rem;
   border-radius: 0.25rem;
-  background-color: #f5f5f5;
-  color: #2b2b2b;
+  background-color: var(--background-color-light-2);
+  color: var(--font-color-light);
 }

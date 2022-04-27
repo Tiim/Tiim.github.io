@@ -53,7 +53,7 @@
   }
   .date {
     font-size: 0.8rem;
-    color: #888;
+    color: var(--font-color-light);
     margin-top: 0.5rem;
   }
 
@@ -69,8 +69,8 @@
   .links {
     display: flex;
     justify-content: space-between;
-    border-top: 1px solid hsl(0deg, 0%, 93%);
     min-height: 48px;
+    gap: 1rem;
   }
   .links span {
     display: flex;
@@ -79,9 +79,8 @@
     flex-shrink: 0;
     justify-content: center;
     align-items: center;
-  }
-  .links span:not(:last-child) {
-    border-right: 1px solid hsl(0deg, 0%, 93%);
+    background-color: var(--background-color-light-2);
+    border-radius: 0.5rem;
   }
   img {
     max-width: 100%;

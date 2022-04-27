@@ -12,7 +12,7 @@
 
 <style>
   footer {
-    background-color: rgb(249, 248, 248);
+    background-color: var(--background-color-light);
     text-align: center;
     padding: 2rem;
   }
