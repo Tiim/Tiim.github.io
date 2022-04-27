@@ -5,9 +5,9 @@
 
 <div>
   <h2>Social Media</h2>
-  <div class="columns is-centered is-multiline">
+  <div class="columns multiline">
     {#each socialMedia as site}
-      <div class="column is-one-fifth">
+      <div class="column">
         <a target="_blank" href={site.link}>
           <FA icon={site.icon} class="icon is-small" />
           {site.site}
@@ -16,3 +16,11 @@
     {/each}
   </div>
 </div>
+
+<style>
+  .column {
+    flex: none;
+    min-width: 18%;
+    margin: 0.5rem;
+  }
+</style>

@@ -1,7 +1,8 @@
 <script>
   import Header from "$lib/header/Header.svelte";
   import Footer from "$lib/footer/Footer.svelte";
-  import "bulma";
+  import "normalize.css";
+  import "../app.css";
 </script>
 
 <div id="app">

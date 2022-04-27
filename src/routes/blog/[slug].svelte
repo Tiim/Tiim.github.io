@@ -17,33 +17,40 @@
   <meta property="og:image" content={base + post.cover_image} />
 </svelte:head>
 
-<div class="container">
-  <article class="content">
-    {#if post.cover_image}
-      <img alt={post.title} src={base + post.cover_image} />
-    {/if}
-    <h1>{post.title}</h1>
-    {#if !post.published}
-      <p class="notification is-warning">This post is not published!</p>
-    {/if}
-    <p class="taglist">
-      {#each post.tags as tag}<span class="tag">{tag}</span>{/each}
-    </p>
-    <p class="is-size-8	has-text-grey-light	">
-      {new Date(post.date).toLocaleDateString(undefined, {
-        weekday: "long",
-        year: "numeric",
-        month: "long",
-        day: "numeric",
-      })}
-    </p>
-    {@html post.html}
-  </article>
-</div>
+<article class="container">
+  {#if post.cover_image}
+    <img alt={post.title} src={base + post.cover_image} />
+  {/if}
+  <h1>{post.title}</h1>
+  {#if !post.published}
+    <p class="notification">This post is not published!</p>
+  {/if}
+  <p class="tags">
+    {#each post.tags as tag}<span class="tag">{tag}</span>{/each}
+  </p>
+  <p class="date">
+    {new Date(post.date).toLocaleDateString(undefined, {
+      weekday: "long",
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    })}
+  </p>
+  {@html post.html}
+</article>
 
 <style>
-  .taglist {
-    display: flex;
-    gap: 5px;
+  img {
+    max-width: 100%;
+  }
+  .notification {
+    background: wheat;
+    padding: 1rem;
+    border-radius: 10px;
+  }
+  .date {
+    font-size: 0.8rem;
+    color: #888;
+    margin-top: 0.5rem;
   }
 </style>

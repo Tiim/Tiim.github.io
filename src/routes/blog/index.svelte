@@ -9,21 +9,19 @@
 </svelte:head>
 
 <div class="container has-text-centered">
-  <div class="section content">
+  <div class="section">
     <h1>Blog 📖</h1>
     <p>
       Subscribe to my blog via
       <a href="blog/rss.xml" target="_blank">
-        ><FA icon={["fa", "rss"]} class="icon is-small" /> RSS
-      </a>.
+        <FA icon={["fa", "rss"]} class="icon is-small" /> RSS
+      </a>
     </p>
   </div>
-  <div class="section content">
+  <div class="section">
     <div class="blog-posts">
       {#each posts as post}
-        <div class="post">
-          <BlogPost {post} />
-        </div>
+        <BlogPost {post} />
       {/each}
     </div>
   </div>

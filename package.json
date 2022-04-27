@@ -32,6 +32,7 @@
     "fontawesome-svelte": "^2.0.1",
     "fs-extra": "^10.1.0",
     "js-yaml": "^4.1.0",
+    "normalize.css": "^8.0.1",
     "remark": "^14.0.2",
     "remark-extract-frontmatter": "^3.2.0",
     "remark-frontmatter": "^4.0.1",

@@ -3,14 +3,10 @@
   export let projects = [];
 </script>
 
-<div>
-  <div class="proj-wrap">
-    {#each projects as proj}
-      <div class="proj">
-        <Project project={proj} />
-      </div>
-    {/each}
-  </div>
+<div class="proj-wrap">
+  {#each projects as proj}
+    <Project project={proj} />
+  {/each}
 </div>
 
 <!--TODO: create card-list component or something-->

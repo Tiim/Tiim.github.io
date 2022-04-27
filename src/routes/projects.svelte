@@ -8,7 +8,7 @@
 </svelte:head>
 
 <div class="container has-text-centered">
-  <div class="section content">
+  <div class="section">
     <h1>Projects, Utility Apps &amp; other Resources⚙️</h1>
     <p>
       This is a list of some of my current or past projects, as well as some
