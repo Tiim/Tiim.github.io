@@ -34,12 +34,18 @@ export async function get() {
   posts.forEach((post) => {
     feed.item({
       title: post.title,
-      description: post.html,
-      url: `https://tiim.ch/blog/${post.slug}`,
-      guid: `https://tiim.ch/blog/${post.slug}`,
+      description: post.description,
+      url: `https://tiim.ch/${post.slug}`,
       categories: post.tags,
       author: "Tim Bachmann",
       date: post.date,
+      custom_elements: [
+        {
+          "content:encoded": {
+            _cdata: post.html,
+          },
+        },
+      ],
     });
   });
 

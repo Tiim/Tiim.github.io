@@ -13,7 +13,7 @@ const config = {
       default: true,
       crawl: true,
       enabled: true,
-      entries: ["*", "/projects", "/blog"],
+      entries: ["*", "/projects", "/blog", "/blog/rss.xml"],
       onError: "fail",
     },
     vite: {
