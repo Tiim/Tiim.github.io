@@ -1,7 +1,10 @@
-import { remark } from "remark";
-import remarkHtml from "remark-html";
+import { unified } from "unified";
+import remarkParse from "remark-parse";
 import remarkFrontmatter from "remark-frontmatter";
 import remarkExtractFrontmatter from "remark-extract-frontmatter";
+import remarkRehype from "remark-rehype";
+import rehypeStringify from "rehype-stringify";
+import rehypeExternalLinks from "rehype-external-links";
 import { load } from "js-yaml";
 import fs from "fs-extra";
 import { dev } from "$app/env";
@@ -13,10 +16,13 @@ import { dev } from "$app/env";
  */
 export async function process(fileName) {
   const str = await fs.readFile(`content/` + fileName, "utf8");
-  const md = remark()
-    .use(remarkHtml)
+  const md = unified()
+    .use(remarkParse)
     .use(remarkFrontmatter)
-    .use(remarkExtractFrontmatter, { yaml: load });
+    .use(remarkExtractFrontmatter, { yaml: load })
+    .use(remarkRehype)
+    .use(rehypeExternalLinks, { rel: ["nofollow", "noopener", "noreferrer"] })
+    .use(rehypeStringify);
 
   const processed = await md.process(str);
   /**
@@ -35,5 +41,11 @@ export async function process(fileName) {
 }
 
 export function renderString(string) {
-  return remark().use(remarkHtml).processSync(string).toString("utf-8");
+  return unified()
+    .use(remarkParse)
+    .use(remarkRehype)
+    .use(rehypeExternalLinks, { rel: ["nofollow", "noopener", "noreferrer"] })
+    .use(rehypeStringify)
+    .processSync(string)
+    .toString("utf-8");
 }

@@ -34,10 +34,12 @@
     "js-yaml": "^4.1.0",
     "normalize.css": "^8.0.1",
     "rehype-external-links": "^1.0.1",
-    "remark": "^14.0.2",
+    "rehype-stringify": "^9.0.3",
     "remark-extract-frontmatter": "^3.2.0",
     "remark-frontmatter": "^4.0.1",
-    "remark-html": "^15.0.1",
-    "svelte": "^3.47.0"
+    "remark-parse": "^10.0.1",
+    "remark-rehype": "^10.1.0",
+    "svelte": "^3.47.0",
+    "unified": "^10.1.2"
   }
 }
