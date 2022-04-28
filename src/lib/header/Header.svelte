@@ -1,20 +1,102 @@
 <script>
   import siteinfo from "$content/site-info.json";
+
+  let mobileOpen = false;
+
+  function nav() {
+    mobileOpen = false;
+  }
 </script>
 
 <nav class="navbar" aria-label="main navigation">
   <div class="navbar-brand">
     <a class="navbar-item" href="/">{siteinfo.name}</a>
   </div>
-  <div class="navbar-menu">
+  <div class="navbar-menu desktop">
     <a href="/" class="navbar-item">Home</a>
     <a href="/projects" class="navbar-item">Projects</a>
     <a href="/blog" class="navbar-item">Blog</a>
     <a class="navbar-item" target="_blank" href={siteinfo.contact}> Contact</a>
   </div>
+  <div class="navbar-menu mobile">
+    <div>
+      <input
+        bind:checked={mobileOpen}
+        id="header-toggle"
+        class="header-checkbox"
+        type="checkbox"
+      />
+      <label for="header-toggle" class="toggle">
+        <span />
+        <span />
+        <span />
+      </label>
+    </div>
+    {#if mobileOpen}
+      <div class="mobile-dropdown">
+        <a on:click={nav} class="navbar-item" href="/">Home</a>
+        <a on:click={nav} class="navbar-item" href="/projects">Projects</a>
+        <a on:click={nav} class="navbar-item" href="/blog">Blog</a>
+        <a
+          on:click={nav}
+          class="navbar-item"
+          target="_blank"
+          href={siteinfo.contact}
+        >
+          Contact</a
+        >
+      </div>
+    {/if}
+  </div>
 </nav>
 
 <style>
+  .header-checkbox {
+    display: none;
+  }
+  .toggle {
+    position: relative;
+    cursor: pointer;
+    display: block;
+    width: 36px;
+    height: 36px;
+  }
+
+  .toggle:hover {
+    background-color: var(--background-color-light-2);
+  }
+
+  .toggle span {
+    position: absolute;
+    display: block;
+    width: 26px;
+    right: 5px;
+    height: 2px;
+    background-color: #fff;
+    border-radius: 2px;
+    transition: background-color 0.2s ease-in-out;
+  }
+
+  .toggle span:nth-child(1) {
+    top: 10px;
+  }
+  .toggle span:nth-child(2) {
+    top: calc(50% - 1px);
+  }
+  .toggle span:nth-child(3) {
+    bottom: 10px;
+  }
+
+  .mobile-dropdown {
+    position: absolute;
+    top: 80px;
+    right: 10px;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--background-color-light-2);
+    border-radius: 0.5rem;
+  }
+
   .navbar {
     height: 60px;
     padding: 1rem var(--padding-side);
@@ -22,6 +104,7 @@
     align-items: stretch;
     gap: var(--header-gap);
     background-color: var(--background-color-light);
+    position: relative;
   }
 
   .navbar-brand {
@@ -43,9 +126,18 @@
     gap: var(--header-gap);
   }
 
+  .navbar-menu.mobile {
+    display: none;
+  }
   @media only screen and (max-width: 600px) {
-    .navbar-brand {
+    .navbar-menu.desktop {
       display: none;
+    }
+    .navbar-menu.mobile {
+      display: flex;
+    }
+    .navbar {
+      justify-content: space-between;
     }
   }
 
@@ -65,5 +157,9 @@
 
   .navbar-item:hover {
     background-color: var(--background-color-light-2);
+  }
+
+  .mobile .navbar-item:hover {
+    background-color: var(--background-color-light-3);
   }
 </style>
