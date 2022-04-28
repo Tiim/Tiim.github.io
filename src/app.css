@@ -137,3 +137,26 @@ article {
   background-color: var(--background-color-light-2);
   color: var(--font-color-light);
 }
+
+/** SCROLLBAR **/
+body::-webkit-scrollbar {
+  width: 12px;
+}
+html {
+  -webkit-scrollbar-width: thin;
+  -moz-scrollbar-width: thin;
+  -ms-scrollbar-width: thin;
+  scrollbar-width: thin;
+  -webkit-scrollbar-color: var(--color-syntax-2) var(--color-ui-1);
+  -moz-scrollbar-color: var(--color-syntax-2) var(--color-ui-1);
+  -ms-scrollbar-color: var(--color-syntax-2) var(--color-ui-1);
+  scrollbar-color: var(--color-syntax-2) var(--color-ui-1);
+}
+body::-webkit-scrollbar-track {
+  background: var(--color-ui-1);
+}
+body::-webkit-scrollbar-thumb {
+  background-color: var(--color-syntax-2);
+  border-radius: 6px;
+  border: 3px solid var(--color-ui-1);
+}

@@ -131,7 +131,7 @@
   .navbar-menu.mobile {
     display: none;
   }
-  @media only screen and (max-width: 600px) {
+  @media only screen and (max-width: 800px) {
     .navbar-menu.desktop {
       display: none;
     }
