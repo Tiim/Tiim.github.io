@@ -35,9 +35,9 @@
   <p class="tags">
     {#each site.tags as tag}<span class="tag">{tag}</span>{/each}
   </p>
-  {#if site.date}
+  {#if site.date || site.modified}
     <p class="date">
-      {new Date(site.date).toLocaleDateString(undefined, {
+      {new Date(site.modified || site.date).toLocaleDateString(undefined, {
         weekday: "long",
         year: "numeric",
         month: "long",
