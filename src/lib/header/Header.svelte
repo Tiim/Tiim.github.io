@@ -16,6 +16,7 @@
     <a href="/" class="navbar-item">Home</a>
     <a href="/projects" class="navbar-item">Projects</a>
     <a href="/blog" class="navbar-item">Blog</a>
+    <a href="/uses" class="navbar-item">Uses</a>
     <a class="navbar-item" target="_blank" href={siteinfo.contact}> Contact</a>
   </div>
   <div class="navbar-menu mobile">
@@ -37,6 +38,7 @@
         <a on:click={nav} class="navbar-item" href="/">Home</a>
         <a on:click={nav} class="navbar-item" href="/projects">Projects</a>
         <a on:click={nav} class="navbar-item" href="/blog">Blog</a>
+        <a on:click={nav} class="navbar-item" href="/uses">Uses</a>
         <a
           on:click={nav}
           class="navbar-item"
