@@ -8,6 +8,7 @@ import rehypeExternalLinks from "rehype-external-links";
 import { load } from "js-yaml";
 import fs from "fs-extra";
 import { dev } from "$app/env";
+import { visit } from "unist-util-visit";
 
 /**
  *
@@ -18,6 +19,7 @@ export async function process(fileName) {
   const str = await fs.readFile(`content/` + fileName, "utf8");
   const md = unified()
     .use(remarkParse)
+    .use(absoluteLinks)
     .use(remarkFrontmatter)
     .use(remarkExtractFrontmatter, { yaml: load })
     .use(remarkRehype)
@@ -44,8 +46,22 @@ export function renderString(string) {
   return unified()
     .use(remarkParse)
     .use(remarkRehype)
+    .use(absoluteLinks)
     .use(rehypeExternalLinks, { rel: ["nofollow", "noopener", "noreferrer"] })
     .use(rehypeStringify)
     .processSync(string)
     .toString("utf-8");
+}
+
+function absoluteLinks() {
+  return (tree) => {
+    visit(tree, "link", (node) => {
+      if (node.url && node.url.startsWith("/")) {
+        node.url = `https://tiim.ch${node.url}`;
+      } else if (node.url && !/^[a-zA-Z]{1,20}:/.test(node.url)) {
+        node.url = `https://tiim.ch/${node.url}`;
+      }
+    });
+    return tree;
+  };
 }

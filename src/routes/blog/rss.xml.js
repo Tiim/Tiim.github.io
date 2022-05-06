@@ -25,11 +25,12 @@ export async function get() {
     link: "https://tiim.ch/",
     language: "en",
     image: remoteImages.favicon.link,
-    favicon: "https://tiim.ch/favicon.ico",
+    favicon: remoteImages.favicon.link,
     copyright: "Tim Bachmann",
     updated: new Date(),
     feedLinks: {
       atom: "https://tiim.ch/blog/rss.xml",
+
       //json: "https://tiim.ch/blog/rss.json",
     },
     author: {
