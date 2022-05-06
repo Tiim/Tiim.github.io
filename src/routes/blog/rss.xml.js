@@ -24,7 +24,7 @@ export async function get() {
     id: "https://tiim.ch/",
     link: "https://tiim.ch/",
     language: "en",
-    image: remoteImages.profilePicture.link,
+    image: remoteImages.favicon.link,
     favicon: "https://tiim.ch/favicon.ico",
     copyright: "Tim Bachmann",
     updated: new Date(),
