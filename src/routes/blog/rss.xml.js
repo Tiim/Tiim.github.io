@@ -29,9 +29,7 @@ export async function get() {
     copyright: "Tim Bachmann",
     updated: new Date(),
     feedLinks: {
-      atom: "https://tiim.ch/blog/rss.xml",
-
-      //json: "https://tiim.ch/blog/rss.json",
+      rss: "https://tiim.ch/blog/rss.xml",
     },
     author: {
       name: "Tim Bachmann",
@@ -39,6 +37,7 @@ export async function get() {
       link: "https://tiim.ch/",
     },
   });
+  feed.add;
 
   posts.forEach((post) => {
     feed.addItem({
