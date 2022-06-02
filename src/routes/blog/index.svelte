@@ -1,6 +1,6 @@
 <script>
   import { FA } from "$lib/fa.js";
-  import BlogPost from "$lib/blog/BlogPost.svelte";
+  import PostCardList from "$lib/PostCardList.svelte";
   export let posts;
 </script>
 
@@ -19,21 +19,6 @@
     </p>
   </div>
   <div class="section">
-    <div class="blog-posts">
-      {#each posts as post}
-        <BlogPost {post} />
-      {/each}
-    </div>
+    <PostCardList {posts} />
   </div>
 </div>
-
-<style>
-  .blog-posts {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-    gap: 1rem;
-    justify-items: stretch;
-    align-items: stretch;
-    justify-content: center;
-  }
-</style>

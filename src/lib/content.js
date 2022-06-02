@@ -12,21 +12,60 @@ export async function getContent() {
   const blogMap = blogPostsToMap(allBlogPosts);
   const pages = await loadPages();
   const projects = await loadProjects();
+  const tags = await loadTags(allBlogPosts, projects);
+  const tagsMap = blogPostsToTagMap(allBlogPosts, projects);
+
   content = {
     allBlogPosts,
     blogMap,
     pages,
     projects,
+    tags,
+    tagsMap,
   };
 
   return content;
 }
 
+function blogPostsToTagMap(...posts) {
+  const allPosts = posts.flat();
+  return allPosts.reduce((acc, post) => {
+    post.tags.forEach((tag) => {
+      if (!acc[tag]) {
+        acc[tag] = [];
+      }
+      acc[tag].push(post);
+    });
+    return acc;
+  }, {});
+}
+
+async function loadTags(...posts) {
+  const allPosts = posts.flat();
+  const tags = [
+    ...new Set(
+      allPosts
+        .map((post) => post.tags)
+        .flat()
+        .filter((tag) => tag)
+        .map((tag) => tag.toLowerCase())
+    ),
+  ];
+  const tagsData = (await loadMarkdownFolder("tags"))
+    .map((td) => ({
+      ...td,
+      tag: td.slug.split("/").pop().toLowerCase(),
+    }))
+    .reduce((acc, tag) => {
+      acc[tag.tag] = tag;
+      return acc;
+    }, {});
+
+  return tags.map((tag) => tagsData[tag] || { tag });
+}
+
 async function loadProjects() {
   const projects = await loadMarkdownFolder("projects");
-
-  console.log(projects);
-
   return projects;
 }
 
@@ -61,5 +100,5 @@ async function loadMarkdownFolder(folder) {
         return data;
       })
   );
-  return files.filter((p) => p);
+  return files.filter((p) => p).map((p) => ({ ...p, type: folder }));
 }

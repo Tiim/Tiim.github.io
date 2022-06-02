@@ -10,6 +10,7 @@ import fs from "fs-extra";
 import { dev } from "$app/env";
 import { visit } from "unist-util-visit";
 import extractAbstract from "./markdown/extractAbstract";
+import slugify from "slugify";
 
 /**
  *
@@ -35,9 +36,15 @@ export async function process(fileName) {
   const metadata = processed.data;
   const html = processed.toString("utf-8");
 
-  metadata.tags = metadata.content_tags?.map((tag) => tag.toLowerCase()) || [];
+  metadata.tags =
+    metadata.content_tags
+      ?.map((tag) => tag.toLowerCase())
+      .map((tag) => slugify(tag)) ?? [];
+  console.log(metadata.tags);
 
   metadata.tags.sort();
+
+  metadata.links = metadata.links?.map((link) => renderString(link));
 
   if (metadata.published !== false || dev) {
     return { html, slug: fileName.slice(0, -3), ...metadata };

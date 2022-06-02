@@ -1,0 +1,29 @@
+<script>
+  import Card from "./Card.svelte";
+
+  export let post;
+
+  let linksHtml = [];
+  $: linksHtml = Array.isArray(post.links) ? post.links : undefined;
+  let links = [];
+  $: links = !Array.isArray(post.links)
+    ? { href: `/${linksHtml}`, text: "Read More..." }
+    : undefined;
+  let image;
+  $: image = post.cover_image
+    ? { src: post.cover_image, alt: post.title }
+    : undefined;
+</script>
+
+<Card
+  title={post.title}
+  {image}
+  tags={post.tags}
+  {links}
+  {linksHtml}
+  date={post.date}
+>
+  <div>
+    {@html post.description || post.abstract}
+  </div>
+</Card>

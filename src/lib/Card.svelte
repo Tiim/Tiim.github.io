@@ -24,13 +24,14 @@
     {#if tags && tags.length > 0}
       <div class="tags">
         {#each tags as tag}
-          <span class="tag">
+          <a href={`/tags/${tag}`} class="tag">
             {tag}
-          </span>
+          </a>
         {/each}
       </div>
     {/if}
   </div>
+  <div class="spacer" />
   {#if linksHtml && linksHtml.length > 0}
     <div class="links">
       {#each linksHtml as link}
@@ -56,11 +57,14 @@
     color: var(--font-color-light);
     margin-top: 0.5rem;
   }
-
   .card {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: start;
+  }
+  .spacer {
+    flex-grow: 1;
+    min-height: 0px;
   }
   .card-content {
     padding: 1rem;

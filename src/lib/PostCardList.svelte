@@ -1,11 +1,12 @@
 <script>
-  import Project from "./Project.svelte";
-  export let projects = [];
+  import PostCard from "$lib/PostCard.svelte";
+
+  export let posts = [];
 </script>
 
 <div class="proj-wrap">
-  {#each projects as proj}
-    <Project project={proj} />
+  {#each posts as post}
+    <PostCard {post} />
   {/each}
 </div>
 

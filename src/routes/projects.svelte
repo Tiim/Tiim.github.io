@@ -1,5 +1,5 @@
 <script>
-  import ProjectEntries from "$lib/projects/ProjectEntries.svelte";
+  import PostCardList from "$lib/PostCardList.svelte";
   export let sections;
 </script>
 
@@ -18,7 +18,7 @@
   {#each sections as section}
     <div class="section content">
       <h2>{section.section}</h2>
-      <ProjectEntries projects={section.values} />
+      <PostCardList posts={section.values} />
     </div>
   {/each}
 </div>

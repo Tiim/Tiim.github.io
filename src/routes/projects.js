@@ -1,14 +1,8 @@
-import { renderString } from "$lib/markdown.js";
 import { getContent } from "$lib/content";
 
 export async function get() {
   const projects = (await getContent()).projects;
-  const body = projects.map((p) => ({
-    ...p,
-    links: p.links.map((l) => renderString(l)),
-    html: p.abstract,
-  }));
-  const sections = groupBy(body);
+  const sections = groupBy(projects);
   return {
     body: { sections },
   };
