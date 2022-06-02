@@ -1,7 +1,7 @@
 ---
 title: Lap Counter
 section: Apps
-content_tags: ["svelte", "coach", "laps", "counter", "swim"]
+content_tags: ["svelte", "swim", "dev"]
 links:
   - "[Open Lap Counter](https://tiim.ch/lap-counter-js/)"
   - "[Source Code](https://codesandbox.io/s/laps-counter-8f0sb)"

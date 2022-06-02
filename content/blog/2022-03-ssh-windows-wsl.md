@@ -4,7 +4,7 @@ published: true
 date: 2022-03-02
 description: It can be very helpful to be able to connect to your laptop or desktop PC from anywhere using SSH. I will show you how to easily set this up on Windows with WSL.
 cover_image: "/assets/2022-03-ssh-windows-wsl.png"
-content_tags: [SSH, WSL, Windows]
+content_tags: [SSH, WSL, Windows, dev]
 ---
 
 There [are](https://gist.github.com/dentechy/de2be62b55cfd234681921d5a8b6be11) [many](https://medium.com/@thinkbynumbers/automatically-start-wsl-ssh-and-various-services-on-windows-845dfda89690) [guides](https://faun.pub/how-to-setup-ssh-connection-on-ubuntu-windows-subsystem-for-linux-2b36afb943dc) on the [internet](https://superuser.com/questions/1112007/how-to-run-ubuntu-service-on-windows-at-startup) showing how to set up an SSH server **inside** WSL. This is currently not that easy and in my experience, it is not really stable. An alternative to this is to run the SSH server outside of WSL on the windows side and set its default shell to the WSL shell (or any other shell for that matter).

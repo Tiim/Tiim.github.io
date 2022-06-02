@@ -1,7 +1,7 @@
 ---
 title: 3D Scanned and Modeled Objects
 section: Projects
-content_tags: ["3D Scanning", "3D model"]
+content_tags: ["3D Scanning", "3D model", "3D"]
 links:
   - "[CGTrader Profile](https://www.cgtrader.com/tiim)"
   - "[All 3D Models](https://www.cgtrader.com/3d-models?author=tiim)"

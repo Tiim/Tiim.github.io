@@ -1,7 +1,7 @@
 ---
 title: WooCommerce Order Explorer
 section: Apps
-content_tags: [svelte, wordpress, woocommerce, offline]
+content_tags: ["svelte", "wordpress", "woocommerce", "dev"]
 links:
   - "[Open Order Explorer](https://tiim.ch/woocommerce-order-explorer-js/)"
   - "[Source Code](https://codesandbox.io/s/woo-commerce-order-explorer-js-vmu3h)"

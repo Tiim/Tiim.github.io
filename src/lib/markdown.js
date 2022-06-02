@@ -40,7 +40,6 @@ export async function process(fileName) {
     metadata.content_tags
       ?.map((tag) => tag.toLowerCase())
       .map((tag) => slugify(tag)) ?? [];
-  console.log(metadata.tags);
 
   metadata.tags.sort();
 
