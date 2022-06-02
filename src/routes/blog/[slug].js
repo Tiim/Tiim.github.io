@@ -1,9 +1,9 @@
-import { process } from "$lib/markdown";
+import { getContent } from "$lib/content";
 
 export async function get({ params }) {
   const { slug } = params;
 
-  const post = await process(`blog/${slug}.md`);
+  const post = (await getContent()).blogMap[`blog/${slug}`] || null;
   return {
     body: { post },
   };

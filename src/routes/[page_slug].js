@@ -1,9 +1,9 @@
-import { process } from "$lib/markdown";
+import { getContent } from "$lib/content";
 
 export async function get({ params }) {
   const { page_slug } = params;
 
-  const page = await process(`pages/${page_slug}.md`);
+  const page = (await getContent()).pages[`pages/${page_slug}`] || null;
   return {
     body: { page },
   };

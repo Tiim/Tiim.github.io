@@ -1,18 +1,12 @@
-import fs from "fs-extra";
-import { process, renderString } from "$lib/markdown.js";
+import { renderString } from "$lib/markdown.js";
+import { getContent } from "$lib/content";
 
 export async function get() {
-  const dir = await fs.readdir(`content/projects`);
-  let posts = dir
-    .filter((fileName) => /.+\.md$/.test(fileName))
-    .map(async (fileName) => {
-      const data = await process("projects/" + fileName);
-      return data;
-    });
-  let body = (await Promise.all(posts)).filter((p) => p);
-  body = body.map((p) => ({
+  const projects = (await getContent()).projects;
+  const body = projects.map((p) => ({
     ...p,
     links: p.links.map((l) => renderString(l)),
+    html: p.abstract,
   }));
   const sections = groupBy(body);
   return {

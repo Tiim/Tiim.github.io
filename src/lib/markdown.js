@@ -9,6 +9,7 @@ import { load } from "js-yaml";
 import fs from "fs-extra";
 import { dev } from "$app/env";
 import { visit } from "unist-util-visit";
+import extractAbstract from "./markdown/extractAbstract";
 
 /**
  *
@@ -17,11 +18,12 @@ import { visit } from "unist-util-visit";
  */
 export async function process(fileName) {
   const str = await fs.readFile(`content/` + fileName, "utf8");
-  const md = unified()
+  let md = unified()
     .use(remarkParse)
     .use(absoluteLinks)
     .use(remarkFrontmatter)
     .use(remarkExtractFrontmatter, { yaml: load })
+    .use(extractAbstract)
     .use(remarkRehype)
     .use(rehypeExternalLinks, { rel: ["nofollow", "noopener", "noreferrer"] })
     .use(rehypeStringify);

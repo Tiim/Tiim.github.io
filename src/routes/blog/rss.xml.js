@@ -1,21 +1,9 @@
-import fs from "fs-extra";
-import { process } from "$lib/markdown.js";
 import { Feed } from "feed";
 import remoteImages from "$content/remote-images.json";
+import { getContent } from "$lib/content";
 
 export async function get() {
-  const dir = await fs.readdir(`content/blog`);
-  let posts = (
-    await Promise.all(
-      dir
-        .filter((fileName) => /.+\.md$/.test(fileName))
-        .map(async (fileName) => {
-          const data = await process("blog/" + fileName);
-          return data;
-        })
-    )
-  ).filter((p) => p);
-  posts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+  const posts = (await getContent()).allBlogPosts;
 
   var feed = new Feed({
     title: "Tim Bachmann's Blog",
