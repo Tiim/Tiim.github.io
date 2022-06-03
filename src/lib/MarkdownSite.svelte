@@ -1,10 +1,15 @@
 <script>
   import { base } from "$app/paths";
   export let site;
+
+  let prefix =
+    {
+      projects: "⚙️Project: ",
+    }[site.type] || "";
 </script>
 
 <svelte:head>
-  <title>{site.title}</title>
+  <title>{site.title} - Tim Bachmann</title>
   <meta property="og:title" content={site.title} />
   <meta property="og:type" content="article" />
   <meta property="og:description" content={site.description} />
@@ -28,12 +33,13 @@
   {#if site.cover_image}
     <img alt={site.title} src={base + site.cover_image} />
   {/if}
-  <h1>{site.title}</h1>
+  <h1>{prefix}{site.title}</h1>
   {#if !site.published}
     <p class="notification">This site is not published!</p>
   {/if}
   <p class="tags">
-    {#each site.tags as tag}<span class="tag">{tag}</span>{/each}
+    {#each site.tags as tag}<a class="tag" href={`/tags/${tag}`}>{tag}</a
+      >{/each}
   </p>
   {#if site.date || site.modified}
     <p class="date">
@@ -45,6 +51,16 @@
       })}
     </p>
   {/if}
+  {#if site.links}
+    <blockquote class="links">
+      <h2>Links</h2>
+      <ul>
+        {#each site.links as link}
+          <li>{@html link}</li>
+        {/each}
+      </ul>
+    </blockquote>
+  {/if}
   {@html site.html}
 </article>
 
@@ -53,13 +69,17 @@
     max-width: 100%;
   }
   .notification {
-    background: wheat;
+    background-color: var(--color-ui-12);
     padding: 1rem;
     border-radius: 10px;
+    text-align: center;
   }
   .date {
     font-size: 0.8rem;
     color: var(--font-color-light);
     margin-top: 0.5rem;
+  }
+  .links {
+    margin-bottom: 2rem;
   }
 </style>
