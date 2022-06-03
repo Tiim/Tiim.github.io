@@ -1,6 +1,7 @@
 ---
 title: Lenex Splits Sheet Creator
 section: Apps
+published: true
 content_tags: ["swim", "lenex", "svelte", "dev"]
 links:
   - "[Open Splits Sheet Creator](https://tiim.ch/lenex-splits-sheet-creator/)"

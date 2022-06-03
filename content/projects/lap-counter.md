@@ -1,6 +1,7 @@
 ---
 title: Lap Counter
 section: Apps
+published: true
 content_tags: ["svelte", "swim", "dev"]
 links:
   - "[Open Lap Counter](https://tiim.ch/lap-counter-js/)"

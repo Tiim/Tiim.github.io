@@ -1,6 +1,7 @@
 ---
 title: My Cheat Sheets
 section: Projects
+published: true
 content_tags: ["markdown", "dev", "cheatsheet"]
 links:
   - "[Cheat Sheets on Github](https://github.com/Tiim/my-cheatsheets)"

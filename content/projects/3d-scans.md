@@ -1,6 +1,7 @@
 ---
 title: 3D Scanned and Modeled Objects
 section: Projects
+published: true
 content_tags: ["3D Scanning", "3D model", "3D"]
 links:
   - "[CGTrader Profile](https://www.cgtrader.com/tiim)"

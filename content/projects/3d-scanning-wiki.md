@@ -1,6 +1,7 @@
 ---
 title: The 3D Scanning Wiki
 section: Projects
+published: true
 content_tags: ["sveltekit", "markdown", "dev"]
 links:
   - "[3D Scanning Wiki](https://3dscanning.wiki/)"

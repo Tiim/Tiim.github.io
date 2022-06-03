@@ -1,6 +1,7 @@
 ---
 title: Swim Club Birsfelden Website
 section: Projects
+published: true
 content_tags: ["wordpress", "php", "dev"]
 links:
   - "[Website](https://scbirs.ch)"

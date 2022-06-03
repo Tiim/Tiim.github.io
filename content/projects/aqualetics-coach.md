@@ -1,6 +1,7 @@
 ---
 title: Aqualetics Coach
 section: Projects
+published: true
 content_tags:
   ["node", "vue", "graphql", "hasura", "postgresql", "docker", "dev"]
 links:

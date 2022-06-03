@@ -1,6 +1,7 @@
 ---
 title: Obsidian.md Fitbit Activity Script
 section: Projects
+published: true
 content_tags: ["obsidian", "fitbit", "plugin", "dev"]
 links:
   - "[GitHub Repo](https://github.com/Tiim/Fitbit-Obsidian-Templater-Script)"
