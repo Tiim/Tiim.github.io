@@ -7,7 +7,7 @@
   $: linksHtml = Array.isArray(post.links) ? post.links : undefined;
   let links = [];
   $: links = !Array.isArray(post.links)
-    ? { href: `/${linksHtml}`, text: "Read More..." }
+    ? [{ href: `/${linksHtml}`, text: "Read More..." }]
     : undefined;
   let image;
   $: image = post.cover_image
