@@ -45,8 +45,10 @@ export async function process(fileName) {
 
   metadata.links = metadata.links?.map((link) => renderString(link));
 
-  if (metadata.published !== false || dev) {
+  if (metadata.published || dev) {
     return { html, slug: fileName.slice(0, -3), ...metadata };
+  } else {
+    console.log(`Unpublished: ${fileName}, (${metadata.title}). Skipped.`);
   }
 }
 

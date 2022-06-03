@@ -9,19 +9,21 @@ export async function getContent() {
   }
 
   const allBlogPosts = await loadBlogPosts();
-  const blogMap = blogPostsToMap(allBlogPosts);
+
   const pages = await loadPages();
   const projects = await loadProjects();
   const tags = await loadTags(allBlogPosts, projects);
   const tagsMap = blogPostsToTagMap(allBlogPosts, projects);
 
+  const contentMap = postsToMap(allBlogPosts, projects, pages);
+
   content = {
     allBlogPosts,
-    blogMap,
     pages,
     projects,
     tags,
     tagsMap,
+    contentMap,
   };
 
   return content;
@@ -71,10 +73,7 @@ async function loadProjects() {
 
 async function loadPages() {
   const pages = await loadMarkdownFolder("pages");
-  return pages.reduce((acc, page) => {
-    acc[page.slug] = page;
-    return acc;
-  }, {});
+  return pages;
 }
 
 async function loadBlogPosts() {
@@ -83,8 +82,9 @@ async function loadBlogPosts() {
   return posts;
 }
 
-function blogPostsToMap(allBlogPosts) {
-  return allBlogPosts.reduce((acc, post) => {
+function postsToMap(...posts) {
+  const allPosts = posts.flat();
+  return allPosts.reduce((acc, post) => {
     acc[post.slug] = post;
     return acc;
   }, {});

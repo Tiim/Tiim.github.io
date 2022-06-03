@@ -32,19 +32,22 @@
     {/if}
   </div>
   <div class="spacer" />
-  {#if linksHtml && linksHtml.length > 0}
-    <div class="links">
-      {#each linksHtml as link}
-        <span>{@html link}</span>
-      {/each}
-    </div>
-  {:else if links && links.length > 0}
-    <div class="links">
-      {#each links as link}
-        <span><a href={link.href}>{link.text}</a></span>
-      {/each}
-    </div>
-  {/if}
+  <div class="links-wrap">
+    {#if linksHtml && linksHtml.length > 0}
+      <div class="links">
+        {#each linksHtml as link}
+          <span>{@html link}</span>
+        {/each}
+      </div>
+    {/if}
+    {#if links && links.length > 0}
+      <div class="links">
+        {#each links as link}
+          <span><a href={link.href}>{link.text}</a></span>
+        {/each}
+      </div>
+    {/if}
+  </div>
 </article>
 
 <style>
@@ -69,6 +72,11 @@
   .card-content {
     padding: 1rem;
     text-align: left;
+  }
+  .links-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
   }
   .links {
     display: flex;
