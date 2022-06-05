@@ -8,3 +8,5 @@ links:
 ---
 
 My assorted collection of cheat sheets that I use almost daily. From useful LaTeX snippets to Linux commands to PostgreSQL and Python. Check it out and don't hesitate to contribute to it.
+
+I currently do not update this repo anymore because i moved all cheat sheets into my [Obsidian Vault](/tags/obsidian). I am looking into a way to keep those two repositories in sync in the future.
