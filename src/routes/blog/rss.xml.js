@@ -28,6 +28,11 @@ export async function get() {
   feed.add;
 
   posts.forEach((post) => {
+    let image = post.cover_image.trim();
+    if (!image.startsWith("http")) {
+      image = `https://tiim.ch/${image}`;
+    }
+
     feed.addItem({
       title: post.title,
       id: `https://tiim.ch/${post.slug}`,
@@ -43,7 +48,7 @@ export async function get() {
         },
       ],
       date: new Date(post.date),
-      image: `https://tiim.ch${post.cover_image}`,
+      image,
     });
   });
 
