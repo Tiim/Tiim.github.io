@@ -47,10 +47,10 @@ export async function process(fileName) {
   metadata.links = metadata.links?.map((link) => renderString(link));
 
   if (!metadata.uuid) {
-    console.error("⚠ No uuid found for", fileName);
+    throw new Error(`⚠ No uuid found for ${fileName}`);
   }
   if (uuids[metadata.uuid] && uuids[metadata.uuid] !== fileName) {
-    console.error(
+    throw new Error(
       `⚠ UUID collision between ${fileName} and ${uuids[metadata.uuid]}`
     );
   }
