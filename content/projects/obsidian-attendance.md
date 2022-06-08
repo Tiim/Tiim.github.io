@@ -1,4 +1,5 @@
 ---
+uuid: "87310ba6-0738-41da-86ef-512acfe80d69"
 title: Obsidian Attendance Plugin
 section: Projects
 published: false

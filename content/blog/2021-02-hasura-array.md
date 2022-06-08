@@ -1,4 +1,5 @@
 ---
+uuid: "0fdbfdfe-4188-45a6-8f79-69e0f66b3877"
 title: Using PostgreSQL Arrays in a Hasura Mutation
 published: false
 description: Until Hasura supports PostgreSQL arrays as a first class citizen, it is not straight forwart to use such an array in a GraphQL mutation.

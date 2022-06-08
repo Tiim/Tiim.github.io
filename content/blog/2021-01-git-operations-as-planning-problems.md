@@ -1,4 +1,5 @@
 ---
+uuid: "dc6e6d10-c460-4d3c-8fe2-4ce7535b4af1"
 title: Modelling Git Operations as Planning Problems
 published: true
 description: Bachelor Thesis. The goal of this thesis is to formally define a model of a subset of Git commands which mutate the revision graph, and to model those mutations as a planning task in the Planning Domain Definition Language. Multiple ways to model those graphs will be explored and those models will be compared by testing them using a set of planners.

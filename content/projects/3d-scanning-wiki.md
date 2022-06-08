@@ -1,4 +1,5 @@
 ---
+uuid: "fd95701b-6d38-4ff0-85a1-d1f919bf9251"
 title: The 3D Scanning Wiki
 section: Projects
 published: true

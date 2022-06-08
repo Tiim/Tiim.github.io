@@ -1,4 +1,5 @@
 ---
+uuid: "899fb73c-a78e-4cd9-b712-1886715b2d56"
 title: How to write optional filters in SQL
 published: true
 description: A simple way to filter by optional values in SQL with the COALESCE function.

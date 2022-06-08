@@ -1,4 +1,5 @@
 ---
+uuid: "96054292-eb45-4d8a-9aca-bb050175ff2a"
 title: How I use Vue.js on GitHub Pages
 published: true
 description: How to properly deploy a Vue.js app on GitHub Pages

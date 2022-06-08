@@ -1,4 +1,5 @@
 ---
+uuid: "8a52a1ad-a5cf-4191-947c-db6862746816"
 title: WooCommerce Order Explorer
 section: Apps
 published: true

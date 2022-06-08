@@ -1,4 +1,5 @@
 ---
+uuid: "f42e0cad-df0e-4862-8beb-352071f81890"
 title: Obsidian.md Fitbit Activity Script
 section: Projects
 published: true

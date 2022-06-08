@@ -1,4 +1,5 @@
 ---
+uuid: "32787e66-2678-435f-be39-c27265bc9a6f"
 title: Swim Club Birsfelden Website
 section: Projects
 published: true

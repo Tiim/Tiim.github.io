@@ -17,6 +17,7 @@ import slugify from "slugify";
  * @param {String} fileName
  * @returns {Promise<{html: string, slug: string} & Record<string,any>>}
  */
+const uuids = {};
 export async function process(fileName) {
   const str = await fs.readFile(`content/` + fileName, "utf8");
   let md = unified()
@@ -44,6 +45,16 @@ export async function process(fileName) {
   metadata.tags.sort();
 
   metadata.links = metadata.links?.map((link) => renderString(link));
+
+  if (!metadata.uuid) {
+    console.error("⚠ No uuid found for", fileName);
+  }
+  if (uuids[metadata.uuid] && uuids[metadata.uuid] !== fileName) {
+    console.error(
+      `⚠ UUID collision between ${fileName} and ${uuids[metadata.uuid]}`
+    );
+  }
+  uuids[metadata.uuid] = fileName;
 
   if (metadata.published || dev) {
     return { html, slug: fileName.slice(0, -3), ...metadata };
