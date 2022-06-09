@@ -6,6 +6,7 @@ import {
   faBorderAll,
   faExternalLinkAlt,
   faRss,
+  faUser,
 } from "@fortawesome/free-solid-svg-icons";
 import {
   faDev,
@@ -24,7 +25,8 @@ library.add(
   faGithub,
   faInstagram,
   faRss,
-  faTwitter
+  faTwitter,
+  faUser
 );
 
 export const FA = FontAwesomeIcon;

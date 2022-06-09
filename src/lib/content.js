@@ -12,8 +12,12 @@ export async function getContent() {
 
   const pages = await loadPages();
   const projects = await loadProjects();
+  const comments = await loadComments();
+
   const tags = await loadTags(allBlogPosts, projects);
   const tagsMap = blogPostsToTagMap(allBlogPosts, projects);
+
+  addCommentsToPosts(comments, allBlogPosts, projects, pages);
 
   const contentMap = postsToMap(allBlogPosts, projects, pages);
 
@@ -24,9 +28,31 @@ export async function getContent() {
     tags,
     tagsMap,
     contentMap,
+    comments,
   };
 
   return content;
+}
+
+function addCommentsToPosts(comments, ...posts) {
+  posts.flat().forEach((post) => {
+    post.comments = comments[post.uuid] || [];
+  });
+}
+
+async function loadComments() {
+  const url = dev
+    ? "http://localhost:8080/comment/"
+    : "https://comments.tiim.ch/comment/";
+  const comments = await fetch(url).then((res) => res.json());
+  const commentMap = comments.reduce(
+    (acc, comment) => ({
+      ...acc,
+      [comment.page]: [comment, ...(acc[comment.page] || [])],
+    }),
+    {}
+  );
+  return commentMap;
 }
 
 function blogPostsToTagMap(...posts) {
