@@ -40,6 +40,9 @@ html {
   font-size: 1em;
   line-height: 1.5;
   color: var(--font-color);
+}
+
+* {
   box-sizing: border-box;
 }
 
@@ -87,6 +90,26 @@ blockquote {
   border-left: 4px solid var(--color-ui-11);
   padding: 0.5rem 1rem;
   background-color: var(--background-color-light);
+}
+
+input,
+textarea,
+button {
+  color: var(--font-color);
+  width: 100%;
+  max-width: 100%;
+  padding: 0.5rem;
+  border-radius: 5px;
+  border: 0px;
+  outline: none;
+  background-color: var(--color-ui-3);
+  resize: none;
+}
+button {
+  cursor: pointer;
+}
+button:hover {
+  background-color: var(--color-ui-4);
 }
 
 .container img {
