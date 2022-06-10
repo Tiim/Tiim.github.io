@@ -1,19 +1,35 @@
 <script>
-  import { FA } from "./fa.js";
+  import { dev } from "$app/env";
+  import { FA } from "../fa.js";
+  import CommentForm from "./CommentForm.svelte";
+  const url = dev
+    ? "http://localhost:8080/comment/"
+    : "https://comments.tiim.ch/comment/";
+
+  export let page;
   export let comments;
+
+  let newComments = [];
+
+  let allComments = [];
+  $: allComments = [...newComments, ...comments];
+
+  async function getNewComments() {
+    const comments = await fetch(url + page.uuid).then((r) => r.json());
+    newComments = comments;
+  }
+
+  function onNewCommentPosted(event) {
+    newComments = [event.detail, ...newComments];
+  }
+
+  getNewComments();
 </script>
 
-<h2>Comments</h2>
-<div class="comment-input">
-  <span class="avatar"><FA icon="user" /></span>
-  <div class="comment-input-content">
-    <input placeholder="Name (optional)" />
-    <textarea placeholder="Comment" />
-    <button>Post</button>
-  </div>
-</div>
+<h2>{allComments.length} Comments</h2>
+<CommentForm page={page.uuid} {url} on:newcomment={onNewCommentPosted} />
 <ul class="comment-list">
-  {#each comments as comment}
+  {#each allComments as comment}
     <li class="comment">
       <span class="avatar"><FA icon="user" /></span>
       <div class="comment-content">
@@ -30,6 +46,9 @@
 </ul>
 
 <style>
+  label {
+    color: var(--font-color-light);
+  }
   h2 {
     margin-top: 3rem;
   }
@@ -52,8 +71,8 @@
     display: inline-block;
     background-color: var(--background-color-light-2);
     padding: 1rem;
-    width: 2rem;
-    height: 2rem;
+    width: 3.5rem;
+    height: 3.5rem;
     text-align: center;
     border-radius: 50%;
   }
@@ -63,32 +82,5 @@
   .time {
     color: var(--color-ui-6);
     font-size: 0.9rem;
-  }
-  .comment-input {
-    display: flex;
-    flex-direction: row;
-    gap: 2rem;
-    margin-bottom: 2rem;
-    padding: 1rem;
-  }
-  .comment-input .avatar {
-    background-color: var(--color-ui-6);
-  }
-  .comment-input-content {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    align-items: flex-end;
-  }
-  input,
-  textarea,
-  button {
-    color: var(--font-color);
-    width: 100%;
-    padding: 0.5rem;
-    border-radius: 5px;
-    border: 0px solid var(--line-color);
-    outline: none;
-    background-color: var(--color-ui-3);
   }
 </style>

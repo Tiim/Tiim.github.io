@@ -1,6 +1,6 @@
 <script>
   import { base } from "$app/paths";
-  import CommentSection from "./CommentSection.svelte";
+  import CommentSection from "./commets/CommentSection.svelte";
   export let site;
 
   let prefix =
@@ -67,7 +67,7 @@
     {@html site.html}
   </article>
   <div class="container">
-    <CommentSection comments={site.comments} />
+    <CommentSection comments={site.comments} page={site} />
   </div>
 </div>
 

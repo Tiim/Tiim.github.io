@@ -44,7 +44,9 @@ async function loadComments() {
   const url = dev
     ? "http://localhost:8080/comment/"
     : "https://comments.tiim.ch/comment/";
-  const comments = await fetch(url).then((res) => res.json());
+  const comments = await fetch(url)
+    .then((res) => res.json())
+    .catch(() => []);
   const commentMap = comments.reduce(
     (acc, comment) => ({
       ...acc,
