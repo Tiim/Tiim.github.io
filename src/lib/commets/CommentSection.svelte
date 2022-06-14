@@ -15,8 +15,12 @@
   $: allComments = [...newComments, ...comments];
 
   async function getNewComments() {
-    const comments = await fetch(url + page.uuid).then((r) => r.json());
-    newComments = comments;
+    try {
+      const comments = await fetch(url + page.uuid).then((r) => r.json());
+      newComments = comments;
+    } catch (err) {
+      console.warn("Could not fetch comments: ", err.message);
+    }
   }
 
   function onNewCommentPosted(event) {
