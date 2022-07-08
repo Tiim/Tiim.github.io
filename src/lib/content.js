@@ -49,7 +49,7 @@ async function loadComments() {
     .then((res) => res.json())
     .catch(() => []);
 
-  const latest = comments[0]?.timestamp;
+  const latest = comments[0]?.timestamp ?? new Date("2000-01-01");
   const commentMap = comments.reduce(
     (acc, comment) => ({
       ...acc,
