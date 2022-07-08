@@ -47,9 +47,12 @@ async function loadComments() {
     : "https://comments.tiim.ch/comment";
   const comments = await fetch(url)
     .then((res) => res.json())
-    .catch(() => []);
+    .catch((error) => {
+      console.error("Failed to load comments", url, error);
+      return [];
+    });
 
-  const latest = comments[0]?.timestamp ?? new Date("2000-01-01");
+  const latest = comments[0]?.timestamp ?? new Date("2000-01-01").toISOString();
   const commentMap = comments.reduce(
     (acc, comment) => ({
       ...acc,
