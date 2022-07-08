@@ -3,10 +3,11 @@
   import CommentSection from "./commets/CommentSection.svelte";
   export let site;
 
-  let prefix =
+  let prefix;
+  $: prefix =
     {
       projects: "⚙️Project: ",
-    }[site.type] || "";
+    }[site?.type] || "";
 </script>
 
 <svelte:head>

@@ -10,13 +10,17 @@
   export let comments;
 
   let newComments = [];
+  let latestCommentTimestamp;
+  $: latestCommentTimestamp = page.latestComment;
 
   let allComments = [];
   $: allComments = [...newComments, ...comments];
 
   async function getNewComments() {
     try {
-      const comments = await fetch(url + page.uuid).then((r) => r.json());
+      const comments = await fetch(
+        url + page.uuid + `?since=${encodeURIComponent(latestCommentTimestamp)}`
+      ).then((r) => r.json());
       newComments = comments;
     } catch (err) {
       console.warn("Could not fetch comments: ", err.message);
@@ -27,7 +31,7 @@
     newComments = [event.detail, ...newComments];
   }
 
-  getNewComments();
+  $: page && getNewComments();
 </script>
 
 <h2>{allComments.length} Comments</h2>
@@ -36,23 +40,20 @@
   {#each allComments as comment}
     <li class="comment">
       <span class="avatar"><FA icon="user" /></span>
-      <div class="comment-content">
+      <div>
         <h3 id={comment.id}>{comment.name}</h3>
         <span class="time"
           >{comment.timestamp.substring(0, 10) +
             " " +
             new Date(comment.timestamp).toLocaleTimeString()}</span
         >
-        <p>{comment.content}</p>
+        <p class="comment-content">{comment.content}</p>
       </div>
     </li>
   {/each}
 </ul>
 
 <style>
-  label {
-    color: var(--font-color-light);
-  }
   h2 {
     margin-top: 3rem;
   }
@@ -86,5 +87,8 @@
   .time {
     color: var(--color-ui-6);
     font-size: 0.9rem;
+  }
+  .comment-content {
+    white-space: pre-wrap;
   }
 </style>

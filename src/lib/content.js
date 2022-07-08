@@ -28,15 +28,16 @@ export async function getContent() {
     tags,
     tagsMap,
     contentMap,
-    comments,
+    comments: comments.commentMap,
   };
 
   return content;
 }
 
-function addCommentsToPosts(comments, ...posts) {
+function addCommentsToPosts({ commentMap, latest }, ...posts) {
   posts.flat().forEach((post) => {
-    post.comments = comments[post.uuid] || [];
+    post.comments = commentMap[post.uuid] || [];
+    post.latestComment = latest;
   });
 }
 
@@ -47,14 +48,16 @@ async function loadComments() {
   const comments = await fetch(url)
     .then((res) => res.json())
     .catch(() => []);
+
+  const latest = comments[0]?.timestamp;
   const commentMap = comments.reduce(
     (acc, comment) => ({
       ...acc,
-      [comment.page]: [comment, ...(acc[comment.page] || [])],
+      [comment.page]: [...(acc[comment.page] || []), comment],
     }),
     {}
   );
-  return commentMap;
+  return { commentMap, latest };
 }
 
 function blogPostsToTagMap(...posts) {
