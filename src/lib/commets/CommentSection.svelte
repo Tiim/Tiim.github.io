@@ -9,6 +9,8 @@
   export let page;
   export let comments;
 
+  let replyComment = null;
+
   let newComments = [];
   let latestCommentTimestamp;
   $: latestCommentTimestamp = page.latestComment;
@@ -29,24 +31,39 @@
 
   function onNewCommentPosted(event) {
     newComments = [event.detail, ...newComments];
+    replyComment = null;
+  }
+
+  function reply(comment) {
+    replyComment = comment;
+    window.location.href = "#comment-section";
   }
 
   $: page && getNewComments();
 </script>
 
 <h2>{allComments.length} Comments</h2>
-<CommentForm page={page.uuid} {url} on:newcomment={onNewCommentPosted} />
+<CommentForm
+  reply={replyComment}
+  page={page.slug}
+  {url}
+  on:newcomment={onNewCommentPosted}
+  on:unselect-reply={() => (replyComment = null)}
+/>
 <ul class="comment-list">
   {#each allComments as comment}
     <li class="comment">
       <span class="avatar"><FA icon="user" /></span>
-      <div>
-        <h3 id={comment.id}>{comment.name}</h3>
-        <span class="time"
-          >{comment.timestamp.substring(0, 10) +
-            " " +
-            new Date(comment.timestamp).toLocaleTimeString()}</span
-        >
+      <div class="comment-card">
+        <div class="comment-header">
+          <h3 id={comment.id}>{comment.name}</h3>
+          <span class="time"
+            >{comment.timestamp.substring(0, 10) +
+              " " +
+              new Date(comment.timestamp).toLocaleTimeString()}</span
+          >
+          <span><button on:click={() => reply(comment)}>Reply</button></span>
+        </div>
         <p class="comment-content">{comment.content}</p>
       </div>
     </li>
@@ -88,7 +105,25 @@
     color: var(--color-ui-6);
     font-size: 0.9rem;
   }
+  .comment-card {
+    width: 100%;
+  }
   .comment-content {
     white-space: pre-wrap;
+  }
+  .comment-header {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem;
+    align-items: baseline;
+    flex-grow: 1;
+    justify-content: baseline;
+  }
+  button {
+    margin-left: 2rem;
+    padding: 0.5rem 0rem;
+    font-size: 0.8rem;
+    color: var(--font-color-light);
   }
 </style>
