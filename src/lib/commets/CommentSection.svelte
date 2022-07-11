@@ -21,7 +21,9 @@
   async function getNewComments() {
     try {
       const comments = await fetch(
-        url + page.uuid + `?since=${encodeURIComponent(latestCommentTimestamp)}`
+        url +
+          encodeURIComponent(page.slug) +
+          `?since=${encodeURIComponent(latestCommentTimestamp)}`
       ).then((r) => r.json());
       newComments = comments;
     } catch (err) {
@@ -64,6 +66,14 @@
           >
           <span><button on:click={() => reply(comment)}>Reply</button></span>
         </div>
+        {#if comment.reply_to}
+          <span class="reply-notice">
+            In reply to
+            <a href={`#${comment.reply_to}`}>
+              {allComments.find((c) => c.id === comment.reply_to)?.name}</a
+            >
+          </span>
+        {/if}
         <p class="comment-content">{comment.content}</p>
       </div>
     </li>
@@ -100,6 +110,7 @@
   }
   .comment h3 {
     display: inline;
+    margin-bottom: 0px;
   }
   .time {
     color: var(--color-ui-6);
@@ -125,5 +136,9 @@
     padding: 0.5rem 0rem;
     font-size: 0.8rem;
     color: var(--font-color-light);
+  }
+  .reply-notice {
+    font-size: 0.8rem;
+    color: var(--color-ui-6);
   }
 </style>

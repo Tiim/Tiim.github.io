@@ -36,7 +36,7 @@ export async function getContent() {
 
 function addCommentsToPosts({ commentMap, latest }, ...posts) {
   posts.flat().forEach((post) => {
-    post.comments = commentMap[post.uuid] || [];
+    post.comments = commentMap[post.slug] || [];
     post.latestComment = latest;
   });
 }
