@@ -52,10 +52,7 @@ export async function GET() {
     });
   });
 
-  return {
-    body: feed.rss2(),
-    headers: {
-      "Content-Type": "text/xml; charset=utf-8",
-    },
-  };
+  const headers = new Headers();
+  headers.append("Content-Type", "text/xml; charset=utf-8");
+  return new Response(feed.rss2(), { headers });
 }

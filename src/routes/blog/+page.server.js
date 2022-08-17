@@ -1,9 +1,7 @@
 import { getContent } from "$lib/content";
 
-export async function GET() {
+export async function load() {
   let posts = (await getContent()).allBlogPosts;
 
-  return {
-    body: { posts },
-  };
+  return { posts };
 }

@@ -1,6 +1,6 @@
 <script>
   import MarkdownSite from "$lib/MarkdownSite.svelte";
-  export let post;
+  export let data;
 </script>
 
-<MarkdownSite site={post} />
+<MarkdownSite site={data.post} />

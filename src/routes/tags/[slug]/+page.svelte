@@ -1,24 +1,23 @@
 <script>
   import PostCardList from "$lib/PostCardList.svelte";
-  export let details;
-  export let posts;
+  export let data;
 </script>
 
 <svelte:head>
-  <title>🏷️{details.tag} - Tim Bachmann</title>
+  <title>🏷️{data.details.tag} - Tim Bachmann</title>
 </svelte:head>
 
 <div class="container has-text-centered">
   <div class="section">
-    <h1>🏷️ Tag: {details.tag}</h1>
+    <h1>🏷️ Tag: {data.details.tag}</h1>
   </div>
-  {#if details.html}
+  {#if data.details.html}
     <div class="tag-content section">
-      {@html details.html}
+      {@html data.details.html}
     </div>
   {/if}
   <div class="section">
-    <PostCardList {posts} />
+    <PostCardList posts={data.posts} />
   </div>
 </div>
 

@@ -1,7 +1,3 @@
-<script context="module">
-  export const prerender = true;
-</script>
-
 <script>
   import SocialMedia from "$lib/SocialMedia.svelte";
   import siteinfo from "$content/site-info.json";

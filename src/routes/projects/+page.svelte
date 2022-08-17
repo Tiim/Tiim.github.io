@@ -1,6 +1,6 @@
 <script>
   import PostCardList from "$lib/PostCardList.svelte";
-  export let sections;
+  export let data;
 </script>
 
 <svelte:head>
@@ -15,7 +15,7 @@
       useful resources that I compiled. Go check them out!
     </p>
   </div>
-  {#each sections as section}
+  {#each data.sections as section}
     <div class="section content">
       <h2>{section.section}</h2>
       <PostCardList posts={section.values} />

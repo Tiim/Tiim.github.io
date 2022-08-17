@@ -1,7 +1,8 @@
 <script>
   import { FA } from "$lib/fa.js";
   import PostCardList from "$lib/PostCardList.svelte";
-  export let posts;
+  /** @type {import('./$types').PageData} */
+  export let data;
 </script>
 
 <svelte:head>
@@ -19,6 +20,6 @@
     </p>
   </div>
   <div class="section">
-    <PostCardList {posts} />
+    <PostCardList posts={data.posts} />
   </div>
 </div>
