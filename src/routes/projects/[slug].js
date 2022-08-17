@@ -1,6 +1,6 @@
 import { getContent } from "$lib/content";
 
-export async function get({ params }) {
+export async function GET({ params }) {
   const { slug } = params;
   const project = (await getContent()).contentMap[`projects/${slug}`];
 

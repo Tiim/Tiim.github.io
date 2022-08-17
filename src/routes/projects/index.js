@@ -1,6 +1,6 @@
 import { getContent } from "$lib/content";
 
-export async function get() {
+export async function GET() {
   const projects = (await getContent()).projects;
   const sections = groupBy(projects);
   return {

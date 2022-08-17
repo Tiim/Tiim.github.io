@@ -1,4 +1,3 @@
-import { resolve } from "path";
 import adapter from "@sveltejs/adapter-static";
 const dev = process.env.NODE_ENV === "development";
 
@@ -15,18 +14,6 @@ const config = {
       enabled: true,
       entries: ["*", "/projects", "/blog", "/blog/rss.xml"],
       onError: "fail",
-    },
-    vite: {
-      resolve: {
-        alias: {
-          $content: resolve("./content"),
-        },
-      },
-      server: {
-        fs: {
-          allow: ["content"],
-        },
-      },
     },
   },
 };
