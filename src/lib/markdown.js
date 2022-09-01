@@ -8,7 +8,7 @@ import rehypeExternalLinks from "rehype-external-links";
 import { load } from "js-yaml";
 import fs from "fs-extra";
 import { dev } from "$app/env";
-import { visit } from "unist-util-visit";
+import { EXIT, visit } from "unist-util-visit";
 import extractAbstract from "./markdown/extractAbstract";
 import slugify from "slugify";
 
@@ -26,7 +26,9 @@ export async function process(fileName) {
     .use(remarkFrontmatter)
     .use(remarkExtractFrontmatter, { yaml: load })
     .use(extractAbstract)
+    .use(remarkComment)
     .use(remarkRehype)
+    .use(rehypeCallout)
     .use(rehypeExternalLinks, { rel: ["nofollow", "noopener", "noreferrer"] })
     .use(rehypeStringify);
 
@@ -81,14 +83,90 @@ function absoluteLinks() {
         return;
       }
       if (node.url.startsWith("/")) {
-        console.log(`Root link found: ${node.url}`);
         node.url = `https://tiim.ch${node.url}`;
       } else if (node.url.startsWith("#")) {
         node.url === node.url;
       } else if (!/^[a-zA-Z]{1,20}:/.test(node.url)) {
-        console.log(`Relative link found: ${node.url}`);
         node.url = `https://tiim.ch/${node.url}`;
       }
+    });
+  };
+}
+
+function remarkComment() {
+  return function transformer(ast) {
+    visit(ast, "text", (node) => {
+      const split = node.value.split("%%");
+      if (split.length == 1) {
+        return;
+      }
+      const newValue = split
+        .map((value, i) => {
+          if (i % 2 === 0) {
+            return value;
+          }
+          return "";
+        })
+        .join("");
+
+      node.value = newValue;
+    });
+  };
+}
+
+function rehypeCallout() {
+  const calloutRegex = /^\[!(.*?)\]/;
+  return function transformer(ast) {
+    visit(ast, { type: "element", tagName: "blockquote" }, (node) => {
+      let type;
+      visit(node, { type: "element", tagName: "p" }, (pnode, i, parent) => {
+        if (!pnode.children.length || pnode.children[0].type !== "text") {
+          return EXIT;
+        }
+        const tnode = pnode.children[0];
+        const textValue = tnode.value.trim();
+        if (!textValue) {
+          return EXIT;
+        }
+        const match = textValue.match(calloutRegex);
+        if (!match) {
+          return EXIT;
+        }
+        console.log(parent, pnode);
+        type = match[1].toLowerCase();
+        const text = textValue.replace(calloutRegex, "").trim().split("\n");
+        const title = text.shift().trim();
+        const content = text.join("\n").trim();
+        const newElements = [
+          {
+            type: "element",
+            tagName: "span",
+            properties: { className: "callout-title" },
+            children: [
+              {
+                type: "element",
+                tagName: "span",
+                properties: { className: "callout-icon" },
+              },
+              { type: "text", value: title },
+            ],
+          },
+          {
+            type: "element",
+            tagName: "p",
+            children: [{ type: "text", value: content }],
+          },
+        ];
+        parent.children.splice(i, 1, ...newElements);
+
+        return EXIT;
+      });
+      if (!type) {
+        return;
+      }
+      node.properties.className = node.properties.className ?? [];
+      node.properties.className.push(`callout`);
+      node.properties.className.push(`callout-${type}`);
     });
   };
 }
