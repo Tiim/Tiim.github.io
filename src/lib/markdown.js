@@ -8,9 +8,12 @@ import rehypeExternalLinks from "rehype-external-links";
 import { load } from "js-yaml";
 import fs from "fs-extra";
 import { dev } from "$app/env";
-import { EXIT, visit } from "unist-util-visit";
 import extractAbstract from "./markdown/extractAbstract";
 import slugify from "slugify";
+import { rehypeCallout } from "./markdown/rehypeCallout";
+import { remarkHighlight } from "./markdown/remarkHighlight";
+import { remarkAbsoluteLink } from "./markdown/remarkAbsoluteLink";
+import { remarkHideWikilink } from "./markdown/remarkHideWikilink";
 
 /**
  *
@@ -20,19 +23,23 @@ import slugify from "slugify";
 const uuids = {};
 export async function process(fileName) {
   const str = await fs.readFile(`content/` + fileName, "utf8");
+
+  const string = stripComments(str);
+
   let md = unified()
     .use(remarkParse)
-    .use(absoluteLinks)
+    .use(remarkAbsoluteLink)
     .use(remarkFrontmatter)
+    .use(remarkHideWikilink)
     .use(remarkExtractFrontmatter, { yaml: load })
+    .use(remarkHighlight)
     .use(extractAbstract)
-    .use(remarkComment)
     .use(remarkRehype)
     .use(rehypeCallout)
     .use(rehypeExternalLinks, { rel: ["nofollow", "noopener", "noreferrer"] })
     .use(rehypeStringify);
 
-  const processed = await md.process(str);
+  const processed = await md.process(string);
   /**
    * @type {Record<string, any>}
    */
@@ -66,107 +73,22 @@ export async function process(fileName) {
 }
 
 export function renderString(string) {
+  string = stripComments(string);
+
   return unified()
     .use(remarkParse)
+    .use(remarkHighlight)
+    .use(remarkHideWikilink)
+    .use(remarkAbsoluteLink)
     .use(remarkRehype)
-    .use(absoluteLinks)
     .use(rehypeExternalLinks, { rel: ["nofollow", "noopener", "noreferrer"] })
+    .use(rehypeCallout)
     .use(rehypeStringify)
     .processSync(string)
     .toString("utf-8");
 }
 
-function absoluteLinks() {
-  return (tree) => {
-    visit(tree, "link", (node) => {
-      if (!node.url) {
-        return;
-      }
-      if (node.url.startsWith("/")) {
-        node.url = `https://tiim.ch${node.url}`;
-      } else if (node.url.startsWith("#")) {
-        node.url === node.url;
-      } else if (!/^[a-zA-Z]{1,20}:/.test(node.url)) {
-        node.url = `https://tiim.ch/${node.url}`;
-      }
-    });
-  };
-}
-
-function remarkComment() {
-  return function transformer(ast) {
-    visit(ast, "text", (node) => {
-      const split = node.value.split("%%");
-      if (split.length == 1) {
-        return;
-      }
-      const newValue = split
-        .map((value, i) => {
-          if (i % 2 === 0) {
-            return value;
-          }
-          return "";
-        })
-        .join("");
-
-      node.value = newValue;
-    });
-  };
-}
-
-function rehypeCallout() {
-  const calloutRegex = /^\[!(.*?)\]/;
-  return function transformer(ast) {
-    visit(ast, { type: "element", tagName: "blockquote" }, (node) => {
-      let type;
-      visit(node, { type: "element", tagName: "p" }, (pnode, i, parent) => {
-        if (!pnode.children.length || pnode.children[0].type !== "text") {
-          return EXIT;
-        }
-        const tnode = pnode.children[0];
-        const textValue = tnode.value.trim();
-        if (!textValue) {
-          return EXIT;
-        }
-        const match = textValue.match(calloutRegex);
-        if (!match) {
-          return EXIT;
-        }
-        console.log(parent, pnode);
-        type = match[1].toLowerCase();
-        const text = textValue.replace(calloutRegex, "").trim().split("\n");
-        const title = text.shift().trim();
-        const content = text.join("\n").trim();
-        const newElements = [
-          {
-            type: "element",
-            tagName: "span",
-            properties: { className: "callout-title" },
-            children: [
-              {
-                type: "element",
-                tagName: "span",
-                properties: { className: "callout-icon" },
-              },
-              { type: "text", value: title },
-            ],
-          },
-          {
-            type: "element",
-            tagName: "p",
-            children: [{ type: "text", value: content }],
-          },
-        ];
-        parent.children.splice(i, 1, ...newElements);
-
-        return EXIT;
-      });
-      if (!type) {
-        return;
-      }
-      node.properties.className = node.properties.className ?? [];
-      node.properties.className.push(`callout`);
-      node.properties.className.push(`callout-${type}`);
-    });
-  };
+function stripComments(str) {
+  const parts = str.split("%%").filter((part, i) => i % 2 === 0);
+  return parts.join("");
 }

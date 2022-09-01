@@ -90,6 +90,7 @@ blockquote {
   border-left: 4px solid var(--color-ui-11);
   padding: 0.5rem 1rem;
   background-color: var(--background-color-light);
+  margin: 1rem 1rem;
 }
 
 input,
@@ -194,4 +195,89 @@ body::-webkit-scrollbar-thumb {
   background-color: var(--color-syntax-2);
   border-radius: 6px;
   border: 3px solid var(--color-ui-1);
+}
+
+/** Callout **/
+
+.callout {
+  background-color: var(--background-color-light-2);
+  padding: 0;
+  padding-bottom: 0.5rem;
+  border-left: 4px solid rgba(var(--ccolor), 1);
+  --opacity: 0.2;
+  --opacity-icon: 0.4;
+  --ccolor: rgba(158, 158, 158, var(--opacity));
+}
+
+.callout > * {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.callout-title {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  font-weight: bold;
+  background-color: rgba(var(--ccolor), var(--opacity));
+  padding: 0.5rem 1rem;
+  gap: 1rem;
+}
+
+.callout-icon {
+  width: 1.2rem;
+  height: 1.2rem;
+  margin: 0 !important;
+  padding: 0;
+  fill: currentColor;
+  opacity: var(--opacity-icon);
+}
+
+.callout-note {
+  --ccolor: 68, 138, 255;
+}
+.callout-abstract,
+.callout-summary,
+.callout-tldr {
+  --ccolor: 0, 176, 255;
+}
+.callout-info,
+.callout-todo {
+  --ccolor: 0, 184, 212;
+}
+.callout-tip,
+.callout-hint,
+.callout-important {
+  --ccolor: 0, 191, 165;
+}
+.callout-success,
+.callout-check,
+.callout-done {
+  --ccolor: 0, 200, 83;
+}
+.callout-question,
+.callout-help,
+.callout-faq {
+  --ccolor: 100, 221, 23;
+}
+.callout-warning,
+.callout-caution,
+.callout-attention {
+  --ccolor: 255, 145, 0;
+}
+.callout-failure,
+.callout-fail,
+.callout-missing {
+  --ccolor: 255, 82, 82;
+}
+.callout-danger,
+.callout-error {
+  --ccolor: 255, 23, 68;
+}
+.callout-bug {
+  --ccolor: 245, 0, 87;
+}
+.callout-quote,
+.callout-cite {
+  --ccolor: 158, 158, 158;
 }
