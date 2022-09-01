@@ -77,12 +77,18 @@ export function renderString(string) {
 function absoluteLinks() {
   return (tree) => {
     visit(tree, "link", (node) => {
-      if (node.url && node.url.startsWith("/")) {
+      if (!node.url) {
+        return;
+      }
+      if (node.url.startsWith("/")) {
+        console.log(`Root link found: ${node.url}`);
         node.url = `https://tiim.ch${node.url}`;
-      } else if (node.url && !/^[a-zA-Z]{1,20}:/.test(node.url)) {
+      } else if (node.url.startsWith("#")) {
+        node.url === node.url;
+      } else if (!/^[a-zA-Z]{1,20}:/.test(node.url)) {
+        console.log(`Relative link found: ${node.url}`);
         node.url = `https://tiim.ch/${node.url}`;
       }
     });
-    return tree;
   };
 }
