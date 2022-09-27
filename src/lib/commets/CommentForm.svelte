@@ -15,6 +15,26 @@
   let error = null;
 
   async function postComment() {
+    name = name?.trim();
+    comment = comment?.trim();
+    email = email?.trim();
+    if (!name) {
+      error = "Please enter a name";
+      return;
+    }
+    if (!comment) {
+      error = "Please enter a comment";
+      return;
+    }
+    if (!email && notify) {
+      error = "Please enter an email if you want to be notified of replies";
+      return;
+    }
+    if (email && !email.includes("@")) {
+      error = "Please enter a valid email";
+      return;
+    }
+
     const res = await fetch(url, {
       method: "POST",
       headers: {
@@ -86,7 +106,7 @@
     <textarea bind:value={comment} id="commentContent" placeholder="Comment" />
     <button on:click|preventDefault={postComment}>Post</button>
     {#if error}
-      <div>{error}</div>
+      <div class="error">{error}</div>
     {/if}
   </div>
 </div>
@@ -98,6 +118,13 @@
     gap: 2rem;
     margin-bottom: 2rem;
     padding: 1rem;
+  }
+  .error {
+    padding: 1rem;
+    margin: 1rem;
+    border-radius: 0.5rem;
+    color: var(--color-ui-9);
+    background-color: var(--background-color-light-2);
   }
   .comment-input .avatar {
     background-color: var(--color-ui-6);
