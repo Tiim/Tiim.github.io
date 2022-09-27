@@ -48,7 +48,7 @@ export function rehypeCallout() {
           return EXIT;
         }
         const tnode = pnode.children[0];
-        const textValue = tnode.value.trim();
+        const textValue = tnode.value.trimStart();
         if (!textValue) {
           return EXIT;
         }
@@ -57,9 +57,10 @@ export function rehypeCallout() {
           return EXIT;
         }
         type = match[1].toLowerCase();
-        const text = textValue.replace(calloutRegex, "").trim().split("\n");
-        const title = text.shift().trim();
-        const content = text.join("\n").trim();
+        const text = textValue.replace(calloutRegex, "").split("\n");
+        const title =
+          text.shift().trim() || type.slice(0, 1).toUpperCase() + type.slice(1);
+        const content = text.join("\n");
         const newElements = [
           {
             type: "element",
@@ -80,7 +81,10 @@ export function rehypeCallout() {
           {
             type: "element",
             tagName: "p",
-            children: [{ type: "text", value: content }],
+            children: [
+              { type: "text", value: content },
+              ...pnode.children.slice(1),
+            ],
           },
         ];
         parent.children.splice(i, 1, ...newElements);
