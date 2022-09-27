@@ -65,7 +65,9 @@
         </ul>
       </blockquote>
     {/if}
-    {@html site.html}
+    <div class="content">
+      {@html site.html}
+    </div>
   </article>
   <div class="container">
     <CommentSection comments={site.comments} page={site} />
@@ -89,5 +91,8 @@
   }
   .links {
     margin-bottom: 2rem;
+  }
+  .content {
+    color: var(--font-color-muted);
   }
 </style>

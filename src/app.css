@@ -26,6 +26,7 @@ html {
   --background-color-light-2: var(--color-ui-5);
   --background-color-light-3: var(--color-ui-6);
   --font-color: white;
+  --font-color-muted: #dcdcdc;
   --font-color-light: var(--color-syntax-6);
   --font-color-link: var(--color-syntax-2);
   --font-color-link-hover: var(--color-syntax-3);
