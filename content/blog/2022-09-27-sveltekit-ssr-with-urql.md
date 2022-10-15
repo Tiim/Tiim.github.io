@@ -94,8 +94,6 @@ I created a small wrapper function `queryStoreInitialData` that creates the quer
   $: cars = $gqlStore?.data?.car;
 </script>
 
-// src/routes/car/+page.svelte
-
 <div>
   <pre>
 		{JSON.stringify(cars, null, 2)}
