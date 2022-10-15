@@ -84,10 +84,10 @@
     <div class="content">
       {@html site.html}
     </div>
+    <div>
+      <AboutCard {about} />
+    </div>
   </article>
-  <div>
-    <AboutCard {about} />
-  </div>
   <div class="container">
     <CommentSection comments={site.comments} page={site} />
   </div>
