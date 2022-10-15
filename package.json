@@ -4,7 +4,7 @@
   "scripts": {
     "mv-assets": "cp content/assets/* static/assets/",
     "dev": "npm run mv-assets && vite dev",
-    "build": "npm run mv-assets && svelte-kit build",
+    "build": "npm run mv-assets && vite build",
     "preview": "svelte-kit preview",
     "lint": "prettier --ignore-path .gitignore --check --plugin-search-dir=. . && eslint --ignore-path .gitignore .",
     "format": "prettier --ignore-path .gitignore --write --plugin-search-dir=. .",
