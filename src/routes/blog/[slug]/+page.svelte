@@ -3,4 +3,4 @@
   export let data;
 </script>
 
-<MarkdownSite site={data.post} />
+<MarkdownSite site={data.post} about={data.about} />

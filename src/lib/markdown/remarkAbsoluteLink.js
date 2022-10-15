@@ -1,6 +1,6 @@
 import { visit } from "unist-util-visit";
 
-export function absoluteLinks() {
+export function remarkAbsoluteLink() {
   return (tree) => {
     visit(tree, "link", (node) => {
       if (!node.url) {

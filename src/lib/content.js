@@ -13,6 +13,7 @@ export async function getContent() {
   const pages = await loadPages();
   const projects = await loadProjects();
   const comments = await loadComments();
+  const about = await loadAbout();
 
   const tags = await loadTags(allBlogPosts, projects);
   const tagsMap = blogPostsToTagMap(allBlogPosts, projects);
@@ -29,6 +30,7 @@ export async function getContent() {
     tagsMap,
     contentMap,
     comments: comments.commentMap,
+    about,
   };
 
   return content;
@@ -103,6 +105,11 @@ async function loadTags(...posts) {
 async function loadProjects() {
   const projects = await loadMarkdownFolder("projects");
   return projects;
+}
+
+async function loadAbout() {
+  const about = await process("about.md");
+  return about.html;
 }
 
 async function loadPages() {

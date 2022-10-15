@@ -1,7 +1,9 @@
 <script>
   import { base } from "$app/paths";
+  import AboutCard from "./AboutCard.svelte";
   import CommentSection from "./commets/CommentSection.svelte";
   export let site;
+  export let about = null;
 
   let prefix;
   $: prefix =
@@ -45,16 +47,30 @@
       {#each site.tags as tag}<a class="tag" href={`/tags/${tag}`}>{tag}</a
         >{/each}
     </p>
-    {#if site.date || site.modified}
-      <p class="date">
-        {new Date(site.modified || site.date).toLocaleDateString(undefined, {
-          weekday: "long",
-          year: "numeric",
-          month: "long",
-          day: "numeric",
-        })}
-      </p>
-    {/if}
+    <p class="by">
+      {#if about}
+        <address class="author">
+          by <a href="/" rel="author">Tim Bachmann</a>
+        </address>
+      {/if}
+      {#if site.date || site.modified}
+        <time
+          pubdate
+          datetime={new Date(site.modified || site.date).toISOString()}
+          class="date"
+        >
+          on {new Date(site.modified || site.date).toLocaleDateString(
+            undefined,
+            {
+              weekday: "long",
+              year: "numeric",
+              month: "long",
+              day: "numeric",
+            }
+          )}
+        </time>
+      {/if}
+    </p>
     {#if site.links}
       <blockquote class="links">
         <h2>Links</h2>
@@ -69,6 +85,9 @@
       {@html site.html}
     </div>
   </article>
+  <div>
+    <AboutCard {about} />
+  </div>
   <div class="container">
     <CommentSection comments={site.comments} page={site} />
   </div>
@@ -84,10 +103,12 @@
     border-radius: 10px;
     text-align: center;
   }
-  .date {
+  .by {
     font-size: 0.8rem;
     color: var(--font-color-light);
     margin-top: 0.5rem;
+    display: flex;
+    gap: 1rem;
   }
   .links {
     margin-bottom: 2rem;
