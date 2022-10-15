@@ -96,8 +96,8 @@ I created a small wrapper function `queryStoreInitialData` that creates the quer
 
 <div>
   <pre>
-		{JSON.stringify(cars, null, 2)}
-	</pre>
+    {JSON.stringify(cars, null, 2)}
+  </pre>
 </div>
 ```
 
