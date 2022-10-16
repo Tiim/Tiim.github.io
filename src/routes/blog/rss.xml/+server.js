@@ -38,7 +38,7 @@ export async function GET() {
       id: `https://tiim.ch/${post.slug}`,
       link: `https://tiim.ch/${post.slug}`,
       description: post.description,
-      content: post.html,
+      content: post.html + "\n" + css,
       category: post.tags.map((t) => ({ name: t, term: t })),
       author: [
         {
@@ -47,7 +47,8 @@ export async function GET() {
           link: "https://tiim.ch/",
         },
       ],
-      date: new Date(post.date),
+      date: new Date(post.modified || post.date),
+      published: new Date(post.date),
       image,
     });
   });
@@ -56,3 +57,37 @@ export async function GET() {
   headers.append("Content-Type", "text/xml; charset=utf-8");
   return new Response(feed.rss2(), { headers });
 }
+
+const css = `
+<style>
+* {
+  box-sizing: border-box;
+}
+.callout {
+  padding: 0;
+  padding-bottom: 0.5rem;
+  border-left: 4px solid rgba(68, 138, 255, 1);
+}
+.callout > * {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+.callout-title {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  font-weight: bold;
+  background-color: rgba(68, 138, 255, 0.2);
+  padding: 0.5rem 1rem;
+  gap: 1rem;
+}
+.callout-icon {
+  width: 1.2rem;
+  height: 1.2rem;
+  margin: 0 !important;
+  padding: 0;
+  fill: currentColor;
+  opacity: 0.4;
+}
+</style>
+`;
