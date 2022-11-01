@@ -102,9 +102,8 @@
     <div class="e-content content">
       {@html site.html}
     </div>
-    <div class="p-author">
-      <AboutCard {about} />
-    </div>
+
+    <AboutCard {about} />
 
     <div class="post-details">
       <p class="hidden p-summary">{site.description}</p>

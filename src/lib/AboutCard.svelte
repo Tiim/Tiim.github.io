@@ -2,7 +2,7 @@
   export let about;
 </script>
 
-<div class="author-info h-card">
+<div class="author-info p-author h-card">
   <div class="author-avatar">
     <img
       src={about.mf2.photo}
