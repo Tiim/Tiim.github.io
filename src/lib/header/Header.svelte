@@ -16,7 +16,7 @@
     <a href="/" class="navbar-item">Home</a>
     <a href="/projects" class="navbar-item">Projects</a>
     <a href="/blog" class="navbar-item">Blog</a>
-    <a href="/uses" class="navbar-item">Uses</a>
+    <a href="/pages/uses" class="navbar-item">Uses</a>
     <a class="navbar-item" target="_blank" href={siteinfo.contact}> Contact</a>
   </div>
   <div class="navbar-menu mobile">
