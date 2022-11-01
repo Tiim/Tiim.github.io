@@ -4,4 +4,4 @@
   export let data;
 </script>
 
-<MarkdownSite site={data.project} />
+<MarkdownSite site={data.project} about={data.about} />

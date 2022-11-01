@@ -3,12 +3,12 @@ uuid: "c00df133-65ab-40c1-9fa9-376fe6dfae93"
 title: /uses
 published: true
 created: "2022-03-25T23:28:00.000Z"
-date: 2022-03-26
+date: "2022-03-26T00:00:00.000Z"
 description: List of software and gear I use on a regular basis.
-modified: 2022-04-28
+modified: "2022-11-01T23:37:36.000Z"
 ---
 
-This page lists all of the gear and tools I use on a daily basis. This page is inspired by [@wesbos]'s [uses.tech](https://uses.tech/) page.
+This page lists all of the gear and tools I use on a daily basis. This page is inspired by [@wesbos](https://wesbos.com)' [uses.tech](https://uses.tech/) page.
 
 ## Software
 
@@ -16,7 +16,7 @@ This page lists all of the gear and tools I use on a daily basis. This page is i
 
 - [VSCode](https://code.visualstudio.com/)
   This is my preferred code editor. I have tried many others, including Atom and IntelliJ IDEA, but VS Code looks and feels the most intuitive to me and has support for virtually every language out there.
-  - I use the [Horizon Dark VSCode Theme](https://horizontheme.netlify.app/), which is also the colour scheme my website is based on.
+  - I use the [Beyond the Horizon Dark VSCode Theme](https://marketplace.visualstudio.com/items?itemName=shaneyu.beyond-the-horizon-theme-vscode), which is based on the [Horizon Dark] colour scheme. This website uses the same colour scheme.
   - The [Live Share](https://code.visualstudio.com/learn/collaboration/live-share) plugin quickly turned into one of my favourite VSCode plugins, it makes remote pairing on a project a breeze.
 - My favourite monospace font is currently [Fira Code](https://github.com/tonsky/FiraCode).
 - I use the new [Windows Terminal](https://github.com/microsoft/terminal) as my main terminal. I like it because it lets me easily switch between WSL2 and Powershell or CMD, it supports custom font, and it just looks really nice.
@@ -24,17 +24,16 @@ This page lists all of the gear and tools I use on a daily basis. This page is i
 ### Note Taking
 
 - [Obsidian.md](https://obsidian.md/) is the first note taking tool I actually use on a regular basis. I really enjoy the flexibility of it, especially regarding the quickly growing plugin ecosystem. A few of my favourite plugins are in no particular order:
+  - [Obsidian Templater](https://silentvoid13.github.io/Templater/)
   - [Obsidian Dataview](https://blacksmithgu.github.io/obsidian-dataview/)
   - [Obsidian Git](https://github.com/denolehov/obsidian-git)
-  - [Obsidian RSS](https://github.com/joethei/obsidian-rss)
-  - [Obsidian Tasks](https://schemar.github.io/obsidian-tasks/)
-  - [Obsidian Templater](https://silentvoid13.github.io/Templater/)
 
 ### Other Apps
 
 - [Firefox](https://www.mozilla.org/de/firefox/new/) has been my default browser for many years now. I switched back to it after using chrome because I agree with its focus on privacy.
 - Mozilla Thunderbird, I am grudgingly using thunderbird as my email program because I have not found anything better yet. If you know of a better (preferably open source) alternative that allows an unlimited number of email addresses then shoot me a message.
 - I heavily rely on [FancyZones](https://docs.microsoft.com/en-us/windows/powertoys/fancyzones) of Windows PowerToys to arrange my windows in a tiled-ish way.
+- Microsoft To Do, I have recently been looking for a good and simple program to keep all my tasks. Microsoft To Do seems to fit this quite well and looks stunning.
 
 ## Tech Stack
 

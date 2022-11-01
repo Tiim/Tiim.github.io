@@ -109,7 +109,12 @@ async function loadProjects() {
 
 async function loadAbout() {
   const about = await process("about.md");
-  return about.html;
+
+  about.html = Object.entries(about.mf2).reduce((prev, [key, value]) => {
+    return prev.replace(`{{${key}}}`, `<span class="p-${key}">${value}</span>`);
+  }, about.html);
+
+  return about;
 }
 
 async function loadPages() {

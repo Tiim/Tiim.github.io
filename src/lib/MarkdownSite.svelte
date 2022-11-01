@@ -35,42 +35,60 @@
 </svelte:head>
 
 <div>
-  <article class="container">
+  <article class="container h-entry">
     {#if site.cover_image}
       <img alt={site.title} src={base + site.cover_image} />
     {/if}
-    <h1>{prefix}{site.title}</h1>
+
+    <h1>{prefix}<span class="p-name">{site.title}</span></h1>
     {#if !site.published}
       <p class="notification">This site is not published!</p>
     {/if}
+
     <p class="tags">
-      {#each site.tags as tag}<a class="tag" href={`/tags/${tag}`}>{tag}</a
-        >{/each}
+      {#each site.tags as tag}
+        <a class="tag p-category" href={`/tags/${tag}`}>
+          {tag}
+        </a>
+      {/each}
     </p>
-    <p class="by">
-      {#if about}
-        <address class="author">
-          by <a href="/" rel="author">Tim Bachmann</a>
-        </address>
-      {/if}
-      {#if site.date || site.modified}
-        <time
-          pubdate
-          datetime={new Date(site.modified || site.date).toISOString()}
-          class="date"
-        >
-          on {new Date(site.modified || site.date).toLocaleDateString(
-            undefined,
-            {
+
+    <div class="by">
+      <address class="author">
+        by <a href="/" rel="author">Tim Bachmann</a>
+      </address>
+      {#if site.date}
+        <span
+          >published <time
+            pubdate
+            datetime={new Date(site.date).toISOString()}
+            class="date dt-published"
+          >
+            on {new Date(site.date).toLocaleDateString(undefined, {
               weekday: "long",
               year: "numeric",
               month: "long",
               day: "numeric",
-            }
-          )}
+            })}
+          </time>
+        </span>
+      {/if}
+      {#if site.modified}
+        last updated <time
+          pubdate
+          datetime={new Date(site.modified).toISOString()}
+          class="date dt-updated"
+        >
+          on {new Date(site.modified).toLocaleDateString(undefined, {
+            weekday: "long",
+            year: "numeric",
+            month: "long",
+            day: "numeric",
+          })}
         </time>
       {/if}
-    </p>
+    </div>
+
     {#if site.links}
       <blockquote class="links">
         <h2>Links</h2>
@@ -81,17 +99,26 @@
         </ul>
       </blockquote>
     {/if}
-    <div class="content">
+    <div class="e-content content">
       {@html site.html}
     </div>
-    <div>
+    <div class="p-author">
       <AboutCard {about} />
+    </div>
+
+    <div class="post-details">
+      <p class="hidden p-summary">{site.description}</p>
+      <a class="hidden p-url p-uid" href={`/${site.slug}`}>/{site.slug}</a>
     </div>
   </article>
   <div class="container">
     <CommentSection comments={site.comments} page={site} />
   </div>
 </div>
+
+<pre>
+  {JSON.stringify(site, null, 2)}
+</pre>
 
 <style>
   img {
@@ -107,13 +134,18 @@
     font-size: 0.8rem;
     color: var(--font-color-light);
     margin-top: 0.5rem;
-    display: flex;
-    gap: 1rem;
+  }
+  .by > * {
+    display: inline-block;
+    margin-right: 1rem;
   }
   .links {
     margin-bottom: 2rem;
   }
   .content {
     color: var(--font-color-muted);
+  }
+  .hidden {
+    display: none;
   }
 </style>

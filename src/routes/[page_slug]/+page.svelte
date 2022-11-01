@@ -3,9 +3,6 @@
 
   /** @type {import('./$types').PageData} */
   export let data;
-  if (data.page) {
-    data.page.date = null;
-  }
 </script>
 
-<MarkdownSite site={data.page} />
+<MarkdownSite site={data.page} about={data.about} />
