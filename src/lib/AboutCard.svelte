@@ -1,22 +1,18 @@
 <script>
+  import mf2 from "$content/mf2.json";
   export let about;
 </script>
 
 <div class="author-info p-author h-card">
   <div class="author-avatar">
-    <img
-      src={about.mf2.photo}
-      alt={`Photo of ${about.mf2.name}`}
-      class="u-photo"
-    />
+    <img src={mf2.photo} alt={`Photo of ${mf2.name}`} class="u-photo" />
   </div>
   <div>
     <p class="author-bio p-note">{@html about.html}</p>
     <div class="author-detail">
-      <span class="hidden p-gender-identity">{about.mf2.gender_identity}</span>
-      <a href={`mailto:${about.mf2.email}`} class="p-email">{about.mf2.email}</a
-      >
-      <a class="p-url" href={about.mf2.url}>{about.mf2.url}</a>
+      <span class="hidden p-gender-identity">{mf2.gender_identity}</span>
+      <a href={`mailto:${mf2.email}`} class="p-email">{mf2.email}</a>
+      <a class="p-url" href={mf2.url}>{mf2.url}</a>
     </div>
   </div>
 </div>

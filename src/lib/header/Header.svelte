@@ -1,5 +1,5 @@
 <script>
-  import siteinfo from "$content/site-info.json";
+  import mf2 from "$content/mf2.json";
 
   let mobileOpen = false;
 
@@ -10,14 +10,16 @@
 
 <nav class="navbar" aria-label="main navigation">
   <div class="navbar-brand">
-    <a class="navbar-item" href="/">{siteinfo.name}</a>
+    <a class="navbar-item" href="/">{mf2.name}</a>
   </div>
   <div class="navbar-menu desktop">
     <a href="/" class="navbar-item">Home</a>
     <a href="/projects" class="navbar-item">Projects</a>
     <a href="/blog" class="navbar-item">Blog</a>
     <a href="/pages/uses" class="navbar-item">Uses</a>
-    <a class="navbar-item" target="_blank" href={siteinfo.contact}> Contact</a>
+    <a class="navbar-item" target="_blank" href={`mailto:${mf2.email}`}>
+      Contact
+    </a>
   </div>
   <div class="navbar-menu mobile">
     <div>
@@ -38,15 +40,15 @@
         <a on:click={nav} class="navbar-item" href="/">Home</a>
         <a on:click={nav} class="navbar-item" href="/projects">Projects</a>
         <a on:click={nav} class="navbar-item" href="/blog">Blog</a>
-        <a on:click={nav} class="navbar-item" href="/uses">Uses</a>
+        <a on:click={nav} class="navbar-item" href="/pages/uses">Uses</a>
         <a
           on:click={nav}
           class="navbar-item"
           target="_blank"
-          href={siteinfo.contact}
+          href={`mailto:${mf2.email}`}
         >
-          Contact</a
-        >
+          Contact
+        </a>
       </div>
     {/if}
   </div>

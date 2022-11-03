@@ -1,6 +1,7 @@
 import { dev } from "$app/env";
 import fs from "fs-extra";
 import { process } from "./markdown";
+import mf2 from "$content/mf2.json";
 
 let content = null;
 export async function getContent() {
@@ -13,7 +14,7 @@ export async function getContent() {
   const pages = await loadPages();
   const projects = await loadProjects();
   const comments = await loadComments();
-  const about = await loadAbout();
+  const meta = postsToMap(await loadMetadata());
 
   const tags = await loadTags(allBlogPosts, projects);
   const tagsMap = blogPostsToTagMap(allBlogPosts, projects);
@@ -30,7 +31,8 @@ export async function getContent() {
     tagsMap,
     contentMap,
     comments: comments.commentMap,
-    about,
+    meta,
+    mf2,
   };
 
   return content;
@@ -107,14 +109,20 @@ async function loadProjects() {
   return projects;
 }
 
-async function loadAbout() {
-  const about = await process("about.md");
+async function loadMetadata() {
+  const entries = await loadMarkdownFolder("metadata");
 
-  about.html = Object.entries(about.mf2).reduce((prev, [key, value]) => {
-    return prev.replace(`{{${key}}}`, `<span class="p-${key}">${value}</span>`);
-  }, about.html);
-
-  return about;
+  return entries.map((entry) => {
+    entry.html = Object.entries(mf2).reduce((prev, [key, value]) => {
+      const realKey = `p-${key.replace(/_/g, "-")}`;
+      return prev.replace(
+        `{{${key}}}`,
+        `<span class="${realKey}">${value}</span>`
+      );
+    }, entry.html);
+    entry.slug = entry.slug.replace("metadata/", "");
+    return entry;
+  });
 }
 
 async function loadPages() {

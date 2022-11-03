@@ -1,5 +1,5 @@
 import { Feed } from "feed";
-import remoteImages from "$content/remote-images.json";
+import remoteImages from "$content/links.json";
 import { getContent } from "$lib/content";
 
 export async function GET() {
@@ -12,8 +12,8 @@ export async function GET() {
     id: "https://tiim.ch/",
     link: "https://tiim.ch/",
     language: "en",
-    image: remoteImages.favicon.link,
-    favicon: remoteImages.favicon.link,
+    image: remoteImages.favicon,
+    favicon: remoteImages.favicon,
     copyright: "Tim Bachmann",
     updated: new Date(),
     feedLinks: {

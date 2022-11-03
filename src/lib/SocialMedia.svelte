@@ -8,7 +8,7 @@
   <div class="columns multiline">
     {#each socialMedia as site}
       <div class="column">
-        <a target="_blank" href={site.link}>
+        <a target="_blank" rel="me" href={site.link}>
           <FA icon={site.icon} class="icon is-small" />
           {site.site}
         </a>

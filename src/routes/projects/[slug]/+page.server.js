@@ -4,7 +4,7 @@ export async function load({ params }) {
   const { slug } = params;
   const content = await getContent();
   const project = content.contentMap[`projects/${slug}`];
-  const about = content.about;
+  const about = content.meta.about;
 
   return { project, about };
 }

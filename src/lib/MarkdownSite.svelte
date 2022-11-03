@@ -115,10 +115,6 @@
   </div>
 </div>
 
-<pre>
-  {JSON.stringify(site, null, 2)}
-</pre>
-
 <style>
   img {
     max-width: 100%;
