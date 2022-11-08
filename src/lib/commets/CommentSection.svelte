@@ -64,12 +64,21 @@
               " " +
               new Date(comment.timestamp).toLocaleTimeString()}</span
           >
-          <span><button on:click={() => reply(comment)}>Reply</button></span>
+          {#if comment.type === "comment"}
+            <span>
+              <button on:click={() => reply(comment)}>Reply</button>
+            </span>
+          {/if}
         </div>
-        {#if comment.reply_to}
+        <span class="reply-notice">
+          {#if comment.type === "webmention"}
+            <p class="comment-text">Mentioned this post</p>
+          {/if}
+        </span>
+        {#if comment.replyTo}
           <span class="reply-notice">
             In reply to
-            <a href={`#${comment.reply_to}`}>
+            <a href={`#${comment.replyTo}`}>
               {allComments.find((c) => c.id === comment.reply_to)?.name}</a
             >
           </span>
