@@ -44,7 +44,7 @@
   $: page && getNewComments();
 </script>
 
-<h2>{allComments.length} Comments</h2>
+<h2>{allComments.length} Comments and Interactions</h2>
 <CommentForm
   reply={replyComment}
   page={page.slug}
@@ -59,22 +59,24 @@
       <div class="comment-card">
         <div class="comment-header">
           <h3 id={comment.id}>{comment.name}</h3>
-          <span class="time"
-            >{comment.timestamp.substring(0, 10) +
-              " " +
-              new Date(comment.timestamp).toLocaleTimeString()}</span
-          >
+          <span class="time">
+            <a href={comment.url}>
+              {comment.timestamp.substring(0, 10) +
+                " " +
+                new Date(comment.timestamp).toLocaleTimeString()}
+            </a>
+          </span>
+          <span class="reply-notice">
+            {#if comment.type === "webmention"}
+              <p class="comment-text">Mentioned this post</p>
+            {/if}
+          </span>
           {#if comment.type === "comment"}
             <span>
               <button on:click={() => reply(comment)}>Reply</button>
             </span>
           {/if}
         </div>
-        <span class="reply-notice">
-          {#if comment.type === "webmention"}
-            <p class="comment-text">Mentioned this post</p>
-          {/if}
-        </span>
         {#if comment.replyTo}
           <span class="reply-notice">
             In reply to
@@ -124,6 +126,7 @@
   .time {
     color: var(--color-ui-6);
     font-size: 0.9rem;
+    text-decoration: underline;
   }
   .comment-card {
     width: 100%;
