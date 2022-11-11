@@ -1,7 +1,7 @@
 import { dev } from "$app/env";
-import fs from "fs-extra";
 import { process } from "./markdown";
 import mf2 from "$content/mf2.json";
+import recursiveReadDir from "recursive-readdir";
 
 let content = null;
 export async function getContent() {
@@ -15,13 +15,14 @@ export async function getContent() {
   const projects = await loadProjects();
   const comments = await loadComments();
   const meta = postsToMap(await loadMetadata());
+  const notes = await loadNotes();
 
-  const tags = await loadTags(allBlogPosts, projects);
-  const tagsMap = blogPostsToTagMap(allBlogPosts, projects);
+  const tags = await loadTags(allBlogPosts, projects, notes);
+  const tagsMap = blogPostsToTagMap(allBlogPosts, projects, notes);
 
-  addCommentsToPosts(comments, allBlogPosts, projects, pages);
+  addCommentsToPosts(comments, allBlogPosts, projects, pages, notes);
 
-  const contentMap = postsToMap(allBlogPosts, projects, pages);
+  const contentMap = postsToMap(allBlogPosts, projects, pages, notes);
 
   content = {
     allBlogPosts,
@@ -33,6 +34,7 @@ export async function getContent() {
     comments: comments.commentMap,
     meta,
     mf2,
+    notes,
   };
 
   return content;
@@ -109,6 +111,12 @@ async function loadProjects() {
   return projects;
 }
 
+async function loadNotes() {
+  const notes = await loadMarkdownFolder("mf2");
+  notes.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+  return notes;
+}
+
 async function loadMetadata() {
   const entries = await loadMarkdownFolder("metadata");
 
@@ -145,12 +153,13 @@ function postsToMap(...posts) {
 }
 
 async function loadMarkdownFolder(folder) {
-  const dir = await fs.readdir("content/" + folder);
+  const dir = await recursiveReadDir("content/" + folder);
   const files = await Promise.all(
     dir
       .filter((fileName) => /.+\.md$/.test(fileName))
+      .map((fn) => fn.substring("content/".length))
       .map(async (fileName) => {
-        const data = await process(folder + "/" + fileName);
+        const data = await process(fileName);
         return data;
       })
   );

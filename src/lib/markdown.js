@@ -65,8 +65,9 @@ export async function process(fileName) {
   }
   uuids[metadata.uuid] = fileName;
 
+  const mf2html = getMf2Markup(metadata) + html;
   if (metadata.published || dev) {
-    return { html, slug: fileName.slice(0, -3), ...metadata };
+    return { html: mf2html, slug: fileName.slice(0, -3), ...metadata };
   } else {
     console.log(`Unpublished: ${fileName}, (${metadata.title}). Skipped.`);
   }
@@ -91,4 +92,18 @@ export function renderString(string) {
 function stripComments(str) {
   const parts = str.split("%%").filter((part, i) => i % 2 === 0);
   return parts.join("");
+}
+
+function getMf2Markup(metadata) {
+  let markup = "";
+
+  if (metadata.reply_to) {
+    markup += `<span>This post is in reply to <a class="u-in-reply-to" href="${metadata.reply_to}">${metadata.reply_to}</a></span>`;
+  }
+
+  if (markup) {
+    return `<div class="mf2">${markup}</div>\n`;
+  } else {
+    return "";
+  }
 }

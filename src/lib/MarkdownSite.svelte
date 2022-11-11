@@ -2,6 +2,7 @@
   import { base } from "$app/paths";
   import AboutCard from "./AboutCard.svelte";
   import CommentSection from "./commets/CommentSection.svelte";
+  import PubDate from "./pub-date.svelte";
   export let site;
   export let about = null;
 
@@ -57,36 +58,7 @@
       <address class="author">
         by <a href="/" rel="author">Tim Bachmann</a>
       </address>
-      {#if site.date}
-        <span
-          >published <time
-            pubdate
-            datetime={new Date(site.date).toISOString()}
-            class="date dt-published"
-          >
-            on {new Date(site.date).toLocaleDateString(undefined, {
-              weekday: "long",
-              year: "numeric",
-              month: "long",
-              day: "numeric",
-            })}
-          </time>
-        </span>
-      {/if}
-      {#if site.modified}
-        last updated <time
-          pubdate
-          datetime={new Date(site.modified).toISOString()}
-          class="date dt-updated"
-        >
-          on {new Date(site.modified).toLocaleDateString(undefined, {
-            weekday: "long",
-            year: "numeric",
-            month: "long",
-            day: "numeric",
-          })}
-        </time>
-      {/if}
+      <PubDate {site} />
     </div>
 
     {#if site.links}
@@ -110,9 +82,11 @@
       <a class="hidden p-url p-uid" href={`/${site.slug}`}>/{site.slug}</a>
     </div>
   </article>
-  <div class="container">
-    <CommentSection comments={site.comments} page={site} />
-  </div>
+  {#if site.comments}
+    <div class="container">
+      <CommentSection comments={site.comments} page={site} />
+    </div>
+  {/if}
 </div>
 
 <style>
@@ -139,6 +113,7 @@
   }
   .content {
     color: var(--font-color-muted);
+    margin-top: 4rem;
   }
   .hidden {
     display: none;

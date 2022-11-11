@@ -3,13 +3,14 @@ import remoteImages from "$content/links.json";
 import { getContent } from "$lib/content";
 
 export async function GET() {
-  const posts = (await getContent()).allBlogPosts;
+  const content = await getContent();
+  const posts = Object.values(content.contentMap);
 
   var feed = new Feed({
-    title: "Tim Bachmann's Blog",
+    title: "Tim Bachmann's Blog - Full RSS Feed",
     description:
-      "Blog about web development, programming, and anything that might interest me.",
-    id: "https://tiim.ch/",
+      "Everything about web development, programming, and other things that might interest me. This feed contains blog posts as well as notes, replys and other content.",
+    id: "https://tiim.ch/full-rss.xml",
     link: "https://tiim.ch/",
     language: "en",
     image: remoteImages.favicon,
@@ -17,7 +18,7 @@ export async function GET() {
     copyright: "Tim Bachmann",
     updated: new Date(),
     feedLinks: {
-      rss: "https://tiim.ch/blog/rss.xml",
+      rss: "https://tiim.ch/full-rss.xml",
     },
     author: {
       name: "Tim Bachmann",

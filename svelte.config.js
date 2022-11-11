@@ -12,7 +12,7 @@ const config = {
       default: true,
       crawl: true,
       enabled: true,
-      entries: ["*", "/projects", "/blog", "/blog/rss.xml", "/tags"],
+      entries: ["*", "/projects", "/blog", "/blog/rss.xml", "/tags", "/mf2"],
       onError: "fail",
     },
   },
