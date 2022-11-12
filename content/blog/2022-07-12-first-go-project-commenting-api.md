@@ -9,7 +9,7 @@ published: true
 modified:
 description: "I built my first project using the Go programming language: A commenting API for the jam-stack. It is simple but easily extensible. And it powers the commenting feature of this website!"
 cover_image: "/assets/2022-07-first-go-project-commenting-api.png"
-content_tags: ["go", "web-api", "project"]
+content_tags: ["go", "web-api", "project", "tiim.ch"]
 ---
 
 I recently have been looking around for a simple commenting system to integrate into my website. Since my website is a pre-rendered static Html site hosted on [Github Pages](https://pages.github.com), there is no way for it to directly store comments because it does not have a database. The only option for dynamic content to be stored is with an external service.
