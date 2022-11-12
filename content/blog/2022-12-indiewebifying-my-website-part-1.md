@@ -8,7 +8,7 @@ title: IndieWebifying my Website Part 1 - Microformats and Webmentions
 published: true
 modified:
 description: This site now supports sending and receiving webmentions and surfacing structured data using microformats2.
-cover_image: ""
+cover_image: "https://i.imgur.com/FpgIBxI.jpg"
 content_tags: ["IndieWeb", "Webmentions", "mf2", "tiim.ch", "go"]
 ---
 
