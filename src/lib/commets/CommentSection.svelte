@@ -16,7 +16,10 @@
   $: latestCommentTimestamp = page.latestComment;
 
   let allComments = [];
-  $: allComments = [...newComments, ...comments];
+  $: allComments = [
+    ...newComments,
+    ...comments.filter((c) => !newComments.find((nc) => nc.id === c.id)),
+  ];
 
   async function getNewComments() {
     try {
