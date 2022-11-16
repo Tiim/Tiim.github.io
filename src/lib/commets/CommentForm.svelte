@@ -64,7 +64,7 @@
 
 <div class="comment-form-wrap">
   <span>
-    Leave a coment or interact with this page via
+    Leave a comment or interact with this page via
     <a href="http://indieweb.org/webmention"> WebMention </a>
   </span>
   <div id="comment-section" class="comment-input">
