@@ -1,38 +1,46 @@
-# create-svelte
+# Tim's Personal Website
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte);
+> [tiim.ch](https://tiim.ch/)
+> Powered by [sveltekit](https://kit.svelte.dev), markdown, and my [go-comment-api](https://github.com/Tiim/go-comment-api).
 
-## Creating a project
+## Content
 
-If you're seeing this, you've probably already done this step. Congrats!
+Stored int the [content](/content/) folder:
 
-```bash
-# create a new project in the current directory
-npm init svelte@next
+- `assets`: contains images.
+- `blog`: contains full blog posts, articles.
+- `metadata`: contains special markdown files that are used in components on the site.
+- `mf2`: notes, replies, likes and similar shortform non-exposed content.
+- `projects`: projects, products, apps and scripts.
+- `tags`: tags with extra descriptions.
 
-# create a new project in my-app
-npm init svelte@next my-app
+### Frontmatter
+
+```yml
+---
+uuid: # string, uuid of the item (required)
+title: # string, title of the item, will be shown as a h1 tag (optional)
+published: # boolean, true if this item should be shown (optional, default false)
+description: # string, short summary of the item (optional)
+content_tags: # array<string>, list of tags (optional)
+date: # date-time (iso), published date and time, (required)
+modified: # date-time (iso), date-time of last modification (optional)
+cover_image: # string, relative or absolute url to image file, (optional)
+links: # array<url>, list of links to show at the top of the page, (optional)
+reply_to: # url, the url this page is a reply to, (optional)
+like_of: # url, the url this page is a `like` of, (optional)
+---
 ```
-
-> Note: the `@next` is temporary
 
 ## Developing
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
 ```bash
 npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
 ```
 
 ## Building
 
-Before creating a production version of your app, install an [adapter](https://kit.svelte.dev/docs#adapters) for your target environment. Then:
-
 ```bash
 npm run build
+npm run preview
 ```
-
-> You can preview the built app with `npm run preview`, regardless of whether you installed an adapter. This should _not_ be used to serve your app in production.

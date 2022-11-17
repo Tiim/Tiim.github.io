@@ -98,7 +98,10 @@ function getMf2Markup(metadata) {
   let markup = "";
 
   if (metadata.reply_to) {
-    markup += `<span>This post is in reply to <a class="u-in-reply-to" href="${metadata.reply_to}">${metadata.reply_to}</a></span>`;
+    markup += `<p>This post is in reply to <a class="u-in-reply-to" href="${metadata.reply_to}">${metadata.reply_to}</a></p>`;
+  }
+  if (metadata.like_of) {
+    markup += `<p>Liked <a class="u-like-of" href="${metadata.like_of}">${metadata.like_of}</a></p>`;
   }
 
   if (markup) {
