@@ -78,7 +78,9 @@
     <AboutCard {about} />
 
     <div class="post-details">
-      <p class="hidden p-summary">{site.description}</p>
+      {#if site.description}
+        <p class="hidden p-summary">{site.description}</p>
+      {/if}
       <a class="hidden p-url p-uid" href={`/${site.slug}`}>/{site.slug}</a>
     </div>
   </article>
