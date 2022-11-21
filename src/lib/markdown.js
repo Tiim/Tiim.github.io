@@ -54,8 +54,19 @@ export async function process(fileName) {
 
   metadata.links = metadata.links?.map((link) => renderString(link));
 
+  if (fileName.startsWith("mf2/")) {
+    metadata.published = true;
+  }
+
   if (!metadata.date && metadata.published) {
     throw new Error(`No date in ${fileName}`);
+  }
+
+  if (metadata.title === undefined && metadata.date) {
+    metadata.title =
+      new Date(metadata.date).toISOString().substring(0, 10) +
+      " " +
+      fileName.split("/").pop().split(".")[0];
   }
 
   const mf2html = getMf2Markup(metadata) + html;
@@ -90,11 +101,23 @@ function stripComments(str) {
 function getMf2Markup(metadata) {
   let markup = "";
 
-  if (metadata.reply_to) {
-    markup += `<p>This post is in reply to <a class="u-in-reply-to" href="${metadata.reply_to}">${metadata.reply_to}</a></p>`;
+  if (metadata.in_reply_to) {
+    const reply = metadata.in_reply_to;
+    markup += `<p>This post is in reply to a <a class="u-in-reply-to" href="${
+      reply.url
+    }">${reply.name || reply.author.name || reply.url}</a></p>`;
   }
   if (metadata.like_of) {
-    markup += `<p>Liked <a class="u-like-of" href="${metadata.like_of}">${metadata.like_of}</a></p>`;
+    const like = metadata.like_of;
+    markup += `<p>Liked <a class="u-like-of" href="${like.url}">${
+      like.name || like.content || like.url
+    }</a></p>`;
+  }
+  if (metadata.repost_of) {
+    const repost = metadata.repost_of;
+    markup += `<p>Reposted <a class="u-repost-of" href="${repost.url}">${
+      repost.name || repost.url
+    }</a></p>`;
   }
 
   if (markup) {
