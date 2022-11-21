@@ -18,7 +18,7 @@ Stored int the [content](/content/) folder:
 
 ```yml
 ---
-uuid: # string, uuid of the item (required)
+uuid: # string, uuid of the item (optional)
 title: # string, title of the item, will be shown as a h1 tag (optional)
 published: # boolean, true if this item should be shown (optional, default false)
 description: # string, short summary of the item (optional)

@@ -54,6 +54,10 @@ export async function process(fileName) {
 
   metadata.links = metadata.links?.map((link) => renderString(link));
 
+  if (!metadata.date && metadata.published) {
+    throw new Error(`No date in ${fileName}`);
+  }
+
   const mf2html = getMf2Markup(metadata) + html;
   if (metadata.published || dev) {
     return { html: mf2html, slug: fileName.slice(0, -3), ...metadata };
