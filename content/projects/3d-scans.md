@@ -2,8 +2,8 @@
 uuid: "01128b77-eace-4b25-a5b9-9cf36ea32b6a"
 title: 3D Scanned and Modeled Objects
 section: Projects
-date: "2022-03-05T21:21:10+01:00"
-modified: "2022-06-08T22:15:48+02:00"
+date: 2022-03-05T21:21:10+01:00
+modified: 2022-06-08T22:15:48+02:00
 published: true
 content_tags: ["3D Scanning", "3D model", "3D"]
 links:

@@ -1,10 +1,10 @@
 ---
 uuid: "874d0a10-6de8-4816-9b69-5c2fbe782774"
-date: "2022-11-11T14:43:58Z"
-created: "2022-11-11T14:43:58Z"
+date: 2022-11-11T14:43:58Z
+created: 2022-11-11T14:43:58Z
 title: Test note
 published: true
-modified: "2022-11-11T14:43:58Z"
+modified: 2022-11-11T14:43:58Z
 content_tags: ["mf2", "indieweb"]
 reply_to: "https://webmention.rocks/test/4"
 ---

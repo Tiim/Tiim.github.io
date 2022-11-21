@@ -1,8 +1,8 @@
 ---
 uuid: "f42e0cad-df0e-4862-8beb-352071f81890"
 title: Obsidian.md Fitbit Activity Script
-date: "2022-04-27T22:40:15+02:00"
-modified: "2022-06-08T22:15:48+02:00"
+date: 2022-04-27T22:40:15+02:00
+modified: 2022-06-08T22:15:48+02:00
 section: Projects
 published: true
 content_tags: ["obsidian", "fitbit", "plugin", "dev"]

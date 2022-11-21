@@ -3,9 +3,9 @@ uuid: "c00df133-65ab-40c1-9fa9-376fe6dfae93"
 title: /uses
 published: true
 created: "2022-03-25T23:28:00.000Z"
-date: "2022-03-26T00:00:00.000Z"
+date: 2022-03-26T00:00:00.000Z
 description: List of software and gear I use on a regular basis.
-modified: "2022-11-01T23:37:36.000Z"
+modified: 2022-11-01T23:37:36.000Z
 ---
 
 This page lists all of the gear and tools I use on a daily basis. This page is inspired by [@wesbos](https://wesbos.com)' [uses.tech](https://uses.tech/) page.

@@ -1,8 +1,8 @@
 ---
 uuid: "8a52a1ad-a5cf-4191-947c-db6862746816"
 title: WooCommerce Order Explorer
-date: "2022-03-05T21:21:10+01:00"
-modified: "2022-06-08T22:15:48+02:00"
+date: 2022-03-05T21:21:10+01:00
+modified: 2022-06-08T22:15:48+02:00
 section: Apps
 published: true
 content_tags: ["svelte", "wordpress", "woocommerce", "dev"]

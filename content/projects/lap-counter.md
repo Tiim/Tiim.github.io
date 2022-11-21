@@ -1,8 +1,8 @@
 ---
 uuid: "871ebd58-0543-4d3a-9f3d-16cd85da9bf9"
 title: Lap Counter
-date: "2022-03-05T21:21:10+01:00"
-modified: "2022-06-08T22:15:48+02:00"
+date: 2022-03-05T21:21:10+01:00
+modified: 2022-06-08T22:15:48+02:00
 section: Apps
 published: true
 content_tags: ["svelte", "swim", "dev"]

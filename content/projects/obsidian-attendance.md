@@ -1,8 +1,8 @@
 ---
 uuid: "87310ba6-0738-41da-86ef-512acfe80d69"
 title: Obsidian Attendance Plugin
-date: "2022-06-05T23:19:36+02:00"
-modified: "2022-06-08T22:15:48+02:00"
+date: 2022-06-05T23:19:36+02:00
+modified: 2022-06-08T22:15:48+02:00
 section: Projects
 published: false
 content_tags: ["obsidian", "plugin", "dev"]
