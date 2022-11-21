@@ -20,7 +20,6 @@ import { remarkHideWikilink } from "./markdown/remarkHideWikilink";
  * @param {String} fileName
  * @returns {Promise<{html: string, slug: string} & Record<string,any>>}
  */
-const uuids = {};
 export async function process(fileName) {
   const str = await fs.readFile(`content/` + fileName, "utf8");
 
@@ -54,16 +53,6 @@ export async function process(fileName) {
   metadata.tags.sort();
 
   metadata.links = metadata.links?.map((link) => renderString(link));
-
-  if (!metadata.uuid) {
-    throw new Error(`⚠ No uuid found for ${fileName}`);
-  }
-  if (uuids[metadata.uuid] && uuids[metadata.uuid] !== fileName) {
-    throw new Error(
-      `⚠ UUID collision between ${fileName} and ${uuids[metadata.uuid]}`
-    );
-  }
-  uuids[metadata.uuid] = fileName;
 
   const mf2html = getMf2Markup(metadata) + html;
   if (metadata.published || dev) {

@@ -18,7 +18,6 @@
   <meta property="og:title" content={site.title} />
   <meta property="og:type" content="article" />
   <meta property="og:description" content={site.description} />
-  <meta property="uuid" content={site.uuid} />
   {#if site.date}
     <meta property="article:published_time" content={site.date} />
   {/if}
