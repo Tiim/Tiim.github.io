@@ -1,0 +1,13 @@
+*.log
+.cache
+.DS_Store
+src/.temp
+node_modules
+dist
+.env
+.env.*
+build/
+.svelte-kit
+
+/static/assets
+/content/mf2/
