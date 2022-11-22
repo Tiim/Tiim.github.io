@@ -1,5 +1,5 @@
 ---
-name: Hello Micropub
+title: Hello Micropub
 date: 2022-11-21T13:55:00Z
 content_tags:
 - indieweb

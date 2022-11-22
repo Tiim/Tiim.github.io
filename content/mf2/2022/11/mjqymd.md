@@ -1,5 +1,5 @@
 ---
-name: adding Micropub support • AndreGarzia.com
+title: adding Micropub support • AndreGarzia.com
 date: 2022-11-21T14:25:00Z
 content_tags:
 - micropub

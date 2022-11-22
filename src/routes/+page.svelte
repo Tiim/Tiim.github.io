@@ -1,6 +1,7 @@
 <script>
   import SocialMedia from "$lib/SocialMedia.svelte";
   import remoteImages from "$content/links.json";
+  import PostCardList from "$lib/PostCardList.svelte";
 
   export let data;
 </script>
@@ -38,6 +39,17 @@
     </div>
     <div class="section">
       <SocialMedia />
+    </div>
+    <div>
+      <h2>Recent activity</h2>
+      <PostCardList posts={data.recent} />
+      <p>
+        <a href="/blog">View all blog posts</a>
+        |
+        <a href="/mf2">View all microposts</a>
+        |
+        <a href="projects">View all projects</a>
+      </p>
     </div>
   </div>
 </div>

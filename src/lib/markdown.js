@@ -56,6 +56,9 @@ export async function process(fileName) {
 
   if (fileName.startsWith("mf2/")) {
     metadata.published = true;
+    metadata.type = getPostType(metadata);
+  } else {
+    metadata.type = "article";
   }
 
   if (!metadata.date && metadata.published) {
@@ -69,7 +72,11 @@ export async function process(fileName) {
       fileName.split("/").pop().split(".")[0];
   }
 
-  const mf2html = getMf2Markup(metadata) + html;
+  const mf2 = getMf2Markup(metadata);
+  const mf2html = mf2.markup + html;
+  if (!metadata.description) {
+    metadata.description = mf2.summary;
+  }
   if (metadata.published || dev) {
     return { html: mf2html, slug: fileName.slice(0, -3), ...metadata };
   } else {
@@ -100,29 +107,52 @@ function stripComments(str) {
 
 function getMf2Markup(metadata) {
   let markup = "";
-
+  let summary = "";
   if (metadata.in_reply_to) {
     const reply = metadata.in_reply_to;
     markup += `<p>This post is in reply to a <a class="u-in-reply-to" href="${
       reply.url
     }">${reply.name || reply.author.name || reply.url}</a></p>`;
+    summary += `💬In reply to: ${reply.name || reply.author.name || reply.url}`;
   }
   if (metadata.like_of) {
     const like = metadata.like_of;
     markup += `<p>Liked <a class="u-like-of" href="${like.url}">${
       like.name || like.content || like.url
     }</a></p>`;
+    summary += `👍Liked: ${like.name || like.content || like.url}`;
   }
   if (metadata.repost_of) {
     const repost = metadata.repost_of;
     markup += `<p>Reposted <a class="u-repost-of" href="${repost.url}">${
       repost.name || repost.url
     }</a></p>`;
+    summary += `♺Shared: ${repost.name || repost.url}`;
+  }
+  if (metadata.rsvp) {
+    markup += `<p>RSVP: <span class="p-rsvp">${metadata.rsvp}</span></p>`;
+    summary += `💌RSVP: ${metadata.rsvp}`;
   }
 
   if (markup) {
-    return `<div class="mf2">${markup}</div>\n`;
+    return { markup: `<div class="mf2">${markup}</div>\n`, summary };
   } else {
-    return "";
+    return { markup: "", summary };
   }
+}
+
+// https://indieweb.org/post-type-discovery
+function getPostType(metadata) {
+  if (["yes", "no", "maybe", "interested"].includes(metadata.rsvp)) {
+    return "rsvp";
+  } else if (metadata.in_reply_to) {
+    return "reply";
+  } else if (metadata.repost_of) {
+    return "repost";
+  } else if (metadata.like_of) {
+    return "like";
+  } else if (metadata.photo?.url) {
+    return "photo";
+  }
+  return "note";
 }

@@ -23,6 +23,11 @@ export async function getContent() {
   addCommentsToPosts(comments, allBlogPosts, projects, pages, notes);
 
   const contentMap = postsToMap(allBlogPosts, projects, pages, notes);
+  const allContent = [...allBlogPosts, ...projects, ...pages, ...notes];
+
+  allContent.sort(
+    (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+  );
 
   content = {
     allBlogPosts,
@@ -35,6 +40,7 @@ export async function getContent() {
     meta,
     mf2,
     notes,
+    allContent,
   };
 
   return content;
@@ -163,5 +169,5 @@ async function loadMarkdownFolder(folder) {
         return data;
       })
   );
-  return files.filter((p) => p).map((p) => ({ ...p, type: folder }));
+  return files.filter((p) => p).map((p) => ({ ...p, folder }));
 }

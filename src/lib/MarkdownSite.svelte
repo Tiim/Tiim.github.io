@@ -9,7 +9,12 @@
   let prefix;
   $: prefix =
     {
+      rsvp: "💌RSVP: ",
+      reply: "🗨️Reply: ",
+      repost: "🔁Share: ",
+      like: "👍Like: ",
       projects: "⚙️Project: ",
+      note: "📔 ",
     }[site?.type] || "";
 </script>
 
