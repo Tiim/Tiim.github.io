@@ -6,10 +6,10 @@ aliases:
   -
 title: "First Go Project: A Jam-stack Commenting API"
 published: true
-modified:
+modified: 2022-11-23T21:42:29Z
 description: "I built my first project using the Go programming language: A commenting API for the jam-stack. It is simple but easily extensible. And it powers the commenting feature of this website!"
 cover_image: "/assets/2022-07-first-go-project-commenting-api.png"
-content_tags: ["go", "web-api", "project", "tiim.ch"]
+content_tags: ["go", "web-api", "project", "tiim.ch", "indiego"]
 ---
 
 I recently have been looking around for a simple commenting system to integrate into my website. Since my website is a pre-rendered static Html site hosted on [Github Pages](https://pages.github.com), there is no way for it to directly store comments because it does not have a database. The only option for dynamic content to be stored is with an external service.
@@ -27,7 +27,7 @@ After looking through the options I decided to use this opportunity to write my 
 
 ## Writing a commenting API in Go
 
-First thing first, if you want to take a look at the code, check out the [Github repo](https://github.com/Tiim/go-comment-api).
+First thing first, if you want to take a look at the code, check out the [Github repo](https://github.com/Tiim/IndieGo).
 
 I decided to write the commenting system in Go because I have been looking for an excuse to practice Go for a while, and this seemed like the perfect fit. It is a small CRUD app, consisting of a storage component, an API component and a small event component in the middle to easily compose the functionality I want.
 
@@ -42,11 +42,11 @@ Currently, it supports the following functionality:
 - SQLite storage for comments
 
 The code is built in a way to make it easy to customise the features.
-For example to disable features like the email reply notifications you can just [comment out the line in the main.go](https://github.com/Tiim/go-comment-api/blob/master/main.go#L52) file that registers that hook.
+For example to disable features like the email reply notifications you can just [comment out the line in the main.go](https://github.com/Tiim/IndieGo/blob/master/main.go#L52) file that registers that hook.
 
-To write custom hooks that get executed when a new comment gets submitted or one gets deleted, just implement the [Handler](https://github.com/Tiim/go-comment-api/blob/master/event/handler.go) interface and register it in the main method.
+To write custom hooks that get executed when a new comment gets submitted or one gets deleted, just implement the [Handler](https://github.com/Tiim/IndieGo/blob/master/event/handler.go) interface and register it in the main method.
 
-You can also easily add other storage options like databases or file storage by implementing the [Store and SubscribtionStore](https://github.com/Tiim/go-comment-api/blob/master/model/store.go) interfaces.
+You can also easily add other storage options like databases or file storage by implementing the [Store and SubscribtionStore](https://github.com/Tiim/IndieGo/blob/master/model/store.go) interfaces.
 
 ## Can it be used in production? 🚗💨
 

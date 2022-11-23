@@ -6,10 +6,10 @@ aliases:
   -
 title: IndieWebifying my Website Part 1 - Microformats and Webmentions
 published: true
-modified:
+modified: 2022-11-23T21:43:12Z
 description: This site now supports sending and receiving webmentions and surfacing structured data using microformats2.
 cover_image: "https://i.imgur.com/FpgIBxI.jpg"
-content_tags: ["IndieWeb", "Webmentions", "mf2", "tiim.ch", "go"]
+content_tags: ["IndieWeb", "Webmentions", "mf2", "tiim.ch", "go", "indiego"]
 ---
 
 A few weeks ago, I stumbled on one of [Jamie Tanna's blog posts about microformats2](https://www.jvt.me/posts/2019/08/21/rsvp-from-your-website/) by accident. That is when I first learned about the wonderful world of the [IndieWeb](https://indieweb.org/why). It took me a while to read through some of the concepts of the IndieWeb like webmentions, IndieAuth, microformats and all the other standards, but the more I found out about it the more I wanted to play around with it. And what better place to try out new technology than on a personal website?
@@ -48,7 +48,7 @@ The standard I wanted to play around with the most are webmentions. A webmention
 
 In the IndieWeb all types of interactions are just web pages. The microformats2 specification for example allows replies, quotes, likes, bookmarks and many other types of interactions. The receiver of the webmention is free to extract any relevant information from the sender page and might display it, for example as a comment.
 
-Since I already have a [small custom service](https://github.com/Tiim/go-comment-api) running for the comment section on this site, I decided to add support to it for receiving webmentions. I refactored the comment system quite a bit to make it more modular and extendable, to allow me to add webmentions
+Since I already have a [small custom service](https://github.com/Tiim/IndieGo) running for the comment section on this site, I decided to add support to it for receiving webmentions. I refactored the comment system quite a bit to make it more modular and extendable, to allow me to add webmentions
 
 It currently supports all the required and some optional features for receiving webmentions: The first thing it does is validate the mention. A mention is only valid if the source and target URLs are valid and if the page from the source URL links to the target URL. The next step is extracting some microformat content from the source URL and saving it to the database.
 I found some things unexpectedly tricky to implement: for example, a repeated webmention with the same source URL should update the previously saved webmention if the link to the target page is still there, but delete the webmention if the link was removed.

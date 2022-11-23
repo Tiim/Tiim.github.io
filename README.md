@@ -1,7 +1,7 @@
 # Tim's Personal Website
 
 > [tiim.ch](https://tiim.ch/)
-> Powered by [sveltekit](https://kit.svelte.dev), markdown, and my [go-comment-api](https://github.com/Tiim/go-comment-api).
+> Powered by [sveltekit](https://kit.svelte.dev), markdown, and [IndieGo](https://github.com/Tiim/IndieGo), my project to join the indieweb.
 
 ## Content
 
