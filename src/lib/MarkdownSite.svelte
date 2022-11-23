@@ -20,7 +20,7 @@
 
 <svelte:head>
   <title>{site.title} - Tim Bachmann</title>
-  <meta property="og:title" content={site.title} />
+  <meta property="og:title" content={site.title || "Tim Bachmann"} />
   <meta property="og:type" content="article" />
   <meta property="og:description" content={site.description} />
   {#if site.date}
@@ -45,7 +45,7 @@
       <img alt={site.title} src={base + site.cover_image} />
     {/if}
 
-    <h1>{prefix}<span class="p-name">{site.title}</span></h1>
+    <h1>{prefix}<span class="p-name">{site.title || ""}</span></h1>
     {#if !site.published}
       <p class="notification">This site is not published!</p>
     {/if}

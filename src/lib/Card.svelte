@@ -72,6 +72,7 @@
   .card-content {
     padding: 1rem;
     text-align: left;
+    overflow-wrap: break-word;
   }
   .links-wrap {
     display: flex;

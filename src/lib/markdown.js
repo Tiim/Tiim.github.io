@@ -65,13 +65,6 @@ export async function process(fileName) {
     throw new Error(`No date in ${fileName}`);
   }
 
-  if (metadata.title === undefined && metadata.date) {
-    metadata.title =
-      new Date(metadata.date).toISOString().substring(0, 10) +
-      " " +
-      fileName.split("/").pop().split(".")[0];
-  }
-
   const mf2 = getMf2Markup(metadata);
   const mf2html = mf2.markup + html;
   if (!metadata.description) {

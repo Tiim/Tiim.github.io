@@ -13,7 +13,7 @@
 </script>
 
 <Card
-  title={post.title}
+  title={post.title || ""}
   {image}
   tags={post.tags}
   {links}
