@@ -65,6 +65,10 @@ export async function process(fileName) {
     throw new Error(`No date in ${fileName}`);
   }
 
+  if (!metadata.cover_image) {
+    metadata.cover_image = metadata.photos?.[0]?.url;
+  }
+
   const mf2 = getMf2Markup(metadata);
   const mf2html = mf2.markup + html;
   if (!metadata.description) {

@@ -79,6 +79,14 @@
       {@html site.html}
     </div>
 
+    {#if site.photos}
+      <div class="images">
+        {#each site.photos as photo}
+          <img alt={photo.alt} src={photo.url} />
+        {/each}
+      </div>
+    {/if}
+
     <AboutCard {about} />
 
     <div class="post-details">
