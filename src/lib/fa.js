@@ -13,6 +13,7 @@ import {
   faFlickr,
   faGithub,
   faInstagram,
+  faMastodon,
   faTwitter,
 } from "@fortawesome/free-brands-svg-icons";
 
@@ -24,6 +25,7 @@ library.add(
   faFlickr,
   faGithub,
   faInstagram,
+  faMastodon,
   faRss,
   faTwitter,
   faUser

@@ -1,7 +1,6 @@
 ---
 uuid: "3b342241-c414-4670-bd22-03e13d6531b7"
-date: 2022-11-09
-created: "2022-11-12T10:55:14Z"
+date: 2022-11-12T10:55:14Z
 aliases:
   -
 title: IndieWebifying my Website Part 1 - Microformats and Webmentions

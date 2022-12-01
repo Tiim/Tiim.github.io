@@ -15,6 +15,11 @@
     "icon": ["fab", "github"]
   },
   {
+    "site": "Mastodon",
+    "link": "https://indieweb.social/@Tiim",
+    "icon": ["fab", "mastodon"]
+  },
+  {
     "site": "Dev.to",
     "link": "https://dev.to/tiim",
     "icon": ["fab", "dev"]
