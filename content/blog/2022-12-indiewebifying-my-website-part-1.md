@@ -5,10 +5,11 @@ aliases:
   -
 title: IndieWebifying my Website Part 1 - Microformats and Webmentions
 published: true
-modified: 2022-11-23T21:43:12Z
+modified: 2022-12-03T20:56:54Z
 description: This site now supports sending and receiving webmentions and surfacing structured data using microformats2.
 cover_image: "https://i.imgur.com/FpgIBxI.jpg"
 content_tags: ["IndieWeb", "Webmentions", "mf2", "tiim.ch", "go", "indiego"]
+syndication: ["https://news.indieweb.org/en"]
 ---
 
 A few weeks ago, I stumbled on one of [Jamie Tanna's blog posts about microformats2](https://www.jvt.me/posts/2019/08/21/rsvp-from-your-website/) by accident. That is when I first learned about the wonderful world of the [IndieWeb](https://indieweb.org/why). It took me a while to read through some of the concepts of the IndieWeb like webmentions, IndieAuth, microformats and all the other standards, but the more I found out about it the more I wanted to play around with it. And what better place to try out new technology than on a personal website?

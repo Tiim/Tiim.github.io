@@ -69,8 +69,8 @@ export async function process(fileName) {
     metadata.cover_image = metadata.photos?.[0]?.url;
   }
 
-  const mf2 = getMf2Markup(metadata);
-  const mf2html = mf2.markup + html;
+  const mf2 = getMf2Markup(metadata, html);
+  const mf2html = mf2.markup;
   if (!metadata.description) {
     metadata.description = mf2.summary;
   }
@@ -102,40 +102,57 @@ function stripComments(str) {
   return parts.join("");
 }
 
-function getMf2Markup(metadata) {
-  let markup = "";
+function getMf2Markup(metadata, html) {
+  let prefixMarkup = "";
+  let suffixMarkup = "";
   let summary = "";
   if (metadata.in_reply_to) {
     const reply = metadata.in_reply_to;
-    markup += `<p>This post is in reply to a <a class="u-in-reply-to" href="${
+    prefixMarkup += `<p>This post is in reply to a <a class="u-in-reply-to" href="${
       reply.url
     }">${reply.name || reply.author.name || reply.url}</a></p>`;
     summary += `💬In reply to: ${reply.name || reply.author.name || reply.url}`;
   }
   if (metadata.like_of) {
     const like = metadata.like_of;
-    markup += `<p>Liked <a class="u-like-of" href="${like.url}">${
+    prefixMarkup += `<p>Liked <a class="u-like-of" href="${like.url}">${
       like.name || like.content || like.url
     }</a></p>`;
     summary += `👍Liked: ${like.name || like.content || like.url}`;
   }
   if (metadata.repost_of) {
     const repost = metadata.repost_of;
-    markup += `<p>Reposted <a class="u-repost-of" href="${repost.url}">${
+    prefixMarkup += `<p>Reposted <a class="u-repost-of" href="${repost.url}">${
       repost.name || repost.url
     }</a></p>`;
     summary += `♺Shared: ${repost.name || repost.url}`;
   }
   if (metadata.rsvp) {
-    markup += `<p>RSVP: <span class="p-rsvp">${metadata.rsvp}</span></p>`;
+    prefixMarkup += `<p>RSVP: <span class="p-rsvp">${metadata.rsvp}</span></p>`;
     summary += `💌RSVP: ${metadata.rsvp}`;
   }
-
-  if (markup) {
-    return { markup: `<div class="mf2">${markup}</div>\n`, summary };
-  } else {
-    return { markup: "", summary };
+  if (metadata.syndication && metadata.syndication.length) {
+    if (typeof metadata.syndication === "string") {
+      metadata.syndication = [metadata.syndication];
+    }
+    suffixMarkup += `<blockquote class="syndication">This post is also on <ul>`;
+    metadata.syndication.forEach((syndication) => {
+      const url = new URL(syndication);
+      suffixMarkup += `<li><a class="u-syndication" href="${syndication}">${url.hostname}</a></li>`;
+    });
+    suffixMarkup += `</ul></blockquote>`;
   }
+
+  if (prefixMarkup) {
+    prefixMarkup = `<div class="mf2">${prefixMarkup}</div>\n`;
+    html = prefixMarkup + html;
+  }
+  if (suffixMarkup) {
+    suffixMarkup = `<div class="mf2">${suffixMarkup}</div>\n`;
+    html = html + suffixMarkup;
+  }
+
+  return { markup: html, summary };
 }
 
 // https://indieweb.org/post-type-discovery
