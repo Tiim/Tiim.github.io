@@ -48,7 +48,6 @@ export async function GET() {
         },
       ],
       date: new Date(post.modified || post.date),
-      published: new Date(post.date),
       image,
     });
   });
