@@ -17,9 +17,8 @@
     <a href="/projects" class="navbar-item">Projects</a>
     <a href="/blog" class="navbar-item">Blog</a>
     <a href="/pages/uses" class="navbar-item">Uses</a>
-    <a class="navbar-item" target="_blank" href={`mailto:${mf2.email}`}>
-      Contact
-    </a>
+    <a class="navbar-item" href="/contact">Contact</a>
+    <a class="navbar-item" href="/follow">Follow</a>
   </div>
   <div class="navbar-menu mobile">
     <div>
@@ -41,14 +40,8 @@
         <a on:click={nav} class="navbar-item" href="/projects">Projects</a>
         <a on:click={nav} class="navbar-item" href="/blog">Blog</a>
         <a on:click={nav} class="navbar-item" href="/pages/uses">Uses</a>
-        <a
-          on:click={nav}
-          class="navbar-item"
-          target="_blank"
-          href={`mailto:${mf2.email}`}
-        >
-          Contact
-        </a>
+        <a on:click={nav} class="navbar-item" href="/contact">Contact</a>
+        <a on:click={nav} class="navbar-item" href="/follow">Follow</a>
       </div>
     {/if}
   </div>

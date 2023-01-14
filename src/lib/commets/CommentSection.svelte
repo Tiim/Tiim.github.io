@@ -48,6 +48,10 @@
 </script>
 
 <h2>{allComments.length} Comments and Interactions</h2>
+<span>
+  Leave a comment or interact with this page via
+  <a href="http://indieweb.org/webmention"> WebMention </a>
+</span>
 <CommentForm
   reply={replyComment}
   page={page.slug}

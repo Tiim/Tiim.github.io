@@ -63,10 +63,6 @@
 </script>
 
 <div class="comment-form-wrap">
-  <span>
-    Leave a comment or interact with this page via
-    <a href="http://indieweb.org/webmention"> WebMention </a>
-  </span>
   <div id="comment-section" class="comment-input">
     <span class="avatar"><FA icon="user" /></span>
     <div class="comment-input-content">

@@ -6,6 +6,7 @@ import {
   faBorderAll,
   faExternalLinkAlt,
   faRss,
+  faHashtag,
   faUser,
 } from "@fortawesome/free-solid-svg-icons";
 import {
@@ -24,6 +25,7 @@ library.add(
   faExternalLinkAlt,
   faFlickr,
   faGithub,
+  faHashtag,
   faInstagram,
   faMastodon,
   faRss,
