@@ -87,6 +87,8 @@
       </div>
     {/if}
 
+    <slot name="outro" />
+
     <AboutCard {about} />
 
     <div class="post-details">
