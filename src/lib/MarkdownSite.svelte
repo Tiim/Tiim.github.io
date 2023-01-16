@@ -42,7 +42,12 @@
 <div>
   <article class="container h-entry">
     {#if site.cover_image}
-      <img alt={site.title} src={base + site.cover_image} />
+      <figure>
+        <img alt={site.title} src={base + site.cover_image} />
+        {#if site.cover_image_txt}
+          <figcaption>{site.cover_image_txt}</figcaption>
+        {/if}
+      </figure>
     {/if}
 
     <h1>{prefix}<span class="p-name">{site.title || ""}</span></h1>
@@ -106,8 +111,20 @@
 </div>
 
 <style>
+  figure {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.25rem;
+  }
+  figcaption {
+    font-size: 0.8rem;
+    color: var(--font-color-muted);
+  }
   img {
     max-width: 100%;
+    margin-bottom: 0px;
   }
   .notification {
     background-color: var(--color-ui-12);
