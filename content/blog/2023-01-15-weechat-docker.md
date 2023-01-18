@@ -6,7 +6,7 @@ aliases:
   -
 title: Running the WeeChat IRC Client on a VPS in Docker
 published: true
-modified:
+modified: 2023-01-18T11:34:27.000Z
 description: Walkthrough on how to setup the WeeChat IRC client in docker.
 cover_image: "https://media.tiim.ch/a28c65a1-ed95-43d3-af87-a2ad222bee7f.jpg"
 cover_image_txt: "Stable Diffusion - anime landscape, pastel colors, thick outlines, forest, mountains, golden light"
@@ -86,6 +86,11 @@ chmod +x weechat.sh
 And that's it! Running `weechat.sh` will open an ssh session to your server and attach to the weechat container. Happy Chatting!
 
 If you liked this post, consider subscribing to my blog via [RSS](https://tiim.ch/blog/rss.xml), or on [social media](https://tiim.ch/follow). If you have any questions, feel free to [contact me](/contact). I also usually hang out in [`##tiim` on irc.libera.chat](irc://irc.libera.chat/##tiim). My name on IRC is `tiim`.
+
+> [!INFO] Update 2022-01-18
+> I have found that at the beginning of a session, the input to weechat doesn't seem to work. Sometimes weechat refuses to let me type anything and/or doesn't recognize mouse events.
+> After a while of spamming keys and `Alt-m` (toggle mouse mode), it seems to fix itself most of the time.
+> I have no idea if thats a problem with weechat, with docker or with ssh, and so far have not found a solution for this. If you have the same problem or even know how to fix it, feel free to reach out.
 
 %%
 
