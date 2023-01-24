@@ -74,6 +74,13 @@ pre {
   border-radius: 1rem;
 }
 
+code {
+  background-color: var(--background-color-light-2);
+  padding: 0rem 0.25rem;
+  color: var(--color-syntax-4);
+  border-radius: 5px;
+}
+
 a {
   text-decoration: none;
   color: var(--font-color-link);
