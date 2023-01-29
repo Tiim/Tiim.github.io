@@ -10,3 +10,4 @@ build/
 .svelte-kit
 
 /static/assets
+*.swp

@@ -65,6 +65,20 @@ export async function process(fileName) {
     throw new Error(`No date in ${fileName}`);
   }
 
+  // err when we use date without time value, for all entries after 2023-01-29
+  const d = metadata.date;
+  if (
+    d &&
+    d.getTime() > new Date("2023-01-29T08:45:25.000Z").getTime() &&
+    d.getUTCHours() === 0 &&
+    d.getUTCMinutes() === 0 &&
+    d.getUTCSeconds() === 0
+  ) {
+    throw new Error(
+      `No time value (midnight) in date frontmatter: ${fileName}`
+    );
+  }
+
   if (!metadata.cover_image) {
     metadata.cover_image = metadata.photos?.[0]?.url;
   }
