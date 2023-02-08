@@ -5,6 +5,7 @@ published: true
 description: Bachelor Thesis. The goal of this thesis is to formally define a model of a subset of Git commands which mutate the revision graph, and to model those mutations as a planning task in the Planning Domain Definition Language. Multiple ways to model those graphs will be explored and those models will be compared by testing them using a set of planners.
 content_tags: [Git, PDDL, Planning-System, dev]
 date: 2021-01-20
+modified: 2023-02-08T12:47:00.000Z
 cover_image: "/assets/2021-01-git-operations-as-planning-problems.png"
 ---
 
@@ -23,9 +24,10 @@ Version control systems use a graph data structure to track revisions of files. 
 @thesis{bachmann2021,
 	title        = {Modelling Git Operations as Planning Problems},
 	author       = {Tim Bachmann},
-	year         = 2021,
+	year         = {2021},
+  month        = {01},
 	type         = {Bachelor's Thesis},
 	shool        = {University of Basel},
-	howpublished = {\url{https://github.com/Tiim/Bachelor-PDDL-Git-thesis/releases}}
+	doi          = {10.13140/RG.2.2.24784.17922}
 }
 ```
