@@ -13,8 +13,6 @@ cover_image_txt: "Stable Diffusion - Anything V3.0 - 1boy, hacker, in front of c
 content_tags: ["wsl", "vpn", "networking", "dns"]
 ---
 
-# [[Fix Network Connectivity in WSL2 with Cisco AnyConnect VPN (Blog Post)]]
-
 I recently ran into the problem that when the Cisco AnyConnect VPN is connected, the network connectivity inside of WSL2 stops working. I found a bunch of solutions online for it: most just focus on the fact that the VPN DNS settings are not applied inside WSL2 and therefore no domain names can be resolved. I additionally had the issue that the WSL2 network interface somehow gets disconnected when the VPN starts.
 
 I will show you how I fixed this problem for me and explain what the commands I used do. This post is mostly for my reference, but I hope it helps anyone else as well.
