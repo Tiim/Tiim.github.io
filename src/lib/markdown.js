@@ -74,8 +74,9 @@ export async function process(fileName) {
     d.getUTCMinutes() === 0 &&
     d.getUTCSeconds() === 0
   ) {
+    console.log(d);
     throw new Error(
-      `No time value (midnight) in date frontmatter: ${fileName}`
+      `No time value in date frontmatter, (the time is midnight): ${fileName}`
     );
   }
 

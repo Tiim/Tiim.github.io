@@ -9,3 +9,4 @@ Hi, my name is {{name}}!
 I'm a {{role}} at {{org}}, swimmer and swim coach.
 
 I am passionate about all things web development, swimming, personal knowledge management and much more.
+If you liked this or any of my posts, feel free to [follow me](https://tiim.ch/follow).
