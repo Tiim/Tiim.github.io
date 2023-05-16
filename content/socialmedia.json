@@ -1,5 +1,12 @@
 [
   {
+    "site": "Matrix",
+    "handle": "@tiimb:matrix.org",
+    "link": "https://matrix.to/#/@tiimb:matrix.org",
+    "icon": ["fas", "comment-alt"],
+    "type": ["contact"]
+  },
+  {
     "site": "Email",
     "handle": "hey@tiim.ch",
     "link": "mailto:hey@tiim.ch",
