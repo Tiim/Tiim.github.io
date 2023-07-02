@@ -123,17 +123,19 @@ function getMf2Markup(metadata, html) {
   let summary = "";
   if (metadata.in_reply_to) {
     const reply = metadata.in_reply_to;
-    prefixMarkup += `<p>This post is in reply to a <a class="u-in-reply-to" href="${
+    prefixMarkup += `<p>This post is in reply to "<a class="u-in-reply-to" href="${
       reply.url
-    }">${reply.name || reply.author.name || reply.url}</a></p>`;
-    summary += `💬In reply to: ${reply.name || reply.author.name || reply.url}`;
+    }">${reply.name || reply.author?.name || reply.url}</a>"</p>`;
+    summary += `💬 In reply to: ${
+      reply.name || reply.author?.name || reply.url
+    }`;
   }
   if (metadata.like_of) {
     const like = metadata.like_of;
     prefixMarkup += `<p>Liked <a class="u-like-of" href="${like.url}">${
       like.name || like.content || like.url
     }</a></p>`;
-    summary += `👍Liked: ${like.name || like.content || like.url}`;
+    summary += `👍 Liked: ${like.name || like.content || like.url}`;
   }
   if (metadata.repost_of) {
     const repost = metadata.repost_of;
@@ -144,7 +146,7 @@ function getMf2Markup(metadata, html) {
   }
   if (metadata.rsvp) {
     prefixMarkup += `<p>RSVP: <span class="p-rsvp">${metadata.rsvp}</span></p>`;
-    summary += `💌RSVP: ${metadata.rsvp}`;
+    summary += `💌 RSVP: ${metadata.rsvp}`;
   }
   if (metadata.syndication && metadata.syndication.length) {
     if (typeof metadata.syndication === "string") {
