@@ -1,4 +1,4 @@
-import { dev } from "$app/env";
+import { dev } from "$app/environment";
 import { process } from "./markdown";
 import mf2 from "$content/mf2.json";
 import recursiveReadDir from "recursive-readdir";

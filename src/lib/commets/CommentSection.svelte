@@ -1,5 +1,5 @@
 <script>
-  import { dev } from "$app/env";
+  import { dev } from "$app/environment";
   import { FA } from "../fa.js";
   import CommentForm from "./CommentForm.svelte";
   const url = dev

@@ -9,9 +9,7 @@ const config = {
     },
     adapter: adapter(),
     prerender: {
-      default: true,
       crawl: true,
-      enabled: true,
       entries: [
         "*",
         "/projects",
@@ -21,7 +19,6 @@ const config = {
         "/tags",
         "/mf2",
       ],
-      onError: "fail",
     },
   },
 };

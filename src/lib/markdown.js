@@ -7,7 +7,7 @@ import rehypeStringify from "rehype-stringify";
 import rehypeExternalLinks from "rehype-external-links";
 import { load } from "js-yaml";
 import fs from "fs-extra";
-import { dev } from "$app/env";
+import { dev } from "$app/environment";
 import extractAbstract from "./markdown/extractAbstract";
 import slugify from "slugify";
 import { rehypeCallout } from "./markdown/rehypeCallout";
