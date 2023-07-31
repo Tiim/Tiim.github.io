@@ -3,6 +3,8 @@
   import Footer from "$lib/footer/Footer.svelte";
   import "normalize.css";
   import "../app.css";
+
+  export let data;
 </script>
 
 <div id="app">
@@ -10,7 +12,7 @@
   <div class="section">
     <slot />
   </div>
-  <div class="section has-text-centered">
-    <Footer />
+  <div>
+    <Footer {data} />
   </div>
 </div>
