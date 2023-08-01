@@ -2,6 +2,7 @@ import { Feed } from "feed";
 import remoteImages from "$content/links.json";
 import { getContent } from "$lib/content";
 
+export const prerender = true;
 export async function GET() {
   const content = await getContent();
   const posts = Object.values(content.contentMap);

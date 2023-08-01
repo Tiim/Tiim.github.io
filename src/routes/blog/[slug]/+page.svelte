@@ -1,7 +1,7 @@
 <script>
   import MarkdownSite from "$lib/MarkdownSite.svelte";
   export let data;
-  const pr = `https://github.com/Tiim/Tiim.github.io/tree/source/content/${data.post.slug}.md`;
+  const pr = `https://github.com/Tiim/Tiim.github.io/tree/source/content/${data?.post?.slug}.md`;
 </script>
 
 <MarkdownSite site={data.post} about={data.about}>
