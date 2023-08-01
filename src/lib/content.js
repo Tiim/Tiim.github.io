@@ -59,8 +59,8 @@ async function loadComments() {
     : "https://comments.tiim.ch/comment";
   const comments = await fetch(url)
     .then((res) => res.json())
-    .catch((error) => {
-      console.error("Failed to load comments", url, error);
+    .catch(() => {
+      console.error("Failed to load comments", url);
       return [];
     });
 
