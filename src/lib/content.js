@@ -1,4 +1,5 @@
 import { dev } from "$app/environment";
+import { error } from "@sveltejs/kit";
 import { process } from "./markdown";
 import mf2 from "$content/mf2.json";
 import recursiveReadDir from "recursive-readdir";
@@ -41,6 +42,12 @@ export async function getContent() {
     mf2,
     notes,
     allContent,
+    queryContent(slug) {
+      if (this.contentMap[slug] != null) {
+        return this.contentMap[slug];
+      }
+      throw new error(404, "Can't find content with slug: " + slug);
+    },
   };
 
   return content;

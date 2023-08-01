@@ -4,7 +4,7 @@ export async function load({ params }) {
   const { page_slug } = params;
 
   const content = await getContent();
-  const page = content.contentMap[`pages/${page_slug}`] || null;
+  const page = content.queryContent(`pages/${page_slug}`);
   const about = content.meta.about;
   return { page, about };
 }
