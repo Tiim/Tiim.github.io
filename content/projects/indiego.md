@@ -12,7 +12,7 @@ links:
   - "[Admin Interface](https://comments.tiim.ch) - authentication required"
 ---
 
-I blogged about creating a comment system for my website [a while ago](/blog/2022-07-12-first-go-project-commenting-api), 
+I blogged about creating a comment system for my website [a while ago](/blog/2022-07-12-first-go-project-commenting-api),
 and later how I [implemented webmentions into that same project](/blog/2022-12-indiewebifying-my-website-part-1).
 Since then this little go program has grown quite a bit, and it has turned into a modular platform
 that supports quite a few technologies:
@@ -24,7 +24,7 @@ that supports quite a few technologies:
 - Admin dashboard
 - Admin backup endpoint
 
-Currently I am working on supporting AcitvityPub, so people can follow my blog through the fediverse, and 
+Currently I am working on supporting AcitvityPub, so people can follow my blog through the fediverse, and
 comments through the fediverse show up back on my website.
 
 The architecture of the application is inspired by the Caddy webserver, where every feature is implemented as a plugin, and the core

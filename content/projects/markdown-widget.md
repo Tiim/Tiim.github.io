@@ -13,5 +13,5 @@ links:
 
 A seemingly simple android widget that renders a markdown file from your phone as a widget on the home screen.
 
-Android widgets are handled by the operating system and only support a limited set of features for rendering. 
-To display markdown, the app displays a screenshot of a temporary web view, that displays the rendered markdown. 
+Android widgets are handled by the operating system and only support a limited set of features for rendering.
+To display markdown, the app displays a screenshot of a temporary web view, that displays the rendered markdown.
