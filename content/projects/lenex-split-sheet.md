@@ -3,7 +3,7 @@ uuid: "a03b6eef-ffbe-428d-a559-42bd361ab88c"
 title: Lenex Splits Sheet Creator
 date: 2022-03-05T21:21:10+01:00
 modified: 2022-06-08T22:15:48+02:00
-section: Apps
+section: Projects 
 published: true
 content_tags: ["swim", "lenex", "svelte", "dev"]
 links:
