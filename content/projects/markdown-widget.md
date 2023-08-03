@@ -7,7 +7,7 @@ section: Apps
 published: true
 content_tags: ["android", "java", "kotlin", "markdown", "widget", "dev"]
 links:
-  - "[Android Markdown Widget Github]([https://github.com/Tiim/IndieGo](https://github.com/Tiim/Android-Markdown-Widget))"
+  - "[Android Markdown Widget Github](https://github.com/Tiim/Android-Markdown-Widget)"
   - "[Download on F-Droid](https://f-droid.org/packages/ch.tiim.markdown_widget/)"
 ---
 
