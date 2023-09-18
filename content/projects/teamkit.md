@@ -3,7 +3,7 @@ uuid: "a3040709-cd2d-43cb-ab33-2061ba1ae061"
 title: TeamKit
 date: 2022-11-27T09:19:08Z
 modified:
-section: Apps
+section: Projects 
 published: true
 content_tags: ["sveltekit", "hasura", "postgres", "dev"]
 links:

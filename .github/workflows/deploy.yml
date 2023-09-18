@@ -22,7 +22,7 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - run: npm ci
-      - run: npm run lint
+      - run: npm run lint:ci
       - run: npm run build
       - name: GitHub Pages action
         uses: peaceiris/actions-gh-pages@v3.4.0

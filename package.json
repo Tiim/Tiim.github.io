@@ -7,6 +7,7 @@
     "build": "npm run mv-assets && vite build",
     "preview": "vite preview",
     "lint": "prettier --check --plugin-search-dir=. . && eslint --ignore-path .gitignore .",
+    "lint:ci": "prettier --check --plugin-search-dir=. . \"!content/**/*.md\" && eslint --ignore-path .gitignore .",
     "format": "prettier --write --plugin-search-dir=. .",
     "prepare": "husky install"
   },
