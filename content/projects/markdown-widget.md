@@ -3,7 +3,7 @@ uuid: "c6a11779-cf98-4983-8744-9b1effae8d7a"
 title: Android Markdown Widget
 date: 2023-08-02T08:59:00Z
 modified:
-section: Projects 
+section: Projects
 published: true
 content_tags: ["android", "java", "kotlin", "markdown", "widget", "dev"]
 links:

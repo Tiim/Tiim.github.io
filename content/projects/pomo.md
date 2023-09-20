@@ -10,12 +10,12 @@ links:
   - "[pomo Github](https://github.com/Tiim/pomo)"
 ---
 
-I created pomo as a way to keep me focused for working on my masters thesis, and at the same time 
+I created pomo as a way to keep me focused for working on my masters thesis, and at the same time
 allowed me to learn the rust programming language.
 
 Pomo is a simple pomodoro timer. It allows you to either specify the number of repetitions (pomodori), the duration of the pomodori and the duration of the breaks, or
 you can stecify an end time, and let pomo calculate the durations and repetitions.
 
-Pomo runs as a cli tool and stores the current state in a json file. All pomo executions excep `pomo watch` just 
-modify this json file and terminate. The watch command displays the current pomodoro timer, optionally writes the timer to a text file, 
+Pomo runs as a cli tool and stores the current state in a json file. All pomo executions excep `pomo watch` just
+modify this json file and terminate. The watch command displays the current pomodoro timer, optionally writes the timer to a text file,
 and watches for changes of the json file.
