@@ -1,10 +1,10 @@
 ---
 uuid: 3af67a63-5f3a-422c-8aee-5e3daa8921f9
-date: 2023-12-04T22:30:00
-created: 2023-12-03T22:08:16
+date: 2023-12-04T08:00:00
+created: 2023-12-03T21:08:16
 aliases:
 title: My Selfhosting Setup
-published: false
+published: true
 modified:
 description: A short overview on how I self-host.
 cover_image: https://media.tiim.ch/4a0a43eb-cf95-4273-b6a6-e085c9123985.webp
