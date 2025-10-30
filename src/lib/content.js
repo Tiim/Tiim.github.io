@@ -27,7 +27,7 @@ export async function getContent() {
   const allContent = [...allBlogPosts, ...projects, ...pages, ...notes];
 
   allContent.sort(
-    (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+    (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime(),
   );
 
   content = {
@@ -77,7 +77,7 @@ async function loadComments() {
       ...acc,
       [comment.page]: [...(acc[comment.page] || []), comment],
     }),
-    {}
+    {},
   );
   return { commentMap, latest };
 }
@@ -103,7 +103,7 @@ async function loadTags(...posts) {
         .map((post) => post.tags)
         .flat()
         .filter((tag) => tag)
-        .map((tag) => tag.toLowerCase())
+        .map((tag) => tag.toLowerCase()),
     ),
   ];
   const tagsData = (await loadMarkdownFolder("tags"))
@@ -138,7 +138,7 @@ async function loadMetadata() {
       const realKey = `p-${key.replace(/_/g, "-")}`;
       return prev.replace(
         `{{${key}}}`,
-        `<span class="${realKey}">${value}</span>`
+        `<span class="${realKey}">${value}</span>`,
       );
     }, entry.html);
     entry.slug = entry.slug.replace("metadata/", "");
@@ -174,7 +174,7 @@ async function loadMarkdownFolder(folder) {
       .map(async (fileName) => {
         const data = await process(fileName);
         return data;
-      })
+      }),
   );
   return files.filter((p) => p).map((p) => ({ ...p, folder }));
 }

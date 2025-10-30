@@ -113,7 +113,7 @@
         bind:value={comment}
         id="commentContent"
         placeholder="Comment"
-      />
+      ></textarea>
       <button on:click|preventDefault={postComment}>Post</button>
       {#if error}
         <div class="error">{error}</div>

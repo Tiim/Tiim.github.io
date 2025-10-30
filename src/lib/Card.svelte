@@ -31,7 +31,7 @@
       </div>
     {/if}
   </div>
-  <div class="spacer" />
+  <div class="spacer"></div>
   <div class="links-wrap">
     {#if linksHtml && linksHtml.length > 0}
       <div class="links">

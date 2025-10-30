@@ -16,6 +16,17 @@
       projects: "⚙️Project: ",
       note: "📔 ",
     }[site?.type] || "";
+
+  // Helper to add base path only to relative URLs
+  function resolveUrl(url) {
+    if (!url) return url;
+    // If URL has a protocol (http:, https:, etc.), return as-is
+    if (/^[a-zA-Z][a-zA-Z0-9+.-]*:/.test(url)) {
+      return url;
+    }
+    // Otherwise, prepend base path
+    return base + url;
+  }
 </script>
 
 <svelte:head>
@@ -37,7 +48,7 @@
     <meta property="article:tag" content={tag} />
   {/each}
   {#if site.cover_image}
-    <meta property="og:image" content={base + site.cover_image} />
+    <meta property="og:image" content={resolveUrl(site.cover_image)} />
   {/if}
 </svelte:head>
 
@@ -45,7 +56,7 @@
   <article class="container h-entry">
     {#if site.cover_image}
       <figure>
-        <img alt={site.title} src={base + site.cover_image} />
+        <img alt={site.title} src={resolveUrl(site.cover_image)} />
         {#if site.cover_image_txt}
           <figcaption>{site.cover_image_txt}</figcaption>
         {/if}

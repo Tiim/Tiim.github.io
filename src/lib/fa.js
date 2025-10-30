@@ -32,7 +32,7 @@ library.add(
   faMastodon,
   faRss,
   faTwitter,
-  faUser
+  faUser,
 );
 
 export const FA = FontAwesomeIcon;

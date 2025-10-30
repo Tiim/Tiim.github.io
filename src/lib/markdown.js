@@ -76,7 +76,7 @@ export async function process(fileName) {
   ) {
     console.log(d);
     throw new Error(
-      `No time value in date frontmatter, (the time is midnight): ${fileName}`
+      `No time value in date frontmatter, (the time is midnight): ${fileName}`,
     );
   }
 

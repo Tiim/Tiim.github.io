@@ -1,6 +1,10 @@
 import { resolve } from "path";
+import { fileURLToPath } from "url";
 import { sveltekit } from "@sveltejs/kit/vite";
 import svg from "@poppanator/sveltekit-svg";
+import { defineConfig } from "vite";
+
+const __dirname = fileURLToPath(new URL(".", import.meta.url));
 
 const svgOptions = {
   svgOptions: {
@@ -14,7 +18,7 @@ const svgOptions = {
   },
 };
 
-export default {
+export default defineConfig({
   plugins: [sveltekit(), svg(svgOptions)],
   resolve: {
     alias: {
@@ -27,4 +31,4 @@ export default {
       allow: ["content"],
     },
   },
-};
+});

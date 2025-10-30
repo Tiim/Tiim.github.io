@@ -29,9 +29,9 @@
         type="checkbox"
       />
       <label for="header-toggle" class="toggle">
-        <span />
-        <span />
-        <span />
+        <span></span>
+        <span></span>
+        <span></span>
       </label>
     </div>
     {#if mobileOpen}

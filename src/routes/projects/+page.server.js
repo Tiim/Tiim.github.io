@@ -12,7 +12,7 @@ function groupBy(array) {
       ...p,
       [c.section]: p[c.section] ? [...p[c.section], c] : [c],
     }),
-    {}
+    {},
   );
   const sections = Object.keys(group).map((k) => ({
     section: k,
