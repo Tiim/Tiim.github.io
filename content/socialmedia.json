@@ -1,12 +1,5 @@
 [
   {
-    "site": "Matrix",
-    "handle": "@tiimb:matrix.org",
-    "link": "https://matrix.to/#/@tiimb:matrix.org",
-    "icon": ["fas", "comment-alt"],
-    "type": ["contact"]
-  },
-  {
     "site": "Email",
     "handle": "hey@tiim.ch",
     "link": "mailto:hey@tiim.ch",
@@ -18,13 +11,6 @@
     "link": "https://tiim.ch/blog/rss.xml",
     "icon": ["fas", "rss"],
     "type": ["follow"]
-  },
-  {
-    "site": "IRC",
-    "handle": "tiim in ##tiim on libera.chat",
-    "link": "https://web.libera.chat/##tiim",
-    "icon": ["fas", "hashtag"],
-    "type": ["contact"]
   },
   {
     "site": "Github",
@@ -48,23 +34,10 @@
     "type": ["follow"]
   },
   {
-    "site": "Twitter",
-    "handle": "@TiimB",
-    "link": "https://twitter.com/TiimB",
-    "icon": ["fab", "twitter"],
-    "type": ["follow", "contact"]
-  },
-  {
     "site": "Instagram",
     "handle": "@tiim.ba",
     "link": "https://instagram.com/tiim.ba",
     "icon": ["fab", "instagram"],
-    "type": ["follow"]
-  },
-  {
-    "site": "Flickr",
-    "link": "https://www.flickr.com/people/152309161@N02/",
-    "icon": ["fab", "flickr"],
     "type": ["follow"]
   }
 ]
