@@ -1,7 +1,6 @@
 <script>
   import { base } from "$app/paths";
   import AboutCard from "./AboutCard.svelte";
-  import CommentSection from "./commets/CommentSection.svelte";
   import PubDate from "./pub-date.svelte";
   export let site;
   export let about = null;
@@ -116,11 +115,6 @@
       <a class="hidden p-url p-uid" href={`/${site.slug}`}>/{site.slug}</a>
     </div>
   </article>
-  {#if site.comments}
-    <div class="container">
-      <CommentSection comments={site.comments} page={site} />
-    </div>
-  {/if}
 </div>
 
 <style>

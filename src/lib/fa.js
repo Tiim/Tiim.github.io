@@ -8,7 +8,6 @@ import {
   faRss,
   faHashtag,
   faUser,
-  faCommentAlt,
 } from "@fortawesome/free-solid-svg-icons";
 import {
   faDev,
@@ -22,7 +21,6 @@ import {
 library.add(
   faAt,
   faBorderAll,
-  faCommentAlt,
   faDev,
   faExternalLinkAlt,
   faFlickr,

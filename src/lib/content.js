@@ -14,14 +14,11 @@ export async function getContent() {
 
   const pages = await loadPages();
   const projects = await loadProjects();
-  const comments = await loadComments();
   const meta = postsToMap(await loadMetadata());
   const notes = await loadNotes();
 
   const tags = await loadTags(allBlogPosts, projects, notes);
   const tagsMap = blogPostsToTagMap(allBlogPosts, projects, notes);
-
-  addCommentsToPosts(comments, allBlogPosts, projects, pages, notes);
 
   const contentMap = postsToMap(allBlogPosts, projects, pages, notes);
   const allContent = [...allBlogPosts, ...projects, ...pages, ...notes];
@@ -37,7 +34,6 @@ export async function getContent() {
     tags,
     tagsMap,
     contentMap,
-    comments: comments.commentMap,
     meta,
     mf2,
     notes,
@@ -51,35 +47,6 @@ export async function getContent() {
   };
 
   return content;
-}
-
-function addCommentsToPosts({ commentMap, latest }, ...posts) {
-  posts.flat().forEach((post) => {
-    post.comments = commentMap[post.slug] || [];
-    post.latestComment = latest;
-  });
-}
-
-async function loadComments() {
-  const url = dev
-    ? "http://localhost:8080/comment"
-    : "https://comments.tiim.ch/comment";
-  const comments = await fetch(url)
-    .then((res) => res.json())
-    .catch(() => {
-      console.error("Failed to load comments", url);
-      return [];
-    });
-
-  const latest = comments[0]?.timestamp ?? new Date("2000-01-01").toISOString();
-  const commentMap = comments.reduce(
-    (acc, comment) => ({
-      ...acc,
-      [comment.page]: [...(acc[comment.page] || []), comment],
-    }),
-    {},
-  );
-  return { commentMap, latest };
 }
 
 function blogPostsToTagMap(...posts) {
