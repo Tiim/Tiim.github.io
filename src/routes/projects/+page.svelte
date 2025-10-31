@@ -7,9 +7,9 @@
   <title>Projects and Apps</title>
 </svelte:head>
 
-<div class="container has-text-centered">
+<div class="container has-text-centered h-feed">
   <div class="section">
-    <h1>Projects, Utility Apps &amp; other Resources⚙️</h1>
+    <h1 class="p-name">Projects, Utility Apps &amp; other Resources⚙️</h1>
     <p>
       This is a list of some of my current or past projects, as well as some
       useful resources that I compiled. Go check them out!

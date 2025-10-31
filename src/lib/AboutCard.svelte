@@ -10,7 +10,12 @@
   <div>
     <p class="author-bio p-note">{@html about.html}</p>
     <div class="author-detail">
+      <span class="hidden p-name">{mf2.name}</span>
       <span class="hidden p-gender-identity">{mf2.gender_identity}</span>
+      <span class="hidden p-locality">{mf2.locality}</span>
+      <span class="hidden p-country-name">{mf2.country_name}</span>
+      <span class="hidden p-org">{mf2.org}</span>
+      <span class="hidden p-role">{mf2.role}</span>
       <a href={`mailto:${mf2.email}`} class="p-email">{mf2.email}</a>
       <a class="p-url" href={mf2.url}>{mf2.url}</a>
     </div>

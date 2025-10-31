@@ -9,9 +9,9 @@
   <title>Blog - Tim Bachmann</title>
 </svelte:head>
 
-<div class="container has-text-centered">
+<div class="container has-text-centered h-feed">
   <div class="section">
-    <h1>Blog 📖</h1>
+    <h1 class="p-name">Blog 📖</h1>
     <p>
       Subscribe to my blog via
       <a href="blog/rss.xml" target="_blank">

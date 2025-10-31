@@ -7,9 +7,9 @@
   <title>🏷️{data.details.tag} - Tim Bachmann</title>
 </svelte:head>
 
-<div class="container has-text-centered">
+<div class="container has-text-centered h-feed">
   <div class="section">
-    <h1>🏷️ Tag: {data.details.tag}</h1>
+    <h1 class="p-name">🏷️ Tag: {data.details.tag}</h1>
   </div>
   {#if data.details.html}
     <div class="tag-content section">

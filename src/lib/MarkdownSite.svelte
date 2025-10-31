@@ -55,7 +55,7 @@
   <article class="container h-entry">
     {#if site.cover_image}
       <figure>
-        <img alt={site.title} src={resolveUrl(site.cover_image)} />
+        <img class="u-featured" alt={site.title} src={resolveUrl(site.cover_image)} />
         {#if site.cover_image_txt}
           <figcaption>{site.cover_image_txt}</figcaption>
         {/if}
@@ -77,7 +77,7 @@
 
     <div class="by">
       <address class="author">
-        by <a href="/" rel="author">Tim Bachmann</a>
+        by <a class="u-author" href="/" rel="author">Tim Bachmann</a>
       </address>
       <PubDate {site} />
     </div>
@@ -99,7 +99,7 @@
     {#if site.photos}
       <div class="images">
         {#each site.photos as photo}
-          <img alt={photo.alt} src={photo.url} />
+          <img class="u-photo" alt={photo.alt} src={photo.url} />
         {/each}
       </div>
     {/if}

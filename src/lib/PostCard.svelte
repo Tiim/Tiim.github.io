@@ -19,6 +19,7 @@
   {links}
   {linksHtml}
   date={post.date}
+  url={`/${post.slug}`}
 >
   <div>
     {@html post.description || post.abstract}

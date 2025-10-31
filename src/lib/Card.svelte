@@ -5,26 +5,33 @@
   export let links = [];
   export let tags = [];
   export let date = null;
+  export let url = null;
 </script>
 
-<article class="card">
+<article class="card h-entry">
   <h3 class="card-header">
-    {title}
+    {#if url}
+      <a href={url} class="p-name u-url">{title}</a>
+    {:else}
+      <span class="p-name">{title}</span>
+    {/if}
   </h3>
   {#if date}
-    <span class="date">{new Date(date).toLocaleDateString()}</span>
+    <time class="date dt-published" datetime={date}>
+      {new Date(date).toLocaleDateString()}
+    </time>
   {/if}
   <div class="card-content">
     {#if image}
-      <img src={image?.src} alt={image?.alt || title + " title image"} />
+      <img class="u-featured" src={image?.src} alt={image?.alt || title + " title image"} />
     {/if}
-    <p>
+    <p class="p-summary">
       <slot />
     </p>
     {#if tags && tags.length > 0}
       <div class="tags">
         {#each tags as tag}
-          <a href={`/tags/${tag}`} class="tag">
+          <a href={`/tags/${tag}`} class="tag p-category">
             {tag}
           </a>
         {/each}

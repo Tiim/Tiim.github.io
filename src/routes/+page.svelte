@@ -35,6 +35,12 @@
       <a class="u-email" href={`mailto:${data.mf2.email}`}>{data.mf2.email}</a>
       <a class="u-url" href={data.mf2.url}>{data.mf2.url}</a>
       <span class="p-locality">{data.mf2.locality}</span>
+      <span class="p-country-name">{data.mf2.country_name}</span>
+      <span class="p-org">{data.mf2.org}</span>
+      {#if data.mf2.job_title}
+        <span class="p-job-title">{data.mf2.job_title}</span>
+      {/if}
+      <span class="p-role">{data.mf2.role}</span>
       <span class="p-gender-identity">{data.mf2.gender_identity}</span>
     </div>
     <div class="section">
