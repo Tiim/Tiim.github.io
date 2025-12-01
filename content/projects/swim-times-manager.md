@@ -13,3 +13,5 @@ links:
 A small client side javascript application to manage measured times and splits of swimmers. Supports managing swimmers, sharing database via export and import, displaying PBs and data import from LENEX file format.
 
 Sharing of data is possible with the import and export functionality.
+
+The whole app is built using _Claude Code_ in a few evenings. For me, it was the perfect learning project on how to best work with an AI assistant.
