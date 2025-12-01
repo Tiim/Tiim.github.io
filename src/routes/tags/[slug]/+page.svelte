@@ -10,6 +10,7 @@
 <div class="container has-text-centered h-feed">
   <div class="section">
     <h1 class="p-name">🏷️ Tag: {data.details.tag}</h1>
+    <p><a href="/tags">← All Tags</a></p>
   </div>
   {#if data.details.html}
     <div class="tag-content section">
