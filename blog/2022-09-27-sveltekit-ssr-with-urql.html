@@ -1,0 +1,341 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="/swim-emoji.png" />
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      title="tiim.ch » Tim Bachmann"
+      href="/blog/rss.xml"
+    />
+    <link href="https://comments.tiim.ch/wm/webmentions" rel="webmention" />
+    <link
+      href="https://comments.tiim.ch/indieauth/metadata"
+      rel="indieauth-metadata"
+    />
+    <link
+      href="https://comments.tiim.ch/indieauth/authorize"
+      rel="authorization_endpoint"
+    />
+    <link
+      href="https://comments.tiim.ch/indieauth/token"
+      rel="token_endpoint"
+    />
+    <link rel="micropub" href="https://comments.tiim.ch/micropub" />
+    <link rel="microsub" href="https://aperture.p3k.io/microsub/801" />
+    <title>Tim Bachmann</title>
+    
+		<link href="../_app/immutable/assets/0.C6Eg9DJ-.css" rel="stylesheet">
+		<link href="../_app/immutable/assets/MarkdownSite.D9jvKssS.css" rel="stylesheet">
+		<link href="../_app/immutable/assets/4.Dn2lDdn2.css" rel="stylesheet">
+		<link rel="modulepreload" href="../_app/immutable/entry/start.DzMsK6iU.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/BAJ0H9dG.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/N6vMP6K8.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/CeH7VA1m.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/BEFE7IlI.js">
+		<link rel="modulepreload" href="../_app/immutable/entry/app.Bj6fPYMv.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/Bzak7iHL.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/tirM1Ya0.js">
+		<link rel="modulepreload" href="../_app/immutable/nodes/0.0VHl-ngm.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/AumyIhAL.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/BNYvmXM-.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/dVNlkfcI.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/56KfW9JE.js">
+		<link rel="modulepreload" href="../_app/immutable/nodes/4.CnFQrugk.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/BwmfcpTx.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/Cf1uxiy_.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/C-mP__dA.js"><!--18fneu1--><meta property="og:title" content="SvelteKit Server-Side Rendering (SSR) with @urql/svelte"/> <meta property="og:type" content="article"/> <meta property="og:description" content="Learn why server-side rendering (SSR) using urql as a GraphQL client is not as straightforward as you might think and how to do it anyway."/> <!--[--><meta property="article:published_time" content="Mon Sep 26 2022 00:00:00 GMT+0000 (Coordinated Universal Time)"/><!--]--> <!--[--><meta property="article:modified_time" content="Mon Sep 26 2022 00:00:00 GMT+0000 (Coordinated Universal Time)"/><!--]--> <meta property="article:author" content="Tim Bachmann"/> <!--[--><meta property="article:tag" content="graphql"/><meta property="article:tag" content="ssr"/><meta property="article:tag" content="sveltekit"/><meta property="article:tag" content="urql"/><!--]--> <!--[--><meta property="og:image" content="https://i.imgur.com/5DBIbbT.png"/><!--]--><!----><title>SvelteKit Server-Side Rendering (SSR) with @urql/svelte - Tim Bachmann</title>
+  </head>
+  <body>
+    <div id="svelte"><!--[--><!--[--><!----><div id="app"><nav class="navbar svelte-se4uza" aria-label="main navigation"><div class="navbar-brand svelte-se4uza"><a class="navbar-item svelte-se4uza" href="/">Tim Bachmann</a></div> <div class="navbar-menu desktop svelte-se4uza"><a href="/" class="navbar-item svelte-se4uza">Home</a> <a href="/projects" class="navbar-item svelte-se4uza">Projects</a> <a href="/blog" class="navbar-item svelte-se4uza">Blog</a> <a href="/pages/uses" class="navbar-item svelte-se4uza">Uses</a> <a class="navbar-item svelte-se4uza" href="/contact">Contact</a> <a class="navbar-item svelte-se4uza" href="/follow">Follow</a></div> <div class="navbar-menu mobile svelte-se4uza"><div><input id="header-toggle" class="header-checkbox svelte-se4uza" type="checkbox"/> <label for="header-toggle" class="toggle svelte-se4uza"><span class="svelte-se4uza"></span> <span class="svelte-se4uza"></span> <span class="svelte-se4uza"></span></label></div> <!--[!--><!--]--></div></nav><!----> <div class="section"><!--[--><!----><div><article class="container h-entry"><!--[--><figure class="svelte-18fneu1"><img class="u-featured svelte-18fneu1" alt="SvelteKit Server-Side Rendering (SSR) with @urql/svelte" src="https://i.imgur.com/5DBIbbT.png"/> <!--[!--><!--]--></figure><!--]--> <h1><span class="p-name">SvelteKit Server-Side Rendering (SSR) with @urql/svelte</span></h1> <!--[!--><!--]--> <p class="tags"><!--[--><a class="tag p-category" href="/tags/graphql">graphql</a><a class="tag p-category" href="/tags/ssr">ssr</a><a class="tag p-category" href="/tags/sveltekit">sveltekit</a><a class="tag p-category" href="/tags/urql">urql</a><!--]--></p> <div class="by svelte-18fneu1"><address class="author svelte-18fneu1">by <a class="u-author" href="/" rel="author">Tim Bachmann</a></address> <!--[--><span>published on <time pubdate="" datetime="2022-09-26T00:00:00.000Z" class="date dt-published">Monday, September 26, 2022</time></span><!--]--> <!--[!--><!--]--><!----></div> <!--[!--><!--]--> <div class="e-content content svelte-18fneu1"><!----><p>In this blog post, I will explain why server-side rendering with the <a href="https://formidable.com/open-source/urql/docs/api/svelte/" rel="nofollow noopener noreferrer">urql</a> GraphQL library is not as straightforward to do with SvelteKit, and how I solved this in my project anyway.</p>
+<p>Server-side rendering (SSR) is one of the great features of SvelteKit. I will try to keep this blog post short and will therefore not explain what server-side rendering is and why you should take advantage of it <em>(you really should!)</em>. If you want to know more about SSR you can take a look at this article: <a href="https://towardsdev.com/server-side-rendering-srr-in-javascript-a1b7298f0d04" rel="nofollow noopener noreferrer">A Deep Dive into Server-Side Rendering (SSR) in JavaScript</a>.</p>
+<h2>Background - SSR in SvelteKit</h2>
+<p>SvelteKit implements SSR by providing a <a href="https://kit.svelte.dev/docs/load" rel="nofollow noopener noreferrer"><code>load</code> function</a> for every layout and page component. If a page or layout needs to perform some asynchronous operation, this should be done inside of this load function. SvelteKit executes this function asynchronously on the server side as well as on the client side and the return value of this function is assigned to the <code>data</code> prop of the associated component. Usually, this asynchronous operation is loading data from an external service, like in the case of this blog post a GraphQL server.
+You can of course load data directly in the component, but SvelteKit will not wait for this to complete when doing SSR, and the resulting HTML will not include the loaded data.</p>
+<h2>Background - @urql/svelte</h2>
+<p>The urql library allows us to easily issue GraphQL queries and mutations. Some of the functionality it has to make our lives easier include:</p>
+<ul>
+<li>Reloading a query when a query variable changes</li>
+<li>Reloading a query after a mutation that touches the same data as the query</li>
+</ul>
+<p>We want to keep these features, even when using urql when doing SSR.</p>
+<h2>The Problem</h2>
+<p>When implementing SSR in my project, I ran into two problems. I couldn't find any documentation or any articles solving them, so I decided to write down my solutions to those problems in this blog post.</p>
+<h3>Problem 1 - Svelte and urql Reactivity</h3>
+<p>Let's say we have the following load function, which executes a GraphQL query to load a list of red cars:</p>
+<pre><code class="language-js">// src/routes/car/+page.js
+
+/** @type {import('./$types').PageLoad} */
+export function load(event) {
+  const client = createClient({
+    url: config.url,
+    fetch: event.fetch,
+  });
+
+  const carColor = "red";
+
+  const cars = client
+    .query(carsQuery, {
+      color: carColor,
+    })
+    .toPromise()
+    .then((c) => c.data?.car);
+
+  return {
+    cars,
+  };
+}
+</code></pre>
+<p>This example uses the urql method <code>client.query</code> to start a query to get us a list of cars with a red colour (The GraphQL query is not shown but the exact query is not important for this example).
+The client gets a <a href="https://kit.svelte.dev/docs/load#input-methods-fetch" rel="nofollow noopener noreferrer">special fetch function</a> from the event which has a few nice properties, like preventing a second network request on the client side if that same request was just issued on the server-side.</p>
+<p>Since the query code is now located in the load function and not in a svelte component, there is no way to easily change the <code>carColor</code> and have urql automatically reload the query. The only way to change the variable is to set the value as a query parameter and read that from the <code>event</code> argument. This however means that we have to refresh the whole page just to reload this query.</p>
+<p>The other thing urql does for us, reloading the query when we do a mutation on the same data, will not work with the above code either.</p>
+<h3>The solution: A query in the load function and a query in the component</h3>
+<p>To fix those two drawbacks we have to add the same query as in the load function to our component code as well. Unfortunately, this means when a user loads the page, it sends a request from the client side, even though the same request got sent from the server side already.</p>
+<p>I created a small wrapper function <code>queryStoreInitialData</code> that creates the query inside of the component and intelligently switches from the (possibly stale) data from the load function to the new data. Using this wrapper, the page or layout might look as follows:</p>
+<pre><code class="language-svelte">&#x3C;script>
+  import { queryStoreInitialData } from "@/lib/gql-client"; // The helper function mentioned above
+  import { getContextClient } from "@urql/svelte";
+  import { carsQuery } from "./query"; // The query
+
+  export let data;
+
+  $: gqlStore = queryStoreInitialData(
+    {
+      client: getContextClient(),
+      query: carsQuery,
+    },
+    data.cars
+  );
+  $: cars = $gqlStore?.data?.car;
+&#x3C;/script>
+
+&#x3C;div>
+  &#x3C;pre>
+    {JSON.stringify(cars, null, 2)}
+  &#x3C;/pre>
+&#x3C;/div>
+</code></pre>
+<ol>
+<li>The native <code>queryStore</code> function gets replaced with the wrapper function.</li>
+<li>The initial value of the query is supplied to the wrapper</li>
+</ol>
+<p>Unfortunately, we can not return the query result from the load function directly like this:</p>
+<pre><code class="language-js">const result = await client.query(cars, {}).toPromise();
+
+return {
+  cars: toInitialValue(result),
+};
+</code></pre>
+<p>This results in the following error:</p>
+<pre><code class="language-stacktrace">Cannot stringify a function (data.events.operation.context.fetch)
+Error: Cannot stringify a function (data.events.operation.context.fetch)
+    at render_response (file:///app/node_modules/@sveltejs/kit/src/runtime/server/page/render.js:181:20)
+    at runMicrotasks (&#x3C;anonymous>)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async render_page (file:///app/node_modules/@sveltejs/kit/src/runtime/server/page/index.js:276:10)
+    at async resolve (file:///app/node_modules/@sveltejs/kit/src/runtime/server/index.js:232:17)
+    at async respond (file:///app/node_modules/@sveltejs/kit/src/runtime/server/index.js:284:20)
+    at async file:///app/node_modules/@sveltejs/kit/src/exports/vite/dev/index.js:406:22
+</code></pre>
+<p>This is because the query result contains data that is not serializable.
+To fix this I created the <code>toInitialValue</code> function, which deletes all non-serializable elements from the result. The load function now looks like follows;</p>
+<pre><code class="language-js">// src/routes/car/+page.js
+import { createServerClient, toInitialValue } from "@/lib/gql-client";
+import { parse } from "cookie";
+import { carsQuery } from "./query";
+
+/** @type {import('./$types').PageServerLoad} */
+export const load = async (event) => {
+  const client = createClient({
+    url: config.url,
+    fetch: event.fetch,
+  });
+
+  const result = await client.query(cars, {}).toPromise();
+
+  return {
+    cars: toInitialValue(result),
+  };
+};
+</code></pre>
+<h3>Problem 2 - Authentication</h3>
+<p>We will look at the same <code>load</code> function as #Problem 1 - Svelte and urql Reactivity: the function creates a urql client with the fetch function from the event object and uses this client to send a query.</p>
+<p>Sometimes however the GraphQL API requires authentication in the form of a cookie to allow access.</p>
+<p>Unfortunately, the <a href="https://kit.svelte.dev/docs/load#input-methods-fetch" rel="nofollow noopener noreferrer">fetch function that we get from the load event</a> will only pass the cookies on if the requested domain is the same as the base domain or a more specific subdomain of it. This means if your SvelteKit site runs on <code>example.com</code> and your GraphQL server runs on <code>gql.example.com</code> then the cookies will get forwarded and everything is fine. This however is, in my experience, often not the case. Either you might use an external service for your GraphQL API or you host it yourself and want to use its internal domain.</p>
+<p>The only way to pass the cookies on to the GraphQL server, in this case, is by manually setting the cookie header when creating the urql client. This however forces us to use the server-only load function, as we do not have access to the cookie header in the normal load function.</p>
+<p>The new code now looks like this:</p>
+<pre><code class="language-js">// /src/routes/car/+page.server.js
+
+/** @type {import('./$types').PageServerLoad} */
+export function load(event) {
+  const client = createClient({
+    url: config.url,
+    fetch,
+    fetchOptions: {
+      credentials: "include",
+      headers: {
+        // inject the cookie header
+        // FIXME: change the cookie name
+        Cookie: `gql-session=${event.cookies.get("gql-session")}`,
+      },
+    },
+  });
+
+  const cars = client.query(carsQuery, {}).toPromise();
+
+  return {
+    cars: toInitialValue(result),
+  };
+}
+</code></pre>
+<p>To keep the size of the load functions across my codebase smaller I created a small wrapper function <code>createServerClient</code>:</p>
+<pre><code class="language-js">// /src/routes/car/+page.server.js
+
+/** @type {import('./$types').PageServerLoad} */
+export function load(event) {
+  const client = createServerClient(event.cookies);
+
+  const cars = client.query(carsQuery, {}).toPromise();
+
+  return {
+    cars: toInitialValue(result),
+  };
+}
+</code></pre>
+<h2>The Code</h2>
+<p>Below you can find the three functions <code>createServerClient</code>, <code>queryStoreInitialData</code> and <code>toInitialValue</code> that we used above:</p>
+<pre><code class="language-js">// /src/lib/gql-client.js
+
+import { browser } from "$app/environment";
+import { urls } from "@/config";
+import { createClient, queryStore } from "@urql/svelte";
+import { derived, readable } from "svelte/store";
+
+/**
+ * Helper function to create an urql client for a server-side-only load function
+ *
+ *
+ * @param {import('@sveltejs/kit').Cookies} cookies
+ * @returns
+ */
+export function createServerClient(cookies) {
+  return createClient({
+    // FIXME: adjust your graphql url
+    url: urls.gql,
+    fetch,
+    // FIXME: if you don't need to authenticate, delete the following object:
+    fetchOptions: {
+      credentials: "include",
+      headers: {
+        // FIXME: if you want to set a cookie adjust the cookie name
+        Cookie: `gql-session=${cookies.get("gql-session")}`,
+      },
+    },
+  });
+}
+
+/**
+ * Helper method to send a GraphQL query but use the data from the SvelteKit load function initially.
+ *
+ *
+ * @param {any} queryArgs
+ * @param {any} initialValue
+ * @returns
+ */
+export function queryStoreInitialData(queryArgs, initialValue) {
+  if (!initialValue || (!initialValue.error &#x26;&#x26; !initialValue.data)) {
+    throw new Error("No initial value from server");
+  }
+
+  let query = readable({ fetching: true });
+  if (browser) {
+    query = queryStore(queryArgs);
+  }
+
+  return derived(query, (value, set) => {
+    if (value.fetching) {
+      set({ ...initialValue, source: "server", fetching: true });
+    } else {
+      set({ ...value, source: "client" });
+    }
+  });
+}
+
+/**
+ * Make the result object of a urql query serialisable.
+ *
+ *
+ * @template T
+ * @param {Promise&#x3C;import('@urql/svelte').OperationResult&#x3C;T, any >>|import('@urql/svelte').OperationResult&#x3C;T, any >} result
+ * @returns {Promise&#x3C;{fetching:false, error: undefined | {name?: string, message?: string; graphQLErrors?: any[]; networkError?: Error; response?: any;}, data: T|undefined}>}
+ */
+export async function toInitialValue(result) {
+  const { error, data } = await result;
+
+  // required to turn class array into array of javascript objects
+  const errorObject = error ? {} : undefined;
+  if (errorObject) {
+    console.warn(error);
+    errorObject.graphQLErrors = error?.graphQLErrors?.map((e) => ({ ...e }));
+    errorObject.networkError = { ...error?.networkError };
+    errorObject.response = { value: "response omitted" };
+  }
+
+  return {
+    fetching: false,
+    error: { ...error, ...errorObject },
+    data,
+  };
+}
+</code></pre>
+<p><a href="https://gist.github.com/Tiim/1adeb4d74ce7ae09d0d0aa4176a6195d" rel="nofollow noopener noreferrer">Link to the Gist</a></p>
+<h2>End remarks</h2>
+<p>Even though I think this solution is not too bad, I wish @urql/svelte would implement a better way to handle SSR with sveltekit. I posted a <a href="https://github.com/FormidableLabs/urql/discussions/2703" rel="nofollow noopener noreferrer">question on the urql GitHub discussions board</a>, but I have not gotten any response yet.</p>
+<blockquote class="callout callout-info">
+<span class="callout-title"><span class="callout-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M256 512c141.4 0 256-114.6 256-256S397.4 0 256 0 0 114.6 0 256s114.6 256 256 256m-40-176h24v-64h-24c-13.3 0-24-10.7-24-24s10.7-24 24-24h48c13.3 0 24 10.7 24 24v88h8c13.3 0 24 10.7 24 24s-10.7 24-24 24h-80c-13.3 0-24-10.7-24-24s10.7-24 24-24m40-144c-17.7 0-32-14.3-32-32s14.3-32 32-32 32 14.3 32 32-14.3 32-32 32"></path></svg></span>Info</span><p>This article was written with <code>@svelte/kit</code> version <code>1.0.0-next.499</code> and <code>@urql/svelte</code> version <code>3.0.1</code>.
+I will try to update this article as I update my codebase to newer versions.</p>
+</blockquote>
+<p>If this post helped you, or you found a better or different way to solve SSR with urql, please let me know in the comments, write me an email or tag me on twitter <a href="https://twitter.com/TiimB" rel="nofollow noopener noreferrer">@TiimB</a>.</p><!----></div> <!--[!--><!--]--> <!--[--><div class="outro svelte-1teoznn" slot="outro"><em>You found an error in this post? Open a <a href="https://github.com/Tiim/Tiim.github.io/tree/source/content/blog/2022-09-27-sveltekit-ssr-with-urql.md">pull request</a>.</em></div><!--]--> <div class="author-info p-author h-card svelte-2gqjly"><div class="author-avatar svelte-2gqjly"><img src="https://avatars.githubusercontent.com/u/1063187" alt="Photo of Tim Bachmann" class="u-photo svelte-2gqjly"/></div> <div><p class="author-bio p-note"><!----><p>Hi, my name is <span class="p-name">Tim Bachmann</span>!
+I'm a <span class="p-role">software engineer</span> at <span class="p-org">Coop Genossenschaft</span>, swimmer and swim coach.</p>
+<p>I am passionate about all things web development, swimming, personal knowledge management and much more.
+If you liked this or any of my posts, feel free to <a href="https://tiim.ch/follow" rel="nofollow noopener noreferrer">follow me</a>.</p><!----></p> <div class="author-detail svelte-2gqjly"><span class="hidden p-name svelte-2gqjly">Tim Bachmann</span> <span class="hidden p-gender-identity svelte-2gqjly">male</span> <span class="hidden p-locality svelte-2gqjly">Basel</span> <span class="hidden p-country-name svelte-2gqjly">Switzerland</span> <span class="hidden p-org svelte-2gqjly">Coop Genossenschaft</span> <span class="hidden p-role svelte-2gqjly">software engineer</span> <a href="mailto:hey@tiim.ch" class="p-email">hey@tiim.ch</a> <a class="p-url" href="https://tiim.ch/">https://tiim.ch/</a></div></div></div><!----> <div class="post-details"><!--[--><p class="hidden p-summary svelte-18fneu1">Learn why server-side rendering (SSR) using urql as a GraphQL client is not as straightforward as you might think and how to do it anyway.</p><!--]--> <a class="hidden p-url p-uid svelte-18fneu1" href="/blog/2022-09-27-sveltekit-ssr-with-urql">/blog/2022-09-27-sveltekit-ssr-with-urql</a></div></article></div><!----><!--]--></div> <div><footer class="svelte-cfdhmy"><div><!----><p>Built with SvelteKit and hosted on GitHub Pages.</p>
+<p>View this website on <a href="https://github.com/Tiim/Tiim.github.io" rel="nofollow noopener noreferrer">GitHub</a>!</p>
+<h2>Other pages</h2>
+<ul>
+<li><a href="https://tiim.ch/pages/links" rel="nofollow noopener noreferrer">Links and Blogroll</a></li>
+</ul><!----></div> <p class="copyright svelte-cfdhmy">©Tim Bachmann 2026</p></footer><!----></div></div><!----><!--]--> <!--[!--><!--]--><!--]-->
+			
+			<script>
+				{
+					__sveltekit_1a0qsqe = {
+						base: new URL("..", location).pathname.slice(0, -1)
+					};
+
+					const element = document.currentScript.parentElement;
+
+					Promise.all([
+						import("../_app/immutable/entry/start.DzMsK6iU.js"),
+						import("../_app/immutable/entry/app.Bj6fPYMv.js")
+					]).then(([kit, app]) => {
+						kit.start(app, element, {
+							node_ids: [0, 4],
+							data: [{type:"data",data:{footer:{html:"\u003Cp>Built with SvelteKit and hosted on GitHub Pages.\u003C/p>\n\u003Cp>View this website on \u003Ca href=\"https://github.com/Tiim/Tiim.github.io\" rel=\"nofollow noopener noreferrer\">GitHub\u003C/a>!\u003C/p>\n\u003Ch2>Other pages\u003C/h2>\n\u003Cul>\n\u003Cli>\u003Ca href=\"https://tiim.ch/pages/links\" rel=\"nofollow noopener noreferrer\">Links and Blogroll\u003C/a>\u003C/li>\n\u003C/ul>",slug:"footer",uuid:"e556fd14-3acd-4a7b-9b31-929fdd6d2b7a",created:new Date(1690834579000),date:new Date(1690834579000),published:true,abstract:"\u003Cp>Built with SvelteKit and hosted on GitHub Pages.\u003C/p>",tags:[],links:void 0,type:"article",cover_image:void 0,description:"",folder:"metadata"}},uses:{}},{type:"data",data:{post:{html:"\u003Cp>In this blog post, I will explain why server-side rendering with the \u003Ca href=\"https://formidable.com/open-source/urql/docs/api/svelte/\" rel=\"nofollow noopener noreferrer\">urql\u003C/a> GraphQL library is not as straightforward to do with SvelteKit, and how I solved this in my project anyway.\u003C/p>\n\u003Cp>Server-side rendering (SSR) is one of the great features of SvelteKit. I will try to keep this blog post short and will therefore not explain what server-side rendering is and why you should take advantage of it \u003Cem>(you really should!)\u003C/em>. If you want to know more about SSR you can take a look at this article: \u003Ca href=\"https://towardsdev.com/server-side-rendering-srr-in-javascript-a1b7298f0d04\" rel=\"nofollow noopener noreferrer\">A Deep Dive into Server-Side Rendering (SSR) in JavaScript\u003C/a>.\u003C/p>\n\u003Ch2>Background - SSR in SvelteKit\u003C/h2>\n\u003Cp>SvelteKit implements SSR by providing a \u003Ca href=\"https://kit.svelte.dev/docs/load\" rel=\"nofollow noopener noreferrer\">\u003Ccode>load\u003C/code> function\u003C/a> for every layout and page component. If a page or layout needs to perform some asynchronous operation, this should be done inside of this load function. SvelteKit executes this function asynchronously on the server side as well as on the client side and the return value of this function is assigned to the \u003Ccode>data\u003C/code> prop of the associated component. Usually, this asynchronous operation is loading data from an external service, like in the case of this blog post a GraphQL server.\nYou can of course load data directly in the component, but SvelteKit will not wait for this to complete when doing SSR, and the resulting HTML will not include the loaded data.\u003C/p>\n\u003Ch2>Background - @urql/svelte\u003C/h2>\n\u003Cp>The urql library allows us to easily issue GraphQL queries and mutations. Some of the functionality it has to make our lives easier include:\u003C/p>\n\u003Cul>\n\u003Cli>Reloading a query when a query variable changes\u003C/li>\n\u003Cli>Reloading a query after a mutation that touches the same data as the query\u003C/li>\n\u003C/ul>\n\u003Cp>We want to keep these features, even when using urql when doing SSR.\u003C/p>\n\u003Ch2>The Problem\u003C/h2>\n\u003Cp>When implementing SSR in my project, I ran into two problems. I couldn't find any documentation or any articles solving them, so I decided to write down my solutions to those problems in this blog post.\u003C/p>\n\u003Ch3>Problem 1 - Svelte and urql Reactivity\u003C/h3>\n\u003Cp>Let's say we have the following load function, which executes a GraphQL query to load a list of red cars:\u003C/p>\n\u003Cpre>\u003Ccode class=\"language-js\">// src/routes/car/+page.js\n\n/** @type {import('./$types').PageLoad} */\nexport function load(event) {\n  const client = createClient({\n    url: config.url,\n    fetch: event.fetch,\n  });\n\n  const carColor = \"red\";\n\n  const cars = client\n    .query(carsQuery, {\n      color: carColor,\n    })\n    .toPromise()\n    .then((c) => c.data?.car);\n\n  return {\n    cars,\n  };\n}\n\u003C/code>\u003C/pre>\n\u003Cp>This example uses the urql method \u003Ccode>client.query\u003C/code> to start a query to get us a list of cars with a red colour (The GraphQL query is not shown but the exact query is not important for this example).\nThe client gets a \u003Ca href=\"https://kit.svelte.dev/docs/load#input-methods-fetch\" rel=\"nofollow noopener noreferrer\">special fetch function\u003C/a> from the event which has a few nice properties, like preventing a second network request on the client side if that same request was just issued on the server-side.\u003C/p>\n\u003Cp>Since the query code is now located in the load function and not in a svelte component, there is no way to easily change the \u003Ccode>carColor\u003C/code> and have urql automatically reload the query. The only way to change the variable is to set the value as a query parameter and read that from the \u003Ccode>event\u003C/code> argument. This however means that we have to refresh the whole page just to reload this query.\u003C/p>\n\u003Cp>The other thing urql does for us, reloading the query when we do a mutation on the same data, will not work with the above code either.\u003C/p>\n\u003Ch3>The solution: A query in the load function and a query in the component\u003C/h3>\n\u003Cp>To fix those two drawbacks we have to add the same query as in the load function to our component code as well. Unfortunately, this means when a user loads the page, it sends a request from the client side, even though the same request got sent from the server side already.\u003C/p>\n\u003Cp>I created a small wrapper function \u003Ccode>queryStoreInitialData\u003C/code> that creates the query inside of the component and intelligently switches from the (possibly stale) data from the load function to the new data. Using this wrapper, the page or layout might look as follows:\u003C/p>\n\u003Cpre>\u003Ccode class=\"language-svelte\">&#x3C;script>\n  import { queryStoreInitialData } from \"@/lib/gql-client\"; // The helper function mentioned above\n  import { getContextClient } from \"@urql/svelte\";\n  import { carsQuery } from \"./query\"; // The query\n\n  export let data;\n\n  $: gqlStore = queryStoreInitialData(\n    {\n      client: getContextClient(),\n      query: carsQuery,\n    },\n    data.cars\n  );\n  $: cars = $gqlStore?.data?.car;\n&#x3C;/script>\n\n&#x3C;div>\n  &#x3C;pre>\n    {JSON.stringify(cars, null, 2)}\n  &#x3C;/pre>\n&#x3C;/div>\n\u003C/code>\u003C/pre>\n\u003Col>\n\u003Cli>The native \u003Ccode>queryStore\u003C/code> function gets replaced with the wrapper function.\u003C/li>\n\u003Cli>The initial value of the query is supplied to the wrapper\u003C/li>\n\u003C/ol>\n\u003Cp>Unfortunately, we can not return the query result from the load function directly like this:\u003C/p>\n\u003Cpre>\u003Ccode class=\"language-js\">const result = await client.query(cars, {}).toPromise();\n\nreturn {\n  cars: toInitialValue(result),\n};\n\u003C/code>\u003C/pre>\n\u003Cp>This results in the following error:\u003C/p>\n\u003Cpre>\u003Ccode class=\"language-stacktrace\">Cannot stringify a function (data.events.operation.context.fetch)\nError: Cannot stringify a function (data.events.operation.context.fetch)\n    at render_response (file:///app/node_modules/@sveltejs/kit/src/runtime/server/page/render.js:181:20)\n    at runMicrotasks (&#x3C;anonymous>)\n    at processTicksAndRejections (node:internal/process/task_queues:96:5)\n    at async render_page (file:///app/node_modules/@sveltejs/kit/src/runtime/server/page/index.js:276:10)\n    at async resolve (file:///app/node_modules/@sveltejs/kit/src/runtime/server/index.js:232:17)\n    at async respond (file:///app/node_modules/@sveltejs/kit/src/runtime/server/index.js:284:20)\n    at async file:///app/node_modules/@sveltejs/kit/src/exports/vite/dev/index.js:406:22\n\u003C/code>\u003C/pre>\n\u003Cp>This is because the query result contains data that is not serializable.\nTo fix this I created the \u003Ccode>toInitialValue\u003C/code> function, which deletes all non-serializable elements from the result. The load function now looks like follows;\u003C/p>\n\u003Cpre>\u003Ccode class=\"language-js\">// src/routes/car/+page.js\nimport { createServerClient, toInitialValue } from \"@/lib/gql-client\";\nimport { parse } from \"cookie\";\nimport { carsQuery } from \"./query\";\n\n/** @type {import('./$types').PageServerLoad} */\nexport const load = async (event) => {\n  const client = createClient({\n    url: config.url,\n    fetch: event.fetch,\n  });\n\n  const result = await client.query(cars, {}).toPromise();\n\n  return {\n    cars: toInitialValue(result),\n  };\n};\n\u003C/code>\u003C/pre>\n\u003Ch3>Problem 2 - Authentication\u003C/h3>\n\u003Cp>We will look at the same \u003Ccode>load\u003C/code> function as #Problem 1 - Svelte and urql Reactivity: the function creates a urql client with the fetch function from the event object and uses this client to send a query.\u003C/p>\n\u003Cp>Sometimes however the GraphQL API requires authentication in the form of a cookie to allow access.\u003C/p>\n\u003Cp>Unfortunately, the \u003Ca href=\"https://kit.svelte.dev/docs/load#input-methods-fetch\" rel=\"nofollow noopener noreferrer\">fetch function that we get from the load event\u003C/a> will only pass the cookies on if the requested domain is the same as the base domain or a more specific subdomain of it. This means if your SvelteKit site runs on \u003Ccode>example.com\u003C/code> and your GraphQL server runs on \u003Ccode>gql.example.com\u003C/code> then the cookies will get forwarded and everything is fine. This however is, in my experience, often not the case. Either you might use an external service for your GraphQL API or you host it yourself and want to use its internal domain.\u003C/p>\n\u003Cp>The only way to pass the cookies on to the GraphQL server, in this case, is by manually setting the cookie header when creating the urql client. This however forces us to use the server-only load function, as we do not have access to the cookie header in the normal load function.\u003C/p>\n\u003Cp>The new code now looks like this:\u003C/p>\n\u003Cpre>\u003Ccode class=\"language-js\">// /src/routes/car/+page.server.js\n\n/** @type {import('./$types').PageServerLoad} */\nexport function load(event) {\n  const client = createClient({\n    url: config.url,\n    fetch,\n    fetchOptions: {\n      credentials: \"include\",\n      headers: {\n        // inject the cookie header\n        // FIXME: change the cookie name\n        Cookie: `gql-session=${event.cookies.get(\"gql-session\")}`,\n      },\n    },\n  });\n\n  const cars = client.query(carsQuery, {}).toPromise();\n\n  return {\n    cars: toInitialValue(result),\n  };\n}\n\u003C/code>\u003C/pre>\n\u003Cp>To keep the size of the load functions across my codebase smaller I created a small wrapper function \u003Ccode>createServerClient\u003C/code>:\u003C/p>\n\u003Cpre>\u003Ccode class=\"language-js\">// /src/routes/car/+page.server.js\n\n/** @type {import('./$types').PageServerLoad} */\nexport function load(event) {\n  const client = createServerClient(event.cookies);\n\n  const cars = client.query(carsQuery, {}).toPromise();\n\n  return {\n    cars: toInitialValue(result),\n  };\n}\n\u003C/code>\u003C/pre>\n\u003Ch2>The Code\u003C/h2>\n\u003Cp>Below you can find the three functions \u003Ccode>createServerClient\u003C/code>, \u003Ccode>queryStoreInitialData\u003C/code> and \u003Ccode>toInitialValue\u003C/code> that we used above:\u003C/p>\n\u003Cpre>\u003Ccode class=\"language-js\">// /src/lib/gql-client.js\n\nimport { browser } from \"$app/environment\";\nimport { urls } from \"@/config\";\nimport { createClient, queryStore } from \"@urql/svelte\";\nimport { derived, readable } from \"svelte/store\";\n\n/**\n * Helper function to create an urql client for a server-side-only load function\n *\n *\n * @param {import('@sveltejs/kit').Cookies} cookies\n * @returns\n */\nexport function createServerClient(cookies) {\n  return createClient({\n    // FIXME: adjust your graphql url\n    url: urls.gql,\n    fetch,\n    // FIXME: if you don't need to authenticate, delete the following object:\n    fetchOptions: {\n      credentials: \"include\",\n      headers: {\n        // FIXME: if you want to set a cookie adjust the cookie name\n        Cookie: `gql-session=${cookies.get(\"gql-session\")}`,\n      },\n    },\n  });\n}\n\n/**\n * Helper method to send a GraphQL query but use the data from the SvelteKit load function initially.\n *\n *\n * @param {any} queryArgs\n * @param {any} initialValue\n * @returns\n */\nexport function queryStoreInitialData(queryArgs, initialValue) {\n  if (!initialValue || (!initialValue.error &#x26;&#x26; !initialValue.data)) {\n    throw new Error(\"No initial value from server\");\n  }\n\n  let query = readable({ fetching: true });\n  if (browser) {\n    query = queryStore(queryArgs);\n  }\n\n  return derived(query, (value, set) => {\n    if (value.fetching) {\n      set({ ...initialValue, source: \"server\", fetching: true });\n    } else {\n      set({ ...value, source: \"client\" });\n    }\n  });\n}\n\n/**\n * Make the result object of a urql query serialisable.\n *\n *\n * @template T\n * @param {Promise&#x3C;import('@urql/svelte').OperationResult&#x3C;T, any >>|import('@urql/svelte').OperationResult&#x3C;T, any >} result\n * @returns {Promise&#x3C;{fetching:false, error: undefined | {name?: string, message?: string; graphQLErrors?: any[]; networkError?: Error; response?: any;}, data: T|undefined}>}\n */\nexport async function toInitialValue(result) {\n  const { error, data } = await result;\n\n  // required to turn class array into array of javascript objects\n  const errorObject = error ? {} : undefined;\n  if (errorObject) {\n    console.warn(error);\n    errorObject.graphQLErrors = error?.graphQLErrors?.map((e) => ({ ...e }));\n    errorObject.networkError = { ...error?.networkError };\n    errorObject.response = { value: \"response omitted\" };\n  }\n\n  return {\n    fetching: false,\n    error: { ...error, ...errorObject },\n    data,\n  };\n}\n\u003C/code>\u003C/pre>\n\u003Cp>\u003Ca href=\"https://gist.github.com/Tiim/1adeb4d74ce7ae09d0d0aa4176a6195d\" rel=\"nofollow noopener noreferrer\">Link to the Gist\u003C/a>\u003C/p>\n\u003Ch2>End remarks\u003C/h2>\n\u003Cp>Even though I think this solution is not too bad, I wish @urql/svelte would implement a better way to handle SSR with sveltekit. I posted a \u003Ca href=\"https://github.com/FormidableLabs/urql/discussions/2703\" rel=\"nofollow noopener noreferrer\">question on the urql GitHub discussions board\u003C/a>, but I have not gotten any response yet.\u003C/p>\n\u003Cblockquote class=\"callout callout-info\">\n\u003Cspan class=\"callout-title\">\u003Cspan class=\"callout-icon\">\u003Csvg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 512 512\">\u003Cpath d=\"M256 512c141.4 0 256-114.6 256-256S397.4 0 256 0 0 114.6 0 256s114.6 256 256 256m-40-176h24v-64h-24c-13.3 0-24-10.7-24-24s10.7-24 24-24h48c13.3 0 24 10.7 24 24v88h8c13.3 0 24 10.7 24 24s-10.7 24-24 24h-80c-13.3 0-24-10.7-24-24s10.7-24 24-24m40-144c-17.7 0-32-14.3-32-32s14.3-32 32-32 32 14.3 32 32-14.3 32-32 32\">\u003C/path>\u003C/svg>\u003C/span>Info\u003C/span>\u003Cp>This article was written with \u003Ccode>@svelte/kit\u003C/code> version \u003Ccode>1.0.0-next.499\u003C/code> and \u003Ccode>@urql/svelte\u003C/code> version \u003Ccode>3.0.1\u003C/code>.\nI will try to update this article as I update my codebase to newer versions.\u003C/p>\n\u003C/blockquote>\n\u003Cp>If this post helped you, or you found a better or different way to solve SSR with urql, please let me know in the comments, write me an email or tag me on twitter \u003Ca href=\"https://twitter.com/TiimB\" rel=\"nofollow noopener noreferrer\">@TiimB\u003C/a>.\u003C/p>",slug:"blog/2022-09-27-sveltekit-ssr-with-urql",uuid:"1e223cab-bca2-4b3b-a75a-71f158c90cba",date:new Date(1664150400000),created:new Date(1664182523886),aliases:[null],title:"SvelteKit Server-Side Rendering (SSR) with @urql/svelte",published:true,modified:null,description:"Learn why server-side rendering (SSR) using urql as a GraphQL client is not as straightforward as you might think and how to do it anyway.",cover_image:"https://i.imgur.com/5DBIbbT.png",content_tags:["urql","sveltekit","SSR","graphql"],abstract:"\u003Cp>In this blog post, I will explain why server-side rendering with the \u003Ca href=\"https://formidable.com/open-source/urql/docs/api/svelte/\">urql\u003C/a> GraphQL library is not as straightforward to do with SvelteKit, and how I solved this in my project anyway.\u003C/p>",tags:["graphql","ssr","sveltekit","urql"],links:void 0,type:"article",folder:"blog"},about:{html:"\u003Cp>Hi, my name is \u003Cspan class=\"p-name\">Tim Bachmann\u003C/span>!\nI'm a \u003Cspan class=\"p-role\">software engineer\u003C/span> at \u003Cspan class=\"p-org\">Coop Genossenschaft\u003C/span>, swimmer and swim coach.\u003C/p>\n\u003Cp>I am passionate about all things web development, swimming, personal knowledge management and much more.\nIf you liked this or any of my posts, feel free to \u003Ca href=\"https://tiim.ch/follow\" rel=\"nofollow noopener noreferrer\">follow me\u003C/a>.\u003C/p>",slug:"about",uuid:"d8e56802-2847-4053-b213-9b004f1b965c",date:new Date(1665792000000),created:new Date(1665863229652),published:true,abstract:"\u003Cp>Hi, my name is {{name}}!\nI'm a {{role}} at {{org}}, swimmer and swim coach.\u003C/p>",tags:[],links:void 0,type:"article",cover_image:void 0,description:"",folder:"metadata"}},uses:{params:["slug"]}}],
+							form: null,
+							error: null
+						});
+					});
+				}
+			</script>
+		</div>
+  </body>
+</html>

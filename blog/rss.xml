@@ -1,0 +1,1690 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Tim Bachmann's Blog</title>
+        <link>https://tiim.ch/</link>
+        <description>Blog about web development, programming, and anything that might interest me.</description>
+        <lastBuildDate>Tue, 06 Jan 2026 20:29:30 GMT</lastBuildDate>
+        <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
+        <generator>https://github.com/jpmonette/feed</generator>
+        <language>en</language>
+        <image>
+            <title>Tim Bachmann's Blog</title>
+            <url>https://tiim.ch/swim-emoji.png</url>
+            <link>https://tiim.ch/</link>
+        </image>
+        <copyright>Tim Bachmann</copyright>
+        <atom:link href="https://tiim.ch/blog/rss.xml" rel="self" type="application/rss+xml"/>
+        <item>
+            <title><![CDATA[My Selfhosting Setup]]></title>
+            <link>https://tiim.ch/blog/2023-12-03-my-selfhosting-setup</link>
+            <guid isPermaLink="false">https://tiim.ch/blog/2023-12-03-my-selfhosting-setup</guid>
+            <pubDate>Mon, 04 Dec 2023 08:00:00 GMT</pubDate>
+            <description><![CDATA[A short overview on how I self-host.]]></description>
+            <content:encoded><![CDATA[<blockquote class="callout callout-note">
+<span class="callout-title"><span class="callout-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M64 32C28.7 32 0 60.7 0 96v320c0 35.3 28.7 64 64 64h226.7c17 0 33.3-6.7 45.3-18.7l93.3-93.3c12-12 18.7-28.3 18.7-45.3V96c0-35.3-28.7-64-64-64zm0 64h320v224h-64c-17.7 0-32 14.3-32 32v64H64z"></path></svg></span>Note</span><p>This post is meant as a reference for myself. I only published it in case someone else might find it interesting.
+I did not spend much time on this post.</p>
+</blockquote>
+<p>I do host some services on a few rented VPS servers and on my "home lab", which is just an old desktop that is running in the basement.
+When I got into self-hosting, I decided I would host everything exclusively in docker, which has served me pretty well over the last few years. In the last while I
+have learned a lot about Kubernetes, and am strongly considering switching my "simple" hosting setup for a more complex Kubernetes cluster. So before I do that I want
+to write down what my current setup looks like.</p>
+<h2>Setup</h2>
+<p><img src="https://media.tiim.ch/0887e318-9359-4753-abaf-49ae7c26dfcd.webp" alt=""></p>
+<p>As mentioned, everything is hosted in docker containers. Generally, I try to keep everything in docker-compose, since this allows me to specify the settings of the container once, and easily modify it later.
+To have multiple services available on port 80 and 443, I use the Traeffik (Software) reverse proxy. I use Traefik without a config file, meaning it pulls the routes and rules directly from the labels of the
+running containers on the VPS. This makes it easy to launch a new service and have its reverse proxy config directly in the docker-compose file.</p>
+<p>Since many services use a database, and Postgres seems to be supported by many open-source projects, I decided to have a central Postgres instance running in a docker container. This allows me to
+back it up with a simple cron job in a single place. If a service does not support Postgres, I specify its database directly in the docker-compose file.</p>
+<p>Almost all services use disk access for either config, local files, or similar. I do have a docker folder that is the root of all locally stored files.</p>
+<h2>OS Setup</h2>
+<p>When I first started, I configured everything by hand, and documented how, why, and what I did. However I was not happy with this, I could not test it out and it was prone to errors.
+Therefore, I decided to use Ansible to set up the server and install all dependencies.
+This worked well, so well that I decided that Ansible was good enough to use to operate the entire pipeline, even to automate the deployment of the services.</p>
+<h2>Deployment</h2>
+<p>I do have an ansible role per service, with its configuration (mostly) as ansible YAML files, and the docker-compose files and other config files as ansible templates. This worked great, with a single ansible-playbook command I can
+make sure everything is running and has the right config.
+For most services, I even built logic to make sure that when the docker-compose file or a config file changes, the container is restarted.</p>
+<h2>The good parts</h2>
+<p>I am quite happy with this system in general. Everything runs stable, backups are easy and automated, and deployments for services that are already configured are a breeze.
+I can keep the whole "description" of what is running in a single git repo, and make changes by editing config files.
+This is a huge step up from manually deploying and keeping track of what docker commands to use for what service.</p>
+<h2>The not so good parts</h2>
+<p>Recently I noticed some pain points.</p>
+<ol>
+<li>If I want to deploy a service twice for two domain names, I have to create a copy of the role. This unfortunately leads to duplicated "code" which can (and does) lead to configuration drift.</li>
+<li>I have to code things myself that already exist. For example, restarting a container when a config value changes. For most services this is implemented, but not everywhere, and also not for all possible things that can be changed. This is not what I want to be concentrating on if I am writing the config to deploy a service.</li>
+</ol>
+<p>In general, I seem to have built a worse subset of Kubernetes myself, just without the robustness that makes Kubernetes so interesting.</p>
+<h2>My plan for the future</h2>
+<p>I am planning to replace docker with Kubernetes, specifically K3s (Software), a very lightweight and mostly "batteries included" Kubernetes distribution.
+Ansible will stay, but only as a tool to set up and configure the OS, install dependencies, and install and run K3S. Deployment of services I either want to do directly using the kubectl command line tool, or more likely using
+ArgoCD, a project that pulls Kubernetes manifests from a Git repository and automatically deploys it.</p>
+<p>For the configuration, I will take a look at Helm (Software).</p>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+.callout {
+  padding: 0;
+  padding-bottom: 0.5rem;
+  border-left: 4px solid rgba(68, 138, 255, 1);
+}
+.callout > * {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+.callout-title {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  font-weight: bold;
+  background-color: rgba(68, 138, 255, 0.2);
+  padding: 0.5rem 1rem;
+  gap: 1rem;
+}
+.callout-icon {
+  width: 1.2rem;
+  height: 1.2rem;
+  margin: 0 !important;
+  padding: 0;
+  fill: currentColor;
+  opacity: 0.4;
+}
+</style>
+]]></content:encoded>
+            <author>hey@tiim.ch (Tim Bachmann)</author>
+            <category>ansible</category>
+            <category>docker</category>
+            <category>server</category>
+            <category>traefik</category>
+            <enclosure url="https://media.tiim.ch/4a0a43eb-cf95-4273-b6a6-e085c9123985.webp" length="0" type="image/webp"/>
+        </item>
+        <item>
+            <title><![CDATA[Getting the Absolute Path of a Remote Directory in Ansible]]></title>
+            <link>https://tiim.ch/blog/2023-09-20-ansible-absolute-path</link>
+            <guid isPermaLink="false">https://tiim.ch/blog/2023-09-20-ansible-absolute-path</guid>
+            <pubDate>Wed, 20 Sep 2023 21:39:13 GMT</pubDate>
+            <description><![CDATA[There is no builtin way to convert a relative path to an absolute path in ansible. However we can use the readlink command for this.]]></description>
+            <content:encoded><![CDATA[<p>I recently had to find a way to delete a folder using Ansible that was being created by Docker. The folder had a path like <code>~/docker/myservice</code>. Since docker had created it as part of a volume, the folder did not belong to the current user. So deleting the folder using normal permissions failed.</p>
+<p>Deleting with elevated permission on the command line is easy: The command <code>sudo rm -rf ~/docker/myservice</code> performs the <code>rm</code> operation as the root user. In bash, this will delete the <code>docker/myservice</code> folder in the user's home directory, but when doing the equivalent in Ansible, this won't work!</p>
+<pre><code class="language-yaml"># This does not work!
+- name: Delete the folder using root permissions
+  become: true
+  ansible.builtin.file:
+    path: "~/docker/myservice"
+    state: "absent"
+</code></pre>
+<p>This code will try to delete the file <code>/user/root/docker/myservice</code>, which is not what we wanted.</p>
+<p>The bash version works because the shell first resolves the tilde in the argument to the current users' directory before calling the sudo command. In Ansible, we first switch to the root user and only then the tilde is resolved: this time to the home directory of the root user.</p>
+<p>To circumvent this, we can manually resolve the path to an absolute path. Unfortunately, I have not found a straightforward way to do this in Ansible, however the bash command <code>readlink -f &#x3C;path></code> does exactly this. To use it in Ansible, we can use the following configuration:</p>
+<pre><code class="language-yaml">- name: Get absolute folder path
+  ansible.builtin.command:
+    cmd: "readlink -f ~/docker/myservice"
+  register: folder_abs
+  changed_when: False
+
+- name: Debug
+  debug:
+    msg: "{{folder_abs.stdout}}" # prints /user/tim/docker/myservice
+
+- name: Delete the folder using root permissions
+  become: true
+  ansible.builtin.file:
+    path: "{{folder_abs.stdout}}"
+    state: "absent"
+</code></pre>
+<p>With this Ansible script, we manually resolve the absolute path and use it to delete the folder using root permissions. If you know of an easier way to resolve to an absolute path, please let me know!</p>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+.callout {
+  padding: 0;
+  padding-bottom: 0.5rem;
+  border-left: 4px solid rgba(68, 138, 255, 1);
+}
+.callout > * {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+.callout-title {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  font-weight: bold;
+  background-color: rgba(68, 138, 255, 0.2);
+  padding: 0.5rem 1rem;
+  gap: 1rem;
+}
+.callout-icon {
+  width: 1.2rem;
+  height: 1.2rem;
+  margin: 0 !important;
+  padding: 0;
+  fill: currentColor;
+  opacity: 0.4;
+}
+</style>
+]]></content:encoded>
+            <author>hey@tiim.ch (Tim Bachmann)</author>
+            <category>ansible</category>
+            <category>bash</category>
+            <category>dev</category>
+            <category>linux</category>
+            <enclosure url="https://media.tiim.ch/3c1246e4-3201-4df6-af87-6aa4ab98800e.webp" length="0" type="image/webp"/>
+        </item>
+        <item>
+            <title><![CDATA[Forums]]></title>
+            <link>https://tiim.ch/blog/2023-06-16-forums</link>
+            <guid isPermaLink="false">https://tiim.ch/blog/2023-06-16-forums</guid>
+            <pubDate>Fri, 16 Jun 2023 18:56:56 GMT</pubDate>
+            <description><![CDATA[My experience of using forums in my teens, what changed after I started using reddit and my hopes for internet communities in the future.]]></description>
+            <content:encoded><![CDATA[<p>My first real programming experience was with a scripting language called <a href="https://www.autohotkey.com/" rel="nofollow noopener noreferrer">AutoHotkey</a>. This was before I was fluent enough in English to join the English-speaking community around this language. But luckily, there was an official German forum. It was really active, not only consisting of newcomers to the language but also veterans. When I joined this forum in my teens I quickly went from just asking beginner questions, to enjoying helping other beginners, that asked the same questions as I did previously. I got better at the language, learned new programming concepts all through reading posts, helped others, and shared my projects on this forum. I got excited when I saw a post from other users that I recognized.
+When AutoHotkey got forked and the new interpreter introduced classes and object-oriented programming, I felt in way over my head. Since I was not alone in this, one person took the time to write an incredibly detailed guide as a forum post. I recently found this post printed on paper. I had printed it right before going on vacation since I desperately wanted to learn but knew I was not going to have access to the internet for a while.
+Unfortunately, the German forum has since been discontinued, but some of the pages are still up on the <a href="https://web.archive.org/web/20121005080807/http://de.autohotkey.com/forum/" rel="nofollow noopener noreferrer">Way back machine</a>.</p>
+<p>Another community I used to be really active in, was for a small indie roleplaying game called <a href="">Illarion</a>. Again, the community relied heavily on a forum for communications. This time it was used for players to engage in "out of character" communication, as well as a way to simulate a metaphorical bullet board in the game town square where characters could leave notes for each other.
+Since the game was closely inspired by TTRPGs like D&#x26;D, the role-playing part was more important than the in-game mechanics. The forum allowed characters to interact with each other that were not online at the same time. Again, I got really invested in this community, even going so far as joining other guild-specific forums.</p>
+<p>I eventually moved on from both of those amazing communities, because my interests changed. I left the AutoHotkey community because I started to get more involved with other programming languages, and I left the Illarion community because I (with the support of my parents) was looking for a less time-intensive game. Unfortunately, I never happened to find another online community like those two ever again...</p>
+<p>Sometime later I joined Reddit and was amazed. It felt like a place where all communities come together on a single site. No need to check on multiple websites for new posts, everything neatly together in a single website, accessible on a single (third party) app. I remember wondering why people were still using forums when Reddit was so much simpler.</p>
+<p>Jumping to the present and I realize that I was wrong. Even though I am subscribed to a bunch of communities on Reddit, I barely comment on any posts and posted even less. While I am a community member on record, I do not feel like one. The wealth of communities, as well as the incentive to go on the front page to see the most popular posts of the whole site, made me want to open Reddit, but it did not give me the feeling of belonging. I rather felt like a spectator that from time to time gathers the courage to shout his own ideas into the ether.</p>
+<blockquote>
+<p>Side note: Discord comes much closer to the feeling of community. However, the nature of chat makes the interactions fleeting, being in a chat room with a few hundred other people, where every message is just a few sentences at most does not lead to the same connections. No one expects their message to be read again after a few days.</p>
+</blockquote>
+<p>Now the company behind Reddit started to lose the goodwill of the users. While I don't think Reddit will die anytime soon, I think there are a lot of people looking for alternatives. And the best alternative to the website that killed forums is... forums.</p>
+<p>While forums largely still work the same as they did 15 years ago, there have been developments that might make them more feasible for our desire to have everything accessible on a single site or on a single app. Last time a social media company, Twitter, annoyed its user base, the fediverse, and more specifically Mastodon, started to go more mainstream. This time I hope there will be other projects that profit. I have heard people mentioning the projects Kbin and Lemmy, both forum-like platforms that implement the ActivityPub specification. Same as Mastodon, this means users are able to interact with users on other instances. Even further, this should also allow users of any federated social network, such as Mastodon, to post and comment on any federated forum. Even established forum software such as <a href="https://community.nodebb.org/topic/17117/what-s-next-after-v3/18" rel="nofollow noopener noreferrer">Flarum</a> and <a href="https://community.nodebb.org/topic/17117/what-s-next-after-v3/18" rel="nofollow noopener noreferrer">nodeBB</a> are considering adding federation support.</p>
+<p>I really hope that forums make a comeback, not only because of the nostalgia but also because to me it feels like a more sustainable way to build a community. And now with the possibility to federate via the fediverse, a forum doesn't have to be a walled garden of members any more. In the end, most importantly I hope people are still finding communities they can be as passionate about as I was, without any corporate overlords trying to keep their eyeballs on ads as long as possible.</p>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+.callout {
+  padding: 0;
+  padding-bottom: 0.5rem;
+  border-left: 4px solid rgba(68, 138, 255, 1);
+}
+.callout > * {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+.callout-title {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  font-weight: bold;
+  background-color: rgba(68, 138, 255, 0.2);
+  padding: 0.5rem 1rem;
+  gap: 1rem;
+}
+.callout-icon {
+  width: 1.2rem;
+  height: 1.2rem;
+  margin: 0 !important;
+  padding: 0;
+  fill: currentColor;
+  opacity: 0.4;
+}
+</style>
+]]></content:encoded>
+            <author>hey@tiim.ch (Tim Bachmann)</author>
+            <category>activitypub</category>
+            <category>fediverse</category>
+            <category>forum</category>
+            <category>reddit</category>
+            <enclosure url="https://media.tiim.ch/fe5de393-9773-4eaa-877a-decffbd706b4.webp" length="0" type="image/webp"/>
+        </item>
+        <item>
+            <title><![CDATA[Automated Planning using Property-Directed Reachability with Seed Heuristics]]></title>
+            <link>https://tiim.ch/blog/2023-05-06-pdr-with-seed-heuristics</link>
+            <guid isPermaLink="false">https://tiim.ch/blog/2023-05-06-pdr-with-seed-heuristics</guid>
+            <pubDate>Mon, 18 Sep 2023 13:32:00 GMT</pubDate>
+            <description><![CDATA[Masters Thesis. The goal of this thesis is to implement a pre-processing step to the Property Directed Reachability algorithm, to potentially improve the run-time performance. We use the pattern database heuristic to make use of the planning task structure for the seeding algorithm.]]></description>
+            <content:encoded><![CDATA[<h2>Abstract</h2>
+<p>Planning is the process of finding a path in a planning task from the initial state to a goal state. Multiple algorithms have been implemented to solve such planning tasks, one of them being the Property-Directed Reachability algorithm. Property-Directed Reachability utilizes a series of propositional formulas called layers to represent a super-set of states with a goal distance of at most the layer index. The algorithm iteratively improves the layers such that they represent a minimum number of states. This happens by strengthening the layer formulas and therefore excluding states with a goal distance higher than the layer index. The goal of this thesis is to implement a pre-processing step to seed the layers with a formula that already excludes as many states as possible, to potentially improve the run-time performance. We use the pattern database heuristic and its associated pattern generators to make use of the planning task structure for the seeding algorithm. We found that seeding does not consistently improve the performance of the Property-Directed Reachability algorithm. Although we observed a significant reduction in planning time for some tasks, it significantly increased for others.</p>
+<p><a href="https://www.researchgate.net/publication/373994137_Automated_Planning_using_Property-Directed_Reachability_with_Seed_Heuristics" rel="nofollow noopener noreferrer">Download PDF</a></p>
+<h2>Cite</h2>
+<pre><code class="language-bibtex">@phdthesis{bachmann2023,
+    author = {Bachmann, Tim},
+    year = {2023},
+    month = {05},
+    title = {Automated Planning using Property-Directed Reachability with Seed Heuristics},
+    doi = {10.13140/RG.2.2.11456.30727},
+    type = {Master's Thesis},
+    school = {University of Basel}
+}
+</code></pre>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+.callout {
+  padding: 0;
+  padding-bottom: 0.5rem;
+  border-left: 4px solid rgba(68, 138, 255, 1);
+}
+.callout > * {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+.callout-title {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  font-weight: bold;
+  background-color: rgba(68, 138, 255, 0.2);
+  padding: 0.5rem 1rem;
+  gap: 1rem;
+}
+.callout-icon {
+  width: 1.2rem;
+  height: 1.2rem;
+  margin: 0 !important;
+  padding: 0;
+  fill: currentColor;
+  opacity: 0.4;
+}
+</style>
+]]></content:encoded>
+            <author>hey@tiim.ch (Tim Bachmann)</author>
+            <category>dev</category>
+            <category>heuristic</category>
+            <category>pdr</category>
+            <category>planning-system</category>
+            <enclosure url="https://media.tiim.ch/023c1722-ac3d-45fd-b66c-9ff319dfc180.webp" length="0" type="image/webp"/>
+        </item>
+        <item>
+            <title><![CDATA[Weechat Notifications with ntfy.sh]]></title>
+            <link>https://tiim.ch/blog/2023-03-28-weechat-notification-ntfy</link>
+            <guid isPermaLink="false">https://tiim.ch/blog/2023-03-28-weechat-notification-ntfy</guid>
+            <pubDate>Tue, 28 Mar 2023 10:05:19 GMT</pubDate>
+            <description><![CDATA[Using the weechat trigger plugin to notify yourself about new private messages and mentions through the ntfy.sh notification service.]]></description>
+            <content:encoded><![CDATA[<p>In one of my last blog posts I <a href="https://tiim.ch/blog/2023-01-15-weechat-docker" rel="nofollow noopener noreferrer">set up WeeChat in docker</a>, which works mostly pretty great for me so far. Although, it started to bug me that I felt the need to regularly check IRC in case I missed someone potentially tagging or private-messaging me. While looking around at how I could be notified on mentions and private messages, I found the <a href="https://weechat.org/files/doc/stable/weechat_user.en.html#trigger" rel="nofollow noopener noreferrer">trigger plugin</a>. A powerful plugin that comes pre-installed on WeeChat. It lets the user specify a WeeChat command that will be executed when a specific event occurs. This plugin is probably powerful enough to build a small IRC bot, directly in WeeChat.</p>
+<p>Also, I recently found the web service <a href="https://ntfy.sh" rel="nofollow noopener noreferrer">ntfy.sh</a>. It sends push notifications whenever you send an HTTP post request to a certain URL. I already have ntfy.sh installed on my android phone, and I also found a minimal and lightweight <a href="https://github.com/lucas-bortoli/ntfysh-windows" rel="nofollow noopener noreferrer">desktop client</a>.</p>
+<p>I managed to set a WeeChat trigger up that fires every time I get mentioned (highlighted in WeeChat terminology), and a trigger that fires every time I get a private message. Both of those triggers execute the <code>/exec</code> command which runs an arbitrary shell command. The exec command runs the <code>wget</code> program to send a post request to the ntfy.sh server, which in turn sends a notification to all apps that subscribe to the same URL as the post request was sent. I would usually use the curl program for this instead of wget, but the docker default docker image doesn't contain a curl install.</p>
+<p>Here you can see the two <code>/trigger</code> commands:</p>
+<p><em>trigger on mention</em></p>
+<pre><code>/trigger addreplace notify_highlight print '' '${tg_highlight}' '/.*/${weechat.look.nick_prefix}${tg_prefix_nocolor}${weechat.look.nick_suffix} ${tg_message_nocolor}/' '/exec -norc -nosw -bg wget -O- --post-data "${tg_message}" "-                   -header=Title: New highlight: ${buffer.full_name}" https://ntfy.sh/my_ntfy_topic_1234'
+</code></pre>
+<p><em>trigger on private message</em></p>
+<pre><code class="language-weechat">/trigger addreplace notify_privmsg print '' '${tg_tag_notify} == private &#x26;&#x26; ${buffer.notify} > 0' '/.*/${weechat.look.nick_prefix}${tg_prefix_nocolor}${weechat.look.nick_suffix} ${tg_message_nocolor}/' '/exec -norc -nosw -bg wget -O- --post-data "${tg_message}" "--header=Title: New private message: ${buffer.full_name}" https://ntfy.sh/my_ntfy_topic_1234'
+</code></pre>
+<h2>The trigger commands in detail</h2>
+<p>In case you don't just want to copy and paste some random command from the internet into your WeeChat (which you shouldn't do anyway), I will try to explain the trigger command that fires when you get mentioned in a message:</p>
+<p>Let's first look at the trigger command itself:
+<code>/trigger addreplace &#x3C;name> &#x3C;hook> &#x3C;argument> &#x3C;condition> &#x3C;variable-replace> &#x3C;command></code>
+We call the <code>/trigger</code> command with the <code>addreplace</code> subcommand. This subcommand will either register a new trigger or replace it if one with the same name already exists.</p>
+<ul>
+<li><code>name</code> - This argument is self-explanatory, the name of the trigger. In our case I called it <code>notify_highlight</code>, but you could call it whatever you want.</li>
+<li><code>hook</code> - This argument specifies which hook or event the trigger should listen for. WeeChat is built as an event-driven platform, so pretty much anything from mouse movements to IRC messages are handled via events. In this case, we want to trigger on the <code>print</code> event, which is fired every time a new message gets received from IRC.</li>
+<li><code>argument</code> - The argument is needed for some hooks, but not for the <code>print</code> hook, so we are going to ignore that one for now and just set it to an empty string <code>''</code>.</li>
+<li><code>condition</code> - The condition must evaluate to <code>true</code> for the trigger to fire. This is helpful because the <code>print</code> trigger fires for every new message, but we only want to be notified when the new message mentions our nick. The condition for this is <code>${tg_highlight}</code>. You can find the list of variables that you can access with the command <code>/trigger monitor</code>, which prints all variables for every trigger that gets executed.</li>
+<li><code>variable-replace</code> - This took me a while to understand. This command is used to manipulate data and save it to a variable. The syntax is inspired by the sed command. Explaining it fully is out of the scope of this blog post, but you can take a look at the <a href="https://weechat.org/files/doc/devel/weechat_user.en.html#trigger_regex" rel="nofollow noopener noreferrer">docs</a>. In our example, we replace the whole content of the variable <code>tg_message</code> with the format string <code>${weechat.look.nick_prefix}${tg_prefix_nocolor}${weechat.look.nick_suffix} ${tg_message_nocolor}</code> which results in a string like <code>&#x3C;tiim> Hello world!</code>.</li>
+<li><code>command</code> - The last argument is the command that gets executed whenever this trigger fires. In our case, we use the <code>/execute</code> command, which starts the wget command which in turn sends a post request to ntfy.sh. Make sure you set the ntfy topic (the part after <code>https://ntfy.sh/</code>) to something private and long enough so that nobody else is going to guess it by accident.</li>
+</ul>
+<p>Don't forget to subscribe to the ntfy topic on your phone or whatever device you want to receive the notification on.</p>
+<p>The possibilities with the trigger plugin are endless, I hope this inspires you to build your own customizations using weechat.</p>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+.callout {
+  padding: 0;
+  padding-bottom: 0.5rem;
+  border-left: 4px solid rgba(68, 138, 255, 1);
+}
+.callout > * {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+.callout-title {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  font-weight: bold;
+  background-color: rgba(68, 138, 255, 0.2);
+  padding: 0.5rem 1rem;
+  gap: 1rem;
+}
+.callout-icon {
+  width: 1.2rem;
+  height: 1.2rem;
+  margin: 0 !important;
+  padding: 0;
+  fill: currentColor;
+  opacity: 0.4;
+}
+</style>
+]]></content:encoded>
+            <author>hey@tiim.ch (Tim Bachmann)</author>
+            <category>irc</category>
+            <category>ntfy.sh</category>
+            <category>weechat</category>
+            <category>wget</category>
+            <enclosure url="https://media.tiim.ch/97833b1d-d602-4d9a-9689-3077e96e45ba.webp" length="0" type="image/webp"/>
+        </item>
+        <item>
+            <title><![CDATA[Fix Network Connectivity in WSL2 with Cisco AnyConnect VPN]]></title>
+            <link>https://tiim.ch/blog/2023-03-21-anyconnect-wsl2</link>
+            <guid isPermaLink="false">https://tiim.ch/blog/2023-03-21-anyconnect-wsl2</guid>
+            <pubDate>Wed, 15 Mar 2023 15:22:04 GMT</pubDate>
+            <description><![CDATA[I ran into problems using Cisco AnyConnect VPN from inside of WSL2. I'm sharing my solution as a step-by-step guide for my reference and to help anyone with the same problem.]]></description>
+            <content:encoded><![CDATA[<p>I recently ran into the problem that when the Cisco AnyConnect VPN is connected, the network connectivity inside of WSL2 stops working. I found a bunch of solutions online for it: most just focus on the fact that the VPN DNS settings are not applied inside WSL2 and therefore no domain names can be resolved. I additionally had the issue that the WSL2 network interface somehow gets disconnected when the VPN starts.</p>
+<p>I will show you how I fixed this problem for me and explain what the commands I used do. This post is mostly for my reference, but I hope it helps anyone else as well.</p>
+<h2>Finding out what your problem is</h2>
+<p>Let's check first if we have internet access inside WSL2. For this run the ping command with an IP address as a destination:</p>
+<pre><code class="language-sh">ping 8.8.8.8
+</code></pre>
+<p>If you get something like this as the output, your internet connection is fine, and it's just the DNS nameserver addresses that are misconfigured, you can jump forward to Solution 2.</p>
+<pre><code>PING 8.8.8.8 (8.8.8.8) 56(84) bytes of data.
+64 bytes from 8.8.8.8: icmp_seq=1 ttl=108 time=4.53 ms
+64 bytes from 8.8.8.8: icmp_seq=2 ttl=108 time=3.94 ms
+64 bytes from 8.8.8.8: icmp_seq=3 ttl=108 time=3.97 ms
+64 bytes from 8.8.8.8: icmp_seq=4 ttl=108 time=3.78 ms
+64 bytes from 8.8.8.8: icmp_seq=5 ttl=108 time=3.77 ms
+64 bytes from 8.8.8.8: icmp_seq=6 ttl=108 time=3.76 ms
+64 bytes from 8.8.8.8: icmp_seq=7 ttl=108 time=3.81 ms
+</code></pre>
+<p>If you don't get any responses from the ping (i.e. no more output after the <code>PING 8.8.8.8 (8.8.8.8) ...</code> line), you need to configure the WSL and the VPN network adapter metric. Go to Solution 1.</p>
+<p>To check if the DNS is working, we can again use the ping command, this time with a domain name:</p>
+<pre><code class="language-sh">ping google.com
+</code></pre>
+<p>If you get responses, the DNS and your internet connection are working! If not go to Section 2.</p>
+<h2>Solution 1: Fixing the Network Adapter</h2>
+<p>Run the following two commands in PowerShell as administrator:</p>
+<pre><code class="language-PowerShell">Get-NetAdapter | Where-Object {$_.InterfaceDescription -Match "Cisco AnyConnect"} | Set-NetIPInterface -InterfaceMetric 4000
+
+Get-NetIPInterface -InterfaceAlias "vEthernet (WSL)" | Set-NetIPInterface -InterfaceMetric 1
+</code></pre>
+<p>Let me explain what those two commands do. Both follow the same pattern of listing all network adapters, selecting a specific adapter from the list and setting its "metric".</p>
+<p>You can imagine an adapter as a virtual network port on the back of your pc or laptop. But instead of sending packets through the wire, the driver for a specific port can do whatever it wants with those packets, in the case of a VPN, the packets get encrypted and forwarded to the internet via another adapter.</p>
+<p>The <a href="https://learn.microsoft.com/en-us/windows-server/networking/technologies/network-subsystem/net-sub-interface-metric" rel="nofollow noopener noreferrer">InterfaceMetric</a> is a value associated with each adapter that determines the order of those adapters. This allows windows to determine which adapter to prefer over another one.</p>
+<p>By setting the interface metric of the Cisco adapter to 4000 and the metric of the WSL adapter to one, we allow the traffic from WSL to flow through the Cisco adapter. To be honest I do not exactly understand why this works but it does.</p>
+<h2>Solution 2: Registering the VPN DNS inside of WSL</h2>
+<p>Setting the DNS servers is, unfortunately, a little bit more involved than just running two commands, we need to edit the files <code>/etc/wsl.conf</code> and <code>/etc/resolv.conf</code>, and restart wsl in between. Let's get to it:</p>
+<p>Edit the file <code>/etc/wsl.conf</code> inside of WSL2 using a text editor. I suggest doing this through the terminal since you need root permissions to do that:</p>
+<pre><code class="language-sh">sudo nano /etc/wsl.conf
+# feel free to use another editor such as vim or emacs
+</code></pre>
+<p>Most likely this file does not exist yet, otherwise, I suggest you create a backup of the original file to preserve the settings.</p>
+<p>Add the following config settings into the file:</p>
+<pre><code class="language-ini">[network]
+generateResolvConf = false
+</code></pre>
+<p>This will instruct WSL to not override the <code>/etc/resolv.conf</code> file on every start-up. Save the file and restart WSL with the following command so that the changed config takes effect:</p>
+<pre><code class="language-sh">wsl.exe --shutdown
+</code></pre>
+<p>Now open a PowerShell terminal and list all network adapters with the following command:</p>
+<pre><code class="language-PowerShell">ipconfig /all
+</code></pre>
+<p>Find the Cisco AnyConnect adapter and copy the IP addresses in the DNS-Server field. We will need those IPs in the next step.</p>
+<p>Start WSL again and edit the <code>/etc/resolv.conf</code> file:</p>
+<pre><code class="language-sh">sudo nano /etc/resolv.conf
+</code></pre>
+<p>Most likely there is already something in this file, you can discard it. When undoing the changes, WSL will automatically regenerate this file anyway, so you don't need to back it up.</p>
+<p>Delete all the contents and enter the IP addresses you noted down in the last step in the following format:</p>
+<pre><code class="language-resolv">nameserver xxx.xxx.xxx.xxx
+</code></pre>
+<p>Put each address on a new line, preceded by the string <code>nameserver</code>.
+Save the file and restart WSL with the same command as above:</p>
+<pre><code class="language-sh">wsl.exe --shutdown
+</code></pre>
+<p>Now open up WSL for the last time and set the immutable flag for the <code>/etc/resolv.conf</code> file:</p>
+<pre><code class="language-sh">chattr +i /etc/resolv.conf
+</code></pre>
+<p>And for the last time shut down WSL. Your DNS should now be working fine!</p>
+<h2>Undoing those changes</h2>
+<p>I did not have a need to undo the steps for <code>Solution 1</code>, and I'm pretty sure the metric resets after each system reboot anyway so there is not much to do.</p>
+<p>To get DNS working again when not connected to the VPN run the following commands:</p>
+<pre><code class="language-sh">sudo chattr -i /etc/resolv.conf
+sudo rm /etc/resolv.conf
+sudo rm /etc/wsl.conf
+wsl.exe --shutdown
+</code></pre>
+<p>This will first clear the immutable flag off <code>/etc/resolv.conf</code>, and delete it. Next, it will delete <code>/etc/wsl.conf</code> if you have a backup of a previous <code>wsl.conf</code> file, you can replace it with that. At last, we shutdown WSL again for the changes to take effect.</p>
+<p>Unfortunately, this is quite a procedure to get a VPN to work with WSL2, but I'm hopeful that this will soon not be necessairy anymore.</p>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+.callout {
+  padding: 0;
+  padding-bottom: 0.5rem;
+  border-left: 4px solid rgba(68, 138, 255, 1);
+}
+.callout > * {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+.callout-title {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  font-weight: bold;
+  background-color: rgba(68, 138, 255, 0.2);
+  padding: 0.5rem 1rem;
+  gap: 1rem;
+}
+.callout-icon {
+  width: 1.2rem;
+  height: 1.2rem;
+  margin: 0 !important;
+  padding: 0;
+  fill: currentColor;
+  opacity: 0.4;
+}
+</style>
+]]></content:encoded>
+            <author>hey@tiim.ch (Tim Bachmann)</author>
+            <category>dns</category>
+            <category>networking</category>
+            <category>vpn</category>
+            <category>wsl</category>
+            <enclosure url="https://media.tiim.ch/66ca4290-3fc0-450f-977b-f00f888e4af3.webp" length="0" type="image/webp"/>
+        </item>
+        <item>
+            <title><![CDATA["no such file or directory" after enabling CGO in Docker]]></title>
+            <link>https://tiim.ch/blog/2023-01-24-no-such-file-or-directory-cgo</link>
+            <guid isPermaLink="false">https://tiim.ch/blog/2023-01-24-no-such-file-or-directory-cgo</guid>
+            <pubDate>Tue, 24 Jan 2023 00:00:00 GMT</pubDate>
+            <description><![CDATA[Quick fix for the "no such file or directory" error after enabling CGO, when running in a scratch docker image.]]></description>
+            <content:encoded><![CDATA[<p>Today I ran into the an error trying to deploy my go app in docker, where the container refused to start with the extremely helpful message <code>exec /app/indiego: no such file or directory</code>. I had removed the <code>CGO_ENABLE=0</code> variable from the Dockerfile, because I needed to enable cgo for a library. What I found out was that when enabling cgo, the resulting binary is not statically linked anymore and now depends on libc or musl. Since the <code>scratch</code> image does not contain literally anything, the binary can't find the libraries and crashes with the aforementioned error.</p>
+<p>To include libc into the container, I simply changed the base image from <code>scratch</code> to <code>alpine</code>, which includes libc. This makes the image slightly larger but this seemed way easier than trying to include libc directly.</p>
+<p>As a bonus I got to delete the <code>/usr/share/zoneinfo</code> and <code>ca-certificates.crt</code> files, and rely on those provided by alpine.</p>
+<p>You can see the commit to IndieGo <a href="https://github.com/Tiim/IndieGo/commit/63968814de7e39f295386bf398b583aa8bf0411c" rel="nofollow noopener noreferrer">here</a>.</p>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+.callout {
+  padding: 0;
+  padding-bottom: 0.5rem;
+  border-left: 4px solid rgba(68, 138, 255, 1);
+}
+.callout > * {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+.callout-title {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  font-weight: bold;
+  background-color: rgba(68, 138, 255, 0.2);
+  padding: 0.5rem 1rem;
+  gap: 1rem;
+}
+.callout-icon {
+  width: 1.2rem;
+  height: 1.2rem;
+  margin: 0 !important;
+  padding: 0;
+  fill: currentColor;
+  opacity: 0.4;
+}
+</style>
+]]></content:encoded>
+            <author>hey@tiim.ch (Tim Bachmann)</author>
+            <category>cgo</category>
+            <category>docker</category>
+            <category>go</category>
+        </item>
+        <item>
+            <title><![CDATA[Running the WeeChat IRC Client on a VPS in Docker]]></title>
+            <link>https://tiim.ch/blog/2023-01-15-weechat-docker</link>
+            <guid isPermaLink="false">https://tiim.ch/blog/2023-01-15-weechat-docker</guid>
+            <pubDate>Wed, 18 Jan 2023 11:34:27 GMT</pubDate>
+            <description><![CDATA[Walkthrough on how to setup the WeeChat IRC client in docker.]]></description>
+            <content:encoded><![CDATA[<p>I have recently gotten interested in IRC for some reason and have been looking for a client that I like. I have used <a href="https://hexchat.github.io/" rel="nofollow noopener noreferrer">HexChat</a> in the past, but I don't really fancy having yet another communications program running on my PC next to discord, zoom, telegram and thunderbird. I have been trying to use the IRC feature of thunderbird, but even though it works, it feels very much like an afterthought.</p>
+<p>The one client I have seen mentioned a lot is <a href="https://weechat.org/" rel="nofollow noopener noreferrer">WeeChat</a> (not to be confused with WeChat, the Chinese instant messenger). WeeChat runs in the terminal as a <a href="https://en.wikipedia.org/wiki/Text-based_user_interface" rel="nofollow noopener noreferrer">TUI</a> and after a while of getting used to (and after enabling 'mouse mode') it seems intuitive enough.</p>
+<p>The nice thing about WeeChat running not as a graphical application, is that it makes it possible to run on a server and access it from anywhere over ssh.</p>
+<blockquote class="callout callout-info">
+<span class="callout-title"><span class="callout-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M256 512c141.4 0 256-114.6 256-256S397.4 0 256 0 0 114.6 0 256s114.6 256 256 256m-40-176h24v-64h-24c-13.3 0-24-10.7-24-24s10.7-24 24-24h48c13.3 0 24 10.7 24 24v88h8c13.3 0 24 10.7 24 24s-10.7 24-24 24h-80c-13.3 0-24-10.7-24-24s10.7-24 24-24m40-144c-17.7 0-32-14.3-32-32s14.3-32 32-32 32 14.3 32 32-14.3 32-32 32"></path></svg></span>INFO</span><p>Except on mobile devices, but weechat has mobile apps that can connect to it directly.</p>
+</blockquote>
+<p>Since I pretty much host all my selfhosted software in docker on a VPS, I was looking if someone already published a docker image for WeeChat. There is a bunch of them, but only <a href="https://hub.docker.com/r/weechat/weechat" rel="nofollow noopener noreferrer">weechat/weechat</a> (the official image) is still updated regularly. The docker hub page does not have any documentation, but I managed to find it in the <a href="https://github.com/weechat/weechat-container" rel="nofollow noopener noreferrer">weechat/weechat-container</a> github repo.</p>
+<p>As it says in the readme on github, you can start the container with</p>
+<pre><code class="language-sh">docker run -it weechat/weechat
+</code></pre>
+<p>which will run weechat directly in the foreground.</p>
+<blockquote class="callout callout-info">
+<span class="callout-title"><span class="callout-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M256 512c141.4 0 256-114.6 256-256S397.4 0 256 0 0 114.6 0 256s114.6 256 256 256m-40-176h24v-64h-24c-13.3 0-24-10.7-24-24s10.7-24 24-24h48c13.3 0 24 10.7 24 24v88h8c13.3 0 24 10.7 24 24s-10.7 24-24 24h-80c-13.3 0-24-10.7-24-24s10.7-24 24-24m40-144c-17.7 0-32-14.3-32-32s14.3-32 32-32 32 14.3 32 32-14.3 32-32 32"></path></svg></span>Info</span><p>Don't skip the <code>-it</code> command line flags. The <code>-i</code> or <code>--interactive</code> keeps stdin open, which is required to send input to weechat. Weechat also closes immediately if the stdin gets closed, which took me a while to figure out.
+The <code>-t</code> or <code>--tty</code> flag is required to provide a fake tty to the container. I don't really understand what that means but without this you won't see the user interface of weechat.</p>
+</blockquote>
+<p>Running in the foreground is not really that helpful if we want to run weechat on a server, so we need to detach (let it run in the background) from the container with the <code>-d</code> or <code>--detach</code> flag. It also helps to specify a name for the container with the <code>--name &#x3C;name></code> argument, so we can quickly find the container again later. The docker command now looks like this:</p>
+<pre><code class="language-sh">docker run -it -d --name weechat weechat/weechat
+</code></pre>
+<p>When we run this command, we will notice that weechat is running in the background. To access it we can run <code>docker attach weechat</code>. To detach from weechat without exiting the container, we can press <code>CTRL-p CTRL-q</code> as described in the <a href="https://docs.docker.com/engine/reference/commandline/attach/#description" rel="nofollow noopener noreferrer">docker attach reference</a></p>
+<p>I noticed that there are two versions of the weechat image: a debian version and an alpine linux version. Generally the Alpine Linux versions of containers are smaller than the Debian versions, so I decided to use the alpine version: <code>weechat/weechat:latest-alpine</code>.</p>
+<p>With this we are practically done, but if we ever remove and restart the container, all of the chat logs and customisations to weechat will be gone. To prevent this we need to add the config and log files to a volume.</p>
+<p>I generally use the folder <code>~/docker/(service)</code> to point my docker volumes to, so I have a convenient place to inspect, modify and back up the data.</p>
+<p>Let's create the folder and add the volume to the docker container. I also added the <code>--restart unless-stopped</code> flag to make sure the container gets restarted if it either exits for some reason of if docker restarts.</p>
+<pre><code class="language-sh">mkdir -p ~/docker/weechat/data
+mkdir -p ~/docker/weechat/config
+
+docker run -it -d --restart unless-stopped \
+    -v "~/docker/weechat/data:/home/user/.weechat" \
+    -v "~/docker/weechat/config:/home/user/.config/weechat" \
+    --name weechat weechat/weechat:latest-alpine`
+</code></pre>
+<p>Running this command on the server is all we need to have weechat running in docker.</p>
+<blockquote>
+<p>But how do I quickly connect to weechat? Do I always have to first ssh into the server and then run docker attach?</p>
+</blockquote>
+<p>Yes but, as almost always, we can simplify this with a bash script:</p>
+<pre><code class="language-bash">#!/usr/bin/env bash
+
+HOST=&#x3C;ssh host>
+ssh -t "${HOST}" docker attach weechat
+</code></pre>
+<p>This bash script starts ssh with the <code>-t</code> flag which tells ssh that the command is interactive.
+Copy this script into your <code>~/.local/bin</code> folder and make it executable.</p>
+<pre><code class="language-sh">nano ~/.local/bin/weechat.sh
+chmod +x weechat.sh
+</code></pre>
+<p>And that's it! Running <code>weechat.sh</code> will open an ssh session to your server and attach to the weechat container. Happy Chatting!</p>
+<p>If you liked this post, consider subscribing to my blog via <a href="https://tiim.ch/blog/rss.xml" rel="nofollow noopener noreferrer">RSS</a>, or on <a href="https://tiim.ch/follow" rel="nofollow noopener noreferrer">social media</a>. If you have any questions, feel free to <a href="https://tiim.ch/contact" rel="nofollow noopener noreferrer">contact me</a>. I also usually hang out in <a href="irc://irc.libera.chat/##tiim"><code>##tiim</code> on irc.libera.chat</a>. My name on IRC is <code>tiim</code>.</p>
+<blockquote class="callout callout-info">
+<span class="callout-title"><span class="callout-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M256 512c141.4 0 256-114.6 256-256S397.4 0 256 0 0 114.6 0 256s114.6 256 256 256m-40-176h24v-64h-24c-13.3 0-24-10.7-24-24s10.7-24 24-24h48c13.3 0 24 10.7 24 24v88h8c13.3 0 24 10.7 24 24s-10.7 24-24 24h-80c-13.3 0-24-10.7-24-24s10.7-24 24-24m40-144c-17.7 0-32-14.3-32-32s14.3-32 32-32 32 14.3 32 32-14.3 32-32 32"></path></svg></span>Update 2022-01-18</span><p>I have found that at the beginning of a session, the input to weechat doesn't seem to work. Sometimes weechat refuses to let me type anything and/or doesn't recognize mouse events.
+After a while of spamming keys and <code>Alt-m</code> (toggle mouse mode), it seems to fix itself most of the time.
+I have no idea if thats a problem with weechat, with docker or with ssh, and so far have not found a solution for this. If you have the same problem or even know how to fix it, feel free to reach out.</p>
+</blockquote>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+.callout {
+  padding: 0;
+  padding-bottom: 0.5rem;
+  border-left: 4px solid rgba(68, 138, 255, 1);
+}
+.callout > * {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+.callout-title {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  font-weight: bold;
+  background-color: rgba(68, 138, 255, 0.2);
+  padding: 0.5rem 1rem;
+  gap: 1rem;
+}
+.callout-icon {
+  width: 1.2rem;
+  height: 1.2rem;
+  margin: 0 !important;
+  padding: 0;
+  fill: currentColor;
+  opacity: 0.4;
+}
+</style>
+]]></content:encoded>
+            <author>hey@tiim.ch (Tim Bachmann)</author>
+            <category>docker</category>
+            <category>irc</category>
+            <category>weechat</category>
+            <enclosure url="https://media.tiim.ch/a28c65a1-ed95-43d3-af87-a2ad222bee7f.jpg" length="0" type="image/jpg"/>
+        </item>
+        <item>
+            <title><![CDATA[Hosting Images with Storj and Cloudflare]]></title>
+            <link>https://tiim.ch/blog/2022-12-storj-cloudflare-image-hosting</link>
+            <guid isPermaLink="false">https://tiim.ch/blog/2022-12-storj-cloudflare-image-hosting</guid>
+            <pubDate>Sat, 03 Dec 2022 13:37:33 GMT</pubDate>
+            <description><![CDATA[Learn how to setup affordable image hosting for your personal website with Storj.io and Cloudflare.]]></description>
+            <content:encoded><![CDATA[<blockquote class="callout callout-warning">
+<span class="callout-title"><span class="callout-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M256 32c14.2 0 27.3 7.5 34.5 19.8l216 368c7.3 12.4 7.3 27.7.2 40.1S486.3 480 472 480H40c-14.3 0-27.6-7.7-34.7-20.1s-7-27.8.2-40.1l216-368C228.7 39.5 241.8 32 256 32m0 128c-13.3 0-24 10.7-24 24v112c0 13.3 10.7 24 24 24s24-10.7 24-24V184c0-13.3-10.7-24-24-24m32 224c0-17.7-14.3-32-32-32s-32 14.3-32 32 14.3 32 32 32 32-14.3 32-32"></path></svg></span>Update May 2024</span><p>Storj has quietly removed their free plan and seems to hold all images on my website for ransom until I
+pay for the premium plan. They have not notified my about this happening.</p>
+<p>If you pay for the premium version Storj might still work for you, but after this, I personnaly won't trust them with my data again!</p>
+</blockquote>
+<p>For a while now I have been looking for a way to put images on my website. At first I just embedded them in the website github repository, but this just doesn't feel right. Putting one or two image assets in a codebase is one thing, putting an ever growing list of images in there feels icky to me. For this reason I put the last few cover images of my blog posts on the imgur platform. This is slightly cleaner from a git standpoint but now i have to trust imgur to keep serving these images. Additionally, as I recently discovered, this seems to be against imgurs <a href="https://imgur.com/tos" rel="nofollow noopener noreferrer">TOS</a>:</p>
+<blockquote>
+<p>[...] Also, don't use Imgur to host image libraries you link to from elsewhere, content for your website, advertising, avatars, or anything else that turns us into your content delivery network.</p>
+</blockquote>
+<p>Finally when I started <a href="https://tiim.ch/blog/2022-12-indiewebifying-my-website-part-1" rel="nofollow noopener noreferrer">indie-webifying my website</a>, and was implementing the micropub protocol (which I will blog about at a later time), I decided that it was at the time to host the images on a platform that was meant to do that. I looked at a few storage providers such as cloudinary and S3 based object storage and landed on <a href="https://storj.io/" rel="nofollow noopener noreferrer">Storj.io</a>, mostly because of the generous free tier, which should suffice for this little blog for quite a while.</p>
+<p>One thing that bothered me slightly was that all storage providers I looked at charge for traffic. It's not the fact that it's an additional expense (if your not in the free tier anymore) that bothers me, but the fact that I don't have any control over how much this will cost me. In all likelihood this will never cost me anything since this blog has not much traffic, but if a post were to go viral (one can dream...), this could result in a surprise bill at the end of the month.</p>
+<p>To help with the traffic costs I decided to try to use the free CDN functionality of Cloudflare to reduce the traffic to Storj. In this blog post I will describe how I did that.</p>
+<h2>Is this the right solution for you?</h2>
+<p>If you are in a similar situation as me, and just want to have somewhere to host your images for a personal website or to share images or screenshots as links while still having control over all your data, this could be a good solution.</p>
+<p>If you want to build a robust image pipeline with resizing and image optimization, or you are building an enterprise website this is probably not the right way. You should take a look at cloudinary or one of the big cloud providers.</p>
+<h2>Prerequisites</h2>
+<p>To use Cloudflare as a CDN, you need to have Cloudflare setup as your DNS host for the domain you want to serve the images from. Even if you just want to use a subdomain like <code>media.example.com</code>, the whole <code>example.com</code> domain needs to be on cloudflare. For me this was not much of an issue, I followed the instructions from cloudflare and pointed the nameserver of my domain to cloudflare. Although I did have an issue during the migration, which resulted in my website being down for two hours. But I'm pretty sure this was caused by my previous nameserver provider.</p>
+<h2>Setting up Storj &#x26; Cloudflare</h2>
+<p>I assume you already have an account at <a href="https://storj.io/" rel="nofollow noopener noreferrer">storj.io</a>. The next step is creating a bucket for your images. A bucket is just a place for your files and folders to live in storj, just like in any other S3 compatible storage provider. (Actually there are no folders in storj and other S3 services, the folders are just prefixes of the filenames). When creating a bucket, make sure you save the passphrase securely, such as in your password manager. Whenever storj asks you for the passphrase, make sure you don't let storj generate a new one! Every new passphrase will create access to a new bucket.</p>
+<p>The next step is <a href="https://docs.storj.io/dcs/downloads/download-uplink-cli" rel="nofollow noopener noreferrer">installing the uplink cli</a>. Follow the quick start tutorial to <a href="https://docs.storj.io/dcs/getting-started/quickstart-uplink-cli/uploading-your-first-object" rel="nofollow noopener noreferrer">get an access grant</a>. Remember to use the same passphrase from above. Now follow the next quickstart tutorial to <a href="https://docs.storj.io/dcs/getting-started/quickstart-uplink-cli/uploading-your-first-object/set-up-uplink-cli" rel="nofollow noopener noreferrer">add the bucket to the uplink cli</a>. The file <code>accessgrant.txt</code> in the tutorial only contains the access-grant string that you got from the last step.</p>
+<p>Finally we want to share the bucket so the images can be accessed from the web. For this you can run the following command:</p>
+<pre><code class="language-sh">uplink share --dns &#x3C;domain> sj://&#x3C;bucket>/&#x3C;prefix> --not-after=none
+</code></pre>
+<p>Replace <code>&#x3C;domain></code> with the domain you want to serve the images from. In my case I use <code>media.tiim.ch</code>. Then replace <code>&#x3C;bucket></code> with the name of your bucket and <code>&#x3C;prefix></code> with the prefix.</p>
+<p>As mentioned above, you can think of a prefix as a folder. If you use for example <code>media-site1</code> as a prefix, then every file in the "folder" <code>media-site1</code> will be shared. This means you can use multiple prefixes to serve files for multiple websites in the same bucket.</p>
+<p>You will get the following output:</p>
+<pre><code>[...]
+=========== DNS INFO =====================================================================
+Remember to update the $ORIGIN with your domain name. You may also change the $TTL.
+$ORIGIN example.com.
+$TTL    3600
+media.example.com           IN      CNAME   link.storjshare.io.
+txt-media.example.com       IN      TXT     storj-root:mybucket/myprefix
+txt-media.example.com       IN      TXT     storj-access:totallyrandomstringofnonsens
+</code></pre>
+<p>Create the DNS entries in Cloudflare with the values printed in the last three lines. Make sure you enable the proxy setting when entering the CNAME entry to enable Cloudflares CDN service.</p>
+<p>And that's it. All files you put in the bucket with the correct prefix are now available under your domain! :)</p>
+<p>If this blog post helped you, or you have some issues or thoughts on this, leave a comment via the comment box below or via webmention.</p>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+.callout {
+  padding: 0;
+  padding-bottom: 0.5rem;
+  border-left: 4px solid rgba(68, 138, 255, 1);
+}
+.callout > * {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+.callout-title {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  font-weight: bold;
+  background-color: rgba(68, 138, 255, 0.2);
+  padding: 0.5rem 1rem;
+  gap: 1rem;
+}
+.callout-icon {
+  width: 1.2rem;
+  height: 1.2rem;
+  margin: 0 !important;
+  padding: 0;
+  fill: currentColor;
+  opacity: 0.4;
+}
+</style>
+]]></content:encoded>
+            <author>hey@tiim.ch (Tim Bachmann)</author>
+            <category>cdn</category>
+            <category>cloudflare</category>
+            <category>indieweb</category>
+            <category>storj</category>
+            <enclosure url="https://media.tiim.ch/d280fad4-632a-4b5a-b6b2-6a5c0026b61c.jpg" length="0" type="image/jpg"/>
+        </item>
+        <item>
+            <title><![CDATA[IndieWebifying my Website Part 1 - Microformats and Webmentions]]></title>
+            <link>https://tiim.ch/blog/2022-12-indiewebifying-my-website-part-1</link>
+            <guid isPermaLink="false">https://tiim.ch/blog/2022-12-indiewebifying-my-website-part-1</guid>
+            <pubDate>Sat, 03 Dec 2022 20:56:54 GMT</pubDate>
+            <description><![CDATA[This site now supports sending and receiving webmentions and surfacing structured data using microformats2.]]></description>
+            <content:encoded><![CDATA[<p>A few weeks ago, I stumbled on one of <a href="https://www.jvt.me/posts/2019/08/21/rsvp-from-your-website/" rel="nofollow noopener noreferrer">Jamie Tanna's blog posts about microformats2</a> by accident. That is when I first learned about the wonderful world of the <a href="https://indieweb.org/why" rel="nofollow noopener noreferrer">IndieWeb</a>. It took me a while to read through some of the concepts of the IndieWeb like webmentions, IndieAuth, microformats and all the other standards, but the more I found out about it the more I wanted to play around with it. And what better place to try out new technology than on a personal website?</p>
+<h2>The IndieWeb</h2>
+<p>I will start with a brief introduction for the uninitiated. If you have already heard about the IndieWeb, feel free to skip to the next section.</p>
+<p>The IndieWeb is a collection of standards, intending to make the web social, without the user giving up ownership of their data. While on social media platforms (or as called in IndieWeb terms: silos) you can easily communicate with others, you are always subject to the whims of those platforms.</p>
+<p>The IndieWeb wants to solve this by defining standards that, once implemented in a website, allow it to communicate with other websites that are also part of the IndieWeb.</p>
+<p>The most important concept of the IndieWeb is, you have control over your data. All of your shared data lives on a domain you control.</p>
+<p>Some of the standards in the IndieWeb include:</p>
+<ul>
+<li>Microformats2: a way to add structured data to the HTML source code of a website so machines can interpret the data.</li>
+<li>Webmentions: a simple communication protocol between websites. It can be used to show comments, likes, bookmarks and more on one website, while the data stays on another website.</li>
+<li>IndieAuth, an OAuth2-based way to log in using only your domain name.</li>
+</ul>
+<h2>The implementation on my website</h2>
+<p>As explained in my earlier post <a href="https://tiim.ch/blog/2022-07-12-first-go-project-commenting-api" rel="nofollow noopener noreferrer">First Go Project: A Jam-stack Commenting API</a>, my website is a statically built SvelteKit app hosted on GitHub Pages. This means the most important part of the IndieWeb is already implemented: I own this domain and post my content here.</p>
+<h3>Making the website machine-readable with Microformats</h3>
+<p>As mentioned above, the microformats2 standard allows websites to encode data about the page in a machine-readable format. This is accomplished by annotating HTML elements with some predefined class names. For example, the microformat for a blog post, note and other content is called <a href="http://microformats.org/wiki/h-entry" rel="nofollow noopener noreferrer">h-entry</a>. By adding the <code>h-entry</code> class to a div, its content is marked as belonging to that post. Children of this div can in turn have other microformat elements such as <code>p-name</code>, <code>p-author</code> or <code>dt-published</code>.</p>
+<p>While these CSS classes make the data machine-interpretable, the same data is still available to the user. There is no duplication like for example the meta tags in OpenGraph.</p>
+<p>Since my page is a custom SvelteKit app, it was easy enough to add the CSS classes to the right places. I even took the opportunity to add some more information to the pages, like the author card you see if you scroll to the bottom of this post.</p>
+<h3>Accepting comments and other interactions via Webmentions</h3>
+<p>The standard I wanted to play around with the most are webmentions. A webmention is a sort of notification sent from one website A to another website B, telling B that A has a page linking to it.</p>
+<p>In the IndieWeb all types of interactions are just web pages. The microformats2 specification for example allows replies, quotes, likes, bookmarks and many other types of interactions. The receiver of the webmention is free to extract any relevant information from the sender page and might display it, for example as a comment.</p>
+<p>Since I already have a <a href="https://github.com/Tiim/IndieGo" rel="nofollow noopener noreferrer">small custom service</a> running for the comment section on this site, I decided to add support to it for receiving webmentions. I refactored the comment system quite a bit to make it more modular and extendable, to allow me to add webmentions</p>
+<p>It currently supports all the required and some optional features for receiving webmentions: The first thing it does is validate the mention. A mention is only valid if the source and target URLs are valid and if the page from the source URL links to the target URL. The next step is extracting some microformat content from the source URL and saving it to the database.
+I found some things unexpectedly tricky to implement: for example, a repeated webmention with the same source URL should update the previously saved webmention if the link to the target page is still there, but delete the webmention if the link was removed.</p>
+<p>I have tested my webmentions implementation using <a href="https://webmention.rocks" rel="nofollow noopener noreferrer">webmention.rocks</a>, but I would appreciate it if you left me a mention as well 😃</p>
+<h3>Publishing short-form content such as replies, likes and bookmarks: A notes post type</h3>
+<p>The next thing I wanted to add to my website was sending webmentions. But before I implemented that, I wanted a way to publish short content without spamming my blog feed. For this, I created a new post type called <a href="https://tiim.ch/mf2" rel="nofollow noopener noreferrer">notes</a>. The list of notes lives on the /mf2 page because I plan to mostly use it to publish notes that contain microformats2 classes such as replies and likes. Another reason I didn't want to make it accessible as the /notes page is that I plan to publish my Zettelkasten notes eventually, but this is a story for another post.</p>
+<p>I also used the opportunity to add an RSS feed for all my posts, pages, projects, and notes: <a href="https://tiim.ch/full-rss.xml" rel="nofollow noopener noreferrer">full-rss.xml</a>. I do not recommend you subscribe to it unless you are curious about all changes to the content on my website.</p>
+<h3>Notifying referenced websites: Sending Webmentions</h3>
+<p>Sending webmentions was easy compared to receiving webmentions:</p>
+<p>On a regular interval (and on page builds), the server loads the full RSS feed and checks what items have a newer timestamp than the last time. It then extracts a list of all URLs from that feed item and loads the list of URLs that it extracted last time. Then a webmention is sent to all the URLs.</p>
+<p>Luckily I did not have to implement any of this myself apart from some glue code to fit it together: I used the library <a href="https://github.com/go-co-op/gocron" rel="nofollow noopener noreferrer">gocron</a> for scheduling the regular intervals, <a href="https://github.com/mmcdole/gofeed" rel="nofollow noopener noreferrer">gofeed</a> for parsing the RSS feed and <a href="https://willnorris.com/go/webmention" rel="nofollow noopener noreferrer">webmention</a> for extracting links and sending webmentions.</p>
+<h3>In the future: IndieAuth</h3>
+<p>The next thing on my roadmap is implementing IndieAuth. Although not because I have a real use case for it, but because I'm interested in OAuth, the underlying standard, and this seems like a good opportunity to get a deeper understanding of the protocol.</p>
+<p>Although, before I start implementing the next things, I should probably focus on writing blog posts first. There is no use in the most advanced blogging system if I can't be bothered to write anything.</p><div class="mf2"><blockquote class="syndication">This post is also on <ul><li><a class="u-syndication" href="https://news.indieweb.org/en">news.indieweb.org</a></li></ul></blockquote></div>
+
+
+<style>
+* {
+  box-sizing: border-box;
+}
+.callout {
+  padding: 0;
+  padding-bottom: 0.5rem;
+  border-left: 4px solid rgba(68, 138, 255, 1);
+}
+.callout > * {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+.callout-title {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  font-weight: bold;
+  background-color: rgba(68, 138, 255, 0.2);
+  padding: 0.5rem 1rem;
+  gap: 1rem;
+}
+.callout-icon {
+  width: 1.2rem;
+  height: 1.2rem;
+  margin: 0 !important;
+  padding: 0;
+  fill: currentColor;
+  opacity: 0.4;
+}
+</style>
+]]></content:encoded>
+            <author>hey@tiim.ch (Tim Bachmann)</author>
+            <category>go</category>
+            <category>indiego</category>
+            <category>indieweb</category>
+            <category>mf2</category>
+            <category>tiim.ch</category>
+            <category>webmentions</category>
+            <enclosure url="https://i.imgur.com/FpgIBxI.jpg" length="0" type="image/jpg"/>
+        </item>
+        <item>
+            <title><![CDATA[SvelteKit Server-Side Rendering (SSR) with @urql/svelte]]></title>
+            <link>https://tiim.ch/blog/2022-09-27-sveltekit-ssr-with-urql</link>
+            <guid isPermaLink="false">https://tiim.ch/blog/2022-09-27-sveltekit-ssr-with-urql</guid>
+            <pubDate>Mon, 26 Sep 2022 00:00:00 GMT</pubDate>
+            <description><![CDATA[Learn why server-side rendering (SSR) using urql as a GraphQL client is not as straightforward as you might think and how to do it anyway.]]></description>
+            <content:encoded><![CDATA[<p>In this blog post, I will explain why server-side rendering with the <a href="https://formidable.com/open-source/urql/docs/api/svelte/" rel="nofollow noopener noreferrer">urql</a> GraphQL library is not as straightforward to do with SvelteKit, and how I solved this in my project anyway.</p>
+<p>Server-side rendering (SSR) is one of the great features of SvelteKit. I will try to keep this blog post short and will therefore not explain what server-side rendering is and why you should take advantage of it <em>(you really should!)</em>. If you want to know more about SSR you can take a look at this article: <a href="https://towardsdev.com/server-side-rendering-srr-in-javascript-a1b7298f0d04" rel="nofollow noopener noreferrer">A Deep Dive into Server-Side Rendering (SSR) in JavaScript</a>.</p>
+<h2>Background - SSR in SvelteKit</h2>
+<p>SvelteKit implements SSR by providing a <a href="https://kit.svelte.dev/docs/load" rel="nofollow noopener noreferrer"><code>load</code> function</a> for every layout and page component. If a page or layout needs to perform some asynchronous operation, this should be done inside of this load function. SvelteKit executes this function asynchronously on the server side as well as on the client side and the return value of this function is assigned to the <code>data</code> prop of the associated component. Usually, this asynchronous operation is loading data from an external service, like in the case of this blog post a GraphQL server.
+You can of course load data directly in the component, but SvelteKit will not wait for this to complete when doing SSR, and the resulting HTML will not include the loaded data.</p>
+<h2>Background - @urql/svelte</h2>
+<p>The urql library allows us to easily issue GraphQL queries and mutations. Some of the functionality it has to make our lives easier include:</p>
+<ul>
+<li>Reloading a query when a query variable changes</li>
+<li>Reloading a query after a mutation that touches the same data as the query</li>
+</ul>
+<p>We want to keep these features, even when using urql when doing SSR.</p>
+<h2>The Problem</h2>
+<p>When implementing SSR in my project, I ran into two problems. I couldn't find any documentation or any articles solving them, so I decided to write down my solutions to those problems in this blog post.</p>
+<h3>Problem 1 - Svelte and urql Reactivity</h3>
+<p>Let's say we have the following load function, which executes a GraphQL query to load a list of red cars:</p>
+<pre><code class="language-js">// src/routes/car/+page.js
+
+/** @type {import('./$types').PageLoad} */
+export function load(event) {
+  const client = createClient({
+    url: config.url,
+    fetch: event.fetch,
+  });
+
+  const carColor = "red";
+
+  const cars = client
+    .query(carsQuery, {
+      color: carColor,
+    })
+    .toPromise()
+    .then((c) => c.data?.car);
+
+  return {
+    cars,
+  };
+}
+</code></pre>
+<p>This example uses the urql method <code>client.query</code> to start a query to get us a list of cars with a red colour (The GraphQL query is not shown but the exact query is not important for this example).
+The client gets a <a href="https://kit.svelte.dev/docs/load#input-methods-fetch" rel="nofollow noopener noreferrer">special fetch function</a> from the event which has a few nice properties, like preventing a second network request on the client side if that same request was just issued on the server-side.</p>
+<p>Since the query code is now located in the load function and not in a svelte component, there is no way to easily change the <code>carColor</code> and have urql automatically reload the query. The only way to change the variable is to set the value as a query parameter and read that from the <code>event</code> argument. This however means that we have to refresh the whole page just to reload this query.</p>
+<p>The other thing urql does for us, reloading the query when we do a mutation on the same data, will not work with the above code either.</p>
+<h3>The solution: A query in the load function and a query in the component</h3>
+<p>To fix those two drawbacks we have to add the same query as in the load function to our component code as well. Unfortunately, this means when a user loads the page, it sends a request from the client side, even though the same request got sent from the server side already.</p>
+<p>I created a small wrapper function <code>queryStoreInitialData</code> that creates the query inside of the component and intelligently switches from the (possibly stale) data from the load function to the new data. Using this wrapper, the page or layout might look as follows:</p>
+<pre><code class="language-svelte">&#x3C;script>
+  import { queryStoreInitialData } from "@/lib/gql-client"; // The helper function mentioned above
+  import { getContextClient } from "@urql/svelte";
+  import { carsQuery } from "./query"; // The query
+
+  export let data;
+
+  $: gqlStore = queryStoreInitialData(
+    {
+      client: getContextClient(),
+      query: carsQuery,
+    },
+    data.cars
+  );
+  $: cars = $gqlStore?.data?.car;
+&#x3C;/script>
+
+&#x3C;div>
+  &#x3C;pre>
+    {JSON.stringify(cars, null, 2)}
+  &#x3C;/pre>
+&#x3C;/div>
+</code></pre>
+<ol>
+<li>The native <code>queryStore</code> function gets replaced with the wrapper function.</li>
+<li>The initial value of the query is supplied to the wrapper</li>
+</ol>
+<p>Unfortunately, we can not return the query result from the load function directly like this:</p>
+<pre><code class="language-js">const result = await client.query(cars, {}).toPromise();
+
+return {
+  cars: toInitialValue(result),
+};
+</code></pre>
+<p>This results in the following error:</p>
+<pre><code class="language-stacktrace">Cannot stringify a function (data.events.operation.context.fetch)
+Error: Cannot stringify a function (data.events.operation.context.fetch)
+    at render_response (file:///app/node_modules/@sveltejs/kit/src/runtime/server/page/render.js:181:20)
+    at runMicrotasks (&#x3C;anonymous>)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async render_page (file:///app/node_modules/@sveltejs/kit/src/runtime/server/page/index.js:276:10)
+    at async resolve (file:///app/node_modules/@sveltejs/kit/src/runtime/server/index.js:232:17)
+    at async respond (file:///app/node_modules/@sveltejs/kit/src/runtime/server/index.js:284:20)
+    at async file:///app/node_modules/@sveltejs/kit/src/exports/vite/dev/index.js:406:22
+</code></pre>
+<p>This is because the query result contains data that is not serializable.
+To fix this I created the <code>toInitialValue</code> function, which deletes all non-serializable elements from the result. The load function now looks like follows;</p>
+<pre><code class="language-js">// src/routes/car/+page.js
+import { createServerClient, toInitialValue } from "@/lib/gql-client";
+import { parse } from "cookie";
+import { carsQuery } from "./query";
+
+/** @type {import('./$types').PageServerLoad} */
+export const load = async (event) => {
+  const client = createClient({
+    url: config.url,
+    fetch: event.fetch,
+  });
+
+  const result = await client.query(cars, {}).toPromise();
+
+  return {
+    cars: toInitialValue(result),
+  };
+};
+</code></pre>
+<h3>Problem 2 - Authentication</h3>
+<p>We will look at the same <code>load</code> function as #Problem 1 - Svelte and urql Reactivity: the function creates a urql client with the fetch function from the event object and uses this client to send a query.</p>
+<p>Sometimes however the GraphQL API requires authentication in the form of a cookie to allow access.</p>
+<p>Unfortunately, the <a href="https://kit.svelte.dev/docs/load#input-methods-fetch" rel="nofollow noopener noreferrer">fetch function that we get from the load event</a> will only pass the cookies on if the requested domain is the same as the base domain or a more specific subdomain of it. This means if your SvelteKit site runs on <code>example.com</code> and your GraphQL server runs on <code>gql.example.com</code> then the cookies will get forwarded and everything is fine. This however is, in my experience, often not the case. Either you might use an external service for your GraphQL API or you host it yourself and want to use its internal domain.</p>
+<p>The only way to pass the cookies on to the GraphQL server, in this case, is by manually setting the cookie header when creating the urql client. This however forces us to use the server-only load function, as we do not have access to the cookie header in the normal load function.</p>
+<p>The new code now looks like this:</p>
+<pre><code class="language-js">// /src/routes/car/+page.server.js
+
+/** @type {import('./$types').PageServerLoad} */
+export function load(event) {
+  const client = createClient({
+    url: config.url,
+    fetch,
+    fetchOptions: {
+      credentials: "include",
+      headers: {
+        // inject the cookie header
+        // FIXME: change the cookie name
+        Cookie: `gql-session=${event.cookies.get("gql-session")}`,
+      },
+    },
+  });
+
+  const cars = client.query(carsQuery, {}).toPromise();
+
+  return {
+    cars: toInitialValue(result),
+  };
+}
+</code></pre>
+<p>To keep the size of the load functions across my codebase smaller I created a small wrapper function <code>createServerClient</code>:</p>
+<pre><code class="language-js">// /src/routes/car/+page.server.js
+
+/** @type {import('./$types').PageServerLoad} */
+export function load(event) {
+  const client = createServerClient(event.cookies);
+
+  const cars = client.query(carsQuery, {}).toPromise();
+
+  return {
+    cars: toInitialValue(result),
+  };
+}
+</code></pre>
+<h2>The Code</h2>
+<p>Below you can find the three functions <code>createServerClient</code>, <code>queryStoreInitialData</code> and <code>toInitialValue</code> that we used above:</p>
+<pre><code class="language-js">// /src/lib/gql-client.js
+
+import { browser } from "$app/environment";
+import { urls } from "@/config";
+import { createClient, queryStore } from "@urql/svelte";
+import { derived, readable } from "svelte/store";
+
+/**
+ * Helper function to create an urql client for a server-side-only load function
+ *
+ *
+ * @param {import('@sveltejs/kit').Cookies} cookies
+ * @returns
+ */
+export function createServerClient(cookies) {
+  return createClient({
+    // FIXME: adjust your graphql url
+    url: urls.gql,
+    fetch,
+    // FIXME: if you don't need to authenticate, delete the following object:
+    fetchOptions: {
+      credentials: "include",
+      headers: {
+        // FIXME: if you want to set a cookie adjust the cookie name
+        Cookie: `gql-session=${cookies.get("gql-session")}`,
+      },
+    },
+  });
+}
+
+/**
+ * Helper method to send a GraphQL query but use the data from the SvelteKit load function initially.
+ *
+ *
+ * @param {any} queryArgs
+ * @param {any} initialValue
+ * @returns
+ */
+export function queryStoreInitialData(queryArgs, initialValue) {
+  if (!initialValue || (!initialValue.error &#x26;&#x26; !initialValue.data)) {
+    throw new Error("No initial value from server");
+  }
+
+  let query = readable({ fetching: true });
+  if (browser) {
+    query = queryStore(queryArgs);
+  }
+
+  return derived(query, (value, set) => {
+    if (value.fetching) {
+      set({ ...initialValue, source: "server", fetching: true });
+    } else {
+      set({ ...value, source: "client" });
+    }
+  });
+}
+
+/**
+ * Make the result object of a urql query serialisable.
+ *
+ *
+ * @template T
+ * @param {Promise&#x3C;import('@urql/svelte').OperationResult&#x3C;T, any >>|import('@urql/svelte').OperationResult&#x3C;T, any >} result
+ * @returns {Promise&#x3C;{fetching:false, error: undefined | {name?: string, message?: string; graphQLErrors?: any[]; networkError?: Error; response?: any;}, data: T|undefined}>}
+ */
+export async function toInitialValue(result) {
+  const { error, data } = await result;
+
+  // required to turn class array into array of javascript objects
+  const errorObject = error ? {} : undefined;
+  if (errorObject) {
+    console.warn(error);
+    errorObject.graphQLErrors = error?.graphQLErrors?.map((e) => ({ ...e }));
+    errorObject.networkError = { ...error?.networkError };
+    errorObject.response = { value: "response omitted" };
+  }
+
+  return {
+    fetching: false,
+    error: { ...error, ...errorObject },
+    data,
+  };
+}
+</code></pre>
+<p><a href="https://gist.github.com/Tiim/1adeb4d74ce7ae09d0d0aa4176a6195d" rel="nofollow noopener noreferrer">Link to the Gist</a></p>
+<h2>End remarks</h2>
+<p>Even though I think this solution is not too bad, I wish @urql/svelte would implement a better way to handle SSR with sveltekit. I posted a <a href="https://github.com/FormidableLabs/urql/discussions/2703" rel="nofollow noopener noreferrer">question on the urql GitHub discussions board</a>, but I have not gotten any response yet.</p>
+<blockquote class="callout callout-info">
+<span class="callout-title"><span class="callout-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M256 512c141.4 0 256-114.6 256-256S397.4 0 256 0 0 114.6 0 256s114.6 256 256 256m-40-176h24v-64h-24c-13.3 0-24-10.7-24-24s10.7-24 24-24h48c13.3 0 24 10.7 24 24v88h8c13.3 0 24 10.7 24 24s-10.7 24-24 24h-80c-13.3 0-24-10.7-24-24s10.7-24 24-24m40-144c-17.7 0-32-14.3-32-32s14.3-32 32-32 32 14.3 32 32-14.3 32-32 32"></path></svg></span>Info</span><p>This article was written with <code>@svelte/kit</code> version <code>1.0.0-next.499</code> and <code>@urql/svelte</code> version <code>3.0.1</code>.
+I will try to update this article as I update my codebase to newer versions.</p>
+</blockquote>
+<p>If this post helped you, or you found a better or different way to solve SSR with urql, please let me know in the comments, write me an email or tag me on twitter <a href="https://twitter.com/TiimB" rel="nofollow noopener noreferrer">@TiimB</a>.</p>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+.callout {
+  padding: 0;
+  padding-bottom: 0.5rem;
+  border-left: 4px solid rgba(68, 138, 255, 1);
+}
+.callout > * {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+.callout-title {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  font-weight: bold;
+  background-color: rgba(68, 138, 255, 0.2);
+  padding: 0.5rem 1rem;
+  gap: 1rem;
+}
+.callout-icon {
+  width: 1.2rem;
+  height: 1.2rem;
+  margin: 0 !important;
+  padding: 0;
+  fill: currentColor;
+  opacity: 0.4;
+}
+</style>
+]]></content:encoded>
+            <author>hey@tiim.ch (Tim Bachmann)</author>
+            <category>graphql</category>
+            <category>ssr</category>
+            <category>sveltekit</category>
+            <category>urql</category>
+            <enclosure url="https://i.imgur.com/5DBIbbT.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[First Go Project: A Jam-stack Commenting API]]></title>
+            <link>https://tiim.ch/blog/2022-07-12-first-go-project-commenting-api</link>
+            <guid isPermaLink="false">https://tiim.ch/blog/2022-07-12-first-go-project-commenting-api</guid>
+            <pubDate>Wed, 23 Nov 2022 21:42:29 GMT</pubDate>
+            <description><![CDATA[I built my first project using the Go programming language: A commenting API for the jam-stack. It is simple but easily extensible. And it powers the commenting feature of this website!]]></description>
+            <content:encoded><![CDATA[<p>I recently have been looking around for a simple commenting system to integrate into my website. Since my website is a pre-rendered static Html site hosted on <a href="https://pages.github.com" rel="nofollow noopener noreferrer">Github Pages</a>, there is no way for it to directly store comments because it does not have a database. The only option for dynamic content to be stored is with an external service.</p>
+<p>I kept my eyes open for a service that I liked, but I did not want to just integrate any old service into my website, I did have some requirements:</p>
+<ul>
+<li>The service should not cost anything. I would rather host something myself than sign up for another subscription (because I'm already paying for a VPS anyway).</li>
+<li>I want to control how the comments on my website are displayed. I quite like my website design and I don't want a generic comment box below my posts.</li>
+<li>The service should respect the privacy of the people using my website.</li>
+<li>There should be an option to comment without setting up an account with the service.</li>
+</ul>
+<p>While looking around for how other people integrated comments into their static websites, I found a nice <a href="https://averagelinuxuser.com/static-website-commenting/" rel="nofollow noopener noreferrer">blog post from Average Linux User</a> which compares a few popular commenting systems.
+Unfortunately, most systems either are not very privacy-friendly, cost money or store the comments as comments on Github issues..?
+After looking through the options I decided to use this opportunity to write my own commenting system and dabble with the Go programming language.</p>
+<h2>Writing a commenting API in Go</h2>
+<p>First thing first, if you want to take a look at the code, check out the <a href="https://github.com/Tiim/IndieGo" rel="nofollow noopener noreferrer">Github repo</a>.</p>
+<p>I decided to write the commenting system in Go because I have been looking for an excuse to practice Go for a while, and this seemed like the perfect fit. It is a small CRUD app, consisting of a storage component, an API component and a small event component in the middle to easily compose the functionality I want.</p>
+<p>Currently, it supports the following functionality:</p>
+<ul>
+<li>Listing all comments (optionally since a specified timestamp)</li>
+<li>Listing all comments for a specified page (optionally since a specified timestamp)</li>
+<li>Posting comments through the API</li>
+<li>A simple admin dashboard that lists all comments and allows the admin to delete them</li>
+<li>Email notifications when someone comments</li>
+<li>Email notifications when someone replies to your comment</li>
+<li>SQLite storage for comments</li>
+</ul>
+<p>The code is built in a way to make it easy to customise the features.
+For example to disable features like the email reply notifications you can just <a href="https://github.com/Tiim/IndieGo/blob/master/main.go#L52" rel="nofollow noopener noreferrer">comment out the line in the main.go</a> file that registers that hook.</p>
+<p>To write custom hooks that get executed when a new comment gets submitted or one gets deleted, just implement the <a href="https://github.com/Tiim/IndieGo/blob/master/event/handler.go" rel="nofollow noopener noreferrer">Handler</a> interface and register it in the main method.</p>
+<p>You can also easily add other storage options like databases or file storage by implementing the <a href="https://github.com/Tiim/IndieGo/blob/master/model/store.go" rel="nofollow noopener noreferrer">Store and SubscribtionStore</a> interfaces.</p>
+<h2>Can it be used in production? 🚗💨</h2>
+<p>I currently use it on this website! Go test it out (I might delete the comments if they are rude though 🤔).</p>
+<p>In all seriousness, I would not use it for a website where the comments are critical. But for a personal blog or similar, I don't see why not.</p>
+<p>If you want to host your own version, there is a Dockerfile available. If you decide to integrate this into your website, please comment below, ping me <a href="https://twitter.com/TiimB" rel="nofollow noopener noreferrer">@TiimB</a> or shoot me an email <a href="mailto:hey@tiim.ch">hey@tiim.ch</a>, I would love to check it out.</p>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+.callout {
+  padding: 0;
+  padding-bottom: 0.5rem;
+  border-left: 4px solid rgba(68, 138, 255, 1);
+}
+.callout > * {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+.callout-title {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  font-weight: bold;
+  background-color: rgba(68, 138, 255, 0.2);
+  padding: 0.5rem 1rem;
+  gap: 1rem;
+}
+.callout-icon {
+  width: 1.2rem;
+  height: 1.2rem;
+  margin: 0 !important;
+  padding: 0;
+  fill: currentColor;
+  opacity: 0.4;
+}
+</style>
+]]></content:encoded>
+            <author>hey@tiim.ch (Tim Bachmann)</author>
+            <category>go</category>
+            <category>indiego</category>
+            <category>project</category>
+            <category>tiim.ch</category>
+            <category>web-api</category>
+            <enclosure url="https://tiim.ch//assets/2022-07-first-go-project-commenting-api.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[You should be using RSS]]></title>
+            <link>https://tiim.ch/blog/2022-06-use-rss</link>
+            <guid isPermaLink="false">https://tiim.ch/blog/2022-06-use-rss</guid>
+            <pubDate>Sun, 05 Jun 2022 00:00:00 GMT</pubDate>
+            <description><![CDATA[Decide exactly what you want to read and escape the social media algorithms. How an old protocol called RSS can give you back the autonomy about what you read.]]></description>
+            <content:encoded><![CDATA[<p>I often go to social media to get news about topics that interest me. Be it web development, gardening life hacks or political news, I can follow people or topics that interest me. But instead of reading about those topics, I often get sucked into an endless hole of content that I did not sign up for. Social media companies deliberately do not want you to limit what is shown to you. It would be too easy to leave and not spend your time watching their precious ads.</p>
+<p>But there is another way! By subscribing to RSS feeds you are in control of what you are shown. Most websites, blogs, news sites and even social media sites provide RSS feeds to subscribe to. You get only the articles, videos or audio content you are subscribed to, without any algorithm messing with your attention.</p>
+<h2>But what exactly is an RSS feed?</h2>
+<p>RSS stands for "Really Simple Syndication", and it is a protocol for a website to provide a list of content. It is an old protocol, the first version was introduced in 1999, but it might be more useful nowadays than ever.
+If you listen to podcasts, you are already familiar with RSS feeds: a podcast is an RSS feed which links to audio files instead of online articles.
+An RSS feed is just an XML document which contains information about the feed and a list of content.
+When you use an app to subscribe to an RSS feed, this app will just save the URL to the XML document and load it regularly to check if new content is available. You are completely in control of how often the feed is refreshed and what feeds you want to subscribe to. Some RSS reader apps also allow you to specify some rules for example about if you should be notified, based on the feed, the content or the tags.</p>
+<h2>How to subscribe to a feed?</h2>
+<p>Since an RSS feed is just an XML document, you don't <em>technically</em> have to subscribe to a feed to read it, you <em>could</em> just open the document and read the XML. But that would be painful. Luckily there are several plugins, apps and services that allow you to easily subscribe to and read RSS feeds.</p>
+<p>If you want to start using RSS and are not sure if you will take the time to open a dedicated app, I would recommend using an RSS plugin for another software that you are using regularly. For example, the <a href="https://thunderbird.net/" rel="nofollow noopener noreferrer">Thunderbird</a> email client already has built-in RSS support. If you want to read to the feeds directly inside of your browser, you can use the <a href="https://nodetics.com/feedbro/" rel="nofollow noopener noreferrer">feedbro</a> extension for Chrome, Firefox, and other Chromium-based browsers. I use the <a href="https://vivaldi.com" rel="nofollow noopener noreferrer">Vivaldi</a> browser which comes with an integrated RSS feed reader.</p>
+<h2>What if there is no RSS feed?</h2>
+<p>Unfortunately not every website offers an RSS feed. Although it might be worth it to hunt for them. Some websites offer an RSS feed but do not link to it anywhere.
+If there is no feed, but a newsletter is offered, the service "<a href="https://kill-the-newsletter.com" rel="nofollow noopener noreferrer">Kill The Newsletter</a>" will provide you with email addresses and a corresponding RSS URL to convert any newsletter to a feed. Another service to consider is <a href="http://fetchrss.com" rel="nofollow noopener noreferrer">FetchRSS</a>. It turns any website into an RSS feed.</p>
+<h2>RSS Apps</h2>
+<p>If you want to have a dedicated app for your reading, you're in luck! There is a plethora of apps to choose from, all with different features and user interfaces.
+There are three main types of apps: standalone apps, service-based apps, and self-hosted apps. Most apps are standalone, meaning they fetch the RSS feeds only when open, and don't sync to your other devices. The service-based apps rely on a cloud service which will fetch the feeds around the clock, even when all your devices are off. They can also send you a summary mail if you forget to check for some time and they can sync your subscriptions across all your devices. Unfortunately, most service-based apps only offer a limited experience for free. The last category is self-hosted apps. They are similar to the service based apps but instead of some company running the service, you have to provide a server for the service to run yourself.</p>
+<p>I use a standalone app, because I do not want to rely on a service, but I also don't want to go through the hassle of setting up a self-hosted solution.</p>
+<p>If you are still unsure what RSS app you could try out, I provided a list below. Make sure to add the <a href="https://tiim.ch/blog/rss.xml" rel="nofollow noopener noreferrer">RSS feed for my blog</a> (<code>https://tiim.ch/blog/rss.xml</code>) to test it out 😉</p>
+<h3>Standalone Apps</h3>
+<ul>
+<li><a href="https://thunderbird.net" rel="nofollow noopener noreferrer">Thunderbird</a> (Free, OSS)</li>
+<li><a href="https://ravenreader.app" rel="nofollow noopener noreferrer">RavenReader</a> (Free, OSS)</li>
+<li><a href="https://netnewswire.com" rel="nofollow noopener noreferrer">NetNewsWire</a> (Free, Integration with Services possible)</li>
+<li><a href="https://vivaldi.com" rel="nofollow noopener noreferrer">Vivaldi Browser</a> (Free)</li>
+<li><a href="https://nodetics.com/feedbro/" rel="nofollow noopener noreferrer">feedbro browser extension</a> (Free)</li>
+</ul>
+<h3>Service-Based Apps</h3>
+<ul>
+<li><a href="https://feedreader.com" rel="nofollow noopener noreferrer">FeedReader</a></li>
+<li><a href="https://feeder.co" rel="nofollow noopener noreferrer">Feeder</a> (Freemium, 10 feeds for free)</li>
+<li><a href="https://www.inoreader.com/pricing" rel="nofollow noopener noreferrer">Inoreader</a> (Freemium, Ads and 150 feeds for free)</li>
+<li><a href="https://newsblur.com" rel="nofollow noopener noreferrer">NewsBlur</a> (Freemium, 64 feeds for free)</li>
+<li><a href="https://www.feedspot.com" rel="nofollow noopener noreferrer">Feedspot</a> (Non-free)</li>
+<li><a href="https://feedly.com" rel="nofollow noopener noreferrer">Feedly</a> (Non-free)</li>
+<li><a href="https://feedbin.com" rel="nofollow noopener noreferrer">Feedbin</a> (Non-free)</li>
+<li><a href="https://theoldreader.com" rel="nofollow noopener noreferrer">TheOldReader</a></li>
+<li><a href="https://bazqux.com" rel="nofollow noopener noreferrer">BazQux</a></li>
+</ul>
+<h3>Self-hosted Apps</h3>
+<ul>
+<li><a href="https://www.commafeed.com/" rel="nofollow noopener noreferrer">CommaFeed</a> (Free, OSS)</li>
+<li><a href="https://freshrss.org" rel="nofollow noopener noreferrer">FreshRSS</a> (Free, OSS)</li>
+</ul>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+.callout {
+  padding: 0;
+  padding-bottom: 0.5rem;
+  border-left: 4px solid rgba(68, 138, 255, 1);
+}
+.callout > * {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+.callout-title {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  font-weight: bold;
+  background-color: rgba(68, 138, 255, 0.2);
+  padding: 0.5rem 1rem;
+  gap: 1rem;
+}
+.callout-icon {
+  width: 1.2rem;
+  height: 1.2rem;
+  margin: 0 !important;
+  padding: 0;
+  fill: currentColor;
+  opacity: 0.4;
+}
+</style>
+]]></content:encoded>
+            <author>hey@tiim.ch (Tim Bachmann)</author>
+            <category>dev</category>
+            <category>rss</category>
+            <category>software</category>
+            <enclosure url="https://i.imgur.com/t3mebu7.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[How to set up an SSH Server on Windows with WSL]]></title>
+            <link>https://tiim.ch/blog/2022-03-ssh-windows-wsl</link>
+            <guid isPermaLink="false">https://tiim.ch/blog/2022-03-ssh-windows-wsl</guid>
+            <pubDate>Wed, 02 Mar 2022 00:00:00 GMT</pubDate>
+            <description><![CDATA[It can be very helpful to be able to connect to your laptop or desktop PC from anywhere using SSH. I will show you how to easily set this up on Windows with WSL.]]></description>
+            <content:encoded><![CDATA[<p>There <a href="https://gist.github.com/dentechy/de2be62b55cfd234681921d5a8b6be11" rel="nofollow noopener noreferrer">are</a> <a href="https://medium.com/@thinkbynumbers/automatically-start-wsl-ssh-and-various-services-on-windows-845dfda89690" rel="nofollow noopener noreferrer">many</a> <a href="https://faun.pub/how-to-setup-ssh-connection-on-ubuntu-windows-subsystem-for-linux-2b36afb943dc" rel="nofollow noopener noreferrer">guides</a> on the <a href="https://superuser.com/questions/1112007/how-to-run-ubuntu-service-on-windows-at-startup" rel="nofollow noopener noreferrer">internet</a> showing how to set up an SSH server <strong>inside</strong> WSL. This is currently not that easy and in my experience, it is not really stable. An alternative to this is to run the SSH server outside of WSL on the windows side and set its default shell to the WSL shell (or any other shell for that matter).</p>
+<h2>Installing the OpenSSH Server</h2>
+<p>Windows has been shipping with an OpenSSH client and server for a long time. They are not installed by default but can be activated either in the settings as described <a href="https://docs.microsoft.com/en-us/windows-server/administration/openssh/openssh_install_firstuse" rel="nofollow noopener noreferrer">in the official docs</a> or with the following PowerShell commands.</p>
+<p><strong>You will need to start PowerShell as Administrator</strong></p>
+<p>First, install the OpenSSH client and server.</p>
+<pre><code class="language-PowerShell">Add-WindowsCapability -Online -Name OpenSSH.Client~~~~0.0.1.0
+Add-WindowsCapability -Online -Name OpenSSH.Server~~~~0.0.1.0
+</code></pre>
+<p>Enable the SSH service and make sure the firewall rule is configured:</p>
+<pre><code class="language-PowerShell"># Enable the service
+Start-Service sshd
+Set-Service -Name sshd -StartupType 'Automatic'
+
+# Confirm the firewall rule is configured. It should be created automatically by setup. Run the following to verify
+if (!(Get-NetFirewallRule -Name "OpenSSH-Server-In-TCP" -ErrorAction SilentlyContinue | Select-Object Name, Enabled)) {
+    Write-Output "Firewall Rule 'OpenSSH-Server-In-TCP' does not exist, creating it..."
+    New-NetFirewallRule -Name 'OpenSSH-Server-In-TCP' -DisplayName 'OpenSSH Server (sshd)' -Enabled True -Direction Inbound -Protocol TCP -Action Allow -LocalPort 22
+} else {
+    Write-Output "Firewall rule 'OpenSSH-Server-In-TCP' has been created and exists."
+}
+</code></pre>
+<p>Congratulations, you have installed the SSH server on your Windows machine. And all without manually setting up a background service or modifying config files.</p>
+<h2>Setting WSL as Default Shell</h2>
+<p>To directly boot into WSL when connecting, we need to change the default shell from <code>cmd.exe</code> or <code>PowerShell.exe</code> to <code>bash.exe</code>, which in turn runs the default WSL distribution. This can be done with the PowerShell command:</p>
+<pre><code class="language-PowerShell">New-ItemProperty -Path "HKLM:\SOFTWARE\OpenSSH" -Name DefaultShell -Value "C:\WINDOWS\System32\bash.exe" -PropertyType String -Force
+</code></pre>
+<p><strong>Note</strong>: even though the shell is running on the Linux side, the SSH server is still on windows. This means you have to use to windows username to log in, and the SCP command copies files relative to the user directory on windows.</p>
+<h2>Enable Key-based Authentication (non-Admin User)</h2>
+<p><strong>Note</strong>: If the user account has Admin permissions, read the next chapter, otherwise continue reading.</p>
+<p>Create the folder <code>.ssh</code> in the users home directory on windows: (e.g. <code>C:\Users\&#x3C;username>\.ssh</code>). Run the following commands in PowerShell (not as administrator).</p>
+<pre><code class="language-PowerShell">New-Item -Path ~\.ssh -ItmeType "directory"
+New-Item -Path ~\.ssh\authorized_keys
+</code></pre>
+<p>The file <code>.ssh\autzorized_keys</code> will contain a list of all public keys that shall be allowed to connect to the SSH server.</p>
+<p>Copy the contents of your public key file (usually stored in <code>~/.ssh/id_rsa.pub</code>) to the <code>authorized_keys</code> file. If a key is already present, paste your key on a new line.</p>
+<h2>Enable Key-based Authentication (Admin User)</h2>
+<p>If the user is in the Administrators group, it is not possible to have the <code>authorized_keys</code> file in the user directory for security purposes.
+Instead, it needs to be located on the following path <code>%ProgramData%\ssh\administrators_authorized_keys</code>. A second requirement is that it is only accessible to Administrator users, to prevent a normal user from gaining admin permissions.</p>
+<p>To create the file start PowerShell as administrator and run the following command.</p>
+<pre><code class="language-PowerShell">New-Item -Path $env:programdata\ssh\administrators_authorized_keys
+</code></pre>
+<p>This will create the file with the correct permissions. Now open the file and paste your public key into it. The public key should be located at <code>~/.ssh/id_rsa.pub</code>. If a key is already present, paste your key on a new line.</p>
+<h2>Verifying everything works</h2>
+<p>Verify that you can SSH into your machine by running the following inside WSL:</p>
+<pre><code class="language-sh">IP=$(cat /etc/resolv.conf | grep nameserver | cut -d " " -f2) # get the windows host ip address
+ssh &#x3C;user>@$IP
+</code></pre>
+<p>Or from PowerShell and cmd:</p>
+<pre><code class="language-PowerShell">ssh &#x3C;user>@localhost
+</code></pre>
+<h2>Drawbacks</h2>
+<p>There are some drawbacks to this approach. If you rely on some programs or scripts to work over SSH, this might not be the method for you. Most scripts expect a unix machine on the other end, or if they expect a windows machine they will most likely not be configured to deal with WSL.</p>
+<p>If you however just want to connect to your pc to copy some files or change some settings this approach is perfectly fine.</p>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+.callout {
+  padding: 0;
+  padding-bottom: 0.5rem;
+  border-left: 4px solid rgba(68, 138, 255, 1);
+}
+.callout > * {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+.callout-title {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  font-weight: bold;
+  background-color: rgba(68, 138, 255, 0.2);
+  padding: 0.5rem 1rem;
+  gap: 1rem;
+}
+.callout-icon {
+  width: 1.2rem;
+  height: 1.2rem;
+  margin: 0 !important;
+  padding: 0;
+  fill: currentColor;
+  opacity: 0.4;
+}
+</style>
+]]></content:encoded>
+            <author>hey@tiim.ch (Tim Bachmann)</author>
+            <category>dev</category>
+            <category>ssh</category>
+            <category>windows</category>
+            <category>wsl</category>
+            <enclosure url="https://tiim.ch//assets/2022-03-ssh-windows-wsl.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[How to Listen to Phone Audio on PC]]></title>
+            <link>https://tiim.ch/blog/2022-02-phone-audio-to-pc</link>
+            <guid isPermaLink="false">https://tiim.ch/blog/2022-02-phone-audio-to-pc</guid>
+            <pubDate>Sat, 12 Feb 2022 00:00:00 GMT</pubDate>
+            <description><![CDATA[Learn how to connect your phone audio to your PC over wire or Bluetooth.]]></description>
+            <content:encoded><![CDATA[<p>Did you ever want to listen to your phone audio on your PC? I do it all the time to listen to podcasts on my PC without paying for a podcast app that syncs the episodes over the cloud. In this short article I will show you two easy ways to do this with a windows PC.</p>
+<p><em>TLDR</em>:</p>
+<ul>
+<li>Either use Bluetooth Audio Receiver from the Microsoft Store to connect you phone via Bluetooth,</li>
+<li>Or use an audio cable to connect the phone to the "line-in" on your PC.</li>
+</ul>
+<h2>Bluetooth (recommended)</h2>
+<p><strong>Requirements</strong>: A PC with integrated Bluetooth or a Bluetooth dongle.</p>
+<p>I recommend this approach more than the wired one because it is way less effort, you don't have to deal with a USB or lightning to audio dongle and in my opinion it is more reliable.</p>
+<p>Pair your phone with your PC as normal, by opening the Bluetooth settings on your phone and on the PC and wait for the devices to show up. When you successfully paired the phone once you will not have to do this again. Now you need an app that will tell the phone that it can use the PC as a wireless speaker. The only app I found that will do this is the <a href="https://www.microsoft.com/de-de/p/bluetooth-audio-receiver/9n9wclwdqs5j" rel="nofollow noopener noreferrer">Bluetooth Audio Receiver</a> app from the Windows Store. Install and and open it. You should see your phone on the list of Bluetooth devices on the app. Select it and click on the <code>Open Connection</code> button. It might take a moment but after it connected, you should hear all sounds from your phone on your PC.</p>
+<h2>Wired</h2>
+<p><strong>Requirements</strong>:</p>
+<ul>
+<li>Male-to-Male audio cable (3.5mm audio jack).</li>
+<li>A line-in port on your PC (usually blue audio jack on the back)</li>
+<li>USB-C to audio jack adapter (Optional)</li>
+<li>Lighting to audio jack adapter (Optional)</li>
+</ul>
+<p>This approach works if your PC doesn't support Bluetooth, or if the Bluetooth connection drops for some reason. Connect the audio cable to the blue line-in jack on the back of the computer. Then, connect the phone to the other end of the audio cable. If your phone does not have an audio jack, use the adapter on the USB-C or Lightning port. If your PC detects that you connected a new line-in device, it might open the audio settings automatically. If not, right-click on the volume icon on the taskbar next to the clock and select <code>Sounds</code>. Navigate to the <code>Input</code> tab and double click on the Line-In entry (the one with a cable icon). Navigate to the Monitor tab and select the check box for "Use this device as a playback source". This will tell windows it should play all sounds received through this input directly to the speakers. Usually this is used to monitor microphones but it works for this use case too. You should now hear any sound from your phone through your PC headphones or speakers. Make sure you turn this checkbox off when you disconnect your phone. Otherwise you might hear a crackle or other sounds when the loose cable gets touched.</p>
+<p><em>Photo by Lisa Fotios from Pexels</em></p>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+.callout {
+  padding: 0;
+  padding-bottom: 0.5rem;
+  border-left: 4px solid rgba(68, 138, 255, 1);
+}
+.callout > * {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+.callout-title {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  font-weight: bold;
+  background-color: rgba(68, 138, 255, 0.2);
+  padding: 0.5rem 1rem;
+  gap: 1rem;
+}
+.callout-icon {
+  width: 1.2rem;
+  height: 1.2rem;
+  margin: 0 !important;
+  padding: 0;
+  fill: currentColor;
+  opacity: 0.4;
+}
+</style>
+]]></content:encoded>
+            <author>hey@tiim.ch (Tim Bachmann)</author>
+            <category>audio</category>
+            <category>bluetooth</category>
+            <category>how-to</category>
+            <category>software</category>
+            <category>windows</category>
+            <enclosure url="https://tiim.ch//assets/2022-02-phone-audio-to-pc.jpg" length="0" type="image/jpg"/>
+        </item>
+        <item>
+            <title><![CDATA[Modelling Git Operations as Planning Problems]]></title>
+            <link>https://tiim.ch/blog/2021-01-git-operations-as-planning-problems</link>
+            <guid isPermaLink="false">https://tiim.ch/blog/2021-01-git-operations-as-planning-problems</guid>
+            <pubDate>Mon, 18 Sep 2023 11:41:51 GMT</pubDate>
+            <description><![CDATA[Bachelor Thesis. The goal of this thesis is to formally define a model of a subset of Git commands which mutate the revision graph, and to model those mutations as a planning task in the Planning Domain Definition Language. Multiple ways to model those graphs will be explored and those models will be compared by testing them using a set of planners.]]></description>
+            <content:encoded><![CDATA[<h2>Abstract</h2>
+<p>Version control systems use a graph data structure to track revisions of files. Those graphs are mutated with various commands by the respective version control system. The goal of this thesis is to formally define a model of a subset of Git commands which mutate the revision graph, and to model those mutations as a planning task in the Planning Domain Definition Language. Multiple ways to model those graphs will be explored and those models will be compared by testing them using a set of planners.</p>
+<p><a href="https://tiim.ch/assets/2021-01-20-Thesis.pdf" rel="nofollow noopener noreferrer">Download Thesis</a></p>
+<h2>Cite</h2>
+<pre><code>@thesis{bachmann2021,
+	title        = {Modelling Git Operations as Planning Problems},
+	author       = {Tim Bachmann},
+	year         = {2021},
+  month        = {01},
+	type         = {Bachelor's Thesis},
+	school       = {University of Basel},
+	doi          = {10.13140/RG.2.2.24784.17922}
+}
+</code></pre>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+.callout {
+  padding: 0;
+  padding-bottom: 0.5rem;
+  border-left: 4px solid rgba(68, 138, 255, 1);
+}
+.callout > * {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+.callout-title {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  font-weight: bold;
+  background-color: rgba(68, 138, 255, 0.2);
+  padding: 0.5rem 1rem;
+  gap: 1rem;
+}
+.callout-icon {
+  width: 1.2rem;
+  height: 1.2rem;
+  margin: 0 !important;
+  padding: 0;
+  fill: currentColor;
+  opacity: 0.4;
+}
+</style>
+]]></content:encoded>
+            <author>hey@tiim.ch (Tim Bachmann)</author>
+            <category>dev</category>
+            <category>git</category>
+            <category>pddl</category>
+            <category>planning-system</category>
+            <enclosure url="https://tiim.ch//assets/2021-01-git-operations-as-planning-problems.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[How to write optional filters in SQL]]></title>
+            <link>https://tiim.ch/blog/2019-07-sql-optional-filters-coalesce</link>
+            <guid isPermaLink="false">https://tiim.ch/blog/2019-07-sql-optional-filters-coalesce</guid>
+            <pubDate>Thu, 11 Jul 2019 00:00:00 GMT</pubDate>
+            <description><![CDATA[A simple way to filter by optional values in SQL with the COALESCE function.]]></description>
+            <content:encoded><![CDATA[<h2>The problem</h2>
+<p>Let's say you have a rest API with the following endpoint that returns all of the books in your database:</p>
+<pre><code class="language-rest">GET /book/
+</code></pre>
+<p>Your SQL query might look like something like this</p>
+<pre><code class="language-sql">SELECT *
+FROM books
+</code></pre>
+<p>Sometimes you want to only list books, for example, from a specific author. How do we do this in SQL?</p>
+<h2>Naive solution: String concatenation ✂</h2>
+<p>One way would be to concatenate your sql query something like this:</p>
+<pre><code class="language-js">const arguments = [];
+const queryString = "SELECT * FROM books WHERE true";
+if (authorFilter != null) {
+  queryString += "AND author = ?";
+  arguments.push(authorFilter);
+}
+db.query(queryString, arguments);
+</code></pre>
+<p>I'm not much of a fan of manually concatenating strings.</p>
+<h2>The coalesce function 🌟</h2>
+<p>Most Databases have the function <code>coalesce</code> which accepts a variable amount of arguments and returns the first argument that is not null.</p>
+<pre><code class="language-sql">-- Examle
+SELECT coalesce(null, null, 'tiim.ch', null, '@TiimB') as example;
+
+-- Will return
+
+example
+---------
+tiim.ch
+</code></pre>
+<p>But how will this function help us?</p>
+<h2>Optional filters with the coalesce function</h2>
+<pre><code class="language-sql">SELECT *
+FROM books
+WHERE
+  author = coalesce(?, author);
+</code></pre>
+<p>If the filter value is null the coalesce expression will resolve to <code>author</code>
+and the comparison <code>author = author</code> will be true.</p>
+<p>If on the other hand the value is set for example to Shakespeare then the author will be compared to Shakespeare.</p>
+<p>I came across this way to implement optional filters only recently. If you have a more idiomatic way to do this let me know please ✨</p>
+<p>If you liked this post please follow me on here or on Twitter under <a href="https://twitter.com/TiimB" rel="nofollow noopener noreferrer">@TiimB</a> 😎</p>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+.callout {
+  padding: 0;
+  padding-bottom: 0.5rem;
+  border-left: 4px solid rgba(68, 138, 255, 1);
+}
+.callout > * {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+.callout-title {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  font-weight: bold;
+  background-color: rgba(68, 138, 255, 0.2);
+  padding: 0.5rem 1rem;
+  gap: 1rem;
+}
+.callout-icon {
+  width: 1.2rem;
+  height: 1.2rem;
+  margin: 0 !important;
+  padding: 0;
+  fill: currentColor;
+  opacity: 0.4;
+}
+</style>
+]]></content:encoded>
+            <author>hey@tiim.ch (Tim Bachmann)</author>
+            <category>dev</category>
+            <category>quick-tip</category>
+            <category>sql</category>
+            <enclosure url="https://tiim.ch//assets/2019-07-sql-optional-filters-coalesce.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[How I use Vue.js on GitHub Pages]]></title>
+            <link>https://tiim.ch/blog/2019-05-vue-on-github-pages</link>
+            <guid isPermaLink="false">https://tiim.ch/blog/2019-05-vue-on-github-pages</guid>
+            <pubDate>Sat, 04 May 2019 00:00:00 GMT</pubDate>
+            <description><![CDATA[How to properly deploy a Vue.js app on GitHub Pages]]></description>
+            <content:encoded><![CDATA[<p>I recently read the Article <a href="https://blog.usmanity.com/serving-vue-js-apps-on-github-pages/" rel="nofollow noopener noreferrer">Serving Vue.js apps on GitHub Pages</a> and it inspired me to write about what I'm doing differently.</p>
+<p>If you want to see an example of this method in action, go check out my <a href="https://tiimb.work" rel="nofollow noopener noreferrer">personal website</a> on <a href="https://github.com/Tiim/Tiim.github.io" rel="nofollow noopener noreferrer">GitHub</a></p>
+<p>I won't be explaining how to setup a Vue project. If you're looking for a Tutorial on that go check out the awesome <a href="https://vuejs.org/v2/guide/" rel="nofollow noopener noreferrer">Vue.js Guide</a>.</p>
+<p>So you have setup your awesome Vue project and want to host it on GitHub Pages. The way Muhammad explained it you would build the project using <code>npm run build</code>, commit the <code>dist/</code> folder along with your source files and point GitHub to the dist folder. This might get quite messy because you either have commit messages with the sole purpose of uploading the dist folder or you commit the code changes at the same time which makes it hard to find the relevant changes if you ever want to look at your commits again.</p>
+<p>So what can you do about this?</p>
+<p>Git to the rescue, let's use a branch that contains all the build files.</p>
+<h2>Step 1 - keeping our working branch clean 🛀</h2>
+<p>To make sure that the branch we are working from stays clean of any build files we are gonna add a <code>.gitignore</code> file to the root.</p>
+<pre><code class="language-sh"># .gitignore
+dist/
+</code></pre>
+<h2>Step 2 - adding a second branch 🌳</h2>
+<p>We are not goint to branch off master like how we would do it if we were to modify our code with the intention to merge it back to the main branch. Instead we are gonna create a squeaky clean new branch that will only ever hold the dist files. After all we will not ever need to merge these two branches together.</p>
+<p>We do this by creating a new git repository inside the dist folder:</p>
+<pre><code class="language-sh">cd dist/
+git init
+git add .
+git commit -m 'Deploying my awesome vue app'
+</code></pre>
+<h2>Step 3 - deploying 🚚</h2>
+<p>We are gonna force push our new git repository to a branch on GitHub. This might go against git best practices but since we won't ever checkout this branch we don't have to worry about that.</p>
+<pre><code class="language-sh">git push -f git@github.com:&#x3C;username>/&#x3C;repo>.git &#x3C;branch>
+</code></pre>
+<p>⚠️ Make sure you double or tripple check your destination branch! You don't want to accidentally overwrite your working branch. Using the branch <code>gh-pages</code> will most likely be a good idea.</p>
+<h2>Step 4 - pointing GitHub to the right place 👈</h2>
+<p>Now we are almost done. The only thing left is telling GitHub where our assets live.</p>
+<p>Go to your repo, on the top right navigate to <code>Settings</code> and scroll down to GitHub pages. Enable it and set your source branch to the branch you force pushed to, for example <code>gh-pages</code>.</p>
+<h2>Step 5 - automating everything 😴</h2>
+<p>If you don't mind doing this whole process (Step 2 and 3) every time you want to deploy you can stop now. If you're as lazy as me, here is the script I use to deploy with one command:</p>
+<pre><code class="language-sh"># deploy.sh
+
+#!/usr/bin/env sh
+
+# abort on errors
+set -e
+
+# build
+echo Linting..
+npm run lint
+echo Building. this may take a minute...
+npm run build
+
+# navigate into the build output directory
+cd dist
+
+# if you are deploying to a custom domain
+# echo 'example.com' > CNAME
+
+echo Deploying..
+git init
+git add -A
+git commit -m 'deploy'
+
+# deploy
+git push -f git@github.com:&#x3C;username>/&#x3C;repo>.git &#x3C;branch>
+
+cd -
+
+</code></pre>
+<p>If your on windows look into the Windows Subsystem for Linus (WSL) it will be worth it.</p>
+<p>If you are still reading, thank you very much. This is actually my first article and I'm really happy to hear about any opinions and criticisms.
+Happy Coding ♥</p>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+.callout {
+  padding: 0;
+  padding-bottom: 0.5rem;
+  border-left: 4px solid rgba(68, 138, 255, 1);
+}
+.callout > * {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+.callout-title {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  font-weight: bold;
+  background-color: rgba(68, 138, 255, 0.2);
+  padding: 0.5rem 1rem;
+  gap: 1rem;
+}
+.callout-icon {
+  width: 1.2rem;
+  height: 1.2rem;
+  margin: 0 !important;
+  padding: 0;
+  fill: currentColor;
+  opacity: 0.4;
+}
+</style>
+]]></content:encoded>
+            <author>hey@tiim.ch (Tim Bachmann)</author>
+            <category>dev</category>
+            <category>github-pages</category>
+            <category>javascript</category>
+            <category>vue.js</category>
+            <enclosure url="https://tiim.ch//assets/2019-05-vue-on-github-pages.png" length="0" type="image/png"/>
+        </item>
+    </channel>
+</rss>
