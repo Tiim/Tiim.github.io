@@ -24,7 +24,7 @@ Here you can see the two `/trigger` commands:
 _trigger on mention_
 
 ```
-/trigger addreplace notify_highlight print '' '${tg_highlight}' '/.*/${weechat.look.nick_prefix}${tg_prefix_nocolor}${weechat.look.nick_suffix} ${tg_message_nocolor}/' '/exec -norc -nosw -bg wget -O- --post-data "${tg_message}" "-                   -header=Title: New highlight: ${buffer.full_name}" https://ntfy.sh/my_ntfy_topic_1234'
+/trigger addreplace notify_highlight print '' '${tg_highlight}' '/.*/${weechat.look.nick_prefix}${tg_prefix_nocolor}${weechat.look.nick_suffix} ${tg_message_nocolor}/' '/exec -norc -nosw -bg wget -O- --post-data "${tg_message}" "--header=Title: New highlight: ${buffer.full_name}" https://ntfy.sh/my_ntfy_topic_1234'
 ```
 
 _trigger on private message_
