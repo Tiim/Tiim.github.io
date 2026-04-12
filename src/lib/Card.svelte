@@ -25,9 +25,9 @@
     {#if image}
       <img class="u-featured" src={image?.src} alt={image?.alt || title + " title image"} />
     {/if}
-    <p class="p-summary">
+    <div class="p-summary">
       <slot />
-    </p>
+    </div>
     {#if tags && tags.length > 0}
       <div class="tags">
         {#each tags as tag}
