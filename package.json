@@ -27,6 +27,7 @@
   },
   "type": "module",
   "dependencies": {
+    "@excalidraw/excalidraw": "^0.18.0",
     "@fortawesome/fontawesome-svg-core": "^6.0.0",
     "@fortawesome/free-brands-svg-icons": "^6.0.0",
     "@fortawesome/free-solid-svg-icons": "^6.0.0",
@@ -40,6 +41,8 @@
     "mdast-util-to-hast": "^13.0.0",
     "mermaid": "^11.14.0",
     "normalize.css": "^8.0.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
     "recursive-readdir": "^2.2.3",
     "rehype-external-links": "^3.0.0",
     "rehype-stringify": "^10.0.0",

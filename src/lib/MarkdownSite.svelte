@@ -12,6 +12,19 @@
       mermaid.initialize({ startOnLoad: false, theme: "dark" });
       await mermaid.run();
     }
+    if (document.querySelector("pre.excalidraw")) {
+      const { exportToSvg } = await import("@excalidraw/excalidraw");
+      for (const el of document.querySelectorAll("pre.excalidraw")) {
+        const json = JSON.parse(el.textContent);
+        const svgEl = await exportToSvg({
+          elements: json.elements,
+          appState: { ...(json.appState || {}), exportWithDarkMode: true },
+          files: json.files ?? null,
+        });
+        svgEl.style.maxWidth = "100%";
+        el.replaceWith(svgEl);
+      }
+    }
   });
 
   let prefix;

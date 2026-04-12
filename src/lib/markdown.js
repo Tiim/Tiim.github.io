@@ -12,6 +12,7 @@ import extractAbstract from "./markdown/extractAbstract";
 import slugify from "slugify";
 import { rehypeCallout } from "./markdown/rehypeCallout";
 import { rehypeMermaid } from "./markdown/rehypeMermaid";
+import { rehypeExcalidraw } from "./markdown/rehypeExcalidraw";
 import { remarkHighlight } from "./markdown/remarkHighlight";
 import { remarkAbsoluteLink } from "./markdown/remarkAbsoluteLink";
 import { remarkHideWikilink } from "./markdown/remarkHideWikilink";
@@ -37,6 +38,7 @@ export async function process(fileName) {
     .use(remarkRehype)
     .use(rehypeCallout)
     .use(rehypeMermaid)
+    .use(rehypeExcalidraw)
     .use(rehypeExternalLinks, { rel: ["nofollow", "noopener", "noreferrer"] })
     .use(rehypeStringify);
 

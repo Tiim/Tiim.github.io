@@ -66,6 +66,30 @@ raw_data: # object, micropub raw data
 - `cover_caption` - use `cover_image_txt` instead
 - `reply_to` - use `in_reply_to` instead
 
+## Diagrams
+
+### Mermaid
+
+Use a fenced code block with the `mermaid` language tag. The diagram is rendered client-side by the [Mermaid](https://mermaid.js.org/) library in dark theme.
+
+````md
+```mermaid
+graph TD
+  A --> B
+  A --> C
+```
+````
+
+### Excalidraw
+
+Use a fenced code block with the `excalidraw` language tag. Paste the JSON exported from [excalidraw.com](https://excalidraw.com) (via **Save as JSON** or the clipboard export). The diagram is rendered client-side in dark mode by `@excalidraw/excalidraw`.
+
+````md
+```excalidraw
+{"type":"excalidraw","version":2,"source":"https://excalidraw.com","elements":[...],"appState":{...},"files":{}}
+```
+````
+
 ## Developing
 
 ```bash
