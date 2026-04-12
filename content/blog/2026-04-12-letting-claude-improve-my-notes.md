@@ -19,7 +19,7 @@ content_tags:
 
 I have been using Obsidian for my personal notes since the beginning of 2022, so for over four years at the time of writing. I very quickly found that the best organisation system for me was a Zettelkasten approach. A single flat folder where all my notes get stored in, surfaced via links to and backlinks from other notes.
 
-At the beginning this was a wonderful concept. I wrote new notes in a `_inbox/` folder, linked them up to other notes and when I was happy with it I moved it to the `Zettel/` folder. Over time the number of notes grew and grew and i started to open obsidian less and less. When I wrote something down, those notes accumulated in the `_inbox/` and I did not have the time nor motivation to properly interlink the concepts and process the notes such that i am happy for them to be moved to the Zettel folder.
+At the beginning this was a wonderful concept. I wrote new notes in a `_inbox/` folder, linked them up to other notes and when I was happy with it I moved it to the `Zettel/` folder. Over time the number of notes grew and grew and I started to open obsidian less and less. When I wrote something down, those notes accumulated in the `_inbox/` and I did not have the time or motivation to properly interlink the concepts and process the notes such that i am happy for them to be moved to the Zettel folder.
 
 But this changed when I came across an article that introduces a framework for how to let an AI agent, such as Claude Code, do this work instead. This instantly resonated with me and for the last week I spent some time to build my own workflow on how I want to leverage Claude in my note taking system.
 
@@ -34,13 +34,13 @@ flowchart LR
 
 I used to only have an `_inbox` and a `Zettel` folder, but I decided to also add a new `_raw` folder to my workflow, one that I would not have added if it were not for the help of AI.
 
-Lets go over the full workflow, I will share the tools and prompts with you afterwards.
+Let's go over the full workflow, I will share the tools and prompts with you afterwards.
 
 ### Step 0 (optional) - The `_raw/` folder
 
 Sometimes I come across interesting information in some form or another. This could be a blog post or other site on the internet. A chat log with a fellow human or with an AI. Or any other document that is primarily text based.
 
-I copy this information into a basic markdown file in the `_raw/` folder, without formatting splitting or any other processing. Just a unstructured piece of "data".
+I copied this information into a basic markdown file in the `_raw/` folder, without formatting splitting or any other processing. Just a unstructured piece of "data".
 
 I then use Claude Code to extract atomic notes, pieces of information that are a single coherent concept, into new notes in the `_inbox/` folder. Those new notes must not have any special format, but they should, if possible, link to the source of the data. The original file in the `_raw/` folder is then deleted.
 
@@ -48,13 +48,13 @@ I then use Claude Code to extract atomic notes, pieces of information that are a
 
 This is the folder where I create my own new notes. Those notes are not supposed to be of high quality or particularly information dense. It's just a place for me to write something down quickly.
 
-As mentioned above, I used to manually format each note, find relevant other notes and interlink them. Now I use Claude Code for this. If effortlessly brings the notes exactly into the right format, with the right frontmatter and backmatter information and correcting any spelling or grammatical errors. It also searches for relevant other notes in the `Zettel/` folder and links to them. Additionally I want each note to be reachable from a central `_overview.md` note in the vault root, either by adding a link to the `_Overview.md` or by linking to or from a note that is already reachable from the `_Overfiew.md` file.
+As mentioned above, I used to manually format each note, find relevant other notes and interlink them. Now I use Claude Code for this. It effortlessly brings the notes exactly into the right format, with the right frontmatter and backmatter information and correcting any spelling or grammatical errors. It also searches for relevant other notes in the `Zettel/` folder and links to them. Additionally I want each note to be reachable from a central `_overview.md` note in the vault root, either by adding a link to the `_Overview.md` or by linking to or from a note that is already reachable from the `_Overview.md` file.
 
-If the note references a higher level concept, Claude is instructed to generate a basically empty new note for it in the concept, which is then linked from the original note.
+If the note references a higher level concept, Claude is instructed to generate a basically empty new note for this concept, which is then linked from the original note.
 
 I have setup `qmd` and `obsidian-graph-mcp` as tools for Claude Code, which it uses to find relevant notes and reason about the linked notes graph. I will get into those tools below.
 
-### Step 2 - Kaizen - continuously improvement
+### Step 2 - Kaizen - continuous improvement
 
 For newly added notes, the quality of the links should be pretty good, but sometimes some connections get missed. And in my Zettelkasten there are almost a thousand pre existing notes, that have been linked by hand and where I undoubtedly have missed many related notes.
 
@@ -77,7 +77,7 @@ Now that the workflow is clear I want to quickly go over the tools and skills I 
 
 #### `obsidian-graph-mcp`
 
-I found that Claude Code spent a long time traversing links and reading lost of files, just so it can reason about forward and backward links and the reachability from the `_Overview.md` file. I build a simple go MCP server that solves this problem. It exposes just a few graph tools that allow Claude Code to quickly make decisions, instead of first having to read tens of files to get an overview.
+I found that Claude Code spent a long time traversing links and reading lots of files, just so it can reason about forward and backward links and the reachability from the `_Overview.md` file. I built a simple go MCP server that solves this problem. It exposes just a few graph tools that allow Claude Code to quickly make decisions, instead of first having to read tens of files to get an overview.
 
 ## Claude Code skills
 
@@ -277,7 +277,7 @@ share: <bool - default false>
 
 ## 📇 Additional Metadata
 
-- 🔮 Origin:: <[[SourceNote]] or emtpy>
+- 🔮 Origin:: <[[SourceNote]] or empty>
 - 🗂 Type:: #type/<software|project|recipe|...>
 - 📝 Status:: #status/<draft|in-progress|done|...>
 - 🔐 Visibility:: #visibility/private
