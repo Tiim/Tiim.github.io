@@ -1,9 +1,18 @@
 <script>
   import { base } from "$app/paths";
+  import { onMount } from "svelte";
   import AboutCard from "./AboutCard.svelte";
   import PubDate from "./pub-date.svelte";
   export let site;
   export let about = null;
+
+  onMount(async () => {
+    if (document.querySelector("pre.mermaid")) {
+      const mermaid = (await import("mermaid")).default;
+      mermaid.initialize({ startOnLoad: false, theme: "dark" });
+      await mermaid.run();
+    }
+  });
 
   let prefix;
   $: prefix =

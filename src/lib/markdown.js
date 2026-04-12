@@ -11,6 +11,7 @@ import { dev } from "$app/environment";
 import extractAbstract from "./markdown/extractAbstract";
 import slugify from "slugify";
 import { rehypeCallout } from "./markdown/rehypeCallout";
+import { rehypeMermaid } from "./markdown/rehypeMermaid";
 import { remarkHighlight } from "./markdown/remarkHighlight";
 import { remarkAbsoluteLink } from "./markdown/remarkAbsoluteLink";
 import { remarkHideWikilink } from "./markdown/remarkHideWikilink";
@@ -35,6 +36,7 @@ export async function process(fileName) {
     .use(extractAbstract)
     .use(remarkRehype)
     .use(rehypeCallout)
+    .use(rehypeMermaid)
     .use(rehypeExternalLinks, { rel: ["nofollow", "noopener", "noreferrer"] })
     .use(rehypeStringify);
 
