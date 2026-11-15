@@ -1,0 +1,194 @@
+# yaml-language-server: $schema=https://unpkg.com/@sveltia/cms@0.256.1/schema/sveltia-cms.json
+#
+# Sveltia CMS at https://tiim.ch/admin. Saving an entry commits straight to
+# the `source` branch, which deploys the site; drafts stay hidden as long as
+# `published` is off.
+#
+# Login: "Sign in with GitHub" goes through backend.tiim.ch/cms/auth (the
+# OAuth helper in Tiim/backend). "Sign in with token" takes a fine-grained
+# personal access token with Contents read/write on this repo.
+
+backend:
+  name: github
+  repo: Tiim/Tiim.github.io
+  branch: source
+  base_url: https://backend.tiim.ch
+  auth_endpoint: cms/auth
+  auth_methods: [oauth, token]
+  commit_messages:
+    create: "content: create {{collection}} “{{slug}}”"
+    update: "content: update {{collection}} “{{slug}}”"
+    delete: "content: delete {{collection}} “{{slug}}”"
+    uploadMedia: "assets: upload “{{path}}”"
+    deleteMedia: "assets: delete “{{path}}”"
+
+site_url: https://tiim.ch
+display_url: https://tiim.ch
+logout_redirect_url: https://tiim.ch
+
+# content/assets is copied to static/assets at build time and served at /assets.
+media_folder: content/assets
+public_folder: /assets
+
+slug:
+  encoding: ascii
+  clean_accents: true
+
+collections:
+  - name: blog
+    label: Blog posts
+    label_singular: Blog post
+    folder: content/blog
+    extension: md
+    format: frontmatter
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    preview_path: "/blog/{{slug}}"
+    summary: "{{date | date('YYYY-MM-DD')}} · {{title}}{{published | ternary('', ' (draft)')}}"
+    sortable_fields: [date, title]
+    view_filters:
+      - { label: Drafts, field: published, pattern: false }
+      - { label: Published, field: published, pattern: true }
+    fields:
+      - { name: uuid, label: UUID, widget: uuid, read_only: true }
+      - { name: title, label: Title, widget: string }
+      - {
+          name: description,
+          label: Description,
+          widget: text,
+          hint: "One or two sentences, shown in lists and previews.",
+        }
+      - name: date
+        label: Date
+        widget: datetime
+        default: "{{now}}"
+        output_utc: true
+        hint: Publication date and time.
+      - { name: published, label: Published, widget: boolean, default: false }
+      - name: content_tags
+        label: Tags
+        widget: list
+        required: false
+        hint: Comma separated.
+      - {
+          name: cover_image,
+          label: Cover image,
+          widget: image,
+          required: false,
+        }
+      - {
+          name: cover_image_txt,
+          label: Cover image alt text,
+          widget: string,
+          required: false,
+        }
+      - name: modified
+        label: Last modified
+        widget: datetime
+        auto_now: [update]
+        required: false
+      # Kept so editing an older post doesn't drop them.
+      - {
+          name: created,
+          label: Created (Obsidian),
+          widget: datetime,
+          required: false,
+          output_utc: true,
+        }
+      - {
+          name: aliases,
+          label: Aliases (Obsidian),
+          widget: list,
+          required: false,
+        }
+      - {
+          name: syndication,
+          label: Syndication URLs,
+          widget: list,
+          required: false,
+        }
+      - {
+          name: cover_caption,
+          label: Cover caption (deprecated),
+          widget: string,
+          required: false,
+        }
+      - { name: body, label: Body, widget: markdown }
+
+  - name: projects
+    label: Projects
+    label_singular: Project
+    folder: content/projects
+    extension: md
+    format: frontmatter
+    create: true
+    slug: "{{slug}}"
+    preview_path: "/projects/{{slug}}"
+    sortable_fields: [date, title]
+    fields:
+      - { name: uuid, label: UUID, widget: uuid, read_only: true }
+      - { name: title, label: Title, widget: string }
+      - { name: section, label: Section, widget: hidden, default: Projects }
+      - name: date
+        label: Date
+        widget: datetime
+        default: "{{now}}"
+        output_utc: true
+      - { name: published, label: Published, widget: boolean, default: false }
+      - { name: content_tags, label: Tags, widget: list, required: false }
+      - name: links
+        label: Links
+        widget: list
+        required: false
+        hint: "Markdown links, e.g. [Website](https://example.com)"
+      - {
+          name: cover_image,
+          label: Cover image,
+          widget: image,
+          required: false,
+        }
+      - name: modified
+        label: Last modified
+        widget: datetime
+        auto_now: [update]
+        required: false
+      - { name: body, label: Body, widget: markdown }
+
+  - name: pages
+    label: Pages
+    label_singular: Page
+    folder: content/pages
+    extension: md
+    format: frontmatter
+    create: true
+    slug: "{{slug}}"
+    preview_path: "/pages/{{slug}}"
+    fields:
+      - { name: uuid, label: UUID, widget: uuid, read_only: true }
+      - { name: title, label: Title, widget: string }
+      - { name: description, label: Description, widget: text, required: false }
+      - name: date
+        label: Date
+        widget: datetime
+        default: "{{now}}"
+        output_utc: true
+      - { name: published, label: Published, widget: boolean, default: false }
+      - {
+          name: cover_image,
+          label: Cover image,
+          widget: image,
+          required: false,
+        }
+      - name: modified
+        label: Last modified
+        widget: datetime
+        auto_now: [update]
+        required: false
+      - {
+          name: created,
+          label: Created (Obsidian),
+          widget: datetime,
+          required: false,
+          output_utc: true,
+        }
+      - { name: body, label: Body, widget: markdown }
