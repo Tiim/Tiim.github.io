@@ -1,0 +1,30 @@
+{
+  "short_name": "tiim.ch",
+  "name": "Tim Bachmann",
+  "icons": [
+    {
+      "src": "/swim-emoji.png",
+      "type": "image/png",
+      "sizes": "240x240"
+    }
+  ],
+  "start_url": "/",
+  "background_color": "#ffffff",
+  "display": "browser",
+  "scope": "/",
+  "theme_color": "#ffffff",
+  "shortcuts": [
+    {
+      "name": "Projects",
+      "short_name": "Projects",
+      "description": "Projects & Utility Apps\u2699\uFE0F",
+      "url": "/projects"
+    },
+    {
+      "name": "Blog",
+      "short_name": "Blog",
+      "description": "Blog\uD83D\uDCD6",
+      "url": "/blog"
+    }
+  ]
+}
