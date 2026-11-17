@@ -1,13 +1,17 @@
 ---
-uuid: "a3040709-cd2d-43cb-ab33-2061ba1ae061"
+uuid: a3040709-cd2d-43cb-ab33-2061ba1ae061
 title: TeamKit
-date: 2022-11-27T09:19:08Z
-modified:
 section: Projects
+date: 2022-11-27T09:19:08Z
 published: true
-content_tags: ["sveltekit", "hasura", "postgres", "dev"]
+content_tags:
+  - golang
+  - postgres
+  - dev
 links:
-  - "[TeamKit](https://teamkit.cc)"
+  - '[TeamKit](https://teamkit.cc)'
+cover_image: https://teamkit.cc/ui/static/images/team-coach-mascot.svg
+modified: 2026-11-17T22:43:51
 ---
 
 TemKit makes it easy to organize any kind of teams. Built for sport clubs, coaches, youth groups and more. TeamKit supports taking attendance, planning practices or events and keeping track of what coaches/teachers are responsible for which team.
