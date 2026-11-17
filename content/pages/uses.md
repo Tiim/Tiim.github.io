@@ -1,11 +1,12 @@
 ---
-uuid: "c00df133-65ab-40c1-9fa9-376fe6dfae93"
+uuid: c00df133-65ab-40c1-9fa9-376fe6dfae93
 title: /uses
-published: true
-created: "2022-03-25T23:28:00.000Z"
-date: 2022-03-26T00:00:00.000Z
 description: List of software and gear I use on a regular basis.
-modified: 2023-07-30T19:21:29Z
+date: 2022-03-26T00:00:00.000Z
+published: true
+cover_image: ''
+modified: 2026-11-17T22:47:27
+created: 2022-03-25T23:28:00.000Z
 ---
 
 This page lists most of the gear and tools I use on a daily basis. This page is inspired by [@wesbos](https://wesbos.com)' [uses.tech](https://uses.tech/) page.
@@ -23,17 +24,15 @@ This page lists most of the gear and tools I use on a daily basis. This page is 
 ### Note Taking
 
 - [Obsidian.md](https://obsidian.md/) is the first note taking tool I actually use on a regular basis. I really enjoy the flexibility of it, especially regarding the quickly growing plugin ecosystem. A few of my favourite plugins are in no particular order:
-  - [Obsidian Templater](https://silentvoid13.github.io/Templater/)
-  - [Obsidian Dataview](https://blacksmithgu.github.io/obsidian-dataview/)
-  - [Obsidian Git](https://github.com/denolehov/obsidian-git)
+    - [Obsidian Templater](https://silentvoid13.github.io/Templater/)
+    - [Obsidian Dataview](https://blacksmithgu.github.io/obsidian-dataview/)
+    - [Obsidian Git](https://github.com/denolehov/obsidian-git)
 
 ### Other Apps
 
 - [Firefox](https://www.mozilla.org/de/firefox/new/) has been my default browser for many years now. I switched back to it after using chrome because I agree with its focus on privacy.
 - Mozilla Thunderbird, I used to grudgingly use thunderbird as my email program because I have not found anything better yet. However, in the recent months the changes to thunderbird make it way more enjoyable to use. I still miss a way to sync my settings and RSS feeds between my laptop and my desktop computer though.
 - I heavily rely on [FancyZones](https://docs.microsoft.com/en-us/windows/powertoys/fancyzones) of Windows PowerToys to arrange my windows in a tiled-ish way.
-- Microsoft To Do, I have recently been looking for a good and simple program to keep all my tasks. Microsoft To Do seems to fit this quite well and looks stunning.
-- Trello, just the easiest way to keep track of projects that consist of multiple tasks. I have a trello board for most of my side projects, as well as for private projects.
 
 ## Tech Stack
 
@@ -56,8 +55,6 @@ This page lists most of the gear and tools I use on a daily basis. This page is 
 
 ### Multimedia Gear
 
-- I take pictures with my trusty **Panasonic Lumix G7**. I really love this camera, it is still very good for the price and even log lenses are not bulky at all. Check out some of my pictures on my [Flickr](https://www.flickr.com/people/152309161@N02/).
+- I take pictures with my trusty **Panasonic Lumix G7**. I really love this camera, it is still very good for the price and even log lenses are not bulky at all. Check out some of my pictures on my Flickr. 
 
----
-
-_This page is a work in progress, if your are curious about anything else in my setup shoot me a toot [@tiim@indieweb.social](https://indieweb.social/@tiim), or comment down below._
+***
