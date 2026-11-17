@@ -66,6 +66,15 @@ raw_data: # object, micropub raw data
 - `cover_caption` - use `cover_image_txt` instead
 - `reply_to` - use `in_reply_to` instead
 
+## Writing from the browser (CMS)
+
+[Sveltia CMS](https://github.com/sveltia/sveltia-cms) runs at <https://tiim.ch/admin> (`static/admin/`). Saving an entry commits to `source`, which deploys the site, so keep `published` off until a post is ready.
+
+- **Sign in with GitHub** uses the OAuth helper on backend.tiim.ch (`/cms/*`, see `docs/cms-auth.md` in Tiim/backend).
+- **Sign in using access token** takes a fine-grained personal access token with _Contents: read and write_ on this repo only.
+
+Collections and frontmatter fields are defined in `static/admin/config.yml`. Add a new frontmatter field there too, or the CMS won't show it.
+
 ## Developing
 
 ```bash
